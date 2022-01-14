@@ -7,20 +7,33 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Main</title>
+<title>노벨리더</title>
 </head>
 <body>
-	<a href="{root}/">로그인</a>
-	<a href="{root}/">회원가입</a>
-	<a href="{root}/">로그아웃</a>
-	<a href="{root}/">TOP10</a>
-	<a href="{root}/">인기작가</a>
-	<a href="{root}/">공지사항</a>
-	<a href="{root}/">검색</a>
-	<a href="{root}/">투고</a>
-	<a href="{root}/">프로필</a>
-	<a href="{root}/">즐겨찾기 목록</a>
-	<a href="{root}/">최근 기록</a>
-	<a href="{root}/">문의하기</a>
+	<a href="${root}/member/login.do">로그인</a>
+	<br/>
+	<a href="${root}/member/register.do">회원가입</a>
+	<br/>
+	<a href="${root}/member/logout.do">로그아웃</a>
+	<br/>
+	<a href="${root}/novel/top10.do">TOP10</a>
+	<br/>
+	<a href="${root}/member/ranking.do">인기작가</a>
+	<br/>
+	<a href="${root}/notice/notice.do">공지사항</a>
+	<a href="${root}/notice/faq.do">자주하는질문</a>
+	<a href="${root}/notice/question.do">공지사항</a>
+	<br/>
+	<a href="${root}/novel/search.do">검색</a>
+	<br/>
+	<a href="${root}/novel/upload.do">투고</a>
+	<br/>
+	<a href="${root}/member/profile.do">프로필</a>
+	<br/>
+	<a href="${root}/member/favorite.do">즐겨찾기 목록</a>
+	<br/>
+	<a href="${root}/member/recent.do">최근 기록</a>
+	<br/>
+	<a href="${root}/admin/menu.do">관리자 메뉴</a>
 </body>
 </html>
