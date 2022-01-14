@@ -10,30 +10,28 @@
 <title>노벨리더</title>
 </head>
 <body>
-	<a href="${root}/member/login.do">로그인</a>
+	<a href="${root}/member/login.do">로그인</a>	<!-- 김준기 -->
 	<br/>
-	<a href="${root}/member/register.do">회원가입</a>
+	<a href="${root}/member/register.do">회원가입</a>	<!-- 김준기 -->
 	<br/>
-	<a href="${root}/member/logout.do">로그아웃</a>
+	<a href="${root}/member/logout.do">로그아웃</a>	<!-- 필없음 -->
 	<br/>
-	<a href="${root}/novel/top10.do">TOP10</a>
+	<a href="${root}/novel/top10.do">TOP10</a>	<!-- 류익현 -->
 	<br/>
-	<a href="${root}/member/ranking.do">인기작가</a>
+	<a href="${root}/member/ranking.do">인기작가</a>	<!-- 박웅종 -->
 	<br/>
-	<a href="${root}/notice/notice.do">공지사항</a>
-	<a href="${root}/notice/faq.do">자주하는질문</a>
-	<a href="${root}/notice/question.do">공지사항</a>
+	<a href="${root}/notice/notice.do">공지사항</a>	<!-- 안태균 -->
+	<a href="${root}/notice/faq.do">자주하는질문</a>	<!-- 안태균 -->
+	<a href="${root}/notice/question.do">문의하기</a> <!-- 안태균 -->
 	<br/>
-	<a href="${root}/novel/search.do">검색</a>
+	<a href="${root}/novel/search.do">검색</a>	<!-- 박현우 -->
 	<br/>
-	<a href="${root}/novel/upload.do">투고</a>
+	<a href="${root}/novel/upload.do">투고</a>	<!-- 류익현 -->
 	<br/>
-	<a href="${root}/member/profile.do">프로필</a>
+	<a href="${root}/member/profile.do">프로필</a>	<!-- 강민수 -->
 	<br/>
-	<a href="${root}/member/favorite.do">즐겨찾기 목록</a>
+	<a href="${root}/member/favorite.do">즐겨찾기 목록</a>	<!-- 박웅종 -->
 	<br/>
-	<a href="${root}/member/recent.do">최근 기록</a>
-	<br/>
-	<a href="${root}/admin/menu.do">관리자 메뉴</a>
+	<a href="${root}/admin/menu.do">관리자 메뉴</a>	<!-- 박승은 -->
 </body>
 </html>
