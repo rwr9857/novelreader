@@ -20,3 +20,6 @@ target
 
 #Tern plugin
 .tern-project
+
+
+!local.properties
