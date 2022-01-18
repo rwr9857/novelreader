@@ -1,5 +1,6 @@
 package com.java.member.dao;
 
+import java.util.HashMap;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -12,7 +13,16 @@ public class MemberDaoImp implements MemberDao {
 
   @Override
   public int memberInsert(MemberDto memberDto) {
-    return sqlSessionTemplate.insert("memberInsert",memberDto);
+    return sqlSessionTemplate.insert("memberInsert", memberDto);
   }
-  
+
+  @Override
+  public String loginCheck(String id, String pw) {
+    HashMap<String, Object> hMap = new HashMap<String, Object>();
+    hMap.put("id", id);
+    hMap.put("pw", pw);
+    
+    return sqlSessionTemplate.selectOne("loginCheck",hMap);
+  }
+
 }

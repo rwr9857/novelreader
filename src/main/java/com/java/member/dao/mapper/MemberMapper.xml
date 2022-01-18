@@ -53,5 +53,9 @@
 			#{M_PLATFORM , jdbcType=VARCHAR},
 			#{M_SNS_TOKEN , jdbcType=VARCHAR})
 	</insert>
+	
+	<select id="loginCheck" parameterType="java.util.HashMap" resultType="String">
+		SELECT M_PERMISSION FROM member  WHERE M_ID=#{id} AND M_PW=#{pw}
+	</select>
 </mapper>   		
   	
