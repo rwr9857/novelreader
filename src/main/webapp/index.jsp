@@ -10,12 +10,22 @@
 <title>노벨리더</title>
 </head>
 <body>
-	<a href="${root}/member/login.do">로그인</a>	<!-- 김준기 -->
-	<br/>
-	<a href="${root}/member/register.do">회원가입</a>	<!-- 김준기 -->
-	<br/>
-	<a href="${root}/member/logout.do">로그아웃</a>	<!-- 필없음 -->
-	<br/>
+	<c:if test="${id==null}">
+		<a href="${root}/member/login.do">로그인</a>	<!-- 김준기 -->
+		<br/>
+		<a href="${root}/member/register.do">회원가입</a>	<!-- 김준기 -->
+		<br/>	
+	</c:if>
+	
+	<c:if test="${id!=null}">
+		<a href="${root}/member/logout.do">로그아웃</a>	<!-- 김준기 -->
+		<br/>
+	</c:if>
+	
+	<c:if test="${premission=='MA'}">
+		<h3>관리자</h3>
+	</c:if>
+	
 	<a href="${root}/novel/top10.do">TOP10</a>	<!-- 류익현 -->
 	<br/>
 	<a href="${root}/member/ranking.do">인기작가</a>	<!-- 박웅종 -->

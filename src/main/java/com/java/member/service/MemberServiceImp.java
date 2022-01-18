@@ -41,6 +41,27 @@ public class MemberServiceImp implements MemberService {
   }
 
   @Override
+  public void memberLoginOk(ModelAndView mav) {
+    Map<String, Object> map = mav.getModelMap();
+    HttpServletRequest request = (HttpServletRequest) map.get("request");
+
+    String id = request.getParameter("M_ID");
+    String pw = request.getParameter("M_PW");
+    LogAspect.logger.info(LogAspect.LogMsg + "M_ID:" + id + "," + "M_PW:" + pw);
+
+    String premission = memberDao.loginCheck(id, pw);
+    LogAspect.logger.info(LogAspect.LogMsg + premission);
+
+    mav.addObject("premission", premission);
+    mav.addObject("id", id);
+    
+    mav.setViewName("member/loginOk");
+
+
+  }
+
+
+  @Override
   public void kakaologin(ModelAndView mav) {
     Map<String, Object> map = mav.getModelMap();
     HttpServletRequest request = (HttpServletRequest) map.get("request");
@@ -53,7 +74,7 @@ public class MemberServiceImp implements MemberService {
     JsonElement element = parser.parse(token);
 
     String access_Token = element.getAsJsonObject().get("access_token").getAsString();
-    LogAspect.logger.info(LogAspect.LogMsg + "access_Token" + access_Token);
+    LogAspect.logger.info(LogAspect.LogMsg + "access_Token : " + access_Token);
 
 
 
@@ -98,6 +119,10 @@ public class MemberServiceImp implements MemberService {
     } catch (IOException e) {
       e.printStackTrace();
     }
+
+
+
   }
+
 
 }

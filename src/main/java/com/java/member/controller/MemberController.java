@@ -20,19 +20,33 @@ public class MemberController {
     return new ModelAndView("member/login");
   }
 
+  @RequestMapping(value = "/member/loginOk.do", method = RequestMethod.POST)
+  public ModelAndView memberLoginOk(HttpServletRequest request, HttpServletResponse response) {
+    ModelAndView mav = new ModelAndView();
+    mav.addObject("request", request);
+
+    memberService.memberLoginOk(mav);
+    return mav;
+  }
+  
+  @RequestMapping(value = "/member/logout.do", method = RequestMethod.GET)
+  public ModelAndView memberLogout(HttpServletRequest request, HttpServletResponse response) {
+    return new ModelAndView("member/logout");
+  }
+
   @RequestMapping(value = "/member/register.do", method = RequestMethod.GET)
   public ModelAndView memberRegister(HttpServletRequest request, HttpServletResponse response) {
     return new ModelAndView("member/register");
   }
-  
+
   @RequestMapping(value = "/member/registerOk.do", method = RequestMethod.POST)
-  public ModelAndView memberRegisterOk(HttpServletRequest request, HttpServletResponse response,MemberDto memberDto) {
+  public ModelAndView memberRegisterOk(HttpServletRequest request, HttpServletResponse response, MemberDto memberDto) {
     ModelAndView mav = new ModelAndView();
-    mav.addObject("memberDto",memberDto);
-    
+    mav.addObject("memberDto", memberDto);
+
     memberService.memberRegisterOk(mav);
     return mav;
-    
+
   }
 
 
