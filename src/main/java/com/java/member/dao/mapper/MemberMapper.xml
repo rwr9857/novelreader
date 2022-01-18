@@ -28,7 +28,7 @@
 							M_BIRTHDAY_PUBLIC, 
 							M_INFO_PUBLIC, 
 							M_PLATFORM,
-							M_SNS_TOKEN)
+							M_SNS_ID)
 		VALUES(M_NUM_SEQ.nextval,
 			#{M_ID ,jdbcType=NUMERIC},
 			#{M_PW , jdbcType=VARCHAR},
@@ -51,7 +51,7 @@
 			#{M_BIRTHDAY_PUBLIC ,jdbcType=NUMERIC},
 			#{M_INFO_PUBLIC ,jdbcType=NUMERIC},
 			#{M_PLATFORM , jdbcType=VARCHAR},
-			#{M_SNS_TOKEN , jdbcType=VARCHAR})
+			#{M_SNS_ID , jdbcType=VARCHAR})
 	</insert>
 	
 	<select id="loginCheck" parameterType="java.util.HashMap" resultType="String">

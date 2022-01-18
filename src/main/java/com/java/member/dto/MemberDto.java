@@ -20,7 +20,7 @@ public class MemberDto {
   private String M_PHOTO_PATH;
   private long M_PHOTO_SIZE;
   private String M_INFO;
-  private String M_BIRTHDAY;
+  private Date M_BIRTHDAY;
 
   private int M_HOMEPAGE_PUBLIC;
   private int M_SEX_PUBLIC;
@@ -29,7 +29,7 @@ public class MemberDto {
   private int M_INFO_PUBLIC;
 
   private String M_PLATFORM;
-  private String M_SNS_TOKEN;
+  private String M_SNS_ID;
 
   public int getM_NUM() {
     return M_NUM;
@@ -151,11 +151,12 @@ public class MemberDto {
     M_INFO = m_INFO;
   }
 
-  public String getM_BIRTHDAY() {
+
+  public Date getM_BIRTHDAY() {
     return M_BIRTHDAY;
   }
 
-  public void setM_BIRTHDAY(String m_BIRTHDAY) {
+  public void setM_BIRTHDAY(Date m_BIRTHDAY) {
     M_BIRTHDAY = m_BIRTHDAY;
   }
 
@@ -207,12 +208,12 @@ public class MemberDto {
     M_PLATFORM = m_PLATFORM;
   }
 
-  public String getM_SNS_TOKEN() {
-    return M_SNS_TOKEN;
+  public String getM_SNS_ID() {
+    return M_SNS_ID;
   }
 
-  public void setM_SNS_TOKEN(String m_SNS_TOKEN) {
-    M_SNS_TOKEN = m_SNS_TOKEN;
+  public void setM_SNS_ID(String m_SNS_ID) {
+    M_SNS_ID = m_SNS_ID;
   }
 
   @Override
@@ -220,8 +221,8 @@ public class MemberDto {
     return "MemberDto [M_NUM=" + M_NUM + ", M_ID=" + M_ID + ", M_PW=" + M_PW + ", M_EMAIL=" + M_EMAIL + ", M_EMAIL_AGREE=" + M_EMAIL_AGREE + ", M_NICKNAME=" + M_NICKNAME + ", M_SEX=" + M_SEX
         + ", M_HOMEPAGE_ADDRESS=" + M_HOMEPAGE_ADDRESS + ", M_CITY=" + M_CITY + ", M_REGISTER_DATE=" + M_REGISTER_DATE + ", M_PERMISSION=" + M_PERMISSION + ", M_PHOTO_NAME=" + M_PHOTO_NAME
         + ", M_PHOTO_PATH=" + M_PHOTO_PATH + ", M_PHOTO_SIZE=" + M_PHOTO_SIZE + ", M_INFO=" + M_INFO + ", M_BIRTHDAY=" + M_BIRTHDAY + ", M_HOMEPAGE_PUBLIC=" + M_HOMEPAGE_PUBLIC + ", M_SEX_PUBLIC="
-        + M_SEX_PUBLIC + ", M_CITY_PUBLIC=" + M_CITY_PUBLIC + ", M_BIRTHDAY_PUBLIC=" + M_BIRTHDAY_PUBLIC + ", M_INFO_PUBLIC=" + M_INFO_PUBLIC + ", M_PLATFORM=" + M_PLATFORM + ", M_SNS_TOKEN="
-        + M_SNS_TOKEN + "]";
+        + M_SEX_PUBLIC + ", M_CITY_PUBLIC=" + M_CITY_PUBLIC + ", M_BIRTHDAY_PUBLIC=" + M_BIRTHDAY_PUBLIC + ", M_INFO_PUBLIC=" + M_INFO_PUBLIC + ", M_PLATFORM=" + M_PLATFORM + ", M_SNS_ID=" + M_SNS_ID
+        + "]";
   }
 
 
