@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.java.novelhome.dao.mapper.NovelHomeMapper">
+	<insert id="novelhomeInsert"
+		parameterType="com.java.novelhome.dto.NovelHomeDto">
+		INSERT INTO NOVEL_HOME (N_NUM,
+								N_TITLE,
+								N_SUMMARY,
+								N_IMAGE_NAME,
+								N_IMAGE_PATH,
+								N_IMAGE_SIZE,
+								N_PUB_DATE,
+								M_NUM,
+								C_CATEGORIE)
+					VALUES(N_NUM_SEQ.nextval,
+						#{N_TITLE},
+						#{N_SUMMARY},
+						#{N_IMAGE_NAME},
+						#{N_IMAGE_PATH},
+						#{N_IMAGE_SIZE},
+						sysdate,
+						#{M_NUM},
+						#{C_CATEGORIE})
+	</insert>
+</mapper>   		
+  	
