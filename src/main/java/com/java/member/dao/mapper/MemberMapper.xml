@@ -54,8 +54,10 @@
 			#{M_SNS_ID , jdbcType=VARCHAR})
 	</insert>
 	
-	<select id="loginCheck" parameterType="java.util.HashMap" resultType="String">
-		SELECT M_PERMISSION FROM member  WHERE M_ID=#{id} AND M_PW=#{pw}
+	<select id="loginCheck" parameterType="java.util.HashMap" resultType="com.java.member.dto.MemberDto">
+		SELECT M_NUM,M_PERMISSION FROM member  WHERE M_ID=#{id} AND M_PW=#{pw}
 	</select>
+	
+
 </mapper>   		
   	

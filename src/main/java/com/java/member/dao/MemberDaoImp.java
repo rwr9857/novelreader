@@ -17,7 +17,7 @@ public class MemberDaoImp implements MemberDao {
   }
 
   @Override
-  public String loginCheck(String id, String pw) {
+  public MemberDto loginCheck(String id, String pw) {
     HashMap<String, Object> hMap = new HashMap<String, Object>();
     hMap.put("id", id);
     hMap.put("pw", pw);

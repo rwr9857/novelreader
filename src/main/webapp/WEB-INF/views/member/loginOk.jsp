@@ -12,6 +12,7 @@ F
 	<c:set var="root" value="${pageContext.request.contextPath}" />
 
 	<c:if test="${premission !=null}">
+		<c:set var="m_num" value="${m_num}" scope="session" />
 		<c:set var="id" value="${id}" scope="session" />
 		<c:set var="premission" value="${premission}" scope="session" />
 
