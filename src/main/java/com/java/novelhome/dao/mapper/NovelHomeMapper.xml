@@ -16,14 +16,14 @@
 								M_NUM,
 								C_CATEGORIE)
 					VALUES(N_NUM_SEQ.nextval,
-						#{N_TITLE},
-						#{N_SUMMARY},
-						#{N_IMAGE_NAME},
-						#{N_IMAGE_PATH},
-						#{N_IMAGE_SIZE},
+						#{N_TITLE, jdbcType=VARCHAR},
+						#{N_SUMMARY, jdbcType=VARCHAR},
+						#{N_IMAGE_NAME, jdbcType=VARCHAR},
+						#{N_IMAGE_PATH, jdbcType=VARCHAR},
+						#{N_IMAGE_SIZE, jdbcType=NUMERIC},
 						sysdate,
-						#{M_NUM},
-						#{C_CATEGORIE})
+						#{M_NUM, jdbcType=NUMERIC},
+						#{C_CATEGORIE, jdbcType=VARCHAR})
 	</insert>
 </mapper>   		
   	

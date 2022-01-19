@@ -1,5 +1,7 @@
 package com.java.novelhome.controller;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -7,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.java.novelhome.dto.NovelHomeDto;
@@ -24,8 +25,8 @@ public class NovelHomeController {
 	}
 
 	@RequestMapping(value = "/novelhome/uploadOk.do", method = RequestMethod.POST)
-	public ModelAndView novelHomeUploadOk(MultipartHttpServletRequest request, HttpServletResponse response,
-			NovelHomeDto novelHomeDto) {
+	public ModelAndView novelHomeUploadOk(HttpServletRequest request, HttpServletResponse response,
+			NovelHomeDto novelHomeDto) throws IllegalAccessException, IOException{
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("request", request);
 		mav.addObject("novelHomeDto", novelHomeDto);
