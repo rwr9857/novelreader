@@ -50,6 +50,13 @@
 
 </head>
 <body>
+<c:if test="${premission !=null}">
+		<script type="text/javascript">
+			location.href = "/novelreader/index.jsp";
+		</script>
+	</c:if>
+
+	<c:if test="${premission == null}">
 	<form name="memberForm" action="${root}/member/registerOk.do" method="post">
 		<table border="1">
 			<tr>
@@ -109,7 +116,7 @@
 	<a  href="javascript:naverlogin()">
 		<img src="${root}/images/naver_login.png" width="200" alt="네이버 로그인 버튼" />
 	</a>
-
+	</c:if>
 
 </body>
 </html>

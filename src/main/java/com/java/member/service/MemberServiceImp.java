@@ -205,6 +205,8 @@ public class MemberServiceImp implements MemberService {
 
 		String naver_id = naver_response.getAsJsonObject().get("id").getAsString();
 		LogAspect.logger.info(LogAspect.LogMsg + "naver_id : " + naver_id);
+		
+		mav.setViewName("member/naverLoginOk");
 
 	}
 
