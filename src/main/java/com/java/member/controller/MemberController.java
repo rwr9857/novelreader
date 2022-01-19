@@ -28,7 +28,7 @@ public class MemberController {
     memberService.memberLoginOk(mav);
     return mav;
   }
-  
+
   @RequestMapping(value = "/member/logout.do", method = RequestMethod.GET)
   public ModelAndView memberLogout(HttpServletRequest request, HttpServletResponse response) {
     return new ModelAndView("member/logout");
@@ -56,6 +56,15 @@ public class MemberController {
     mav.addObject("request", request);
 
     memberService.kakaologin(mav);
+    return mav;
+  }
+
+  @RequestMapping(value = "/member/naverlogin.do", method = RequestMethod.GET)
+  public ModelAndView memberNaver(HttpServletRequest request, HttpServletResponse response) {
+    ModelAndView mav = new ModelAndView();
+    mav.addObject("request", request);
+    
+    memberService.naverlogin(mav);
     return mav;
   }
 

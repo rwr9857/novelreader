@@ -8,34 +8,45 @@
 <title>회원가입</title>
 <script type="text/javascript" src="${root}/javascript/member/register.js"></script>
 <script type="text/javascript" src="${root}/javascript/xhr/xhr.js"></script>
+
+<!-- 카카오 스크립트 -->
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script>
-        // SDK를 초기화 합니다. 사용할 앱의 JavaScript 키를 설정해 주세요.
-        Kakao.init('4113a385559d634d4d781dc26f04e432');
+	// SDK를 초기화 합니다. 사용할 앱의 JavaScript 키를 설정해 주세요.
+	Kakao.init('4113a385559d634d4d781dc26f04e432');
 
-        // SDK 초기화 여부를 판단합니다.
-        console.log(Kakao.isInitialized());
+	// SDK 초기화 여부를 판단합니다.
+	console.log(Kakao.isInitialized());
 </script>
 <script type="text/javascript">
-  function loginFormWithKakao() {
-    Kakao.Auth.loginForm({
-      success: function(authObj) {
-    	  //alert(JSON.stringify(authObj));
-    	  var params="token="+ JSON.stringify(authObj);
-    	  sendRequest("POST", "http://localhost:8181/novelreader/member/kakaologin.do", params, fromServer);
-    	  
-    	  function fromServer(){
-    			if(xhr.readyState==4 && xhr.status==200){
-    				//alert(xhr.responseText);
-    			}
-    		}
-      },
-      fail: function(err) {
-    	  console.log(JSON.stringify(err));
-      },
-    })
-  }
+	function loginFormWithKakao() {
+		Kakao.Auth
+				.loginForm({
+					success : function(authObj) {
+						//alert(JSON.stringify(authObj));
+						var params = "token=" + JSON.stringify(authObj);
+						sendRequest(
+								"POST",
+								"http://localhost:8181/novelreader/member/kakaologin.do",
+								params, fromServer);
+
+						function fromServer() {
+							if (xhr.readyState == 4 && xhr.status == 200) {
+								//alert(xhr.responseText);
+							}
+						}
+					},
+					fail : function(err) {
+						console.log(JSON.stringify(err));
+					},
+				})
+	}
+	
+	function naverlogin() {
+		window.open('https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=k7RIM1ejpagn8MbzDO3E&redirect_uri=http://localhost:8181/novelreader/member/naverlogin.do&state=dc1bf16a5614dbb206e9b9629154c1ef','naver','width=490,height=500,status=no,toolbar=no,resizable=yes,scrollbars=no')		
+	}
 </script>
+
 
 </head>
 <body>
@@ -92,12 +103,13 @@
 		</div>
 	</form>
 
-<a id="reauthenticate-popup-btn" href="javascript:loginFormWithKakao()">
-  <img
-    src="${root}/images/kakao_login_medium_narrow.png"
-    alt="카카오 로그인 버튼"
-  />
-</a>
+	<a id="reauthenticate-popup-btn" href="javascript:loginFormWithKakao()"> 
+		<img src="${root}/images/kakao_login_medium_narrow.png" width="200" alt="카카오 로그인 버튼" />
+	</a>
+	<a  href="javascript:naverlogin()">
+		<img src="${root}/images/naver_login.png" width="200" alt="네이버 로그인 버튼" />
+	</a>
+
 
 </body>
 </html>
