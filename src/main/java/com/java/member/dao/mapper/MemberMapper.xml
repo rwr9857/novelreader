@@ -55,7 +55,7 @@
 	</insert>
 	
 	<select id="loginCheck" parameterType="java.util.HashMap" resultType="com.java.member.dto.MemberDto">
-		SELECT M_NUM,M_PERMISSION FROM member  WHERE M_ID=#{id} AND M_PW=#{pw}
+		SELECT M_NUM,M_PERMISSION,M_PLATFORM FROM member  WHERE M_ID=#{id} AND M_PW=#{pw}
 	</select>
 	
 

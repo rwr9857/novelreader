@@ -10,19 +10,19 @@
 <title>노벨리더</title>
 </head>
 <body>
-	<c:if test="${id==null}">
+	<c:if test="${m_num==null}">
 		<a href="${root}/member/login.do">로그인</a>	<!-- 김준기 -->
 		<br/>
 		<a href="${root}/member/register.do">회원가입</a>	<!-- 김준기 -->
 		<br/>	
 	</c:if>
 	
-	<c:if test="${id!=null}">
+	<c:if test="${m_num!=null}">
 		<a href="${root}/member/logout.do">로그아웃</a>	<!-- 김준기 -->
 		<br/>
 	</c:if>
 	
-	<c:if test="${premission=='MA'}">
+	<c:if test="${m_premission=='MA'}">
 		<h3>관리자</h3>
 	</c:if>
 	

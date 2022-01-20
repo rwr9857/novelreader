@@ -58,12 +58,13 @@ public class MemberServiceImp implements MemberService {
 		MemberDto member = memberDao.loginCheck(id, pw);
 
 		int m_num = member.getM_NUM();
-		String premission = member.getM_PERMISSION();
-		LogAspect.logger.info(LogAspect.LogMsg + m_num + "\t" + premission);
+		String m_premission = member.getM_PERMISSION();
+		String m_platform = member.getM_PLATFORM();
+		LogAspect.logger.info(LogAspect.LogMsg + m_num + "\t" + m_premission + "\t"+ m_platform);
 
 		mav.addObject("m_num", m_num);
-		mav.addObject("id", id);
-		mav.addObject("premission", premission);
+		mav.addObject("m_premission", m_premission);
+		mav.addObject("m_platform", m_platform);
 
 		mav.setViewName("member/loginOk");
 
