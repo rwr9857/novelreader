@@ -34,27 +34,13 @@
 						placeholder="소설 줄거리(선택)"></textarea>
 				</div>
 				<div class="nh_f21">
-					<!-- 관리자 - 소설카테고리 CRUD 필요 -->
-					<input type="checkbox" id="categorie1" name="categorieValue" value="CM">
-  					<label for="categorie1">추리/미스터리</label>
-  					<input type="checkbox" id="categorie2" name="categorieValue" value="LN">
-  					<label for="categorie2">라이트노벨</label>
-  					<input type="checkbox" id="categorie3" name="categorieValue" value="FT">
-  					<label for="categorie3">판타지</label>
-  					<input type="checkbox" id="categorie4" name="categorieValue" value="SF">
-  					<label for="categorie4">SF과학소설</label>
-  					<input type="checkbox" id="categorie5" name="categorieValue" value="MH">
-  					<label for="categorie5">무협</label><br>
-  					<input type="checkbox" id="categorie6" name="categorieValue" value="AC">
-  					<label for="categorie6">액션</label>
-  					<input type="checkbox" id="categorie7" name="categorieValue" value="GS">
-  					<label for="categorie7">공포/스릴러</label>
-  					<input type="checkbox" id="categorie8" name="categorieValue" value="RM">
-  					<label for="categorie8">로맨스</label>
-  					<input type="checkbox" id="categorie9" name="categorieValue" value="GM">
-  					<label for="categorie9">고전문학</label>
+					<!-- for문 -->
+					${categorieList}
+					<c:forEach var="categorieDto" items="${categorieList}">
+						<input type="checkbox" name="C_CATEGORIE_NAME" value="${categorieDto.C_CATEGORIE_ID}"> 
+						${categorieDto.C_CATEGORIE_NAME}
+					</c:forEach>
 					
-					<input type="hidden" name="C_CATEGORIE"/>
 				</div>
 				<div class="nh_f21">
 					<input type="submit" value="소설투고" />

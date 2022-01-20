@@ -13,8 +13,7 @@
 								N_IMAGE_PATH,
 								N_IMAGE_SIZE,
 								N_PUB_DATE,
-								M_NUM,
-								C_CATEGORIE)
+								M_NUM)
 					VALUES(N_NUM_SEQ.nextval,
 						#{N_TITLE, jdbcType=VARCHAR},
 						#{N_SUMMARY, jdbcType=VARCHAR},
@@ -22,8 +21,18 @@
 						#{N_IMAGE_PATH, jdbcType=VARCHAR},
 						#{N_IMAGE_SIZE, jdbcType=NUMERIC},
 						sysdate,
-						#{M_NUM, jdbcType=NUMERIC},
-						#{C_CATEGORIE, jdbcType=VARCHAR})
+						#{M_NUM, jdbcType=NUMERIC})
+						
+						
 	</insert>
+	
+
+	<insert id="novelCategorieInsert" parameterType="com.java.categorie.dto.CategorieDto">
+		INSERT INTO CATEGORIE (C_CATEGORIE_ID,
+								N_NUM)
+					VALUES(C_CATEGORIE_ID_SEQ.nextval,
+						N_NUM)
+	</insert>
+	
 </mapper>   		
   	
