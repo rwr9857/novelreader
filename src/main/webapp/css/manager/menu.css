@@ -1,0 +1,162 @@
+* {
+	list-style : none;
+	text-decoration: none;
+	border-collapse: collapse;
+	margin: 0px;
+	padding: 0px;
+	color:#000;
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+#wrap{
+	background : rgb(234 240 253);
+	height: 1150px;
+}
+
+.adminBox{
+	background-color :#234e85;
+	width:265px;
+	height:100%
+}
+
+.adminLogo{
+	width:265px;
+	height: 111px;
+	border-bottom : solid; 
+	border-bottom-width : thin;
+	text-align : center;
+}
+
+.adminLogo a {
+	position : relative;
+	top : 13px;
+	color: white;
+	text-decoration : none;
+	font-size: 26px;
+	font-weight : bold;
+
+}
+
+.adminmenu {
+	margin-top : 20px;
+	line-height: 30px;	
+	
+}
+
+.adminmenu li {
+    margin : 10px;
+}
+
+.adminmenu a {
+	text-decoration: none;
+	color : white;
+	font-size : 20px;
+
+}
+
+#details[open] .summary {
+	color : rgb(180 198 237);	;
+	
+}
+
+#details[open] summary ~ *{
+	animation: sweep .7s ease-in-out;
+}
+
+@keyframes sweep {
+	from {
+		opacity: 0; margin-top: -10px;
+	}
+	to {
+		opacity: 1; margin-top: 0;
+	}
+}
+
+
+.summary{
+	color : white;
+	font-size : 23px;
+	position : flex;
+	margin-left : 15px;
+	line-height : 40px;
+	font-weight : 550;
+}
+
+summary:hover {
+	background : #11407e;
+}
+
+ul:hover{
+	background : #11407e;
+}
+
+
+
+.summary_1 {
+	color : white;
+	font-size : 18px;
+	margin-left : 35px;
+}
+
+.summary_ul{
+	line-height : 18px;
+
+}
+
+.summary_ul a{
+	color : white;
+	font-size : 18px;
+
+}
+
+.summary_ul2{
+	line-height : 10px;
+
+}
+
+.summary_ul2 a{
+	color:white;
+	font-size : 12px;
+	margin-left : 30px;
+
+}
+
+
+
+.admin_text h2{
+	position : absolute;
+	left : 400px;
+	top : 100px;
+	color : #073763;
+	font-weight: 700;
+}
+
+.admin_text h3{
+	position : absolute;
+	left : 400px;
+	top : 135px;
+	color : #073763;
+	font-weight: 700;
+}
+
+.admin_profile {
+	display : flex;
+	margin-left : 100px;
+	position: absolute;
+	top : 20px;
+	right : 20px;
+
+}
+
+.admin_profile h3{
+	margin-left : 20px;
+	font-size : 15px;
+
+}
+
+.footer h3{
+	position : fixed;
+	bottom : 30px;
+	left: 350px;
+	font-size : 10px;
+}

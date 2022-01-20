@@ -1,0 +1,34 @@
+* {
+	list-style: none;
+	text-decoration: none;
+	border-collapse: collapse;
+	margin: 0px;
+	padding: 0px;
+	color:#000;
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+.menuText {
+    margin-top : 10px;
+    margin-left : 20px;
+    
+}
+
+.menuText h1{
+    font-weight : bold;
+    font-size : 27px;
+    color : #073763;
+}
+
+.menuText h3{
+    font-size : 15px;
+    color : #073763;
+}
+
+h2{
+    font-size : 18px;
+    color : #073763;
+    margin-top : 60px;
+    margin-left : 50px;
+
+}

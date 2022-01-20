@@ -42,6 +42,6 @@
 	<br/>
 	<a href="${root}/member/favorite.do">즐겨찾기 목록</a>	<!-- 박웅종 -->
 	<br/>
-	<a href="${root}/admin/menu.do">관리자 메뉴</a>	<!-- 박승은 -->
+	<a href="${root}/manager/menu.do">관리자 메뉴</a>	<!-- 박승은 -->
 </body>
 </html>
