@@ -12,7 +12,6 @@ public class NovelHomeDto {
 	private Date N_PUB_DATE;
 	private int N_REPORT;
 	private int M_NUM;
-	private String C_CATEGORIE;
 
 	public int getN_NUM() {
 		return N_NUM;
@@ -86,19 +85,13 @@ public class NovelHomeDto {
 		M_NUM = m_NUM;
 	}
 
-	public String getC_CATEGORIE() {
-		return C_CATEGORIE;
-	}
-
-	public void setC_CATEGORIE(String c_CATEGORIE) {
-		C_CATEGORIE = c_CATEGORIE;
-	}
-
 	@Override
 	public String toString() {
 		return "NovelHomeDto [N_NUM=" + N_NUM + ", N_TITLE=" + N_TITLE + ", N_SUMMARY=" + N_SUMMARY + ", N_IMAGE_NAME="
 				+ N_IMAGE_NAME + ", N_IMAGE_PATH=" + N_IMAGE_PATH + ", N_IMAGE_SIZE=" + N_IMAGE_SIZE + ", N_PUB_DATE="
-				+ N_PUB_DATE + ", N_REPORT=" + N_REPORT + ", M_NUM=" + M_NUM + ", C_CATEGORIE=" + C_CATEGORIE + "]";
+				+ N_PUB_DATE + ", N_REPORT=" + N_REPORT + ", M_NUM=" + M_NUM + "]";
 	}
+
+	
 
 }
