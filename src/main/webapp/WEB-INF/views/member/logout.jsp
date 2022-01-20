@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<c:set var="m_num" scope="session" />
+	<c:remove var="m_num" scope="session" />
 	<c:remove var="m_premission" scope="session" />
 	<c:remove var="m_platform" scope="session" />
 

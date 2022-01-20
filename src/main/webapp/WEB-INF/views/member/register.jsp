@@ -50,72 +50,61 @@
 
 </head>
 <body>
-<c:if test="${premission !=null}">
+<c:if test="${m_num !=null}">
 		<script type="text/javascript">
 			location.href = "/novelreader/index.jsp";
 		</script>
 	</c:if>
 
-	<c:if test="${premission == null}">
-	<form name="memberForm" action="${root}/member/registerOk.do" method="post">
-		<table border="1">
-			<tr>
-				<td>아이디</td>
-				<td>
-					<input type="text" name="M_ID" />
-				</td>
-			</tr>
-			<tr>
-				<td>비밀번호</td>
-				<td>
-					<input type="password" name="M_PW" />
-				</td>
-			</tr>
-			<tr>
-				<td>비밀번호 확인</td>
-				<td>
-					<input type="password" name="passwordCheck" />
-				</td>
-			</tr>
-			<tr>
-				<td>이메일</td>
-				<td>
-					<input type="text" name="M_EMAIL" size="20" />
-				</td>
-			</tr>
-			<tr>
-				<td>닉네임</td>
-				<td>
-					<input type="text" name="M_NICKNAME" />
-				</td>
-			</tr>
-			<tr>
-				<td>성별</td>
-				<td>
-					<input type="radio" name="M_SEX" value="1" />
-					<input type="radio" name="M_SEX" value="0" />
-				</td>
-			</tr>
-			<tr>
-				<td>이메일 수신 동의</td>
-				<td>
-					<input type="checkbox" name="M_EMAIL_AGREE" value="1" />
-				</td>
-			</tr>
-			<input type="hidden" name="M_PLATFORM" value="local" />
-		</table>
-		<div>
-			<input type="submit" value="가입" />
-			<input type="reset" value="취소" />
-		</div>
-	</form>
+	<c:if test="${m_num == null}">
+		<form name="memberForm" action="${root}/member/registerOk.do"
+			method="post">
+			<table border="1">
+				<tr>
+					<td>아이디</td>
+					<td><input type="text" name="M_ID" /></td>
+				</tr>
+				<tr>
+					<td>비밀번호</td>
+					<td><input type="password" name="M_PW" /></td>
+				</tr>
+				<tr>
+					<td>비밀번호 확인</td>
+					<td><input type="password" name="passwordCheck" /></td>
+				</tr>
+				<tr>
+					<td>이메일</td>
+					<td><input type="text" name="M_EMAIL" size="20" /></td>
+				</tr>
+				<tr>
+					<td>닉네임</td>
+					<td><input type="text" name="M_NICKNAME" /></td>
+				</tr>
+				<tr>
+					<td>성별</td>
+					<td><input type="radio" name="M_SEX" value="1" /> <input
+						type="radio" name="M_SEX" value="0" /></td>
+				</tr>
+				<tr>
+					<td>이메일 수신 동의</td>
+					<td><input type="checkbox" name="M_EMAIL_AGREE" value="1" />
+					</td>
+				</tr>
+				<input type="hidden" name="M_PLATFORM" value="local" />
+			</table>
+			<div>
+				<input type="submit" value="가입" /> <input type="reset" value="취소" />
+			</div>
+		</form>
 
-	<a id="reauthenticate-popup-btn" href="javascript:loginFormWithKakao()"> 
-		<img src="${root}/images/kakao_login_medium_narrow.png" width="200" alt="카카오 로그인 버튼" />
-	</a>
-	<a  href="javascript:naverlogin()">
-		<img src="${root}/images/naver_login.png" width="200" alt="네이버 로그인 버튼" />
-	</a>
+		<a id="reauthenticate-popup-btn"
+			href="javascript:loginFormWithKakao()"> <img
+			src="${root}/images/kakao_login_medium_narrow.png" width="200"
+			alt="카카오 로그인 버튼" />
+		</a>
+		<a href="javascript:naverlogin()"> <img
+			src="${root}/images/naver_login.png" width="200" alt="네이버 로그인 버튼" />
+		</a>
 	</c:if>
 
 </body>
