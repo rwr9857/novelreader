@@ -41,22 +41,22 @@
 					},
 				})
 	}
-	
+
 	function naverlogin() {
-		window.open('https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=k7RIM1ejpagn8MbzDO3E&redirect_uri=http://localhost:8181/novelreader/member/naverlogin.do&state=dc1bf16a5614dbb206e9b9629154c1ef','naver','width=490,height=500,status=no,toolbar=no,resizable=yes,scrollbars=no')		
+		window.open('https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=k7RIM1ejpagn8MbzDO3E&redirect_uri=http://localhost:8181/novelreader/member/naverlogin.do&state=dc1bf16a5614dbb206e9b9629154c1ef','naver','width=490,height=500,status=no,toolbar=no,resizable=yes,scrollbars=no')
 	}
 </script>
 
 
 </head>
 <body>
-<c:if test="${m_num !=null}">
+<c:if test="${numSess !=null}">
 		<script type="text/javascript">
 			location.href = "/novelreader/index.jsp";
 		</script>
 	</c:if>
 
-	<c:if test="${m_num == null}">
+	<c:if test="${numSess == null}">
 		<form name="memberForm" action="${root}/member/registerOk.do"
 			method="post">
 			<table border="1">

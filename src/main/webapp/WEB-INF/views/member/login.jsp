@@ -9,13 +9,13 @@
 <title>로그인 페이지</title>
 </head>
 <body>
-	<c:if test="${m_num !=null}">
+	<c:if test="${numSess !=null}">
 		<script type="text/javascript">
 			location.href = "/novelreader/index.jsp";
 		</script>
 	</c:if>
 
-	<c:if test="${m_num == null}">
+	<c:if test="${numSess == null}">
 		<div align="center">
 			<h3>로그인</h3>
 			<form action="${root}/member/loginOk.do" method="post">

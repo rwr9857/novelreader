@@ -11,10 +11,10 @@ F
 <body>
 	<c:set var="root" value="${pageContext.request.contextPath}" />
 
-	<c:if test="${m_num !=null}">
-		<c:set var="m_num" value="${m_num}" scope="session" />
-		<c:set var="m_premission" value="${m_premission}" scope="session" />
-		<c:set var="m_platform" value="${m_platform}" scope="session" />
+	<c:if test="${numSess !=null}">
+		<c:set var="numSess" value="${numSess}" scope="session" />
+		<c:set var="permissionSess" value="${permissionSess}" scope="session" />
+		<c:set var="platformSess" value="${platformSess}" scope="session" />
 
 
 		<script type="text/javascript">
@@ -23,7 +23,7 @@ F
 		</script>
 	</c:if>
 
-	<c:if test="${m_num == null}">
+	<c:if test="${numSess == null}">
 		<script type="text/javascript">
 			alert("입력하신 정보가 존재하지 않습니다.");
 			location.href = "${root}/member/login.do";

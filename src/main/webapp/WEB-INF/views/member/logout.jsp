@@ -9,9 +9,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<c:remove var="m_num" scope="session" />
-	<c:remove var="m_premission" scope="session" />
-	<c:remove var="m_platform" scope="session" />
+	<c:remove var="numSess" scope="session" />
+	<c:remove var="numSess" scope="session" />
+	<c:remove var="numSess" scope="session" />
 
 	<script type="text/javascript">
 		alert("로그아웃 되었습니다.");
