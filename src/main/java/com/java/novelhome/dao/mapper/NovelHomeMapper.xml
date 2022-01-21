@@ -27,11 +27,12 @@
 	</insert>
 	
 
-	<insert id="novelCategorieInsert" parameterType="com.java.categorie.dto.CategorieDto">
-		INSERT INTO CATEGORIE (C_CATEGORIE_ID,
+	<insert id="novelCategorieInsert" parameterType="java.util.List">
+		INSERT INTO NOVEL_CATEGORIE (C_CATEGORIE_ID,
 								N_NUM)
-					VALUES(C_CATEGORIE_ID_SEQ.nextval,
-						N_NUM)
+					<foreach collection="list" item="item" separator=" , ">
+						 (#{item.C_CATEGORIE_ID}, #{item.N_NUM})
+					</foreach>
 	</insert>
 	
 </mapper>   		
