@@ -1,6 +1,7 @@
 package com.java.novelhome.service;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -26,8 +27,9 @@ public class NovelHomeServiceImp implements NovelHomeService {
 	public void novelhomeUploadOk(ModelAndView mav) {
 		Map<String, Object> map = mav.getModelMap();
 		NovelHomeDto novelHomeDto = (NovelHomeDto) map.get("novelHomeDto");
-		NovelCategorieDto novelCategorieDto = (NovelCategorieDto) map.get("novelCategorieDto");
+		//NovelCategorieDto novelCategorieDto = (NovelCategorieDto) map.get("novelCategorieDto");
 		CategorieDto categorieDto = (CategorieDto) map.get("categorieDto");
+		List<NovelCategorieDto> novelCategorieList = (ArrayList<NovelCategorieDto>)map.get("novelCategorieList");
 		
 		MultipartHttpServletRequest request = (MultipartHttpServletRequest) map.get("request");
 //		LogAspect.logger.info(LogAspect.LogMsg + novelHomeDto);
@@ -61,19 +63,19 @@ public class NovelHomeServiceImp implements NovelHomeService {
 
 		}
 		
-		List<CategorieDto> categorieList = null;
 		
 		int ch = novelHomeDao.novelHomeUpload(novelHomeDto);
 		LogAspect.logger.info(LogAspect.LogMsg + novelHomeDto.toString());
 		if (ch > 0) {
 			
-			int check = novelHomeDao.novelHomeCategorie(novelCategorieDto);
+			int check = novelHomeDao.novelHomeCategorie(novelCategorieList);
 
-			LogAspect.logger.info(LogAspect.LogMsg + check);
 
-			mav.addObject("categorieList",categorieList);
+			mav.addObject("novelCategorieList",novelCategorieList);
 			mav.addObject("check", check);
 			mav.setViewName("novelhome/uploadOk.do");
 		}
 	}
+
+	
 }

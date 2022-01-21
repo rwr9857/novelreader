@@ -1,8 +1,20 @@
 package com.java.categorie.dto;
 
+import java.util.List;
+
 public class CategorieDto {
 	private int C_CATEGORIE_ID;
 	private String C_CATEGORIE_NAME;
+
+	private List<CategorieDto> categorieDtoList;
+	
+	public List<CategorieDto> getCategorieDtoList() {
+		return categorieDtoList;
+	}
+
+	public void setCategorieDtoList(List<CategorieDto> categorieDtoList) {
+		this.categorieDtoList = categorieDtoList;
+	}
 
 	public int getC_CATEGORIE_ID() {
 		return C_CATEGORIE_ID;

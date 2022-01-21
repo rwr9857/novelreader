@@ -1,9 +1,14 @@
 package com.java.novelcategorie.dto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class NovelCategorieDto {
 	private int C_CATEGORIE_ID;
-	private String N_NUM;
+	private int N_NUM;
 
+	
+	
 	public int getC_CATEGORIE_ID() {
 		return C_CATEGORIE_ID;
 	}
@@ -12,17 +17,21 @@ public class NovelCategorieDto {
 		C_CATEGORIE_ID = c_CATEGORIE_ID;
 	}
 
-	public String getN_NUM() {
+	public int getN_NUM() {
 		return N_NUM;
 	}
 
-	public void setN_NUM(String n_NUM) {
+	public void setN_NUM(int n_NUM) {
 		N_NUM = n_NUM;
 	}
 
 	@Override
 	public String toString() {
-		return "CategorieDto [C_CATEGORIE_ID=" + C_CATEGORIE_ID + ", N_NUM=" + N_NUM + "]";
+		return "NovelCategorieDto [C_CATEGORIE_ID=" + C_CATEGORIE_ID + ", N_NUM=" + N_NUM + "]";
 	}
 
+
+	
+
+	
 }
