@@ -10,6 +10,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,7 +61,7 @@ public class MemberServiceImp implements MemberService {
 		int numSess = member.getM_num();
 		String permissionSess = member.getM_permission();
 		String platformSess = member.getM_platform();
-		LogAspect.logger.info(LogAspect.LogMsg + numSess + "\t" + permissionSess + "\t"+ platformSess);
+		LogAspect.logger.info(LogAspect.LogMsg + numSess + "\t" + permissionSess + "\t" + platformSess);
 
 		mav.addObject("numSess", numSess);
 		mav.addObject("permissionSess", permissionSess);
@@ -206,7 +207,7 @@ public class MemberServiceImp implements MemberService {
 
 		String naver_id = naver_response.getAsJsonObject().get("id").getAsString();
 		LogAspect.logger.info(LogAspect.LogMsg + "naver_id : " + naver_id);
-		
+
 		mav.setViewName("member/naverLoginOk");
 
 	}
@@ -261,24 +262,60 @@ public class MemberServiceImp implements MemberService {
 			throw new RuntimeException("API 응답을 읽는데 실패했습니다.", e);
 		}
 	}
-	
-	
-	//-----프로필-----
-	
+
+
+	// -----프로필-----
+
 	@Override
 	public void profileNovel(ModelAndView mav) {
 		Map<String, Object> map = mav.getModelMap();
-		HttpServletRequest request = (HttpServletRequest) map.get("request");		
-		
+		HttpServletRequest request = (HttpServletRequest) map.get("request");
+
 		String nickname = request.getParameter("nickname");
-		String pageNumber = request.getParameter("pageNumber"); 
-		LogAspect.logger.info(LogAspect.LogMsg + nickname + "," + pageNumber); //닉네임 / 페이지 넘버 확인용 
-		
+		String pageNumber = request.getParameter("pageNumber");
+		LogAspect.logger.info(LogAspect.LogMsg + nickname + "," + pageNumber); // 닉네임 / 페이지 넘버 확인용
+
 		MemberDto memberDto = memberDao.profileSelect(nickname);
 		LogAspect.logger.info(LogAspect.LogMsg + memberDto.toString());
-		
+
 		mav.addObject("memberDto", memberDto);
 		mav.setViewName("member/profileNovel");
+	}
+	
+	
+	// -----관리자 회원조회-----
+	@Override
+	public void memberSelect(ModelAndView mav) {
+		Map<String, Object> map = mav.getModelMap();
+		HttpServletRequest request = (HttpServletRequest) map.get("request");
+
+		String pageNumber = request.getParameter("pageNumber");
+		if (pageNumber == null)
+			pageNumber = "1";
+
+		int currentPage = Integer.parseInt(pageNumber);
+		LogAspect.logger.info(LogAspect.LogMsg + currentPage);
+
+		// 한 페이지 당 게시물 1page 10개 / start 1, end 10
+		int boardSize = 10;
+		int startRow = (currentPage - 1) * boardSize + 1;
+		int endRow = currentPage * boardSize;
+
+		int count = memberDao.getCount();
+		LogAspect.logger.info(LogAspect.LogMsg + count);
+
+		List<MemberDto> memberList = null;
+		if (count > 0) {
+			memberList = memberDao.memberList(startRow, endRow);
+			LogAspect.logger.info(LogAspect.LogMsg + memberList.size());
+		}
+
+		mav.addObject("boardSize", boardSize); // 한페이지당 게시물 수
+		mav.addObject("currentPage", currentPage); // 요청페이지
+		mav.addObject("memberList", memberList); // 회원 리스트
+		mav.addObject("count", count); // 전체 게시물 수
+
+		mav.setViewName("manager/memberView");
 	}
 
 }

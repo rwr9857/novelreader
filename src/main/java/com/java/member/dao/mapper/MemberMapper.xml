@@ -64,5 +64,14 @@
 		]]>
 	</select>
 
+	<select id="memberCount" resultType="int">
+		SELECT COUNT(*) FROM member WHERE M_PERMISSION != 'MA'
+	</select>
+	
+	<select id="memberList" parameterType="java.util.HashMap" resultType="com.java.member.dto.MemberDto" >
+     <![CDATA[
+     	SELECT * FROM (SELECT rownum AS rnum ,a.* FROM (SELECT * FROM MEMBER ORDER BY m_num DESC) a) b WHERE b.rnum >=#{startRow} AND b.rnum<=#{endRow} AND M_PERMISSION != 'MA'
+     ]]>
+	</select>
 </mapper>   		
   	
