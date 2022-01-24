@@ -62,11 +62,11 @@
 			<table border="1">
 				<tr>
 					<td>아이디</td>
-					<td><input type="text" name="M_ID" /></td>
+					<td><input type="text" name="m_id" /></td>
 				</tr>
 				<tr>
 					<td>비밀번호</td>
-					<td><input type="password" name="M_PW" /></td>
+					<td><input type="password" name="m_pw" /></td>
 				</tr>
 				<tr>
 					<td>비밀번호 확인</td>
@@ -74,23 +74,23 @@
 				</tr>
 				<tr>
 					<td>이메일</td>
-					<td><input type="text" name="M_EMAIL" size="20" /></td>
+					<td><input type="text" name="m_email" size="20" /></td>
 				</tr>
 				<tr>
 					<td>닉네임</td>
-					<td><input type="text" name="M_NICKNAME" /></td>
+					<td><input type="text" name="m_nickname" /></td>
 				</tr>
 				<tr>
 					<td>성별</td>
 					<td><input type="radio" name="M_SEX" value="1" /> <input
-						type="radio" name="M_SEX" value="0" /></td>
+						type="radio" name="m_sex" value="0" /></td>
 				</tr>
 				<tr>
 					<td>이메일 수신 동의</td>
-					<td><input type="checkbox" name="M_EMAIL_AGREE" value="1" />
+					<td><input type="checkbox" name="m_email_agree" value="1" />
 					</td>
 				</tr>
-				<input type="hidden" name="M_PLATFORM" value="local" />
+				<input type="hidden" name="m_platform" value="local" />
 			</table>
 			<div>
 				<input type="submit" value="가입" /> <input type="reset" value="취소" />

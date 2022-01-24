@@ -22,11 +22,11 @@
 				<table>
 					<tr>
 						<td>ID</td>
-						<td><input type="text" name="M_ID" /></td>
+						<td><input type="text" name="m_id" /></td>
 					</tr>
 					<tr>
 						<td>비밀번호</td>
-						<td><input type="password" name="M_PW" /></td>
+						<td><input type="password" name="m_id" /></td>
 					</tr>
 
 					<tr>

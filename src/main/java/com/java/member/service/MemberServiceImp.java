@@ -33,6 +33,8 @@ public class MemberServiceImp implements MemberService {
 		Map<String, Object> map = mav.getModelMap();
 		MemberDto memberDto = (MemberDto) map.get("memberDto");
 
+		LogAspect.logger.info(LogAspect.LogMsg + memberDto);
+
 		if (memberDto.getM_nickname().equals("관리자")) {
 			memberDto.setM_permission("MA");
 		} else {
