@@ -4,36 +4,27 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.java.novelhome.dao.mapper.NovelHomeMapper">
-	<insert id="novelhomeInsert"
-		parameterType="com.java.novelhome.dto.NovelHomeDto">
-		INSERT INTO NOVEL_HOME (N_NUM,
-								N_TITLE,
-								N_SUMMARY,
-								N_IMAGE_NAME,
-								N_IMAGE_PATH,
-								N_IMAGE_SIZE,
-								N_PUB_DATE,
-								M_NUM)
-					VALUES(N_NUM_SEQ.nextval,
-						#{N_TITLE, jdbcType=VARCHAR},
-						#{N_SUMMARY, jdbcType=VARCHAR},
-						#{N_IMAGE_NAME, jdbcType=VARCHAR},
-						#{N_IMAGE_PATH, jdbcType=VARCHAR},
-						#{N_IMAGE_SIZE, jdbcType=NUMERIC},
-						sysdate,
-						#{M_NUM, jdbcType=NUMERIC})
-						
-						
+	<insert id="novelhomeInsert" parameterType="com.java.novelhome.dto.NovelHomeDto">
+		INSERT INTO NOVEL_HOME(N_NUM,
+							N_TITLE,
+							N_SUMMARY,
+							N_IMAGE_NAME,
+							N_IMAGE_PATH,
+							N_IMAGE_SIZE,
+							N_PUB_DATE,
+							N_REPORT,
+							M_NUM)
+							VALUES(N_NUM_SEQ.nextval,
+							#{N_TITLE, jdbcType=VARCHAR},
+							#{N_SUMMARY, jdbcType=VARCHAR},
+							#{N_IMAGE_NAME, jdbcType=VARCHAR},
+							#{N_IMAGE_PATH, jdbcType=VARCHAR},
+							#{N_IMAGE_SIZE, jdbcType=NUMERIC},
+							sysdate,
+							#{N_REPORT,jdbcType=NUMERIC},
+							#{M_NUM})
 	</insert>
-	
 
-	<insert id="novelCategorieInsert" parameterType="java.util.List">
-		INSERT INTO NOVEL_CATEGORIE (C_CATEGORIE_ID,
-								N_NUM)
-					<foreach collection="list" item="item" separator=" , ">
-						 (#{item.C_CATEGORIE_ID}, #{item.N_NUM})
-					</foreach>
-	</insert>
-	
+
 </mapper>   		
   	

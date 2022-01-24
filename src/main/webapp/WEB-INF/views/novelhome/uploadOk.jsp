@@ -10,17 +10,10 @@
 <title>작품투고완료</title>
 </head>
 <body>
-	<%-- <c:set var="C_CATEGORIE_ID" value="${C_CATEGORIE_ID}" scope="session" />
-	<c:set var="m_num" value="${m_num}" scope="session" />
-		${C_CATEGORIE_ID}
-		${m_num}--%>
-		
-	<input type="hidden" name="C_CATEGORIE_ID" value="${C_CATEGORIE_ID}">
-	<input type="hidden" name="N_NUM" value="${N_NUM}">
 	<c:if test="${check>0}">
 		<script type="text/javascript">
 			alert("소설 투고가 완료 되었습니다.");
-			location.href = "${root}/novelhome/index.jsp"; 
+			location.href = "${root}/index.jsp"; 
 		</script>
 	</c:if>
 
