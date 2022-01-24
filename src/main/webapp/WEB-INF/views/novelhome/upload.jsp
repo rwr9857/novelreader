@@ -29,10 +29,10 @@
 				<!-- 소설 -->
 				<div class="nh_f2">
 					<div class="nh_f21">
-						<textarea rows="4" cols="80" name="N_TITLE" placeholder="소설 제목(필수)"></textarea>
+						<textarea rows="4" cols="80" name="n_title" placeholder="소설 제목(필수)"></textarea>
 					</div>
 					<div class="nh_f21">
-						<textarea rows="10" cols="80" name="N_SUMMARY"
+						<textarea rows="10" cols="80" name="n_summary"
 							placeholder="소설 줄거리(선택)"></textarea>
 					</div>
 					<div class="nh_f21">
@@ -40,7 +40,7 @@
 					</div>
 				</div>
 			</div>
-			<input type="hidden" name="M_NUM" value="${numSess}"/>
+			<input type="hidden" name="m_num" value="${numSess}"/>
 		</form>
 	</c:if>
 	<c:if test="${numSess == null}">

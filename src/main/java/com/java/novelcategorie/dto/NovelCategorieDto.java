@@ -4,34 +4,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NovelCategorieDto {
-	private int C_CATEGORIE_ID;
-	private int N_NUM;
+	private int c_categorie_id;
+	private int n_num;
 
-	
-	
-	public int getC_CATEGORIE_ID() {
-		return C_CATEGORIE_ID;
+	public int getC_categorie_id() {
+		return c_categorie_id;
 	}
 
-	public void setC_CATEGORIE_ID(int c_CATEGORIE_ID) {
-		C_CATEGORIE_ID = c_CATEGORIE_ID;
+	public void setC_categorie_id(int c_categorie_id) {
+		this.c_categorie_id = c_categorie_id;
 	}
 
-	public int getN_NUM() {
-		return N_NUM;
+	public int getN_num() {
+		return n_num;
 	}
 
-	public void setN_NUM(int n_NUM) {
-		N_NUM = n_NUM;
+	public void setN_num(int n_num) {
+		this.n_num = n_num;
 	}
 
 	@Override
 	public String toString() {
-		return "NovelCategorieDto [C_CATEGORIE_ID=" + C_CATEGORIE_ID + ", N_NUM=" + N_NUM + "]";
+		return "NovelCategorieDto[" +
+				"c_categorie_id=" + c_categorie_id +
+				", n_num=" + n_num +
+				']';
 	}
-
-
-	
-
-	
 }

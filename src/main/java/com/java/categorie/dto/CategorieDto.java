@@ -3,38 +3,42 @@ package com.java.categorie.dto;
 import java.util.List;
 
 public class CategorieDto {
-	private int C_CATEGORIE_ID;
-	private String C_CATEGORIE_NAME;
+    private int c_categorie_id;
+    private String c_categorie_name;
 
-	private List<CategorieDto> categorieDtoList;
-	
-	public List<CategorieDto> getCategorieDtoList() {
-		return categorieDtoList;
-	}
+    private List<CategorieDto> categorieDtoList;
 
-	public void setCategorieDtoList(List<CategorieDto> categorieDtoList) {
-		this.categorieDtoList = categorieDtoList;
-	}
+    public List<CategorieDto> getCategorieDtoList() {
+        return categorieDtoList;
+    }
 
-	public int getC_CATEGORIE_ID() {
-		return C_CATEGORIE_ID;
-	}
 
-	public void setC_CATEGORIE_ID(int c_CATEGORIE_ID) {
-		C_CATEGORIE_ID = c_CATEGORIE_ID;
-	}
+    public int getC_categorie_id() {
+        return c_categorie_id;
+    }
 
-	public String getC_CATEGORIE_NAME() {
-		return C_CATEGORIE_NAME;
-	}
+    public void setC_categorie_id(int c_categorie_id) {
+        this.c_categorie_id = c_categorie_id;
+    }
 
-	public void setC_CATEGORIE_NAME(String c_CATEGORIE_NAME) {
-		C_CATEGORIE_NAME = c_CATEGORIE_NAME;
-	}
+    public String getC_categorie_name() {
+        return c_categorie_name;
+    }
 
-	@Override
-	public String toString() {
-		return "CategorieDto [C_CATEGORIE_ID=" + C_CATEGORIE_ID + ", C_CATEGORIE_NAME=" + C_CATEGORIE_NAME + "]";
-	}
+    public void setC_categorie_name(String c_categorie_name) {
+        this.c_categorie_name = c_categorie_name;
+    }
 
+    public void setCategorieDtoList(List<CategorieDto> categorieDtoList) {
+        this.categorieDtoList = categorieDtoList;
+    }
+
+    @Override
+    public String toString() {
+        return "CategorieDto[" +
+                "c_categorie_id=" + c_categorie_id +
+                ", c_categorie_name='" + c_categorie_name  +
+                ", categorieDtoList=" + categorieDtoList +
+                ']';
+    }
 }

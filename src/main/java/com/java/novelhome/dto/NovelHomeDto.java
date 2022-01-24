@@ -3,95 +3,101 @@ package com.java.novelhome.dto;
 import java.util.Date;
 
 public class NovelHomeDto {
-	private int N_NUM;
-	private String N_TITLE;
-	private String N_SUMMARY;
-	private String N_IMAGE_NAME;
-	private String N_IMAGE_PATH;
-	private Long N_IMAGE_SIZE;
-	private Date N_PUB_DATE;
-	private int N_REPORT;
-	private int M_NUM;
+	private int n_num;
+	private String n_title;
+	private String n_summary;
+	private String n_image_name;
+	private String n_image_path;
 
-	public int getN_NUM() {
-		return N_NUM;
+	private Long n_image_size;
+	private Date n_pub_date;
+	private int n_report;
+	private int m_num;
+
+	public int getN_num() {
+		return n_num;
 	}
 
-	public void setN_NUM(int n_NUM) {
-		N_NUM = n_NUM;
+	public void setN_num(int n_num) {
+		this.n_num = n_num;
 	}
 
-	public String getN_TITLE() {
-		return N_TITLE;
+	public String getN_title() {
+		return n_title;
 	}
 
-	public void setN_TITLE(String n_TITLE) {
-		N_TITLE = n_TITLE;
+	public void setN_title(String n_title) {
+		this.n_title = n_title;
 	}
 
-	public String getN_SUMMARY() {
-		return N_SUMMARY;
+	public String getN_summary() {
+		return n_summary;
 	}
 
-	public void setN_SUMMARY(String n_SUMMARY) {
-		N_SUMMARY = n_SUMMARY;
+	public void setN_summary(String n_summary) {
+		this.n_summary = n_summary;
 	}
 
-	public String getN_IMAGE_NAME() {
-		return N_IMAGE_NAME;
+	public String getN_image_name() {
+		return n_image_name;
 	}
 
-	public void setN_IMAGE_NAME(String n_IMAGE_NAME) {
-		N_IMAGE_NAME = n_IMAGE_NAME;
+	public void setN_image_name(String n_image_name) {
+		this.n_image_name = n_image_name;
 	}
 
-	public String getN_IMAGE_PATH() {
-		return N_IMAGE_PATH;
+	public String getN_image_path() {
+		return n_image_path;
 	}
 
-	public void setN_IMAGE_PATH(String n_IMAGE_PATH) {
-		N_IMAGE_PATH = n_IMAGE_PATH;
+	public void setN_image_path(String n_image_path) {
+		this.n_image_path = n_image_path;
 	}
 
-	public Long getN_IMAGE_SIZE() {
-		return N_IMAGE_SIZE;
+	public Long getN_image_size() {
+		return n_image_size;
 	}
 
-	public void setN_IMAGE_SIZE(Long n_IMAGE_SIZE) {
-		N_IMAGE_SIZE = n_IMAGE_SIZE;
+	public void setN_image_size(Long n_image_size) {
+		this.n_image_size = n_image_size;
 	}
 
-	public Date getN_PUB_DATE() {
-		return N_PUB_DATE;
+	public Date getN_pub_date() {
+		return n_pub_date;
 	}
 
-	public void setN_PUB_DATE(Date n_PUB_DATE) {
-		N_PUB_DATE = n_PUB_DATE;
+	public void setN_pub_date(Date n_pub_date) {
+		this.n_pub_date = n_pub_date;
 	}
 
-	public int getN_REPORT() {
-		return N_REPORT;
+	public int getN_report() {
+		return n_report;
 	}
 
-	public void setN_REPORT(int n_REPORT) {
-		N_REPORT = n_REPORT;
+	public void setN_report(int n_report) {
+		this.n_report = n_report;
 	}
 
-	public int getM_NUM() {
-		return M_NUM;
+	public int getM_num() {
+		return m_num;
 	}
 
-	public void setM_NUM(int m_NUM) {
-		M_NUM = m_NUM;
+	public void setM_num(int m_num) {
+		this.m_num = m_num;
 	}
 
 	@Override
 	public String toString() {
-		return "NovelHomeDto [N_NUM=" + N_NUM + ", N_TITLE=" + N_TITLE + ", N_SUMMARY=" + N_SUMMARY + ", N_IMAGE_NAME="
-				+ N_IMAGE_NAME + ", N_IMAGE_PATH=" + N_IMAGE_PATH + ", N_IMAGE_SIZE=" + N_IMAGE_SIZE + ", N_PUB_DATE="
-				+ N_PUB_DATE + ", N_REPORT=" + N_REPORT + ", M_NUM=" + M_NUM + "]";
+		return "NovelHomeDto[" +
+				"n_num=" + n_num +
+				", n_title='" + n_title +
+				", n_summary='" + n_summary +
+				", n_image_name='" + n_image_name +
+				", n_image_path='" + n_image_path +
+				", n_image_size=" + n_image_size +
+				", n_pub_date=" + n_pub_date +
+				", n_report=" + n_report +
+				", m_num=" + m_num +
+				']';
 	}
-
-	
-
 }
