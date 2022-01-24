@@ -5,24 +5,24 @@
 
 <mapper namespace="com.java.novelhome.dao.mapper.NovelHomeMapper">
 	<insert id="novelhomeInsert" parameterType="com.java.novelhome.dto.NovelHomeDto">
-		INSERT INTO NOVEL_HOME(N_NUM,
-							N_TITLE,
-							N_SUMMARY,
-							N_IMAGE_NAME,
-							N_IMAGE_PATH,
-							N_IMAGE_SIZE,
-							N_PUB_DATE,
-							N_REPORT,
-							M_NUM)
+		INSERT INTO NOVEL_HOME(n_num,
+							n_title,
+							n_summary,
+							n_image_name,
+							n_image_path,
+							N_image_size,
+							n_pub_date,
+							n_report,
+							m_num)
 							VALUES(N_NUM_SEQ.nextval,
-							#{N_TITLE, jdbcType=VARCHAR},
-							#{N_SUMMARY, jdbcType=VARCHAR},
-							#{N_IMAGE_NAME, jdbcType=VARCHAR},
-							#{N_IMAGE_PATH, jdbcType=VARCHAR},
-							#{N_IMAGE_SIZE, jdbcType=NUMERIC},
+							#{n_title, jdbcType=VARCHAR},
+							#{n_summary, jdbcType=VARCHAR},
+							#{n_image_name, jdbcType=VARCHAR},
+							#{n_image_path, jdbcType=VARCHAR},
+							#{n_image_size, jdbcType=NUMERIC},
 							sysdate,
-							#{N_REPORT,jdbcType=NUMERIC},
-							#{M_NUM})
+							#{n_report,jdbcType=NUMERIC},
+							#{m_num})
 	</insert>
 
 

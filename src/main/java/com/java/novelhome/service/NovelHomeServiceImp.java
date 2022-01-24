@@ -47,9 +47,9 @@ public class NovelHomeServiceImp implements NovelHomeService {
 				try {
 					upFile.transferTo(file);
 
-					novelHomeDto.setN_IMAGE_PATH(file.getAbsolutePath());
-					novelHomeDto.setN_IMAGE_NAME(fileName);
-					novelHomeDto.setN_IMAGE_SIZE(fileSize);
+					novelHomeDto.setN_image_path(file.getAbsolutePath());
+					novelHomeDto.setN_image_name(fileName);
+					novelHomeDto.setN_image_size(fileSize);
 
 				} catch (Exception e) {
 					e.printStackTrace();
