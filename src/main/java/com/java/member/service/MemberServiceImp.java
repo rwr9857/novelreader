@@ -54,8 +54,8 @@ public class MemberServiceImp implements MemberService {
 		Map<String, Object> map = mav.getModelMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 
-		String id = request.getParameter("M_ID");
-		String pw = request.getParameter("M_PW");
+		String id = request.getParameter("m_id");
+		String pw = request.getParameter("m_pw");
 		LogAspect.logger.info(LogAspect.LogMsg + "M_ID:" + id + "," + "M_PW:" + pw);
 
 		MemberDto member = memberDao.loginCheck(id, pw);

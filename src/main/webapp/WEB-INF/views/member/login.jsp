@@ -26,7 +26,7 @@
 					</tr>
 					<tr>
 						<td>비밀번호</td>
-						<td><input type="password" name="m_id" /></td>
+						<td><input type="password" name="m_pw" /></td>
 					</tr>
 
 					<tr>
