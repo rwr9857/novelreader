@@ -1,9 +1,9 @@
 package com.java.novelhome.service;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -12,8 +12,6 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.java.aop.LogAspect;
-import com.java.categorie.dto.CategorieDto;
-import com.java.novelcategorie.dto.NovelCategorieDto;
 import com.java.novelhome.dao.NovelHomeDao;
 import com.java.novelhome.dto.NovelHomeDto;
 
@@ -27,20 +25,18 @@ public class NovelHomeServiceImp implements NovelHomeService {
 	public void novelhomeUploadOk(ModelAndView mav) {
 		Map<String, Object> map = mav.getModelMap();
 		NovelHomeDto novelHomeDto = (NovelHomeDto) map.get("novelHomeDto");
-		//NovelCategorieDto novelCategorieDto = (NovelCategorieDto) map.get("novelCategorieDto");
-		CategorieDto categorieDto = (CategorieDto) map.get("categorieDto");
-		List<NovelCategorieDto> novelCategorieList = (ArrayList<NovelCategorieDto>)map.get("novelCategorieList");
 		
-		MultipartHttpServletRequest request = (MultipartHttpServletRequest) map.get("request");
-//		LogAspect.logger.info(LogAspect.LogMsg + novelHomeDto);
+		
 
+		MultipartHttpServletRequest request = (MultipartHttpServletRequest) map.get("request");
+		
 		MultipartFile upFile = request.getFile("file");
-		LogAspect.logger.info(LogAspect.LogMsg + upFile);
+//		LogAspect.logger.info(LogAspect.LogMsg + upFile);
 
 		if (upFile.getSize() != 0) {
 			String fileName = Long.toString(System.currentTimeMillis()) + "_" + upFile.getOriginalFilename();
 			long fileSize = upFile.getSize();
-			LogAspect.logger.info(LogAspect.LogMsg + fileName + fileSize);
+//			LogAspect.logger.info(LogAspect.LogMsg + fileName + fileSize);
 
 			File path = new File("C:\\pds\\");
 			path.mkdir();
@@ -63,19 +59,11 @@ public class NovelHomeServiceImp implements NovelHomeService {
 
 		}
 		
-		
-		int ch = novelHomeDao.novelHomeUpload(novelHomeDto);
 		LogAspect.logger.info(LogAspect.LogMsg + novelHomeDto.toString());
-		if (ch > 0) {
-			
-			int check = novelHomeDao.novelHomeCategorie(novelCategorieList);
+		int check = novelHomeDao.novelHomeUpload(novelHomeDto);
 
-
-			mav.addObject("novelCategorieList",novelCategorieList);
-			mav.addObject("check", check);
-			mav.setViewName("novelhome/uploadOk.do");
-		}
+		mav.addObject("check", check);
+		mav.setViewName("novelhome/uploadOk");
 	}
 
-	
 }
