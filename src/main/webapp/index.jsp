@@ -38,7 +38,7 @@
 	<br/>
 	<a href="${root}/novel/upload.do">투고</a>	<!-- 류익현 -->
 	<br/>
-	<a href="${root}/member/profile.do">프로필</a>	<!-- 강민수 -->
+	<a href="${root}/member/profile.do?nickname=Dongmool">프로필</a>	<!-- 강민수 -->
 	<br/>
 	<a href="${root}/member/favorite.do">즐겨찾기 목록</a>	<!-- 박웅종 -->
 	<br/>

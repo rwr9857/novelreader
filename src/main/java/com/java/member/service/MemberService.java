@@ -10,4 +10,7 @@ public interface MemberService {
   public void kakaologin(ModelAndView mav);
   
   public void naverlogin(ModelAndView mav);
+
+  public void profileNovel(ModelAndView mav);
+
 }

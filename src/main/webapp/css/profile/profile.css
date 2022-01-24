@@ -1,0 +1,394 @@
+@charset "UTF-8";
+
+*{
+	background:#0000;
+	/*background:#dfeaff;*/
+	font-family: 'Noto Sans KR', sans-serif;
+	margin: 0px;
+	padding: 0px;
+	text-decoration: none;
+	
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+body{
+	
+	background: #f9fbff;
+}
+
+ul{
+	list-style: none;
+}
+
+#profile {
+	width:100%;
+	overflow:hidden;
+	
+	border:0px solid red;
+}
+
+#profile > #profile_shadow {
+	margin:0px auto;
+	width:100%;
+	height:150px;
+	
+	background:#eef7ff;
+	
+	
+	border:0px solid blue;
+	border-bottom: 1px solid #cccccc;
+	
+}
+
+#profile_shadow .profile_setting{
+	float:right;
+	margin-right:10px;
+	text-decoration: underline;
+	color:#2b78e4;
+}
+
+#profile > #profile_background {
+	
+	background: #f9fbff;
+	
+	margin:0px auto;
+	width:100%;
+	
+	border:0px solid blue;
+}
+
+#profile_background > #inner_box{
+	margin:0px auto;
+	width:1200px;
+	overflow:visible;
+	
+	border:1px solid #0000;
+}
+
+#inner_box .profile_info{
+	margin:0px auto;
+	margin-top:-30px;
+	margin-left:-100px;/*#inner_box보다 더 크기 때문*/
+	width:1400px;
+	height:450px;
+	
+	border:0px solid green;
+	border-bottom:2px solid #8091b7;
+	background:#0000;
+}
+
+.profile_info .profile_left_box{
+	float:left;
+	border:0px solid blue;
+	
+	width:500px;
+	height:100%;
+	
+	box-sizing: border-box;
+}
+
+.profile_left_box img.profile_image{
+	height:150px;
+	width:150px;
+	
+	float:left;
+	
+	border:4px solid #001887;
+	border-radius: 75px 75px 75px 75px;
+}
+
+.profile_left_box .profile_follow_btn{
+	height:50px;
+	width:150px;
+	
+	margin-left:178px;
+	margin-top:40px;
+	
+	line-height:46px;
+	font-size:30px;
+	font-weight:bold;
+	color:#ffffff;
+	text-align:right;
+	padding-right:20px;
+	background:#2b78e4;
+	border-radius: 25px;
+	
+	cursor: pointer;
+}
+
+.profile_left_box .profile_follow_btn:hover{
+	opacity:0.7;
+}
+
+.profile_left_box .profile_follow_btn .btn_plus{
+	font-size: 50px; 
+	font-weight: 900; 
+	width:50px; 
+	float:left; 
+	line-height: 44px;
+}
+
+.profile_left_box .profile_nickname{
+	height:40px;
+	width:300px;
+	
+	margin-left:20px;
+	margin-top:20px;
+	float:left;
+	
+	line-height:40px;
+	font-size:40px;
+	font-weight:bold;
+	
+	border:0px solid red;
+}
+
+.profile_left_box .profile_intro{
+	margin-top:30px;
+	margin-left:40px;
+	float:left;
+	border: 0px solid red;
+}
+
+.profile_intro p.info_label{
+	font-size: 20px;
+	font-weight: 500;
+}
+
+.profile_intro span.info_content{
+	font-size:18px;
+}
+
+.profile_left_box .profile_follow_box{
+	margin-top:60px;
+	margin-left:90px;
+	border:0px solid blue;
+	
+	width:420px;
+	height:100px;
+	
+	float:left;
+}
+
+
+.profile_follow_box .follower_box{
+	float:left;
+	width:140px;
+	height:100px;
+	border:0px solid red;
+	box-sizing: border-box;
+	
+	font-size:30px;
+	font-weight:600;
+	
+	cursor: pointer;
+	color:#002568;
+}
+
+.profile_follow_box .following_box{
+	float:left;
+	width:140px;
+	height:100px;
+	border:0px solid red;
+	box-sizing: border-box;
+	font-size:30px;
+	font-weight:600;
+	
+	cursor: pointer;
+	color:#002568;	
+}
+
+.profile_info .profile_right_box{
+	float:right;
+	border:0px solid blue;
+	
+	width:900px;
+	height:100%;
+	
+	box-sizing: border-box;
+}
+
+.profile_right_box .profile_right_inner_box{
+	float:right;
+	border:0px solid green;
+	
+	width:400px;
+}
+
+.profile_right_box .table{
+	margin-top:100px;
+	display:table;
+	
+	float:right;
+	
+	width:500px;
+	height:200px;
+	border:0px solid red;
+	box-sizing: border-box;
+	
+	font-size:20px;
+}
+
+.profile_right_box .table .tr{
+	display:table-row;
+}
+
+.profile_right_box .table .td1{
+	display:table-cell;
+	width:150px;
+	
+	font-weight: bold;
+}
+
+.profile_right_box .table .td2{
+	display:table-cell;
+}
+
+/* 아래 리스트들 */
+
+#inner_box .content{
+	
+	margin-top:30px;
+	
+	border:0px solid red;
+	
+	height:100%;
+}
+
+
+#inner_box .content span.menu{
+	display: inline;
+	
+	font-size: 26px;
+	font-weight: bold;
+}
+
+/* 통합 */
+#inner_box .content div.list{
+	height:180px;
+	
+	width:100%;
+	
+	background: #dfeaff;
+	
+	border:1px solid #cccccc;
+	
+	margin-bottom:20px;
+	
+	cursor: pointer;
+}
+
+
+
+
+
+
+
+/*소설*/
+.content div.list .novel_image{
+	margin-left:20px;
+	height:100%;
+	max-width: 250px;
+}
+
+.content div.list .novel_inner{
+	float:right;
+	border:0px solid red;
+	
+	width:950px;
+	height:100%;
+}
+
+.novel_inner .titleNdate{
+	border:0px solid blue;
+	width:600px;
+	height:100%;
+	float:left;
+}
+
+.novel_inner .title{
+	margin-top:20px;
+	font-size:30px;
+	font-weight:bold;
+	border:0px solid blue;
+	
+	height:90px;
+}
+
+.novel_inner .date{
+	margin-top:36px;
+	border:0px solid green;
+	
+	width:100px;
+}
+
+.novel_inner .like_box{
+	border:0px solid yellow;
+	
+	width:270px;
+	height:100%;
+	float:right;
+}
+
+.novel_inner .like_box .like{
+	border:0px solid orange;
+	margin-top:136px;
+	width:110px;
+	height:36px;
+	float:left;
+}
+
+.novel_inner .like_box .dislike{
+	border:0px solid purple;
+	margin-top:136px;
+	width:110px;
+	height:36px;
+	float:right;
+	margin-right:20px;
+}
+
+.novel_inner .like_box img{
+	float:left;
+	width:36px;
+	height:36px;
+	border:0px solid red;
+	box-sizing: border-box;
+}
+
+.novel_inner .like_box span{
+	font-size:20px;
+	float:left;
+	margin-top:5px;
+	margin-left:10px;
+}
+
+/*팔로워 + 팔로잉*/
+.follow_list .list .profile_img{
+	width:120px;
+	height:120px;
+	border-radius: 60px 60px 60px 60px;
+	border:2px solid #001887;
+	margin-top:30px;
+	margin-left:50px;
+	float:left;
+}
+
+.follow_list .list .follow_nickname{
+	float:left;
+	margin-left:50px;
+	margin-top:62px;
+	font-size:36px;
+}
+
+.follow_list .list img.follow_delete{
+	float:right;
+	margin-right:50px;
+	margin-top:65px;
+	
+	border:0px solid red;
+	
+	height:50px;
+	width:50px;
+}
+
+

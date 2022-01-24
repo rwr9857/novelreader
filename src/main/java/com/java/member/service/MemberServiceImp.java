@@ -32,10 +32,10 @@ public class MemberServiceImp implements MemberService {
 		Map<String, Object> map = mav.getModelMap();
 		MemberDto memberDto = (MemberDto) map.get("memberDto");
 
-		if (memberDto.getM_NICKNAME().equals("관리자")) {
-			memberDto.setM_PERMISSION("MA");
+		if (memberDto.getM_nickname().equals("관리자")) {
+			memberDto.setM_permission("MA");
 		} else {
-			memberDto.setM_PERMISSION("BA");
+			memberDto.setM_permission("BA");
 		}
 		LogAspect.logger.info(LogAspect.LogMsg + memberDto.toString());
 
@@ -57,9 +57,9 @@ public class MemberServiceImp implements MemberService {
 
 		MemberDto member = memberDao.loginCheck(id, pw);
 
-		int numSess = member.getM_NUM();
-		String permissionSess = member.getM_PERMISSION();
-		String platformSess = member.getM_PLATFORM();
+		int numSess = member.getM_num();
+		String permissionSess = member.getM_permission();
+		String platformSess = member.getM_platform();
 		LogAspect.logger.info(LogAspect.LogMsg + numSess + "\t" + permissionSess + "\t"+ platformSess);
 
 		mav.addObject("numSess", numSess);
@@ -260,6 +260,25 @@ public class MemberServiceImp implements MemberService {
 		} catch (IOException e) {
 			throw new RuntimeException("API 응답을 읽는데 실패했습니다.", e);
 		}
+	}
+	
+	
+	//-----프로필-----
+	
+	@Override
+	public void profileNovel(ModelAndView mav) {
+		Map<String, Object> map = mav.getModelMap();
+		HttpServletRequest request = (HttpServletRequest) map.get("request");		
+		
+		String nickname = request.getParameter("nickname");
+		String pageNumber = request.getParameter("pageNumber"); 
+		LogAspect.logger.info(LogAspect.LogMsg + nickname + "," + pageNumber); //닉네임 / 페이지 넘버 확인용 
+		
+		MemberDto memberDto = memberDao.profileSelect(nickname);
+		LogAspect.logger.info(LogAspect.LogMsg + memberDto.toString());
+		
+		mav.addObject("memberDto", memberDto);
+		mav.setViewName("member/profileNovel");
 	}
 
 }

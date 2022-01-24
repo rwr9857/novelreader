@@ -67,7 +67,24 @@ public class MemberController {
     memberService.naverlogin(mav);
     return mav;
   }
-
+  
+  
+  
+  
+  
+  
+  
+  // --------프로필-----------
+  
+  @RequestMapping(value = "/member/profile.do", method = RequestMethod.GET)
+  public ModelAndView profileNovel(HttpServletRequest request, HttpServletResponse response) {
+    ModelAndView mav = new ModelAndView();
+    mav.addObject("request", request);
+    
+    memberService.profileNovel(mav);
+    return mav;
+  }
+  
 }
 
 

@@ -24,5 +24,11 @@ public class MemberDaoImp implements MemberDao {
     
     return sqlSessionTemplate.selectOne("loginCheck",hMap);
   }
-
+  
+  
+  // -------------프로필--------------
+  @Override
+	public MemberDto profileSelect(String nickname) {
+		return sqlSessionTemplate.selectOne("profileSelect",nickname);
+	}
 }
