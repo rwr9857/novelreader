@@ -17,7 +17,7 @@ public class MemberController {
 
   @RequestMapping(value = "/member/login.do", method = RequestMethod.GET)
   public ModelAndView memberLogin(HttpServletRequest request, HttpServletResponse response) {
-    return new ModelAndView("member/login");
+    return new ModelAndView("member/login.tiles");
   }
 
   @RequestMapping(value = "/member/loginOk.do", method = RequestMethod.POST)

@@ -18,7 +18,7 @@
 
 		<script type="text/javascript">
 			alert("로그인 성공");
-			location.href = "/novelreader/index.jsp";
+			location.href = "/novelreader";
 		</script>
 	</c:if>
 
