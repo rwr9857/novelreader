@@ -74,7 +74,7 @@ public class MemberController {
   
   
   
-  // --------�봽濡쒗븘-----------
+  // --------프로필-----------
   
   @RequestMapping(value = "/member/profile.do", method = RequestMethod.GET)
   public ModelAndView profileNovel(HttpServletRequest request, HttpServletResponse response) {

@@ -29,6 +29,17 @@ public class MemberDaoImp implements MemberDao {
 		return sqlSessionTemplate.selectOne("loginCheck", hMap);
 	}
 
+	// -------------플랫폼 로그인--------------
+
+	@Override
+	public MemberDto pmLoginCheck(String platform, String platform_id) {
+		HashMap<String, Object> hMap = new HashMap<String, Object>();
+		hMap.put("platform", platform);
+		hMap.put("platform_id", platform_id);
+
+		return sqlSessionTemplate.selectOne("pmLoginCheck", hMap);
+	}
+
 	// -------------프로필--------------
 	@Override
 	public MemberDto profileSelect(String nickname) {
