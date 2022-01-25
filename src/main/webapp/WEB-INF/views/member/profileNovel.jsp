@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="root" value="${pageContext.request.contextPath}" />
 
 <!DOCTYPE html>
@@ -22,18 +22,15 @@
 	
 	<script type="text/javascript">
 		function follower(root, nickname) {
-			location.href = root + "/profile/follower.do" + "?nickname="
-					+ nickname;
+			location.href = root + "/member/profileFollower.do" + "?nickname=" + nickname;
 		}
 
 		function following(root, nickname) {
-			location.href = root + "/profile/following.do" + "?nickname="
-					+ nickname;
+			location.href = root + "/member/profileFollowing.do" + "?nickname=" + nickname;
 		}
 
 		function novel(root, nickname) {
-			location.href = root + "/profile/novel.do" + "?nickname="
-					+ nickname;
+			location.href = root + "/member/profile.do" + "?nickname=" + nickname;
 		}
 	</script>
 	<div id="profile">
@@ -46,13 +43,28 @@
 			<div id="inner_box">
 				<div class="profile_info">
 					<div class="profile_left_box">
-						<img class="profile_image" alt="프로필사진" src="${root}/image/kms.jpg"
-							onclick="">
-						<div class="profile_follow_btn" onclick="">
-							<div class="btn_plus">+</div>
-							팔로우
-						</div>
-						<div class="profile_nickname">${memberDto.m_nickname}</div>
+						<c:if test="${memberDto.m_photo_path == null}">
+							<img class="profile_image" alt="기본값" src="${root}/images/profile_default.png"
+								onclick="">
+						</c:if>
+						<c:if test="${memberDto.m_photo_path != null}">
+							<img class="profile_image" alt="프로필사진" src="${root}/images/????"
+								onclick="">
+						</c:if>
+						
+						<c:if test="${memberDto.m_num != numSess}">
+							<div class="profile_follow_btn" onclick="">
+								<div class="btn_plus">+</div>
+								팔로우
+							</div>
+							<div class="profile_nickname">${memberDto.m_nickname}</div>
+						</c:if>
+						
+						<c:if test="${memberDto.m_num == numSess}">
+						
+							<div class="profile_nickname" style="margin-top:110px;">${memberDto.m_nickname}</div>
+						</c:if>
+						
 						<div class="profile_intro">
 							<p class="info_label">소개</p>
 							<span class="info_content"> <c:if
@@ -66,11 +78,11 @@
 						<div class="profile_follow_box">
 							<div class="follower_box"
 								onclick="follower('${root}','${memberDto.m_nickname}')">
-								10023${follower_count}<br />팔로워
+								${profileFollowerCount}<br />팔로워
 							</div>
 							<div class="following_box"
 								onclick="following('${root}','${memberDto.m_nickname}')">
-								13${following_count}<br />팔로잉
+								${profileFollowingCount}<br />팔로잉
 							</div>
 							<div class="following_box"
 								onclick="novel('${root}','${memberDto.m_nickname}')">
@@ -95,12 +107,20 @@
 									</c:if>
 								</div>
 							</div>
-
+								
 							<div class="tr">
 								<div class="td1">성별</div>
 								<div class="td2">
 									<c:if test="${memberDto.m_sex_public == 1}">
-										${memberDto.m_sex}
+										<c:if test="${memberDto.m_sex == 1}">
+											남성
+										</c:if>
+										<c:if test="${memberDto.m_sex == 0}">
+											여성
+										</c:if>
+										<c:if test="${(memberDto.m_sex != 0) && (memberDto.m_sex != 1)}">
+											기타
+										</c:if>
 									</c:if>
 									<c:if test="${memberDto.m_sex_public != 1}">
 										비공개
@@ -122,7 +142,7 @@
 								<div class="td1">생일</div>
 								<div class="td2">
 									<c:if test="${memberDto.m_birthday_public == 1}">
-										${memberDto.m_birthday}
+										<fmt:formatDate value="${memberDto.m_birthday}" pattern="MM월 dd일"/>										
 									</c:if>
 
 									<c:if test="${memberDto.m_birthday_public != 1}">

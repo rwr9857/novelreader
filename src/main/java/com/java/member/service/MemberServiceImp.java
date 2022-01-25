@@ -23,6 +23,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.java.aop.LogAspect;
 import com.java.member.dao.MemberDao;
+import com.java.member.dto.FollowDto;
 import com.java.member.dto.MemberDto;
 
 @Component
@@ -348,9 +349,79 @@ public class MemberServiceImp implements MemberService {
 
 		MemberDto memberDto = memberDao.profileSelect(nickname);
 		LogAspect.logger.info(LogAspect.LogMsg + memberDto.toString());
-
+		
+		int num = memberDto.getM_num();
+		int profileFollowerCount = memberDao.profileFollowerCount(num);
+		int profileFollowingCount = memberDao.profileFollowingCount(num);
+		
+		mav.addObject("profileFollowerCount",profileFollowerCount);
+		mav.addObject("profileFollowingCount",profileFollowingCount);
+		
 		mav.addObject("memberDto", memberDto);
 		mav.setViewName("member/profileNovel");
+	}
+	
+	@Override
+	public void profileFollower(ModelAndView mav) {
+		Map<String, Object> map = mav.getModelMap();
+		HttpServletRequest request = (HttpServletRequest) map.get("request");
+
+		String nickname = request.getParameter("nickname");
+		String pageNumber = request.getParameter("pageNumber");
+		LogAspect.logger.info(LogAspect.LogMsg + nickname + "," + pageNumber); // 닉네임 / 페이지 넘버 확인용
+
+		MemberDto memberDto = memberDao.profileSelect(nickname);
+		
+		int num = memberDto.getM_num();
+		
+		
+		List<FollowDto> profileFollower = memberDao.profileFollower(num);
+		
+		LogAspect.logger.info(LogAspect.LogMsg + "----------------------"+profileFollower);
+		
+		
+		mav.addObject("profileFollower",profileFollower);
+		
+		
+		
+		int profileFollowerCount = memberDao.profileFollowerCount(num);
+		int profileFollowingCount = memberDao.profileFollowingCount(num);
+		
+		mav.addObject("profileFollowerCount",profileFollowerCount);
+		mav.addObject("profileFollowingCount",profileFollowingCount);
+		
+		mav.addObject("memberDto", memberDto);
+		mav.setViewName("member/profileFollower");
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	@Override
+	public void profileFollowing(ModelAndView mav) {
+		Map<String, Object> map = mav.getModelMap();
+		HttpServletRequest request = (HttpServletRequest) map.get("request");
+
+		String nickname = request.getParameter("nickname");
+		String pageNumber = request.getParameter("pageNumber");
+		LogAspect.logger.info(LogAspect.LogMsg + nickname + "," + pageNumber); // 닉네임 / 페이지 넘버 확인용
+		
+		MemberDto memberDto = memberDao.profileSelect(nickname);
+		LogAspect.logger.info(LogAspect.LogMsg + memberDto.toString());
+		
+		int num = memberDto.getM_num();
+		int profileFollowerCount = memberDao.profileFollowerCount(num);
+		int profileFollowingCount = memberDao.profileFollowingCount(num);
+		
+		mav.addObject("profileFollowerCount",profileFollowerCount);
+		mav.addObject("profileFollowingCount",profileFollowingCount);
+		
+		mav.addObject("memberDto", memberDto);
+		mav.setViewName("member/profileFollowing");
 	}
 	
 	
