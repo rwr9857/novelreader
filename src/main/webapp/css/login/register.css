@@ -1,0 +1,164 @@
+* {
+	list-style: none;
+	text-decoration: none;
+	border-collapse: collapse;
+	margin: 0px;
+	padding: 0px;
+	color:#000;
+	font-family: 'Noto Sans KR', sans-serif;
+    box-sizing : border-box;
+}
+
+input:focus {
+    outline:none;
+}
+
+body {
+    display : flex;
+    justify-content : center;
+    align-items:center;
+    height: 100vh;
+    background : url("${root}/images/zz.jpg") no-repeat center;
+    background-size : cover;
+    text-align : center;
+}
+
+
+.loginbox{
+    background : hsla(0,0%,100%,.92);
+    width : 363px;  
+    height : 820px;
+    border-radius : 10px;
+}
+
+h1 {
+    font-family: 'Mochiy Pop P One', sans-serif;
+    font-size : 35px;
+
+}
+
+h3 {
+    font-size : 12px;
+
+}
+
+
+.inputbox input{
+    position : relative;
+    right : 45px;
+    width : 350px;
+    border : none;
+    margin : 10px; margin-left : 50px;
+    border-radius : 5px;   
+}
+
+.inputbox label{
+    position : relative;
+    right : 170px;
+    top : 10px;
+    font-size : 15px;
+    font-weight : bold;
+    color : rgb(71, 67, 67);
+}
+
+
+
+label[for=nickname]{
+    right : 158px;
+}
+
+label[for=pw]{
+    right : 149px;
+}
+
+label[for=pwcheck]{
+    right : 132px;
+}
+
+label[for=E-mail]{
+    right : 155px;
+}
+
+.inputradio{
+    display : flex;
+    margin : 0px;
+    margin-left : -6px;
+}
+
+.inputradio label{
+    display : flex;
+    margin : 10px;   
+    margin-top : 8px;
+    font-size: 15px;
+    font-weight: bold;
+    color: rgb(71, 67, 67);  
+}
+
+.inputradio input{
+    margin-top : 12px;
+    margin-left : -5px;
+}
+
+
+.E-mail_check{
+    margin-left : -215px;
+    margin-top : 15px;
+}
+
+label[for=E-mail_check]{
+    margin-right : 8px;
+    font-size: 15px;
+    font-weight: bold;
+    color: rgb(71, 67, 67);
+
+}
+
+.agree{
+    margin-left : -66px;
+    margin-top : 10px;
+}
+
+label[for=agree]{
+    margin-right : 8px;
+    font-size: 15px;
+    font-weight: bold;
+    color: rgb(71, 67, 67);
+}
+
+
+.registerbutton{
+    width : 300px;
+    height : 40px;
+    border-radius : 10px;
+    background : #0096fa;
+    color : white;
+    font-weight : bold;
+    border : none;
+    margin-top : -10px;
+}
+
+.registerbutton:hover{
+    background : #0188e2;
+}
+
+.social h3{
+    font-weight : bold ;
+    color: #757c80;
+    font-size : 12px;
+    margin-top : 50px;
+}
+
+.social img{
+    width : 40px;
+    height : 40px;
+    margin : 20px;
+    border-radius : px;
+    cursor : pointer;
+    margin-top : 0px;
+    margin-bottom : 40px;
+}
+
+.footer{
+    margin-top : 10px;
+    color: rgba(0, 0, 0, 0.32);
+}
