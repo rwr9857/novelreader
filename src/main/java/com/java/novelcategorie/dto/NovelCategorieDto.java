@@ -1,8 +1,5 @@
 package com.java.novelcategorie.dto;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class NovelCategorieDto {
 	private int c_categorie_id;
 	private int n_num;
