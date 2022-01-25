@@ -6,6 +6,8 @@ import java.util.List;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import com.java.member.dto.FollowDto;
 import com.java.member.dto.MemberDto;
 
 @Component
@@ -31,6 +33,26 @@ public class MemberDaoImp implements MemberDao {
 	@Override
 	public MemberDto profileSelect(String nickname) {
 		return sqlSessionTemplate.selectOne("profileSelect", nickname);
+	}
+	
+	@Override
+	public List<FollowDto> profileFollower(int num) {
+		return sqlSessionTemplate.selectList("profileFollower",num);
+	}
+	
+	@Override
+	public int profileFollowerCount(int num) {
+		return sqlSessionTemplate.selectOne("profileFollowerCount",num);
+	}
+	
+	@Override
+	public List<FollowDto> profileFollowing(int num) {
+		return sqlSessionTemplate.selectList("profileFollowing",num);
+	}
+	
+	@Override
+	public int profileFollowingCount(int num) {
+		return sqlSessionTemplate.selectOne("profileFollowingCount",num);
 	}
 	
 	// -------------관리자 회원조회--------------

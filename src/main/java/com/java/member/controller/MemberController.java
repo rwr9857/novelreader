@@ -74,7 +74,7 @@ public class MemberController {
   
   
   
-  // --------프로필-----------
+  // --------�봽濡쒗븘-----------
   
   @RequestMapping(value = "/member/profile.do", method = RequestMethod.GET)
   public ModelAndView profileNovel(HttpServletRequest request, HttpServletResponse response) {
@@ -84,6 +84,28 @@ public class MemberController {
     memberService.profileNovel(mav);
     return mav;
   }
+
+  
+  @RequestMapping(value = "/member/profileFollower.do", method = RequestMethod.GET)
+  public ModelAndView profileFollower(HttpServletRequest request, HttpServletResponse response) {
+    ModelAndView mav = new ModelAndView();
+    mav.addObject("request", request);
+    
+    memberService.profileFollower(mav);
+    return mav;
+  }
+  
+  @RequestMapping(value = "/member/profileFollowing.do", method = RequestMethod.GET)
+  public ModelAndView profileFollowing(HttpServletRequest request, HttpServletResponse response) {
+    ModelAndView mav = new ModelAndView();
+    mav.addObject("request", request);
+    
+    memberService.profileFollowing(mav);
+    return mav;
+  }
+  
+
+  
   
 }
 

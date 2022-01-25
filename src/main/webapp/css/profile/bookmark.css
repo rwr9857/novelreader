@@ -1,0 +1,213 @@
+@charset "UTF-8";
+
+*{
+	background:#0000;
+	/*background:#dfeaff;*/
+	font-family: 'Noto Sans KR', sans-serif;
+	margin: 0px;
+	padding: 0px;
+	text-decoration: none;
+	
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+body{
+	background: #f9fbff;
+}
+
+ul{
+	list-style: none;
+}
+
+#menu_bar{
+	position:fixed;
+	top:30%;
+	left:10px;
+	border:0px solid red;
+	width:150px;
+	overflow:hidden;
+}
+
+#menu_bar_ul{
+	border:0px solid blue;
+	height:100%;
+}
+
+#menu_bar_ul li{
+	margin-top:8px;
+	cursor:pointer;
+	border-top: 2px solid #ffffff9e;
+	border-bottom: 2px solid #ffffff9e;
+	height:50px;
+		/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#1e69de+0,3690f0+49,54a3ee+50,cbdeef+100 */
+	background: rgb(30,105,222); /* Old browsers */
+	background: -moz-linear-gradient(left,  rgba(30,105,222,1) 0%, rgba(54,144,240,1) 49%, rgba(84,163,238,1) 50%, rgba(203,222,239,1) 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(left,  rgba(30,105,222,1) 0%,rgba(54,144,240,1) 49%,rgba(84,163,238,1) 50%,rgba(203,222,239,1) 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to right,  rgba(30,105,222,1) 0%,rgba(54,144,240,1) 49%,rgba(84,163,238,1) 50%,rgba(203,222,239,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e69de', endColorstr='#cbdeef',GradientType=1 ); /* IE6-9 */
+		
+}
+
+#menu_bar_ul li:hover{
+	opacity:0.7
+}
+
+
+#menu_bar_ul li.bookmark, #menu_bar_ul li.profile_edit, #menu_bar_ul li.account_edit{
+/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#113b7f+0,0c529c+49,115fa7+50,3b82c1+100 */
+background: #113b7f; /* Old browsers */
+background: -moz-linear-gradient(left,  #113b7f 0%, #0c529c 49%, #115fa7 50%, #3b82c1 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(left,  #113b7f 0%,#0c529c 49%,#115fa7 50%,#3b82c1 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to right,  #113b7f 0%,#0c529c 49%,#115fa7 50%,#3b82c1 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#113b7f', endColorstr='#3b82c1',GradientType=1 ); /* IE6-9 */
+}
+
+#menu_bar_ul li p{
+	color:#ffffff;
+	text-shadow: -1px 0 #617fd7, 0 1px #617fd7, 1px 0 #617fd7, 0 -1px #617fd7;
+	
+	margin-top:8px;
+	font-size: 22px;
+	font-weight: 500;
+	padding-left:10px;
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#content_box{
+	width: 100%;
+	overflow:hidden;
+}
+
+
+#content_box .content_inner{
+	margin:0px auto;
+	margin-top:150px;
+	border:1px solid red;
+	width:1200px;
+}
+
+#content_box .content_inner .list{
+	width:100%;
+	height:150px;
+	margin-bottom:30px;
+	border:1px solid #b4c5ff;
+	
+	background: #dfeaff;
+}
+
+
+
+
+
+
+/*소설*/
+.content_inner div.list .novel_image{
+	margin-left:20px;
+	height:100%;
+	max-width: 250px;
+}
+
+.content_inner div.list .novel_inner{
+	float:right;
+	border:0px solid red;
+	
+	width:950px;
+	height:100%;
+}
+
+.content_inner .titleNdate{
+	border:0px solid blue;
+	width:400px;
+	height:100%;
+	float:left;
+	cursor:pointer;
+}
+
+.content_inner .title{
+	margin-top:28px;
+	font-size:24px;
+	font-weight:bold;
+	border:0px solid blue;
+	
+	height:60px;
+}
+
+.content_inner .date{
+	margin-top:4px;
+	border:0px solid green;
+	
+	width:100px;
+}
+
+.content_inner .like_box{
+	border:0px solid yellow;
+	
+	width:500px;
+	height:100%;
+	float:right;
+}
+
+.content_inner .like_box .like{
+	border:0px solid orange;
+	margin-top:56px;
+	width:110px;
+	height:36px;
+	float:left;
+}
+
+.content_inner .like_box .dislike{
+	border:0px solid purple;
+	margin-top:56px;
+	width:110px;
+	height:36px;
+	float:left;
+	margin-left:40px;
+}
+
+.content_inner .like_box img{
+	float:left;
+	width:36px;
+	height:36px;
+	border:0px solid red;
+	box-sizing: border-box;
+}
+
+.content_inner .like_box span{
+	font-size:20px;
+	float:left;
+	margin-top:5px;
+	margin-left:10px;
+}
+
+.content_inner .like_box img.bookmark_delete{
+	float:right;
+	margin-right:50px;
+	margin-top:56px;
+	
+	border:0px solid red;
+	
+	width:40px;
+	height:40px;
+	
+	cursor:pointer;
+	
+}
+
+
+

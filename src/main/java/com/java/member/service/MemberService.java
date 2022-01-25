@@ -14,4 +14,8 @@ public interface MemberService {
 	public void profileNovel(ModelAndView mav);
 
 	public void memberSelect(ModelAndView mav);
+	
+	public void profileFollower(ModelAndView mav);
+	
+	public void profileFollowing(ModelAndView mav);
 }
