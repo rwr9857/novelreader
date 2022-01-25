@@ -58,7 +58,7 @@ public class MemberServiceImp implements MemberService {
 
 		String id = request.getParameter("m_id");
 		String pw = request.getParameter("m_pw");
-		LogAspect.logger.info(LogAspect.LogMsg + "M_ID:" + id + "," + "M_PW:" + pw);
+		LogAspect.logger.info(LogAspect.LogMsg + "m_id:" + id + "," + "m_pw:" + pw);
 
 		MemberDto member = memberDao.loginCheck(id, pw);
 

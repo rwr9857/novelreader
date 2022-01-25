@@ -1,0 +1,116 @@
+* {
+	list-style: none;
+	text-decoration: none;
+	border-collapse: collapse;
+	margin: 0px;
+	padding: 0px;
+	color:#000;
+	font-family: 'Noto Sans KR', sans-serif;
+    box-sizing : border-box;
+}
+
+input:focus {
+    outline:none;
+}
+
+body {
+    display : flex;
+    justify-content : center;
+    align-items:center;
+    height: 100vh;
+    background : url('../../images/login/bg.jpg') no-repeat center;
+    background-size : cover;
+    text-align : center;
+}
+
+
+.loginbox{
+    background : hsla(0,0%,100%,.92);
+    width : 363px;  
+    height : 550px;
+    border-radius : 10px;
+}
+
+h1 {
+    font-family: 'Mochiy Pop P One', sans-serif;
+    font-size : 35px;
+}
+
+h3 {
+    font-size : 12px;
+
+}
+
+.inputbox { 
+    margin-top : 30px;
+}
+
+.inputbox input{
+    position : relative;
+    right : 45px;
+    width : 350px;
+    border : none;
+    margin : 10px; margin-left : 50px;
+    border-radius : 5px;   
+}
+
+.inputbox label{
+    position : relative;
+    right : 170px;
+    top : 10px;
+    font-size : 15px;
+    font-weight : bold;
+    color : rgb(71, 67, 67);
+}
+
+.inputbox input:focus + label,
+.inputbox input:valid + label {
+    top: -2px;
+    font-size : 13px;
+}
+
+
+.inputbox input {
+    height : 60px;
+    margin : 0px;
+    margin-left : 50px;
+    border : 1px solid #dfebf2;
+    border-radius : 10px;
+}
+
+.registerbutton{
+    width : 300px;
+    height : 40px;
+    border-radius : 10px;
+    background : #0096fa;
+    color : white;
+    font-weight : bold;
+    border : none;
+    margin-top : -10px;
+}
+
+.registerbutton:hover{
+    background : #0188e2;
+}
+
+.social h3{
+    font-weight : bold ;
+    color: #757c80;
+    font-size : 12px;
+    margin-top : 50px;
+}
+
+.social img{
+    width : 40px;
+    height : 40px;
+    margin : 20px;
+    border-radius : px;
+    cursor : pointer;
+    margin-top : 0px;
+    margin-bottom : 40px;
+}
+
+.footer{
+    margin-top : 10px;
+    color: rgba(0, 0, 0, 0.32);
+}
