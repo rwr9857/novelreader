@@ -10,7 +10,7 @@
 							n_summary,
 							n_image_name,
 							n_image_path,
-							N_image_size,
+							n_image_size,
 							n_pub_date,
 							n_report,
 							m_num)
