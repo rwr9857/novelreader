@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
+	opener.document.location.reload();
 	window.close();
 </script>
 </head>

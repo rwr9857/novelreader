@@ -19,28 +19,27 @@
 	console.log(Kakao.isInitialized());
 </script>
 <script type="text/javascript">
-	function loginFormWithKakao() {
-		Kakao.Auth
-				.loginForm({
-					success : function(authObj) {
-						//alert(JSON.stringify(authObj));
-						var params = "token=" + JSON.stringify(authObj);
-						sendRequest(
-								"POST",
-								"http://localhost:8181/novelreader/member/kakaologin.do",
-								params, fromServer);
+function loginWithKakao() {
+    Kakao.Auth.login({
+      success: function(authObj) {
+		//alert(JSON.stringify(authObj));
+		var params = "token=" + JSON.stringify(authObj);
+		sendRequest(
+				"POST",
+				"http://localhost:8181/novelreader/member/kakaologin.do",
+				params, fromServer);
 
-						function fromServer() {
-							if (xhr.readyState == 4 && xhr.status == 200) {
-								//alert(xhr.responseText);
-							}
-						}
-					},
-					fail : function(err) {
-						console.log(JSON.stringify(err));
-					},
-				})
-	}
+		function fromServer() {
+			if (xhr.readyState == 4 && xhr.status == 200) {
+				//alert(xhr.responseText);
+			}
+		}
+      },
+      fail: function(err) {
+	  	console.log(JSON.stringify(err));
+      },
+    })
+  }
 
 	function naverlogin() {
 		window.open('https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=k7RIM1ejpagn8MbzDO3E&redirect_uri=http://localhost:8181/novelreader/member/naverlogin.do&state=dc1bf16a5614dbb206e9b9629154c1ef','naver','width=490,height=500,status=no,toolbar=no,resizable=yes,scrollbars=no')
@@ -98,7 +97,7 @@
 		</form>
 
 		<a id="reauthenticate-popup-btn"
-			href="javascript:loginFormWithKakao()"> <img
+			href="javascript:loginWithKakao()"> <img
 			src="${root}/images/kakao_login_medium_narrow.png" width="200"
 			alt="카카오 로그인 버튼" />
 		</a>

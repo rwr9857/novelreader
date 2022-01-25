@@ -4,7 +4,7 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.java.member.dao.mapper.MemberMapper">
-	<!-- resultType="int" -->
+	<!-- 회원 가입 -->
 	<insert id="memberInsert"
 		parameterType="com.java.member.dto.MemberDto">
 		INSERT INTO MEMBER
@@ -42,11 +42,17 @@
 		SELECT * FROM member WHERE M_NICKNAME=#{nickname}
 		]]>
 	</select>
-
+	
+	<select id="pmLoginCheck" parameterType="java.util.HashMap" resultType="com.java.member.dto.MemberDto">
+		SELECT M_NUM,M_PERMISSION,M_PLATFORM FROM member  WHERE M_PLATFORM=#{platform} AND M_SNS_ID=#{platform_id}
+	</select>
+	
+	<!-- 회원 수(관리자 빼고) -->
 	<select id="memberCount" resultType="int">
 		SELECT COUNT(*) FROM member WHERE M_PERMISSION != 'MA'
 	</select>
 	
+	<!-- 회원 조회(관리자 뺴고) -->
 	<select id="memberList" parameterType="java.util.HashMap" resultType="com.java.member.dto.MemberDto" >
      <![CDATA[
      	SELECT * FROM (SELECT rownum AS rnum ,a.* FROM (SELECT * FROM MEMBER ORDER BY m_num DESC) a) b WHERE b.rnum >=#{startRow} AND b.rnum<=#{endRow} AND M_PERMISSION != 'MA'

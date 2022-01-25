@@ -13,6 +13,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
@@ -90,6 +92,7 @@ public class MemberServiceImp implements MemberService {
 
 		// access_token을 이용하여 사용자 정보 가져오기
 		String reqURL2 = "https://kapi.kakao.com/v2/user/me";
+		String kakao_id = "";
 		try {
 			URL url = new URL(reqURL2);
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -119,7 +122,7 @@ public class MemberServiceImp implements MemberService {
 			JsonParser parser1 = new JsonParser();
 			JsonElement element1 = parser1.parse(result);
 
-			String kakao_id = element1.getAsJsonObject().get("id").getAsString();
+			kakao_id = element1.getAsJsonObject().get("id").getAsString();
 
 			LogAspect.logger.info(LogAspect.LogMsg + kakao_id);
 
@@ -127,6 +130,36 @@ public class MemberServiceImp implements MemberService {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+
+		// db에 값이 있는지 체크
+		MemberDto memberCheck = memberDao.pmLoginCheck("kakao", kakao_id);
+		LogAspect.logger.info(LogAspect.LogMsg + memberCheck);
+
+		if (memberCheck == null) {
+			// 가입
+			MemberDto memberDto = new MemberDto();
+			memberDto.setM_platform("kakao");	
+			memberDto.setM_sns_id(kakao_id);
+			memberDto.setM_permission("BA");
+			LogAspect.logger.info(LogAspect.LogMsg + memberDto);
+
+			int check = memberDao.memberInsert(memberDto);
+			LogAspect.logger.info(LogAspect.LogMsg + check);
+
+			memberCheck = memberDao.pmLoginCheck("kakao", kakao_id);
+		}
+
+		int numSess = memberCheck.getM_num();
+		String permissionSess = memberCheck.getM_permission();
+		String platformSess = memberCheck.getM_platform();
+		LogAspect.logger.info(LogAspect.LogMsg + numSess + "\t" + permissionSess + "\t" + platformSess);
+		
+		HttpSession session = request.getSession();
+		session.setAttribute("numSess", numSess);
+		session.setAttribute("permissionSess", permissionSess);
+		session.setAttribute("platformSess", platformSess);
+
+		mav.setViewName("member/naverLoginOk");
 
 	}
 
@@ -210,8 +243,36 @@ public class MemberServiceImp implements MemberService {
 		String naver_id = naver_response.getAsJsonObject().get("id").getAsString();
 		LogAspect.logger.info(LogAspect.LogMsg + "naver_id : " + naver_id);
 
-		mav.setViewName("member/naverLoginOk");
 
+		// db에 값이 있는지 체크
+		MemberDto memberCheck = memberDao.pmLoginCheck("naver", naver_id);
+		LogAspect.logger.info(LogAspect.LogMsg + memberCheck);
+
+		if (memberCheck == null) {
+			// 가입
+			MemberDto memberDto = new MemberDto();
+			memberDto.setM_platform("naver");
+			memberDto.setM_sns_id(naver_id);
+			memberDto.setM_permission("BA");
+			LogAspect.logger.info(LogAspect.LogMsg + memberDto);
+
+			int check = memberDao.memberInsert(memberDto);
+			LogAspect.logger.info(LogAspect.LogMsg + check);
+
+			memberCheck = memberDao.pmLoginCheck("naver", naver_id);
+		}
+
+		int numSess = memberCheck.getM_num();
+		String permissionSess = memberCheck.getM_permission();
+		String platformSess = memberCheck.getM_platform();
+		LogAspect.logger.info(LogAspect.LogMsg + numSess + "\t" + permissionSess + "\t" + platformSess);
+		
+		HttpSession session = request.getSession();
+		session.setAttribute("numSess", numSess);
+		session.setAttribute("permissionSess", permissionSess);
+		session.setAttribute("platformSess", platformSess);
+		
+		mav.setViewName("member/naverLoginOk");
 	}
 
 	private static String get(String apiUrl, Map<String, String> requestHeaders) {
@@ -264,6 +325,14 @@ public class MemberServiceImp implements MemberService {
 			throw new RuntimeException("API 응답을 읽는데 실패했습니다.", e);
 		}
 	}
+	
+	
+	
+	
+	
+	
+	
+	
 
 
 	// -----프로필-----
