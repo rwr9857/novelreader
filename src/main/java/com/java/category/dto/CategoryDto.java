@@ -1,6 +1,5 @@
 package com.java.category.dto;
 
-import java.util.List;
 
 public class CategoryDto {
     private int c_category_id;
