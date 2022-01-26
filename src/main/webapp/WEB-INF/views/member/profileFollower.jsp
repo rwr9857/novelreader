@@ -35,8 +35,10 @@
 	</script>
 	<div id="profile">
 		<div id="profile_shadow">
+			<c:if test="${numSess==memberDto.m_num}">
 			<a href="${root}/member/setting.do?memberNum=${memberDto.m_num}"
 				class="profile_setting"> 프로필 설정</a>
+			</c:if>
 		</div>
 
 		<div id="profile_background">
@@ -153,24 +155,96 @@
 						</div>
 					</div>
 				</div>
-
+				
+				
+				<%-- 팔로워 리스트 --%>
 				<div class="content">
-					
+					listSize: ${listSize}/ currentPage: ${currentPage}/ followerList.size():${followerList.size()}/ profileFollowerCount:${profileFollowerCount}
 						<div class="follow_list" id="follower_list">
 							<span class="menu">팔로워</span>
-							<c:forEach var="profileFollower" items="${profileFollower}">
-								<div class="list" onclick="팔로워프로필바로가기함수">
-									<img alt="icon" src="./image/kms.jpg" class="profile_img">
-									<div class="follow_nickname">${profileFollower.m_nickname}</div>
+							<c:forEach var="profileFollower" items="${followerList}">
+								<div class="list">
+									<c:if test="${profileFollower.m_photo_path!=null}">
+									<img alt="이미지 준비중" src="${profileFollower.m_photo_path}" class="profile_img" onclick="goToProfile('${root}','${profileFollower.m_nickname}')">
+									</c:if>
+									<c:if test="${profileFollower.m_photo_path==null}">
+									<img alt="기본값" src="${root}/images/profile_default.png" class="profile_img" onclick="goToProfile('${root}','${profileFollower.m_nickname}')">
+									</c:if>									
+									<div class="follow_nickname" onclick="goToProfile('${root}','${profileFollower.m_nickname}')">${profileFollower.m_nickname}</div>
 									
-									<c:if test="${numSess != null}">
-										<img alt="x" src="${root}/images/x_icon.png" class="follow_delete" onclick="삭제함수">
+									<c:if test="${numSess == memberDto.m_num}">
+										<img alt="x" src="${root}/images/x_icon.png" class="follow_delete" onclick="deleteFollower('${root}','${profileFollower.m_nickname}','${pageNumber}')">
 									</c:if>
 								</div>
 							</c:forEach>
 						</div>
-
 				</div>
+				
+				<script type="text/javascript">
+					function goToProfile(root,nickname){
+						location.href=root+"/member/profile.do?nickname="+nickname;
+					}
+					
+					function deleteFollower(root,nickname){
+						 if (confirm("팔로워를 삭제합니다") == true){    //확인
+								
+						     location.href="";//삭제 이동
+
+						 }else{   //취소
+
+						     return false;
+
+						 }
+					}
+				</script>
+				
+				<%-- 페이지 --%>
+				<div class="page">
+					
+					<%-- 총 페이지 수 : 모든 jstl은 문자열이니까 정수로 바꿔주는 작업.--%>
+					<fmt:parseNumber var="pageCount" value="${profileFollowerCount/listSize + (profileFollowerCount % listSize == 0 ? 0:1)}" integerOnly="true"/>
+					
+					<%-- 페이지 블럭 --%>
+					<c:set var="pageBlock" value="${10}"/>
+					
+					<%-- 요청 페이지의 시작페이지 / 끝페이지 번호 --%>
+					<fmt:parseNumber var="result" value="${(currentPage-1)/pageBlock}" integerOnly="true"/>
+					<c:set var="startPage" value="${result*pageBlock+1}"/>
+					<c:set var="endPage" value="${startPage+pageBlock-1}"/>
+					
+					
+					<c:if test="${endPage > pageCount}">  <%-- 끝번호보다 총 페이지 수가 더 적을경우 --%>
+						<c:set var="endPage" value="${pageCount}"/>
+					</c:if>
+					
+					<c:if test="${startPage > pageBlock}"> <%-- 시작이11페이지인데 페이지 블록이 10이하일 경우 --%>
+						<a href="${root}/member/profileFollower.do?nickname=${memberDto.m_nickname}&pageNumber=${startPage-pageBlock}">[이전]</a>
+					</c:if>
+					
+					<c:forEach var="i" begin="${startPage}" end="${endPage}">
+						<c:if test="${i == currentPage}">
+						<a href="${root}/member/profileFollower.do?nickname=${memberDto.m_nickname}&pageNumber=${i}" style="cursor:pointer; color:#001076; font-weight:800; font-size:18px;">[${i}]</a>
+						</c:if>
+						<c:if test="${i != currentPage}">
+						<a href="${root}/member/profileFollower.do?nickname=${memberDto.m_nickname}&pageNumber=${i}" style="cursor:pointer; color:#83aaff; font-weight:600; font-size:18px;">[${i}]</a>
+						</c:if>
+					</c:forEach>
+					
+					<c:if test="${endPage < pageCount}">   <%-- 끝이10페이지인데 총 페이지수가 11이상일경우--%>
+						<a href="${root}/member/profileFollower.do?nickname=${memberDto.m_nickname}&pageNumber=${startPage+pageBlock}">[다음]</a>
+					</c:if>
+					
+					
+					
+					<br/><br/>
+					<div>
+						총 페이지 수 : ${pageCount}
+						시작 페이지 번호 : ${startPage}
+						끝 페이지 번호 : ${endPage}
+					</div>
+				
+				</div>
+				
 			</div>
 		</div>
 	</div>

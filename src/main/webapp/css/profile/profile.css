@@ -257,8 +257,9 @@ ul{
 
 
 #inner_box .content span.menu{
-	display: inline;
+	display: block;
 	
+	margin-bottom:30px;
 	font-size: 26px;
 	font-weight: bold;
 }
@@ -275,7 +276,6 @@ ul{
 	
 	margin-bottom:20px;
 	
-	cursor: pointer;
 }
 
 
@@ -371,6 +371,8 @@ ul{
 	margin-top:30px;
 	margin-left:50px;
 	float:left;
+	
+	cursor: pointer;
 }
 
 .follow_list .list .follow_nickname{
@@ -378,6 +380,7 @@ ul{
 	margin-left:50px;
 	margin-top:62px;
 	font-size:36px;
+	cursor: pointer;
 }
 
 .follow_list .list img.follow_delete{
@@ -387,8 +390,21 @@ ul{
 	
 	border:0px solid red;
 	
+	cursor:pointer;
+	
 	height:50px;
 	width:50px;
 }
 
+.page{
+	border:1px solid red;	
+	margin-top:50px;
+	text-align: center;
+}
 
+.page a{
+	cursor:pointer; 
+	color:#83aaff;
+	font-weight:600; 
+	font-size:18px;"
+}

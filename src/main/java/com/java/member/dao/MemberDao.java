@@ -2,7 +2,6 @@ package com.java.member.dao;
 
 import java.util.List;
 
-import com.java.member.dto.FollowDto;
 import com.java.member.dto.MemberDto;
 
 public interface MemberDao {
@@ -22,7 +21,7 @@ public interface MemberDao {
 
 	public int profileFollowerCount(int num);
 
-	public List<FollowDto> profileFollower(int num);
+	public List<MemberDto> profileFollowerList(int num, int startRow, int endRow);
 
-	public List<FollowDto> profileFollowing(int num);
+	public List<MemberDto> profileFollowingList(int num, int startRow, int endRow);
 }
