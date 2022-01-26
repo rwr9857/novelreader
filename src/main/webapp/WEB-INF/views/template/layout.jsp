@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>노벨리더</title>
 </head>
 <body>
 	<!-- header.jsp -->
