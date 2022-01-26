@@ -27,7 +27,7 @@ public class NovelHomeController {
 	@RequestMapping(value = "/novelhome/uploadOk.do", method = RequestMethod.POST)
 	public ModelAndView novelHomeUploadOk(HttpServletRequest request, HttpServletResponse response,
 			NovelHomeDto novelHomeDto) {
-		
+
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("request", request);
 		mav.addObject("novelHomeDto", novelHomeDto);
@@ -37,4 +37,13 @@ public class NovelHomeController {
 		return mav;
 	}
 
+	@RequestMapping(value = "/novelhome/list.do", method = RequestMethod.GET)
+	public ModelAndView novelHomeList(HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("request", request);
+
+		novelHomeService.novelHomeList(mav);
+
+		return mav;
+	}
 }

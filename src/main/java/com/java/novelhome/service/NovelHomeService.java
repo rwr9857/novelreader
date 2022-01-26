@@ -6,4 +6,6 @@ public interface NovelHomeService {
 
 	public void novelhomeUploadOk(ModelAndView mav);
 
+	public void novelHomeList(ModelAndView mav);
+
 }
