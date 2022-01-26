@@ -68,11 +68,23 @@
 	</select>
 	
 	
-	<select id="profileFollower" parameterType="int" resultType="com.java.member.dto.FollowDto">
+	<select id="profileFollower" parameterType="java.util.HashMap" resultType="com.java.member.dto.MemberDto">
 		<![CDATA[
-		SELECT m_nickname, m_photo_name, m_photo_path, m_photo_size
-		FROM member
-		WHERE m_num IN(SELECT M_NUM FROM FOLLOW WHERE FOLLOWING=#{num})
+		SELECT DISTINCT m_nickname, rnum, member.m_num, m_photo_name, m_photo_path
+		FROM  (SELECT a.m_num, ROWNUM rnum FROM 
+		                    (SELECT * FROM follow 
+		                     WHERE m_num IN(SELECT M_NUM FROM FOLLOW)
+		                     ORDER BY FOLLOWING_TIME DESC) a 
+		      ) b ,
+		      MEMBER
+		WHERE member.m_num=b.m_num AND member.m_num IN(SELECT b.m_num FROM 
+													      (SELECT a.m_num, ROWNUM rnum FROM 
+													          (SELECT * FROM follow 
+													           WHERE m_num IN(SELECT M_NUM FROM FOLLOW WHERE FOLLOWING=#{num})
+													           ORDER BY FOLLOWING_TIME DESC) a 
+													      ) b 
+		       										   WHERE b.rnum>=#{startRow} AND b.rnum<=#{endRow})
+		ORDER BY rnum ASC
 		]]>
 	</select>
 	

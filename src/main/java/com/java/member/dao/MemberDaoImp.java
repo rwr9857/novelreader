@@ -47,8 +47,12 @@ public class MemberDaoImp implements MemberDao {
 	}
 	
 	@Override
-	public List<FollowDto> profileFollower(int num) {
-		return sqlSessionTemplate.selectList("profileFollower",num);
+	public List<MemberDto> profileFollowerList(int num, int startRow, int endRow) {
+		HashMap<String, Integer> hMap = new HashMap<String, Integer>();
+		hMap.put("num", num);
+		hMap.put("startRow", startRow);
+		hMap.put("endRow", endRow);
+		return sqlSessionTemplate.selectList("profileFollower",hMap);
 	}
 	
 	@Override
@@ -57,7 +61,7 @@ public class MemberDaoImp implements MemberDao {
 	}
 	
 	@Override
-	public List<FollowDto> profileFollowing(int num) {
+	public List<MemberDto> profileFollowingList(int num, int startRow, int endRow) {
 		return sqlSessionTemplate.selectList("profileFollowing",num);
 	}
 	

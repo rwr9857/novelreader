@@ -354,6 +354,12 @@ public class MemberServiceImp implements MemberService {
 		int profileFollowerCount = memberDao.profileFollowerCount(num);
 		int profileFollowingCount = memberDao.profileFollowingCount(num);
 		
+		
+		
+		
+		
+		
+		
 		mav.addObject("profileFollowerCount",profileFollowerCount);
 		mav.addObject("profileFollowingCount",profileFollowingCount);
 		
@@ -368,29 +374,54 @@ public class MemberServiceImp implements MemberService {
 
 		String nickname = request.getParameter("nickname");
 		String pageNumber = request.getParameter("pageNumber");
+		
 		LogAspect.logger.info(LogAspect.LogMsg + nickname + "," + pageNumber); // 닉네임 / 페이지 넘버 확인용
 
 		MemberDto memberDto = memberDao.profileSelect(nickname);
 		
 		int num = memberDto.getM_num();
 		
+		int profileFollowerCount = memberDao.profileFollowerCount(num);    //팔로워수
+		int profileFollowingCount = memberDao.profileFollowingCount(num);  //팔로잉수		
 		
-		List<FollowDto> profileFollower = memberDao.profileFollower(num);
+		//팔로워 리스트 페이지 
 		
-		LogAspect.logger.info(LogAspect.LogMsg + "----------------------"+profileFollower);
+		if (pageNumber == null)
+			pageNumber = "1";
+		
+		int currentPage = Integer.parseInt(pageNumber);
+		LogAspect.logger.info(LogAspect.LogMsg + currentPage);
+
+		// 한페이지당 게시물 10개/ start 1, end 10
+		int listSize = 10;
+		int startRow = (currentPage - 1) * listSize + 1;
+		int endRow = currentPage * listSize;
+		
+		LogAspect.logger.info(LogAspect.LogMsg + profileFollowerCount);
+		
+		List<MemberDto> followerList = null;
+		if (profileFollowerCount > 0) {
+			followerList = memberDao.profileFollowerList(num, startRow, endRow);
+			
+			LogAspect.logger.info(LogAspect.LogMsg + followerList);
+		}
 		
 		
-		mav.addObject("profileFollower",profileFollower);
 		
 		
 		
-		int profileFollowerCount = memberDao.profileFollowerCount(num);
-		int profileFollowingCount = memberDao.profileFollowingCount(num);
+		//
 		
-		mav.addObject("profileFollowerCount",profileFollowerCount);
-		mav.addObject("profileFollowingCount",profileFollowingCount);
 		
-		mav.addObject("memberDto", memberDto);
+		
+		mav.addObject("listSize",listSize); // 한페이지당 보여지는 팔로워수
+		mav.addObject("currentPage", currentPage); // 요청페이지
+		mav.addObject("followerList",followerList); //팔로워 리스트
+		mav.addObject("profileFollowerCount",profileFollowerCount);// 전체 팔로워 수
+		
+		mav.addObject("profileFollowingCount",profileFollowingCount);//프로필 상단 - 전체 팔로잉 수
+		mav.addObject("memberDto", memberDto); //프로필 상단 - 프로필정보들
+		
 		mav.setViewName("member/profileFollower");
 	}
 	
@@ -445,7 +476,7 @@ public class MemberServiceImp implements MemberService {
 
 		int count = memberDao.getCount();
 		LogAspect.logger.info(LogAspect.LogMsg + count);
-
+		
 		List<MemberDto> memberList = null;
 		if (count > 0) {
 			memberList = memberDao.memberList(startRow, endRow);
