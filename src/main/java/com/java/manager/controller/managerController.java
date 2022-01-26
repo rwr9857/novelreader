@@ -18,7 +18,7 @@ public class managerController {
 	
 	@RequestMapping(value = "/manager/menu.do", method = RequestMethod.GET)
 	  public ModelAndView managerMenu(HttpServletRequest request, HttpServletResponse response) {	
-	    return new ModelAndView("manager/menu");
+	    return new ModelAndView("manager/menu.tiles1");
 	  }
 	
 	@RequestMapping(value = "/manager/memberView.do", method = RequestMethod.GET)

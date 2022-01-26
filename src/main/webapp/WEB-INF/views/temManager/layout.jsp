@@ -8,16 +8,8 @@
 </head>
 <body>
 	<!-- header.jsp -->
-	<tiles:insertAttribute name="header" />
-	<hr color="black">
+	<tiles:insertAttribute name="header1" />
+	<tiles:insertAttribute name="content1" />
 
-	<!-- 
-		content
-		-- member.jsp
-	 -->
-	<tiles:insertAttribute name="content" />
-	<hr color="black">
-	<!-- foot.jsp -->
-	<tiles:insertAttribute name="foot" />
 </body>
 </html>

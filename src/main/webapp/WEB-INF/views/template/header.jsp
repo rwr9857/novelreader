@@ -5,25 +5,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>템플릿</title>
+<title>노벨리더</title>
 </head>
 <body>
-	<c:if test="${numSess==null}">
-		<a href="${root}/member/login.do">로그인</a>
-		<!-- 김준기 -->
-		<a href="${root}/member/register.do">회원가입</a>
-		<!-- 김준기 -->
-	</c:if>
 
-	<c:if test="${numSess!=null}">
-		<a href="${root}/member/logout.do">로그아웃</a>
-		<!-- 김준기 -->
-		<br />
-	</c:if>
-
-	<c:if test="${permissionSess=='MA'}">
-		<h3>관리자</h3>
-	</c:if>
 
 	<a href="${root}/novel/top10.do">TOP10</a>
 	<!-- 류익현 -->
@@ -43,7 +28,25 @@
 	<!-- 강민수 -->
 	<a href="${root}/member/favorite.do">즐겨찾기 목록</a>
 	<!-- 박웅종 -->
-	<a href="${root}/manager/menu.do">관리자 메뉴</a>
-	<!-- 박승은 -->
+
+	<c:if test="${numSess==null}">
+		<a href="${root}/member/login.do">로그인</a>
+		<!-- 김준기 -->
+		<a href="${root}/member/register.do">회원가입</a>
+		<!-- 김준기 -->
+	</c:if>
+
+	<c:if test="${numSess!=null}">
+		<a href="${root}/member/logout.do">로그아웃</a>
+		<!-- 김준기 -->
+		<br />
+	</c:if>
+
+	<c:if test="${permissionSess=='MA'}">
+		<h3>관리자</h3>
+		<a href="${root}/manager/menu.do">관리자 메뉴</a>
+		<!-- 박승은 -->
+	</c:if>
+
 </body>
 </html>

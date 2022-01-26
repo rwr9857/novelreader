@@ -35,6 +35,39 @@
 		<put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp"/>
 	</definition>
 	
+	
+	
+	<!-- 템플릿 적용1 -->
+	<definition name="layout1" template="/WEB-INF/views/temManager/layout.jsp">
+		<put-attribute name="header1" value="/WEB-INF/views/temManager/header.jsp"/>
+		<put-attribute name="content1" value=""/>
+	</definition>
+	
+	<definition name="*.tiles1" extends="layout1">
+		<put-attribute name="content1" value="/WEB-INF/views/{1}.jsp"/>
+	</definition>
+	
+		<definition name="*/*.tiles1" extends="layout1">
+		<put-attribute name="content1" value="/WEB-INF/views/{1}/{2}.jsp"/>
+	</definition>
+	
+	<definition name="*/*/*.tiles1" extends="layout1">
+		<put-attribute name="content1" value="/WEB-INF/views/{1}/{2}/{3}.jsp"/>
+	</definition>
+	
+	<!-- 템플릿 제외1 -->
+	<definition name="empty1" template="/WEB-INF/views/temManager/empty.jsp">
+		<put-attribute name="content1" value=""/>
+	</definition>
+	
+	<definition name="*/*.empty1" extends="empty1">
+		<put-attribute name="content" value="/WEB-INF/views/{1}.jsp"/>
+	</definition>
+	
+	<definition name="*/*.empty1" extends="empty1">
+		<put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp"/>
+	</definition>
+	
 </tiles-definitions>
 
 

@@ -457,7 +457,7 @@ public class MemberServiceImp implements MemberService {
 		mav.addObject("memberList", memberList); // 회원 리스트
 		mav.addObject("count", count); // 전체 게시물 수
 
-		mav.setViewName("manager/memberView");
+		mav.setViewName("manager/memberView.tiles1");
 	}
 
 }
