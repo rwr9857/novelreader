@@ -37,7 +37,7 @@
 	<c:if test="${m_num != memberDto.m_num}">
 		<script type="text/javascript">
 			alert("잘못된 접근 입니다.");
-			location.href = "/novelreader/index.jsp";
+			location.href = "/novelreader";
 		</script>
 	</c:if>
 	

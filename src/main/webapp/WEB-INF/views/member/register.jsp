@@ -58,7 +58,7 @@
 <body>
 <c:if test="${numSess !=null}">
     <script type="text/javascript">
-        location.href = "/novelreader/index.jsp";
+        location.href = "/novelreader";
     </script>
 </c:if>
 

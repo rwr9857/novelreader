@@ -16,6 +16,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>로그인페이지</title>
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+    <script type="text/javascript" src="${root}/javascript/xhr/xhr.js"></script>
     <script>
         // SDK를 초기화 합니다. 사용할 앱의 JavaScript 키를 설정해 주세요.
         Kakao.init('4113a385559d634d4d781dc26f04e432');
@@ -55,13 +56,13 @@
 <body>
 <c:if test="${numSess !=null}">
     <script type="text/javascript">
-        location.href = "/novelreader/index.jsp";
+        location.href = "/novelreader";
     </script>
 </c:if>
 <c:if test="${numSess == null}">
     <div class="loginbox">
         <form action="${root}/member/loginOk.do" method="post">
-            <h1 style="margin-top : 10px; color : #0096fa;">NOVELREADER</h1>
+            <h1 style="margin-top : 10px; color : #0096fa; cursor: pointer" onclick="location.href = '/novelreader'">NOVELREADER</h1>
             <h3 style="color : #757c80; font-size : 14px; font-weight : bold;">소설의 모든것</h3>
             <h2 style="color : rgb(104, 109, 112); font-size:18px; font-weight : bold;
             margin-top : 30px; margin-bottom : -5px;">로그인</h2>
