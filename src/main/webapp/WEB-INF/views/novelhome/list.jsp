@@ -16,15 +16,20 @@
 			<div class="nhF2">
 				<!-- 이미지불러오기 -->
 				<div class="image_container">
-					<img src="${root}/images/${novelHomeDto.n_image_name}"></div>
+					<img src="${root}/images/novelLabel/${novelHomeDto.n_image_name}"/>
+				</div>
 				<button>첫화보기</button>
 			</div>
 		</div>
 		<!-- 소설 -->
 		<div class="nhF2">
 			<div class="nhF21">소설제목:${novelHomeDto.n_title}</div>
-			<div class="nhF21"><button>게시글 신고</button></div>
-			<div class="nhF21"><button>전체 삭제</button></div>
+			<div class="nhF21">
+				<button>게시글 신고</button>
+			</div>
+			<div class="nhF21">
+				<button>전체 삭제</button>
+			</div>
 		</div>
 		<div class="nhF2">
 			<div class="nhF21">

@@ -27,7 +27,7 @@
 	
 	<select id="novelhomeSelectGetNum" parameterType="int" resultType="int">
 		<![CDATA[SELECT n_num
-		FROM NOVEL_HOME WHERE m_num=#{m_num} AND ROWNUM=1
+		FROM NOVEL_HOME WHERE m_num=#{m_num} AND ROWNUM=1 ORDER BY n_num DESC
 		]]>
 	</select>
 	
