@@ -74,10 +74,10 @@
                 <input type="text" id="id" name="m_id" placeholder="ID를 입력하세요" required>
 
                 <label for="pw">비밀번호</label>
-                <input type="text" id="pw" name="m_pw" placeholder="비밀번호를 입력하세요">
+                <input type="password" id="pw" name="m_pw" placeholder="비밀번호를 입력하세요">
 
                 <label for="pwcheck">비밀번호 확인</label>
-                <input type="text" id="pwcheck" name="passwordCheck" placeholder="비밀번호를 다시 입력하세요">
+                <input type="password" id="pwcheck" name="passwordCheck" placeholder="비밀번호를 다시 입력하세요">
 
                 <label for="nickname">닉네임</label>
                 <input type="text" id="nickname" name="m_nickname" placeholder="닉네임을 입력하세요">
@@ -112,6 +112,7 @@
                 <img src="${root}/images/login/google.jpg">
             </div>
             <input class="registerbutton" type="submit" value="가입하기"/>
+            <input type="hidden" name="m_platform" value="local" />
     </form>
     <h3 class="footer">Copyright ⓒ 2022 by GTEC Kmove JP-A All Pictures cannot be copied without permission.</h3>
     </div>
