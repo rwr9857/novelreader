@@ -15,15 +15,16 @@
 		<div class="nhF1">
 			<div class="nhF2">
 				<!-- 이미지불러오기 -->
-				<div class="image_container"></div>
+				<div class="image_container">
+					<img src="${root}/images/${novelHomeDto.n_image_name}"></div>
 				<button>첫화보기</button>
 			</div>
 		</div>
 		<!-- 소설 -->
 		<div class="nhF2">
-			<div class="nhF21">${novelHomeDto.n_title}</div>
-			<div class="nhF21">게시글 신고</div>
-			<div class="nhF21">전체 삭제</div>
+			<div class="nhF21">소설제목:${novelHomeDto.n_title}</div>
+			<div class="nhF21"><button>게시글 신고</button></div>
+			<div class="nhF21"><button>전체 삭제</button></div>
 		</div>
 		<div class="nhF2">
 			<div class="nhF21">
@@ -33,7 +34,7 @@
 			</div>
 			<div class="nhF21">조회수,좋아요,싫어요,즐겨찾기</div>
 		</div>
-		<div class="nhF2">${novelHomeDto.n_summary}</div>
+		<div class="nhF2">소설 줄거리:${novelHomeDto.n_summary}</div>
 		<div class="nhF2">
 			<!-- 장르값 != null 이면 장르 리스트 -->
 			<button>장르선택</button>

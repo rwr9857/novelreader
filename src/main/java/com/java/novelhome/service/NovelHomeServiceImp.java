@@ -31,16 +31,17 @@ public class NovelHomeServiceImp implements NovelHomeService {
 //		LogAspect.logger.info(LogAspect.LogMsg + upFile);
 
 		if (upFile.getSize() != 0) {
+			File path = new File(
+					"C:\\Users\\skcak\\Desktop\\student\\Spring\\workspace\\novelreader\\src\\main\\webapp\\images\\");
+			path.mkdir();
+
 			String fileName = Long.toString(System.currentTimeMillis()) + "_" + upFile.getOriginalFilename();
 			long fileSize = upFile.getSize();
 //			LogAspect.logger.info(LogAspect.LogMsg + fileName + fileSize);
-
-			File path = new File("C:\\pds\\");
-			path.mkdir();
-
+			
 			if (path.exists() && path.isDirectory()) {
-				File file = new File(path, fileName);
-
+				File file = new File(path + fileName);
+				LogAspect.logger.info(LogAspect.LogMsg + "3" + file);
 				try {
 					upFile.transferTo(file);
 
@@ -52,6 +53,8 @@ public class NovelHomeServiceImp implements NovelHomeService {
 					e.printStackTrace();
 				}
 
+			} else {
+
 			}
 
 		}
@@ -59,12 +62,12 @@ public class NovelHomeServiceImp implements NovelHomeService {
 		LogAspect.logger.info(LogAspect.LogMsg + novelHomeDto.toString());
 		int check = novelHomeDao.novelHomeUpload(novelHomeDto);
 		LogAspect.logger.info(LogAspect.LogMsg + novelHomeDto.toString());
-		
+
 		int m_num = Integer.parseInt(request.getParameter("m_num"));
 		LogAspect.logger.info(LogAspect.LogMsg + m_num);
 		int n_num = novelHomeDao.novelHomeSelectGetNum(m_num);
 		LogAspect.logger.info(LogAspect.LogMsg + n_num);
-		
+
 		mav.addObject("n_num", n_num);
 		mav.addObject("check", check);
 		mav.addObject("novelHomeDto", novelHomeDto);
