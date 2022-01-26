@@ -16,10 +16,10 @@
 		<form name="novelhomeForm" action="${root}/novelhome/uploadOk.do"
 			method="post" enctype="multipart/form-data">
 		
-			<div id="nh_all">
+			<div id="nhAll">
 				<!-- 표지 -->
-				<div class="nh_f1">
-					<div class="nh_f2">
+				<div class="nhF1">
+					<div class="nhF2">
 						<div class="image_container"></div>
 						<input type="file" id="image" accept="image/*" name="file" size="40"
 							onchange="setThumbnail(event);" />
@@ -27,15 +27,15 @@
 					</div>
 				</div>
 				<!-- 소설 -->
-				<div class="nh_f2">
-					<div class="nh_f21">
+				<div class="nhF2">
+					<div class="nhF21">
 						<textarea rows="4" cols="80" name="n_title" placeholder="소설 제목(필수)"></textarea>
 					</div>
-					<div class="nh_f21">
+					<div class="nhF21">
 						<textarea rows="10" cols="80" name="n_summary"
 							placeholder="소설 줄거리(선택)"></textarea>
 					</div>
-					<div class="nh_f21">
+					<div class="nhF21">
 						<input type="submit" value="소설투고" />
 					</div>
 				</div>

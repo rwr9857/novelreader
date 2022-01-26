@@ -13,9 +13,22 @@ public class NovelHomeDaoImp implements NovelHomeDao {
 
 	@Override
 	public int novelHomeUpload(NovelHomeDto novelHomeDto) {
-		return sqlSessionTemplate.insert("novelhomeInsert",novelHomeDto);
+		return sqlSessionTemplate.insert("novelhomeInsert", novelHomeDto);
 	}
 
+	@Override
+	public int novelHomeSelectGetNum(int m_num) {
+		return sqlSessionTemplate.selectOne("novelhomeSelectGetNum", m_num);
+	}
+	
+	@Override
+	public NovelHomeDto novelHomeList(int n_num) {
+		NovelHomeDto novelHomeDto = null;
 
+		novelHomeDto = sqlSessionTemplate.selectOne("novelhomeSelect", n_num);
+		return novelHomeDto;
+	}
+
+	
 
 }

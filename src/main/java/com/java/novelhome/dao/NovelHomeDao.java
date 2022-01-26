@@ -6,6 +6,10 @@ public interface NovelHomeDao {
 
 	public int novelHomeUpload(NovelHomeDto novelHomeDto);
 
+	public NovelHomeDto novelHomeList(int n_num);
+
+	public int novelHomeSelectGetNum(int m_num);
+
 
 
 }

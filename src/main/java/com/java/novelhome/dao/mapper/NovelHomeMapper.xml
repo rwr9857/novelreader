@@ -24,7 +24,16 @@
 							#{n_report,jdbcType=NUMERIC},
 							#{m_num})
 	</insert>
-
-
+	
+	<select id="novelhomeSelectGetNum" parameterType="int" resultType="int">
+		<![CDATA[SELECT n_num
+		FROM NOVEL_HOME WHERE m_num=#{m_num} AND ROWNUM=1
+		]]>
+	</select>
+	
+	<select id="novelhomeSelect" parameterType="int" resultType="com.java.novelhome.dto.NovelHomeDto">
+		SELECT *
+		FROM NOVEL_HOME WHERE n_num=#{n_num}
+	</select>
 </mapper>   		
   	

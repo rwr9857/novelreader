@@ -88,16 +88,9 @@ public class NovelHomeDto {
 
 	@Override
 	public String toString() {
-		return "NovelHomeDto[" +
-				"n_num=" + n_num +
-				", n_title='" + n_title +
-				", n_summary='" + n_summary +
-				", n_image_name='" + n_image_name +
-				", n_image_path='" + n_image_path +
-				", n_image_size=" + n_image_size +
-				", n_pub_date=" + n_pub_date +
-				", n_report=" + n_report +
-				", m_num=" + m_num +
-				']';
+		return "NovelHomeDto [n_num=" + n_num + ", n_title=" + n_title + ", n_summary=" + n_summary + ", n_image_name="
+				+ n_image_name + ", n_image_path=" + n_image_path + ", n_image_size=" + n_image_size + ", n_pub_date="
+				+ n_pub_date + ", n_report=" + n_report + ", m_num=" + m_num + "]";
 	}
+
 }
