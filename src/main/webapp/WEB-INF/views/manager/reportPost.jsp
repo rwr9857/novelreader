@@ -16,7 +16,7 @@
     <title>Document</title>
 </head>
 <body>
-    <div style="margin-left: 265px; margin-top: 0px; border: 1px solid black; height: 937px; background: rgb(234, 240, 253);"">
+    <div style="margin-left: 265px; margin-top: 0px; border: 1px solid black; height: 937px; background: rgb(234, 240, 253);">
         <div class ="menuText">
             <h1>신고된 게시글</h1>
             <h3>관리자 모드 -> <span style="color : gray;">신고관리</span> -> 신고된 게시글</h3>

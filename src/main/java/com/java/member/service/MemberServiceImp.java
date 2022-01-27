@@ -364,7 +364,7 @@ public class MemberServiceImp implements MemberService {
 		mav.addObject("profileFollowingCount",profileFollowingCount);
 		
 		mav.addObject("memberDto", memberDto);
-		mav.setViewName("member/profileNovel");
+		mav.setViewName("member/profileNovel.tiles");
 	}
 	
 	@Override

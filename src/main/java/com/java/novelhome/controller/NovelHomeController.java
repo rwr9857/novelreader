@@ -19,7 +19,7 @@ public class NovelHomeController {
 
 	@RequestMapping(value = "/novelhome/upload.do", method = RequestMethod.GET)
 	public ModelAndView novelHomeUpload(HttpServletRequest request, HttpServletResponse response) {
-		return new ModelAndView("novelhome/upload");
+		return new ModelAndView("novelhome/upload.tiles");
 	}
 
 	@RequestMapping(value = "/novelhome/uploadOk.do", method = RequestMethod.POST)
