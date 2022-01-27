@@ -32,7 +32,10 @@ public class NovelHomeServiceImp implements NovelHomeService {
 
 		if (upFile.getSize() != 0) {
 			File path = new File(
-					"C:\\Users\\skcak\\Desktop\\student\\Spring\\workspace\\novelreader\\src\\main\\webapp\\images\\novelLabel\\");
+					"C:\\Users\\User\\OneDrive\\바탕 화면\\ikcon\\Spring\\workspace\\novelreader\\src\\main\\webapp\\images\\novelLabel");
+//		노트북 - C:\\Users\\User\\OneDrive\\바탕 화면\\ikcon\\Spring\\workspace\\novelreader\\src\\main\\webapp\\images\\novelLabel
+//		집 - C:\\Users\\skcak\\Desktop\\student\\Spring\\workspace\\novelreader\\src\\main\\webapp\\images\\novelLabel\\
+			
 			path.mkdir();
 			LogAspect.logger.info(LogAspect.LogMsg + path);
 			String fileName = Long.toString(System.currentTimeMillis()) + "_" + upFile.getOriginalFilename();
