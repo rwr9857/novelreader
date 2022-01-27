@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+    <mapper namespace="com.java.notice.dao.mapper.NoticeMapper"> 
+    	<insert id="questionInsert" parameterType="com.java.notice.dto.QuestionDto">
+			INSERT INTO question VALUES(Q_NUM_SEQ.nextval,
+			#{m_num ,jdbcType=NUMERIC},
+			#{q_title ,jdbcType=VARCHAR},
+			#{q_content ,jdbcType=VARCHAR},
+			#{q_viewcount ,jdbcType=NUMERIC},
+			sysdate,
+			#{q_category ,jdbcType=VARCHAR})
+		</insert>
+    </mapper>
