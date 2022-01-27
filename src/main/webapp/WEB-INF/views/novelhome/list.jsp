@@ -10,13 +10,14 @@
 <title>소설로고 리스트</title>
 </head>
 <body>
+	<form>
 	<div id="nhAll">
 		<!-- 표지 -->
 		<div class="nhF1">
 			<div class="nhF2">
 				<!-- 이미지불러오기 -->
 				<div class="image_container">
-					<img src="${root}/images/novelLabel/${novelHomeDto.n_image_name}"/>
+					<img src="${root}/images/novelLabel/${novelHomeDto.n_image_name}" />
 				</div>
 				<button>첫화보기</button>
 			</div>
@@ -42,19 +43,28 @@
 		<div class="nhF2">소설 줄거리:${novelHomeDto.n_summary}</div>
 		<div class="nhF2">
 			<!-- 장르값 != null 이면 장르 리스트 -->
-			<button>장르선택</button>
+			<input type="button" value="장르선택" onclick="categoryRead('${root}')" />
+			<script type="text/javascript">
+				function categoryRead(root) {
+					var url = root + "/novelCategory/novelCategoryAdd.do";
+					 //alert(url);
+
+					window.open(url, "", "width=400, height=400");
+				}
+			</script>
 		</div>
 	</div>
 
 	<div id="nhAll2">
 		<div>
 			<div>회차리스트</div>
-			<div>등록버튼</div>
+			<a href="${root}/novelpost/register.do">등록</a>
+			
 		</div>
 		<!-- 회차리스트 -->
 
 	</div>
 	<input type="hidden" name="m_num" value="${numSess}" />
-
+</form>
 </body>
 </html>
