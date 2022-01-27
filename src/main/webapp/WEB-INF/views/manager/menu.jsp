@@ -15,17 +15,19 @@
 <title>Document</title>
 </head>
 <body>
-	<div class="admin_text">
-		<h2>노벨리더 관리자 모드</h2>
-		<h3>NOVELREADER ADMINMODE</h3>
-	</div>
-	<div class="admin_profile">
-		<h3>프로필</h3>
-		<h3>알림</h3>
-	</div>
-	<div class="footer">
-		<h3>Copyright ⓒ 2022 by GTEC Kmove JP-A All Pictures cannot be copied without permission.</h3>
-	</div>
+	<div style="margin-left: 265px; margin-top: 0px; border: 1px solid black; height: 937px; background: rgb(234, 240, 253);">
+		<div class="admin_text">
+			<h2>노벨리더 관리자 모드</h2>
+			<h3>NOVELREADER ADMINMODE</h3>
+		</div>
+		<div class="admin_profile">
+			<h3>프로필</h3>
+			<h3>알림</h3>
+		</div>
+
+		<div class="footer">
+			<h3>Copyright ⓒ 2022 by GTEC Kmove JP-A All Pictures cannot be copied without permission.</h3>
+		</div>
 	</div>
 </body>
 </html>

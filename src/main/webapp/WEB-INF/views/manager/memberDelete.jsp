@@ -16,10 +16,10 @@
     <title>Document</title>
 </head>
 <body>
-    <div id="wrap" style="margin-left:265px; margin-top : 46px; border:1px solid red; height:2000px; background : rgb(234 240 253);">
+    <div style="margin-left:265px; margin-top : 0px; border:1px solid black; height:937px; background : rgb(234 240 253);">
         <div class ="menuText">
             <h1>회원 삭제</h1>
-            <h3>관리자 모드 -> <span style="color : gray;">회원관리</span> -> 회원 삭제</h3>
+            <h3>관리자 모드 -> <span style="color : gray;">회원정보</span> -> 회원 삭제</h3>
         </div>
         <div class = "serchbar">
             <h3>회원 닉네임</h3>
@@ -30,6 +30,7 @@
         <div class = "resultTextbox">
             <h3>검색결과 :</h3>
         </div>
+        
         <div class ="resultTextpage">
             <h3 style ="margin-right : 100px;">번호</h3>
             <h3 style ="margin-right : 150px;">ID</h3>
@@ -37,12 +38,7 @@
             <h3 style ="margin-right : 200px;">가입일</h3>
             <h3 style ="margin-right : 200px;">E-mail</h3>
             <h3 style ="margin-right : 100px;">이메일 수신여부</h3>
-
         </div>
-
-    </div>
-
-
-    
+    </div>    
 </body>
 </html>

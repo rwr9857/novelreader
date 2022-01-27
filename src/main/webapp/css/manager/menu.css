@@ -8,16 +8,14 @@
 	font-family: 'Noto Sans KR', sans-serif;
 }
 
-#wrap{
-	background : rgb(234 240 253);
-	height: 1150px;
-}
 
-.adminBox{
-	background-color :#234e85;
-	width:265px;
-	height:100%
-}
+#wrap{
+	border: solid 1px black;
+	position: absolute;
+	background-color:#234e85;
+	width: 265px;
+	height: 100%;
+}  
 
 .adminLogo{
 	width:265px;
@@ -118,7 +116,6 @@ ul:hover{
 	color:white;
 	font-size : 12px;
 	margin-left : 30px;
-
 }
 
 

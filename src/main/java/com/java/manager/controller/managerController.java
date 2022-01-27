@@ -32,21 +32,21 @@ public class managerController {
 	
 	@RequestMapping(value = "/manager/memberModify.do", method = RequestMethod.GET)
 	  public ModelAndView managerMemberModify(HttpServletRequest request, HttpServletResponse response) {
-	    return new ModelAndView("manager/memberModify");
+	    return new ModelAndView("manager/memberModify.tiles1");
 	  }
 	
 	@RequestMapping(value = "/manager/memberDelete.do", method = RequestMethod.GET)
 	  public ModelAndView managerMemberDelete(HttpServletRequest request, HttpServletResponse response) {
-	    return new ModelAndView("manager/memberDelete");
+	    return new ModelAndView("manager/memberDelete.tiles1");
 	  }
 	
 	@RequestMapping(value = "/manager/reportPost.do", method = RequestMethod.GET)
 	  public ModelAndView managerReportPost(HttpServletRequest request, HttpServletResponse response) {
-	    return new ModelAndView("manager/reportPost");
+	    return new ModelAndView("manager/reportPost.tiles1");
 	  }
 	
 	@RequestMapping(value = "/manager/reportComment.do", method = RequestMethod.GET)
 	  public ModelAndView managerReportComment(HttpServletRequest request, HttpServletResponse response) {
-	    return new ModelAndView("manager/reportComment");
+	    return new ModelAndView("manager/reportComment.tiles1");
 	  }
 }

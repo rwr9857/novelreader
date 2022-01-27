@@ -16,17 +16,13 @@
     <title>Document</title>
 </head>
 <body>
-    <div id="wrap" style="margin-left:265px; margin-top : 46px; border:1px solid red; height:2000px; background : rgb(234 240 253);">
+    <div style="margin-left: 265px; margin-top: 0px; border: 1px solid black; height: 937px; background: rgb(234, 240, 253);">
         <div class ="menuText">
             <h1>신고된 댓글</h1>
             <h3>관리자 모드 -> <span style="color : gray;">신고관리</span> -> 신고된 댓글</h3>
         </div>
         <h2>신고 댓글 목록</h2>
-
-
-
     </div>
-
 
 </body>
 </html>
