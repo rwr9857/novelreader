@@ -53,13 +53,13 @@
 				<!-- 한칸띄우기-->
 				<div class="textsty">
 					<!-- 글꼴굵기 글꼴기울기 글꼴....-->
-					<button>
+					<button type="button">
 						<img src="${root}/images/notice/bold.png" width="15px" height="15px">
 					</button>
-					<button>
+					<button type="button">
 						<img src="${root}/images/notice/italic-text.png" width="15px" height="15px">
 					</button>
-					<button>
+					<button type="button">
 						<img src="${root}/images/notice/underline.png" width="15px" height="18px">
 					</button>
 				</div>

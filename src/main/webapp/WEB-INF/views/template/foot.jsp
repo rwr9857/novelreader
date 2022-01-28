@@ -4,7 +4,6 @@
 <head>
 <meta charset="UTF-8">
 <title>템플릿</title>
-<link rel="stylesheet" href="${root}/css/manager/menu.css">
 </head>
 <body>
 	<div class="footer">
