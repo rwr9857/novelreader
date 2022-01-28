@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -18,6 +19,9 @@ public class NovelHomeServiceImp implements NovelHomeService {
 
 	@Autowired
 	private NovelHomeDao novelHomeDao;
+
+	@Value("#{properties['novelhome.imagepath']}")
+	private String imagepath;
 
 	@Override
 	public void novelhomeUploadOk(ModelAndView mav) {
@@ -36,7 +40,7 @@ public class NovelHomeServiceImp implements NovelHomeService {
 			long fileSize = upFile.getSize();
 //			LogAspect.logger.info(LogAspect.LogMsg + fileName + fileSize);
 
-			File path = new File("C:\\pds\\");
+			File path = new File(imagepath);
 			path.mkdir();
 
 			if (path.exists() && path.isDirectory()) {
