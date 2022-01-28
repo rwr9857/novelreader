@@ -15,7 +15,7 @@
 <title>Document</title>
 </head>
 <body>
-	<div style="margin-left: 265px; margin-top: 0px; border: 1px solid black; height: 937px; background: rgb(234, 240, 253);">
+	<div style="margin-left: 265px; margin-top: 0px; border: 1px solid black; height: 1100px; background: rgb(234, 240, 253);">
 		<div class="menuText">
 			<h1>회원 수정</h1>
 			<h3>
