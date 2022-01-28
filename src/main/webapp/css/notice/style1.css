@@ -186,7 +186,7 @@
 	height: 60px;
 	margin: auto;
 }
-.footer input{
+.footer button{
     width: 200px;
     height: 60px;
 	border: solid; 
@@ -200,6 +200,6 @@
 	background-color: #0096FA;
 }
 
-.footer input:hover{
+.footer button:hover{
 	background-color: #37afff;
 }

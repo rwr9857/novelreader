@@ -19,10 +19,13 @@ public class NoticeServiceImp implements NoticeService {
 	public void questionWriteOk(ModelAndView mav) {
 		Map<String, Object> map = mav.getModelMap();
 		QuestionDto questionDto = (QuestionDto) map.get("questionDto");
-		
+
 		LogAspect.logger.info(LogAspect.LogMsg + questionDto);
 		
 		int check = noticeDao.questionInsert(questionDto);
+		LogAspect.logger.info(LogAspect.LogMsg + check);
+		
+		mav.addObject("check", check);
 		
 		mav.setViewName("notice/questionWriteOk");
 	}

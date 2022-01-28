@@ -16,10 +16,7 @@
 	<!-- 박웅종 -->
 	<a href="${root}/notice/notice.do">공지사항</a>
 	<!-- 안태균 -->
-	<a href="${root}/notice/faq.do">자주하는질문</a>
-	<!-- 안태균 -->
-	<a href="${root}/notice/question.do">문의하기</a>
-	<!-- 안태균 -->
+
 	<a href="${root}/novel/search.do">검색</a>
 	<!-- 박현우 -->
 	<a href="${root}/novelhome/upload.do">투고</a>
