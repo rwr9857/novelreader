@@ -8,8 +8,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<c:set var="root" value="${pageContext.request.contextPath}" />
-
 	<c:if test="${check > 0}">
 		<script type="text/javascript">
 			alert("회원가입이 완료 되었습니다.");

@@ -80,7 +80,7 @@
                 <a href="javascript:naverlogin()"> <img
                         src="${root}/images/login/naver.jpg"/>
                 </a>
-                <img src="${root}/images/login/google.jpg" a href="">
+                <img src="${root}/images/login/google.jpg" />
             </div>
             <input class="registerbutton" type="submit" value="로그인"/>
         </form>
