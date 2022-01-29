@@ -13,7 +13,7 @@
 			#{m_pw , jdbcType=VARCHAR},
 			#{m_email , jdbcType=VARCHAR},
 			#{m_email_agree , jdbcType=NUMERIC},
-			#{m_nickname , jdbcType=VARCHAR},
+			<if test="m_nickname == null">M_NUM_SEQ.nextval</if><if test="m_nickname !=null">#{m_nickname}</if>,
 			#{m_sex ,jdbcType=NUMERIC},
 			#{m_homepage_address , jdbcType=VARCHAR},
 			#{m_city , jdbcType=VARCHAR},
