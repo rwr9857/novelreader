@@ -164,7 +164,7 @@ public class MemberServiceImp implements MemberService {
 		session.setAttribute("platformSess", platformSess);
 		session.setAttribute("nicknameSess", nicknameSess);
 
-		mav.setViewName("member/naverLoginOk");
+		mav.setViewName("member/pmLoginOk");
 
 	}
 
@@ -277,7 +277,7 @@ public class MemberServiceImp implements MemberService {
 		session.setAttribute("permissionSess", permissionSess);
 		session.setAttribute("platformSess", platformSess);
 		
-		mav.setViewName("member/naverLoginOk");
+		mav.setViewName("member/pmLoginOk");
 	}
 
 	private static String get(String apiUrl, Map<String, String> requestHeaders) {
