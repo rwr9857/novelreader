@@ -104,8 +104,41 @@ public class MemberController {
     return mav;
   }
   
-
+  @RequestMapping(value = "/member/follow.do", method = RequestMethod.POST)
+  public ModelAndView profileFollow(HttpServletRequest request, HttpServletResponse response) {
+    ModelAndView mav = new ModelAndView();
+    mav.addObject("request", request);
+    
+    memberService.profileFollow(mav);
+    return mav;
+  }
   
+  @RequestMapping(value = "/member/followDelete.do", method = RequestMethod.POST)
+  public ModelAndView profileFollowDelete(HttpServletRequest request, HttpServletResponse response) {
+    ModelAndView mav = new ModelAndView();
+    mav.addObject("request", request);
+    
+    memberService.profileFollowDelete(mav);
+    return mav;
+  }
+  
+  @RequestMapping(value = "/member/follower_followDelete.do", method = RequestMethod.POST)
+  public ModelAndView profileFollower_followDelete(HttpServletRequest request, HttpServletResponse response) {
+    ModelAndView mav = new ModelAndView();
+    mav.addObject("request", request);
+    
+    memberService.follower_followDelete(mav);
+    return mav;
+  }
+  
+  @RequestMapping(value = "/member/following_followDelete.do", method = RequestMethod.POST)
+  public ModelAndView profileFollowing_followDelete(HttpServletRequest request, HttpServletResponse response) {
+    ModelAndView mav = new ModelAndView();
+    mav.addObject("request", request);
+    
+    memberService.following_followDelete(mav);
+    return mav;
+  }
   
 }
 

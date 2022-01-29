@@ -18,4 +18,12 @@ public interface MemberService {
 	public void profileFollower(ModelAndView mav);
 	
 	public void profileFollowing(ModelAndView mav);
+
+	public void profileFollow(ModelAndView mav);
+
+	public void profileFollowDelete(ModelAndView mav);
+
+	public void follower_followDelete(ModelAndView mav);
+
+	public void following_followDelete(ModelAndView mav);
 }

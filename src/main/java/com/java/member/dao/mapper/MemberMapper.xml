@@ -34,11 +34,11 @@
 	</insert>
 	
 	<select id="loginCheck" parameterType="java.util.HashMap" resultType="com.java.member.dto.MemberDto">
-		SELECT M_NUM,M_PERMISSION,M_PLATFORM FROM member  WHERE M_ID=#{id} AND M_PW=#{pw}
+		SELECT M_NUM,M_PERMISSION,M_PLATFORM,M_NICKNAME FROM member  WHERE M_ID=#{id} AND M_PW=#{pw}
 	</select>
 
 	<select id="pmLoginCheck" parameterType="java.util.HashMap" resultType="com.java.member.dto.MemberDto">
-		SELECT M_NUM,M_PERMISSION,M_PLATFORM FROM member  WHERE M_PLATFORM=#{platform} AND M_SNS_ID=#{platform_id}
+		SELECT M_NUM,M_PERMISSION,M_PLATFORM,M_NICKNAME FROM member  WHERE M_PLATFORM=#{platform} AND M_SNS_ID=#{platform_id}
 	</select>
 
 	<!-- 회원 수(관리자 빼고) -->
@@ -70,21 +70,9 @@
 	
 	<select id="profileFollower" parameterType="java.util.HashMap" resultType="com.java.member.dto.MemberDto">
 		<![CDATA[
-		SELECT DISTINCT m_nickname, rnum, member.m_num, m_photo_name, m_photo_path
-		FROM  (SELECT a.m_num, ROWNUM rnum FROM 
-		                    (SELECT * FROM follow 
-		                     WHERE m_num IN(SELECT M_NUM FROM FOLLOW)
-		                     ORDER BY FOLLOWING_TIME DESC) a 
-		      ) b ,
-		      MEMBER
-		WHERE member.m_num=b.m_num AND member.m_num IN(SELECT b.m_num FROM 
-													      (SELECT a.m_num, ROWNUM rnum FROM 
-													          (SELECT * FROM follow 
-													           WHERE m_num IN(SELECT M_NUM FROM FOLLOW WHERE FOLLOWING=#{num})
-													           ORDER BY FOLLOWING_TIME DESC) a 
-													      ) b 
-		       										   WHERE b.rnum>=#{startRow} AND b.rnum<=#{endRow})
-		ORDER BY rnum ASC
+		SELECT rnum, member.m_num, member.m_nickname, member.m_photo_name, member.m_photo_path FROM member, 
+		(SELECT a.m_num, a.following, a.following_time, ROWNUM rnum FROM (SELECT m_num, following, following_time FROM FOLLOW WHERE following=#{num} ORDER BY following_time DESC) a) b
+		WHERE member.m_num=b.m_num AND rnum>=#{startRow} AND rnum<=#{endRow} ORDER BY rnum
 		]]>
 	</select>
 	
@@ -94,9 +82,13 @@
 		]]>
 	</select>
 	
-	<select id="profileFollowing" parameterType="int" resultType="int">
+	<select id="profileFollowing" parameterType="java.util.HashMap" resultType="com.java.member.dto.MemberDto">
 		<![CDATA[
-		
+		SELECT m_nickname, member.m_num, b.following, b.following_time, b.rnum, m_photo_name, m_photo_path
+		FROM (SELECT a.*, ROWNUM rnum 
+		          FROM (SELECT m_num, following, following_time FROM follow WHERE m_num=#{num} ORDER BY FOLLOWING_TIME DESC) a) b, member
+		WHERE member.m_num=following AND b.rnum>=#{startRow} AND b.rnum<=#{endRow}
+		ORDER BY rnum ASC
 		]]>
 	</select>
 	
@@ -106,13 +98,26 @@
 		]]>
 	</select>
 
+	
+	<select id="profileFollowCheck" parameterType="java.util.HashMap" resultType="int">
+		<![CDATA[
+		SELECT COUNT(*) FROM follow WHERE m_num=#{me} AND following=#{num}
+		]]>
+	</select>
 
 
-
-
-
-
-
+	<insert id="followInsert" parameterType="java.util.HashMap">
+		<![CDATA[
+		INSERT INTO follow VALUES(#{numSess},#{num},SYSDATE)
+		]]>
+	</insert>
+	
+	
+	<delete id="followDelete" parameterType="java.util.HashMap">
+		<![CDATA[
+		DELETE follow WHERE m_num=#{numSess} AND following=#{num}
+		]]>
+	</delete>
 
 
 

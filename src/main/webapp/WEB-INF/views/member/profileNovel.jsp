@@ -19,6 +19,12 @@
 	rel="stylesheet">
 </head>
 <body>
+	<c:if test="${memberDto.m_num==null}">
+		<script type="text/javascript">
+			alert("잘못된 접근입니다.");
+			location.href="${root}"
+		</script>
+	</c:if>
 	
 	<script type="text/javascript">
 		function follower(root, nickname) {
@@ -32,11 +38,16 @@
 		function novel(root, nickname) {
 			location.href = root + "/member/profile.do" + "?nickname=" + nickname;
 		}
+		
+		
+		
 	</script>
 	<div id="profile">
 		<div id="profile_shadow">
+			<c:if test="${numSess==memberDto.m_num}">
 			<a href="${root}/member/setting.do?memberNum=${memberDto.m_num}"
 				class="profile_setting"> 프로필 설정</a>
+			</c:if>
 		</div>
 
 		<div id="profile_background">
@@ -52,16 +63,33 @@
 								onclick="">
 						</c:if>
 						
-						<c:if test="${memberDto.m_num != numSess}">
-							<div class="profile_follow_btn" onclick="">
-								<div class="btn_plus">+</div>
-								팔로우
-							</div>
+						<c:if test="${memberDto.m_num != numSess && numSess!=null}">
+							<c:if test="${followCheck>0}">
+								<form action="${root}/member/followDelete.do" method="post" id="followDelete">
+									<input type="hidden" name="numSess" value="${numSess}">
+									<input type="hidden" name="num" value="${memberDto.m_num}">
+									<input type="hidden" name="nickname" value="${memberDto.m_nickname}">
+									<div class="profile_follow_btn" style="background:#3fc92f;" onclick="document.getElementById('followDelete').submit();">
+										<div class="btn_plus" style="font-size:36px">✔</div>
+										팔로잉
+									</div>
+								</form>
+							</c:if>
+							<c:if test="${followCheck==0}">
+								<form action="${root}/member/follow.do" method="post" id="doFollow">
+									<input type="hidden" name="numSess" value="${numSess}">
+									<input type="hidden" name="num" value="${memberDto.m_num}">
+									<input type="hidden" name="nickname" value="${memberDto.m_nickname}">
+									<div class="profile_follow_btn" onclick="document.getElementById('doFollow').submit();">
+										<div class="btn_plus">+</div>
+										팔로우
+									</div>
+								</form>
+							</c:if>
 							<div class="profile_nickname">${memberDto.m_nickname}</div>
 						</c:if>
 						
-						<c:if test="${memberDto.m_num == numSess}">
-						
+						<c:if test="${memberDto.m_num == numSess || numSess==null}">
 							<div class="profile_nickname" style="margin-top:110px;">${memberDto.m_nickname}</div>
 						</c:if>
 						
@@ -86,7 +114,7 @@
 							</div>
 							<div class="following_box"
 								onclick="novel('${root}','${memberDto.m_nickname}')">
-								7${novel_count}<br />소설
+								미완${novel_count}<br />소설
 							</div>
 						</div>
 					</div>

@@ -23,7 +23,6 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.java.aop.LogAspect;
 import com.java.member.dao.MemberDao;
-import com.java.member.dto.FollowDto;
 import com.java.member.dto.MemberDto;
 
 @Component
@@ -66,11 +65,13 @@ public class MemberServiceImp implements MemberService {
 		int numSess = member.getM_num();
 		String permissionSess = member.getM_permission();
 		String platformSess = member.getM_platform();
+		String nicknameSess = member.getM_nickname();
 		LogAspect.logger.info(LogAspect.LogMsg + numSess + "\t" + permissionSess + "\t" + platformSess);
 
 		mav.addObject("numSess", numSess);
 		mav.addObject("permissionSess", permissionSess);
 		mav.addObject("platformSess", platformSess);
+		mav.addObject("nicknameSess", nicknameSess);
 
 		mav.setViewName("member/loginOk");
 
@@ -153,12 +154,15 @@ public class MemberServiceImp implements MemberService {
 		int numSess = memberCheck.getM_num();
 		String permissionSess = memberCheck.getM_permission();
 		String platformSess = memberCheck.getM_platform();
+		String nicknameSess = memberCheck.getM_nickname();
+		
 		LogAspect.logger.info(LogAspect.LogMsg + numSess + "\t" + permissionSess + "\t" + platformSess);
 		
 		HttpSession session = request.getSession();
 		session.setAttribute("numSess", numSess);
 		session.setAttribute("permissionSess", permissionSess);
 		session.setAttribute("platformSess", platformSess);
+		session.setAttribute("nicknameSess", nicknameSess);
 
 		mav.setViewName("member/naverLoginOk");
 
@@ -345,27 +349,36 @@ public class MemberServiceImp implements MemberService {
 
 		String nickname = request.getParameter("nickname");
 		String pageNumber = request.getParameter("pageNumber");
-		LogAspect.logger.info(LogAspect.LogMsg + nickname + "," + pageNumber); // 닉네임 / 페이지 넘버 확인용
+		LogAspect.logger.info(LogAspect.LogMsg + "닉네임 : " +nickname + " , 페이지 번호 : " + pageNumber); // 닉네임 / 페이지 넘버 확인용
 
 		MemberDto memberDto = memberDao.profileSelect(nickname);
-		LogAspect.logger.info(LogAspect.LogMsg + memberDto.toString());
+		LogAspect.logger.info(LogAspect.LogMsg + " 프로필 정보 : " + memberDto.toString());
 		
 		int num = memberDto.getM_num();
 		int profileFollowerCount = memberDao.profileFollowerCount(num);
 		int profileFollowingCount = memberDao.profileFollowingCount(num);
+			
+		//팔로우 됐는지 확인용
+		HttpSession session=request.getSession();
+		int me=0;
+		if(session.getAttribute("numSess")!=null) {
+			me = (Integer) session.getAttribute("numSess");
+		}
 		
+		LogAspect.logger.info(LogAspect.LogMsg + "본인 : "+me + "  현재 프로필 번호 : "+num);
 		
-		
-		
-		
-		
+		int followCheck = memberDao.profileFollowCheck(me, num);
+		/////////////////
 		
 		mav.addObject("profileFollowerCount",profileFollowerCount);
 		mav.addObject("profileFollowingCount",profileFollowingCount);
 		
 		mav.addObject("memberDto", memberDto);
+		mav.addObject("followCheck",followCheck);//팔로우 됐는지 확인용
 		mav.setViewName("member/profileNovel.tiles");
 	}
+	
+	
 	
 	@Override
 	public void profileFollower(ModelAndView mav) {
@@ -375,7 +388,7 @@ public class MemberServiceImp implements MemberService {
 		String nickname = request.getParameter("nickname");
 		String pageNumber = request.getParameter("pageNumber");
 		
-		LogAspect.logger.info(LogAspect.LogMsg + nickname + "," + pageNumber); // 닉네임 / 페이지 넘버 확인용
+		LogAspect.logger.info(LogAspect.LogMsg + "닉네임" + nickname + " , 현재 페이지 번호" + pageNumber); // 닉네임 / 페이지 넘버 확인용
 
 		MemberDto memberDto = memberDao.profileSelect(nickname);
 		
@@ -390,27 +403,36 @@ public class MemberServiceImp implements MemberService {
 			pageNumber = "1";
 		
 		int currentPage = Integer.parseInt(pageNumber);
-		LogAspect.logger.info(LogAspect.LogMsg + currentPage);
+		LogAspect.logger.info(LogAspect.LogMsg + "현재 페이지 : " +currentPage);
 
 		// 한페이지당 게시물 10개/ start 1, end 10
 		int listSize = 10;
 		int startRow = (currentPage - 1) * listSize + 1;
 		int endRow = currentPage * listSize;
 		
-		LogAspect.logger.info(LogAspect.LogMsg + profileFollowerCount);
+		LogAspect.logger.info(LogAspect.LogMsg + "팔로워 수" +profileFollowerCount);
 		
 		List<MemberDto> followerList = null;
 		if (profileFollowerCount > 0) {
 			followerList = memberDao.profileFollowerList(num, startRow, endRow);
 			
-			LogAspect.logger.info(LogAspect.LogMsg + followerList);
 		}
 		
 		
 		
 		
 		
-		//
+		//팔로우 됐는지 확인용
+		HttpSession session=request.getSession();
+		int me=0;
+		if(session.getAttribute("numSess")!=null) {
+			me = (Integer) session.getAttribute("numSess");
+		}
+		
+		LogAspect.logger.info(LogAspect.LogMsg + "본인 : "+me + "  현재 프로필 번호 : "+num);
+		
+		int followCheck = memberDao.profileFollowCheck(me, num);
+		/////////////////
 		
 		
 		
@@ -421,14 +443,10 @@ public class MemberServiceImp implements MemberService {
 		
 		mav.addObject("profileFollowingCount",profileFollowingCount);//프로필 상단 - 전체 팔로잉 수
 		mav.addObject("memberDto", memberDto); //프로필 상단 - 프로필정보들
+		mav.addObject("followCheck",followCheck);//팔로우 됐는지 확인용
 		
-		mav.setViewName("member/profileFollower");
+		mav.setViewName("member/profileFollower.tiles");
 	}
-	
-	
-	
-	
-	
 	
 	
 	
@@ -439,21 +457,165 @@ public class MemberServiceImp implements MemberService {
 
 		String nickname = request.getParameter("nickname");
 		String pageNumber = request.getParameter("pageNumber");
-		LogAspect.logger.info(LogAspect.LogMsg + nickname + "," + pageNumber); // 닉네임 / 페이지 넘버 확인용
+		LogAspect.logger.info(LogAspect.LogMsg + "닉네임 : " + nickname + " , 페이지 번호 : " + pageNumber); // 닉네임 / 페이지 넘버 확인용
 		
 		MemberDto memberDto = memberDao.profileSelect(nickname);
-		LogAspect.logger.info(LogAspect.LogMsg + memberDto.toString());
+		LogAspect.logger.info(LogAspect.LogMsg + "프로필 정보 : " + memberDto.toString());
 		
 		int num = memberDto.getM_num();
-		int profileFollowerCount = memberDao.profileFollowerCount(num);
-		int profileFollowingCount = memberDao.profileFollowingCount(num);
+				
+		//팔로우 됐는지 확인용
+		HttpSession session=request.getSession();
+		int me=0;
+		if(session.getAttribute("numSess")!=null) {
+			me = (Integer) session.getAttribute("numSess");
+		}
 		
-		mav.addObject("profileFollowerCount",profileFollowerCount);
-		mav.addObject("profileFollowingCount",profileFollowingCount);
+		LogAspect.logger.info(LogAspect.LogMsg + "본인 : "+me + "  현재 프로필 번호 : "+num);
 		
-		mav.addObject("memberDto", memberDto);
-		mav.setViewName("member/profileFollowing");
+		int followCheck = memberDao.profileFollowCheck(me, num);
+		/////////////////
+		
+		int profileFollowerCount = memberDao.profileFollowerCount(num);    //팔로워수
+		int profileFollowingCount = memberDao.profileFollowingCount(num);  //팔로잉수		
+		
+		//팔로워 리스트 페이지 
+		
+		if (pageNumber == null)
+			pageNumber = "1";
+		
+		int currentPage = Integer.parseInt(pageNumber);
+		LogAspect.logger.info(LogAspect.LogMsg + "현재 페이지 :" +currentPage);
+
+		// 한페이지당 게시물 10개/ start 1, end 10
+		int listSize = 10;
+		int startRow = (currentPage - 1) * listSize + 1;
+		int endRow = currentPage * listSize;
+		
+		LogAspect.logger.info(LogAspect.LogMsg + "팔로잉 수 : " + profileFollowingCount);
+		
+		List<MemberDto> followingList = null;
+		if (profileFollowingCount > 0) {
+			followingList = memberDao.profileFollowingList(num, startRow, endRow);
+			
+		}
+		
+		
+		mav.addObject("listSize",listSize); // 한페이지당 보여지는 팔로워수
+		mav.addObject("currentPage", currentPage); // 요청페이지
+		mav.addObject("followingList",followingList); //팔로잉 리스트
+		mav.addObject("profileFollowerCount",profileFollowerCount);//프로필 상단 - 전체 팔로워 수
+		
+		mav.addObject("profileFollowingCount",profileFollowingCount);//프로필 상단 - 전체 팔로잉 수
+		mav.addObject("memberDto", memberDto); //프로필 상단 - 프로필정보들
+		mav.addObject("followCheck",followCheck);//팔로우 됐는지 확인용
+		
+		mav.setViewName("member/profileFollowing.tiles");
+		
 	}
+	
+	
+	
+	
+	@Override
+	public void profileFollow(ModelAndView mav) {
+		Map<String, Object> map = mav.getModelMap();
+		HttpServletRequest request = (HttpServletRequest) map.get("request");
+
+		int numSess = Integer.parseInt(request.getParameter("numSess")); //본인
+		int num = Integer.parseInt(request.getParameter("num"));         //팔로우 할 사람
+		String nickname = request.getParameter("nickname");
+		
+		int check=memberDao.follow(numSess, num);	
+		
+		mav.addObject("check",check); //팔로우 insert 확인용
+		mav.addObject("nickname",nickname);	  //기존 팔로워 창으로 돌아가기 위함
+		
+		mav.setViewName("member/follow");
+	}
+	
+	
+	@Override
+	public void profileFollowDelete(ModelAndView mav) {
+		Map<String, Object> map = mav.getModelMap();
+		HttpServletRequest request = (HttpServletRequest) map.get("request");
+		
+		int numSess = Integer.parseInt(request.getParameter("numSess")); //본인
+		int num = Integer.parseInt(request.getParameter("num"));         //팔로우 취소 할 사람
+		String nickname = request.getParameter("nickname");
+		
+		int check=memberDao.followDelete(numSess, num);	//내가 팔로우를 해제
+		
+		mav.addObject("check",check); //팔로우취소 Delete 확인용
+		mav.addObject("nickname",nickname);	  //기존 팔로워 창으로 돌아가기 위함
+		
+		mav.setViewName("member/followDelete");
+	}
+	
+	@Override
+	public void follower_followDelete(ModelAndView mav) {
+		Map<String, Object> map = mav.getModelMap();
+		HttpServletRequest request = (HttpServletRequest) map.get("request");
+		
+		int numSess = Integer.parseInt(request.getParameter("numSess")); //본인
+		int numDel = Integer.parseInt(request.getParameter("numDel"));         //팔로우 취소 할 사람
+		String nickname = request.getParameter("nickname");
+		String pageNumber = request.getParameter("pageNumber");
+		
+		if (pageNumber == null)
+			pageNumber = "1";
+		
+		int check=memberDao.followDelete(numDel, numSess);	//다른사람이 나를 팔로우 하는것을 해제
+		
+		System.out.println(numSess+","+numDel + "," + nickname +"," + pageNumber + ",체크 : "+check);
+		
+		mav.addObject("check",check); //팔로우취소 Delete 확인용
+		mav.addObject("nickname",nickname);	  //기존 팔로워 창으로 돌아가기 위함
+		mav.addObject("pageNumber",pageNumber);	  //기존 팔로워 창 해당 페이지로 돌아가기 위함
+		
+		mav.setViewName("member/follower_followDelete");
+	}
+	
+	@Override
+	public void following_followDelete(ModelAndView mav) {
+		Map<String, Object> map = mav.getModelMap();
+		HttpServletRequest request = (HttpServletRequest) map.get("request");
+		
+		int numSess = Integer.parseInt(request.getParameter("numSess")); //본인
+		int numDel = Integer.parseInt(request.getParameter("numDel"));         //팔로우 취소 할 사람
+		String nickname = request.getParameter("nickname");
+		String pageNumber = request.getParameter("pageNumber");
+		
+		if (pageNumber == null)
+			pageNumber = "1";
+		
+		System.out.println(numSess+","+numDel + "," + nickname +"," + pageNumber);
+		
+		int check=memberDao.followDelete(numSess, numDel);	//내가 팔로우 한것을 해제
+		
+		
+		
+		mav.addObject("check",check); //팔로잉 취소 Delete 확인용
+		mav.addObject("nickname",nickname);	  //기존 팔로잉 창으로 돌아가기 위함
+		mav.addObject("pageNumber",pageNumber);	  //기존 팔로워 창 해당 페이지로 돌아가기 위함
+		
+		mav.setViewName("member/following_followDelete");
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	// -----관리자 회원조회-----
@@ -467,7 +629,7 @@ public class MemberServiceImp implements MemberService {
 			pageNumber = "1";
 
 		int currentPage = Integer.parseInt(pageNumber);
-		LogAspect.logger.info(LogAspect.LogMsg + currentPage);
+		LogAspect.logger.info(LogAspect.LogMsg + "현재 페이지: "+ currentPage);
 
 		// 한 페이지 당 게시물 1page 10개 / start 1, end 10
 		int boardSize = 10;

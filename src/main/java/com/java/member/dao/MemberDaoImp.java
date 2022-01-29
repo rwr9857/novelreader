@@ -7,7 +7,6 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.java.member.dto.FollowDto;
 import com.java.member.dto.MemberDto;
 
 @Component
@@ -42,12 +41,12 @@ public class MemberDaoImp implements MemberDao {
 
 	// -------------프로필--------------
 	@Override
-	public MemberDto profileSelect(String nickname) {
+	public MemberDto profileSelect(String nickname) {									//프로필Dto 불러오기
 		return sqlSessionTemplate.selectOne("profileSelect", nickname);
 	}
 	
 	@Override
-	public List<MemberDto> profileFollowerList(int num, int startRow, int endRow) {
+	public List<MemberDto> profileFollowerList(int num, int startRow, int endRow) {		//팔로워 리스트
 		HashMap<String, Integer> hMap = new HashMap<String, Integer>();
 		hMap.put("num", num);
 		hMap.put("startRow", startRow);
@@ -56,19 +55,51 @@ public class MemberDaoImp implements MemberDao {
 	}
 	
 	@Override
-	public int profileFollowerCount(int num) {
+	public int profileFollowerCount(int num) {							//팔로워 수 체크
 		return sqlSessionTemplate.selectOne("profileFollowerCount",num);
 	}
 	
 	@Override
-	public List<MemberDto> profileFollowingList(int num, int startRow, int endRow) {
-		return sqlSessionTemplate.selectList("profileFollowing",num);
+	public List<MemberDto> profileFollowingList(int num, int startRow, int endRow) {	//팔로잉 리스트
+		HashMap<String, Integer> hMap = new HashMap<String, Integer>();
+		hMap.put("num", num);
+		hMap.put("startRow", startRow);
+		hMap.put("endRow", endRow);
+		return sqlSessionTemplate.selectList("profileFollowing",hMap);
 	}
 	
 	@Override
-	public int profileFollowingCount(int num) {
+	public int profileFollowingCount(int num) {							//팔로잉 수 체크
 		return sqlSessionTemplate.selectOne("profileFollowingCount",num);
 	}
+	
+	@Override
+	public int profileFollowCheck(int me, int num) {					//팔로우 돼있는지 체크
+		HashMap<String, Integer> hMap = new HashMap<String, Integer>();
+		hMap.put("me", me);
+		hMap.put("num", num);
+		
+		return sqlSessionTemplate.selectOne("profileFollowCheck",hMap);
+	}
+	
+	@Override
+	public int follow(int numSess, int num) {							//팔로우 하기
+		HashMap<String, Integer> hMap = new HashMap<String, Integer>();
+		hMap.put("numSess", numSess);
+		hMap.put("num", num);
+		return sqlSessionTemplate.insert("followInsert",hMap);
+	}
+	
+	@Override
+	public int followDelete(int numSess, int num) {						//팔로우 취소하기
+		HashMap<String, Integer> hMap = new HashMap<String, Integer>();
+		hMap.put("numSess", numSess);
+		hMap.put("num", num);
+		return sqlSessionTemplate.delete("followDelete",hMap);
+	}
+	
+	
+	
 	
 	// -------------관리자 회원조회--------------
 

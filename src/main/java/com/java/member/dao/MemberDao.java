@@ -24,4 +24,10 @@ public interface MemberDao {
 	public List<MemberDto> profileFollowerList(int num, int startRow, int endRow);
 
 	public List<MemberDto> profileFollowingList(int num, int startRow, int endRow);
+
+	public int profileFollowCheck(int me, int num);
+
+	public int follow(int numSess, int num);
+
+	public int followDelete(int numSess, int num);
 }

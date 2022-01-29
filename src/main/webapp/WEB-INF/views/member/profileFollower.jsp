@@ -20,6 +20,13 @@
 </head>
 <body>
 	
+	<c:if test="${memberDto.m_num==null}">
+		<script type="text/javascript">
+			alert("잘못된 접근입니다.");
+			location.href="${root}"
+		</script>
+	</c:if>
+	
 	<script type="text/javascript">
 		function follower(root, nickname) {
 			location.href = root + "/member/profileFollower.do" + "?nickname=" + nickname;
@@ -32,6 +39,7 @@
 		function novel(root, nickname) {
 			location.href = root + "/member/profile.do" + "?nickname=" + nickname;
 		}
+		
 	</script>
 	<div id="profile">
 		<div id="profile_shadow">
@@ -54,16 +62,33 @@
 								onclick="">
 						</c:if>
 						
-						<c:if test="${memberDto.m_num != numSess}">
-							<div class="profile_follow_btn" onclick="">
-								<div class="btn_plus">+</div>
-								팔로우
-							</div>
+						<c:if test="${memberDto.m_num != numSess && numSess!=null}">
+							<c:if test="${followCheck>0}">
+								<form action="${root}/member/followDelete.do" method="post" id="followDelete">
+									<input type="hidden" name="numSess" value="${numSess}">
+									<input type="hidden" name="num" value="${memberDto.m_num}">
+									<input type="hidden" name="nickname" value="${memberDto.m_nickname}">
+									<div class="profile_follow_btn" style="background:#3fc92f;" onclick="document.getElementById('followDelete').submit();">
+										<div class="btn_plus" style="font-size:36px">✔</div>
+										팔로잉
+									</div>
+								</form>
+							</c:if>
+							<c:if test="${followCheck==0}">
+								<form action="${root}/member/follow.do" method="post" id="doFollow">
+									<input type="hidden" name="numSess" value="${numSess}">
+									<input type="hidden" name="num" value="${memberDto.m_num}">
+									<input type="hidden" name="nickname" value="${memberDto.m_nickname}">
+									<div class="profile_follow_btn" onclick="document.getElementById('doFollow').submit();">
+										<div class="btn_plus">+</div>
+										팔로우
+									</div>
+								</form>
+							</c:if>
 							<div class="profile_nickname">${memberDto.m_nickname}</div>
 						</c:if>
 						
-						<c:if test="${memberDto.m_num == numSess}">
-						
+						<c:if test="${memberDto.m_num == numSess || numSess==null}">
 							<div class="profile_nickname" style="margin-top:110px;">${memberDto.m_nickname}</div>
 						</c:if>
 						
@@ -88,7 +113,7 @@
 							</div>
 							<div class="following_box"
 								onclick="novel('${root}','${memberDto.m_nickname}')">
-								7${novel_count}<br />소설
+								미완${novel_count}<br />소설
 							</div>
 						</div>
 					</div>
@@ -161,39 +186,67 @@
 				<div class="content">
 					listSize: ${listSize}/ currentPage: ${currentPage}/ followerList.size():${followerList.size()}/ profileFollowerCount:${profileFollowerCount}
 						<div class="follow_list" id="follower_list">
-							<span class="menu">팔로워</span>
+							<c:if test="${followerList.size() > 0}">
+								<span class="menu">팔로워</span>
+							</c:if>
+							<c:if test="${followerList.size() == null || followerList.size() == 0}">
+								<span class="menu">팔로워 목록이 없습니다</span>
+							</c:if>
+							
 							<c:forEach var="profileFollower" items="${followerList}">
-								<div class="list">
-									<c:if test="${profileFollower.m_photo_path!=null}">
-									<img alt="이미지 준비중" src="${profileFollower.m_photo_path}" class="profile_img" onclick="goToProfile('${root}','${profileFollower.m_nickname}')">
-									</c:if>
-									<c:if test="${profileFollower.m_photo_path==null}">
-									<img alt="기본값" src="${root}/images/profile_default.png" class="profile_img" onclick="goToProfile('${root}','${profileFollower.m_nickname}')">
-									</c:if>									
-									<div class="follow_nickname" onclick="goToProfile('${root}','${profileFollower.m_nickname}')">${profileFollower.m_nickname}</div>
+								
 									
-									<c:if test="${numSess == memberDto.m_num}">
-										<img alt="x" src="${root}/images/x_icon.png" class="follow_delete" onclick="deleteFollower('${root}','${profileFollower.m_nickname}','${pageNumber}')">
-									</c:if>
-								</div>
+									<div class="list">
+										<c:if test="${profileFollower.m_photo_path!=null}">
+											<img alt="이미지 준비중" src="${profileFollower.m_photo_path}" class="profile_img" onclick="goToProfile('${root}','${profileFollower.m_nickname}')">
+										</c:if>
+										<c:if test="${profileFollower.m_photo_path==null}">
+											<img alt="기본값" src="${root}/images/profile_default.png" class="profile_img" onclick="goToProfile('${root}','${profileFollower.m_nickname}')">
+										</c:if>									
+										<div class="follow_nickname" onclick="goToProfile('${root}','${profileFollower.m_nickname}')">${profileFollower.m_nickname}</div>
+										
+										<c:if test="${numSess == memberDto.m_num}">
+											<img alt="x" src="${root}/images/x_icon.png" class="follow_delete" 
+											onclick="deleteFollower('${root}/member/follower_followDelete.do', {'numSess':'${memberDto.m_num}','nickname':'${memberDto.m_nickname}','pageNumber':'${currentPage}','numDel':'${profileFollower.m_num}'})">
+										</c:if>
+									</div>
 							</c:forEach>
 						</div>
 				</div>
 				
+				<c:if test="${followerList.size()==0 && profileFollowerCount>0}">
+					<script type="text/javascript">
+						location.href="${root}/member/profileFollower.do?nickname=${memberDto.m_nickname}&pageNumber=1";
+					</script>
+				</c:if>
+				
 				<script type="text/javascript">
+										
 					function goToProfile(root,nickname){
 						location.href=root+"/member/profile.do?nickname="+nickname;
 					}
 					
-					function deleteFollower(root,nickname){
-						 if (confirm("팔로워를 삭제합니다") == true){    //확인
-								
-						     location.href="";//삭제 이동
+					function deleteFollower(path,params){
+						method = "post";
+						
+						if (confirm("팔로워를 삭제하겠습니까?") == true){    //확인
+							
+							 var form = document.createElement("form");
+							    form.setAttribute("method", method);
+							    form.setAttribute("action", path);
+							    for(var key in params) {
+							        var hiddenField = document.createElement("input");
+							        hiddenField.setAttribute("type", "hidden");
+							        hiddenField.setAttribute("name", key);
+							        hiddenField.setAttribute("value", params[key]);
+							        
+							        form.appendChild(hiddenField);
+							    }
+							    document.body.appendChild(form);
+							    form.submit();
 
 						 }else{   //취소
-
 						     return false;
-
 						 }
 					}
 				</script>

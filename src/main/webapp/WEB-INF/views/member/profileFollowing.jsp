@@ -19,6 +19,12 @@
 	rel="stylesheet">
 </head>
 <body>
+	<c:if test="${memberDto.m_num==null}">
+		<script type="text/javascript">
+			alert("잘못된 접근입니다.");
+			location.href="${root}"
+		</script>
+	</c:if>
 	
 	<script type="text/javascript">
 		function follower(root, nickname) {
@@ -35,8 +41,10 @@
 	</script>
 	<div id="profile">
 		<div id="profile_shadow">
+			<c:if test="${numSess==memberDto.m_num}">
 			<a href="${root}/member/setting.do?memberNum=${memberDto.m_num}"
 				class="profile_setting"> 프로필 설정</a>
+			</c:if>
 		</div>
 
 		<div id="profile_background">
@@ -52,16 +60,33 @@
 								onclick="">
 						</c:if>
 						
-						<c:if test="${memberDto.m_num != numSess}">
-							<div class="profile_follow_btn" onclick="">
-								<div class="btn_plus">+</div>
-								팔로우
-							</div>
+						<c:if test="${memberDto.m_num != numSess && numSess!=null}">
+							<c:if test="${followCheck>0}">
+								<form action="${root}/member/followDelete.do" method="post" id="followDelete">
+									<input type="hidden" name="numSess" value="${numSess}">
+									<input type="hidden" name="num" value="${memberDto.m_num}">
+									<input type="hidden" name="nickname" value="${memberDto.m_nickname}">
+									<div class="profile_follow_btn" style="background:#3fc92f;" onclick="document.getElementById('followDelete').submit();">
+										<div class="btn_plus" style="font-size:36px">✔</div>
+										팔로잉
+									</div>
+								</form>
+							</c:if>
+							<c:if test="${followCheck==0}">
+								<form action="${root}/member/follow.do" method="post" id="doFollow">
+									<input type="hidden" name="numSess" value="${numSess}">
+									<input type="hidden" name="num" value="${memberDto.m_num}">
+									<input type="hidden" name="nickname" value="${memberDto.m_nickname}">
+									<div class="profile_follow_btn" onclick="document.getElementById('doFollow').submit();">
+										<div class="btn_plus">+</div>
+										팔로우
+									</div>
+								</form>
+							</c:if>
 							<div class="profile_nickname">${memberDto.m_nickname}</div>
 						</c:if>
 						
-						<c:if test="${memberDto.m_num == numSess}">
-						
+						<c:if test="${memberDto.m_num == numSess || numSess==null}">
 							<div class="profile_nickname" style="margin-top:110px;">${memberDto.m_nickname}</div>
 						</c:if>
 						
@@ -86,7 +111,7 @@
 							</div>
 							<div class="following_box"
 								onclick="novel('${root}','${memberDto.m_nickname}')">
-								7${novel_count}<br />소설
+								미완${novel_count}<br />소설
 							</div>
 						</div>
 					</div>
@@ -154,21 +179,130 @@
 					</div>
 				</div>
 
-				<div class="content">			
-					<%-- <c:forEach var="novel_homeDto" items="${novel_home}"> --%>
+
+				
+				<%-- 팔로잉 리스트 --%>
+				<div class="content">
+					listSize: ${listSize}/ currentPage: ${currentPage}/ followingList.size():${followingList.size()}/ profileFollowingCount:${profileFollowingCount}
 						<div class="follow_list" id="following_list">
-							<span class="menu">팔로잉</span>
-							<!-- while/for문 추가 -->
-							<div class="list" onclick="팔로잉프로필바로가기함수">
-								<img alt="icon" src="./image/kms.jpg" class="profile_img">
-								<div class="follow_nickname">Dongmool9876</div>
+							<c:if test="${followingList.size() > 0}">
+								<span class="menu">팔로잉</span>
+							</c:if>
+							<c:if test="${followingList.size() == null || followingList.size() == 0}">
+								<span class="menu">팔로잉 목록이 없습니다</span>
+							</c:if>
+							
+							<c:forEach var="profileFollowing" items="${followingList}">
+								<form action="${root}/member/following_followDelete.do" method="post" id="following_followDelete">
+									
+									<input type="hidden" name="numSess" value="${numSess}">
+									<input type="hidden" name="numDel" value="${profileFollowing.m_num}">
+									<input type="hidden" name="nickname" value="${memberDto.m_nickname}">	
+									<input type="hidden" name="pageNumber" value="${currentPage}">
 								
-								<c:if test="${numSess != null}">
-									<img alt="x" src="${root}/images/x_icon.png" class="follow_delete" onclick="삭제함수">
-								</c:if>
-							</div>
+									<div class="list">
+										<c:if test="${profileFollowing.m_photo_path!=null}">
+											<img alt="이미지 준비중" src="${profileFollowing.m_photo_path}" class="profile_img" onclick="goToProfile('${root}','${profileFollowing.m_nickname}')">
+										</c:if>
+										<c:if test="${profileFollowing.m_photo_path==null}">
+											<img alt="기본값" src="${root}/images/profile_default.png" class="profile_img" onclick="goToProfile('${root}','${profileFollowing.m_nickname}')">
+										</c:if>									
+										<div class="follow_nickname" onclick="goToProfile('${root}','${profileFollowing.m_nickname}')">${profileFollowing.m_nickname}</div>
+										
+										<c:if test="${numSess == memberDto.m_num}">
+											<img alt="x" src="${root}/images/x_icon.png" class="follow_delete" 
+											onclick="deleteFollower('${root}/member/following_followDelete.do', {'numSess':'${memberDto.m_num}','nickname':'${memberDto.m_nickname}','pageNumber':'${currentPage}','numDel':'${profileFollowing.m_num}'})">
+										</c:if>
+									</div>
+									
+
+									
+								</form>
+							</c:forEach>
 						</div>
-					<%-- </c:forEach> --%>
+				</div>
+				
+				<c:if test="${followingList.size()==0 && profileFollowingCount>0}">
+					<script type="text/javascript">
+						location.href="${root}/member/profileFollowing.do?nickname=${memberDto.m_nickname}&pageNumber=1";
+					</script>
+				</c:if>
+				
+				<script type="text/javascript">
+					function goToProfile(root,nickname){
+						location.href=root+"/member/profile.do?nickname="+nickname;
+					}
+					
+					function deleteFollower(path,params){
+						method = "post";
+						
+						if (confirm("팔로워를 삭제하겠습니까?") == true){    //확인
+							
+							 var form = document.createElement("form");
+							    form.setAttribute("method", method);
+							    form.setAttribute("action", path);
+							    for(var key in params) {
+							        var hiddenField = document.createElement("input");
+							        hiddenField.setAttribute("type", "hidden");
+							        hiddenField.setAttribute("name", key);
+							        hiddenField.setAttribute("value", params[key]);
+							        
+							        form.appendChild(hiddenField);
+							    }
+							    document.body.appendChild(form);
+							    form.submit();
+
+						 }else{   //취소
+						     return false;
+						 }
+					}
+				</script>
+				
+				<%-- 페이지 --%>
+				<div class="page">
+					
+					<%-- 총 페이지 수 : 모든 jstl은 문자열이니까 정수로 바꿔주는 작업.--%>
+					<fmt:parseNumber var="pageCount" value="${profileFollowingCount/listSize + (profileFollowingCount % listSize == 0 ? 0:1)}" integerOnly="true"/>
+					
+					<%-- 페이지 블럭 --%>
+					<c:set var="pageBlock" value="${10}"/>
+					
+					<%-- 요청 페이지의 시작페이지 / 끝페이지 번호 --%>
+					<fmt:parseNumber var="result" value="${(currentPage-1)/pageBlock}" integerOnly="true"/>
+					<c:set var="startPage" value="${result*pageBlock+1}"/>
+					<c:set var="endPage" value="${startPage+pageBlock-1}"/>
+					
+					
+					<c:if test="${endPage > pageCount}">  <%-- 끝번호보다 총 페이지 수가 더 적을경우 --%>
+						<c:set var="endPage" value="${pageCount}"/>
+					</c:if>
+					
+					<c:if test="${startPage > pageBlock}"> <%-- 시작이11페이지인데 페이지 블록이 10이하일 경우 --%>
+						<a href="${root}/member/profileFollowing.do?nickname=${memberDto.m_nickname}&pageNumber=${startPage-pageBlock}">[이전]</a>
+					</c:if>
+					
+					<c:forEach var="i" begin="${startPage}" end="${endPage}">
+						<c:if test="${i == currentPage}">
+						<a href="${root}/member/profileFollowing.do?nickname=${memberDto.m_nickname}&pageNumber=${i}" style="cursor:pointer; color:#001076; font-weight:800; font-size:18px;">[${i}]</a>
+						</c:if>
+						<c:if test="${i != currentPage}">
+						<a href="${root}/member/profileFollowing.do?nickname=${memberDto.m_nickname}&pageNumber=${i}" style="cursor:pointer; color:#83aaff; font-weight:600; font-size:18px;">[${i}]</a>
+						</c:if>
+					</c:forEach>
+					
+					<c:if test="${endPage < pageCount}">   <%-- 끝이10페이지인데 총 페이지수가 11이상일경우--%>
+						<a href="${root}/member/profileFollowing.do?nickname=${memberDto.m_nickname}&pageNumber=${startPage+pageBlock}">[다음]</a>
+					</c:if>
+					
+					
+					
+					<br/><br/>
+					<div>
+						총 페이지 수 : ${pageCount}
+						시작 페이지 번호 : ${startPage}
+						끝 페이지 번호 : ${endPage}
+					</div>
+				
 				</div>
 			</div>
 		</div>

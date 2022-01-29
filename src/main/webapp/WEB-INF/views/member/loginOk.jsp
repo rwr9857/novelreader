@@ -14,10 +14,10 @@
 		<c:set var="numSess" value="${numSess}" scope="session" />
 		<c:set var="permissionSess" value="${permissionSess}" scope="session" />
 		<c:set var="platformSess" value="${platformSess}" scope="session" />
-
+		<c:set var="nicknameSess" value="${nicknameSess}" scope="session" />
 
 		<script type="text/javascript">
-			alert("로그인 성공");
+			alert("로그인 성공${nicknameSess}");
 			location.href = "/novelreader";
 		</script>
 	</c:if>
