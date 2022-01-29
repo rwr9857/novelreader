@@ -12,6 +12,7 @@
 	<c:remove var="numSess" scope="session" />
 	<c:remove var="permissionSess" scope="session" />
 	<c:remove var="platformSess" scope="session" />
+	<c:remove var="nicknameSess" scope="session" />
 
 	<script type="text/javascript">
 		alert("로그아웃 되었습니다.");

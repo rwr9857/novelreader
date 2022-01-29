@@ -270,12 +270,14 @@ public class MemberServiceImp implements MemberService {
 		int numSess = memberCheck.getM_num();
 		String permissionSess = memberCheck.getM_permission();
 		String platformSess = memberCheck.getM_platform();
+		String nicknameSess = memberCheck.getM_nickname();
 		LogAspect.logger.info(LogAspect.LogMsg + numSess + "\t" + permissionSess + "\t" + platformSess);
 		
 		HttpSession session = request.getSession();
 		session.setAttribute("numSess", numSess);
 		session.setAttribute("permissionSess", permissionSess);
 		session.setAttribute("platformSess", platformSess);
+		session.setAttribute("nicknameSess", nicknameSess);
 		
 		mav.setViewName("member/pmLoginOk");
 	}
