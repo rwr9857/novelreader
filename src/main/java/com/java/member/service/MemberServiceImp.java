@@ -6,13 +6,17 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -538,7 +542,7 @@ public class MemberServiceImp implements MemberService {
 	
 	
 	@Override
-	public void profileFollowDelete(ModelAndView mav) {
+	public void profileFollowDelete(ModelAndView mav) {								//프로필 상단 팔로우 삭제
 		Map<String, Object> map = mav.getModelMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		
@@ -555,7 +559,7 @@ public class MemberServiceImp implements MemberService {
 	}
 	
 	@Override
-	public void follower_followDelete(ModelAndView mav) {
+	public void follower_followDelete(ModelAndView mav) {							//팔로워 삭제
 		Map<String, Object> map = mav.getModelMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		
@@ -579,7 +583,7 @@ public class MemberServiceImp implements MemberService {
 	}
 	
 	@Override
-	public void following_followDelete(ModelAndView mav) {
+	public void following_followDelete(ModelAndView mav) {							//팔로잉 삭제
 		Map<String, Object> map = mav.getModelMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		
@@ -606,8 +610,85 @@ public class MemberServiceImp implements MemberService {
 	
 	
 	
+	///////////////////프로필 설정
+	
+	@Override
+	public void profileEdit(ModelAndView mav) {							//프로필 수정
+		Map<String, Object> map = mav.getModelMap();
+		HttpServletRequest request = (HttpServletRequest) map.get("request");
+		
+		String nickname = request.getParameter("nickname");
+		
+		MemberDto memberDto = memberDao.profileSelect(nickname);
+		
+		mav.addObject("memberDto",memberDto); 
+		
+		mav.setViewName("member/profileEdit.tiles");
+	}
 	
 	
+	@Override
+	public void nicknameCheck(ModelAndView mav) throws Throwable {			//닉네임 중복체크 Ajax
+		Map<String, Object> map = mav.getModelMap();
+		HttpServletRequest request = (HttpServletRequest) map.get("request");
+		HttpServletResponse response = (HttpServletResponse) map.get("response");
+		
+		String nickname = request.getParameter("nickname");
+		
+		System.out.println("Ajax 닉네임 가져오기 : " + nickname);
+		
+		int check=memberDao.nicknameCheck(nickname);
+		
+		System.out.println("Ajax 중복체크 check : "+check);
+		
+		PrintWriter out=response.getWriter();  //다시 ajax로 보내는함수들
+		out.println(check);			//뭐지?
+		out.flush();				//check값을 보냄
+		out.close();				//이 함수를 종료.
+		
+		mav.setViewName("member/profileEdit");
+	}
+	
+	@Override
+	public void profileEditOk(ModelAndView mav) throws Throwable {							//프로필 수정 submit
+		Map<String, Object> map = mav.getModelMap();
+		HttpServletRequest request = (HttpServletRequest) map.get("request");
+		MemberDto memberDto = (MemberDto) map.get("memberDto");
+		
+		System.out.println("프로필수정 테스트 : "+memberDto.toString());
+		
+		String nickname=null;
+		String nicknameSess = request.getParameter("nicknameSess");
+		
+		String birthday=request.getParameter("birthday");
+		
+		if(birthday==null||birthday.equals("")) {	//생일 선택을 안했다면
+			memberDto.setM_birthday(null);
+		}else if(birthday!=null||!birthday.equals("")){//생일 선택을 했다면
+			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
+			Date to = transFormat.parse(birthday);
+			memberDto.setM_birthday(to);
+		}
+		
+		
+		int check=memberDao.profileEditOk(memberDto);
+		
+		System.out.println("check : " + check);
+		
+		
+		
+		if(memberDto.getM_nickname().equals(nicknameSess)) {//닉네임 수정이 없었다면
+			nickname=nicknameSess;
+		}else if(!memberDto.getM_nickname().equals(nicknameSess)) {//닉네임을 수정했다면
+			nickname=memberDto.getM_nickname();
+		}
+		
+		
+		mav.addObject("check",check);
+		mav.addObject("nicknameSess",nickname);
+		
+		mav.setViewName("member/profileEditOk");
+	}
 	
 	
 	

@@ -30,4 +30,8 @@ public interface MemberDao {
 	public int follow(int numSess, int num);
 
 	public int followDelete(int numSess, int num);
+
+	public int nicknameCheck(String nickname);
+
+	public int profileEditOk(MemberDto memberDto);
 }

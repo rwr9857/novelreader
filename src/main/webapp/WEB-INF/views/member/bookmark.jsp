@@ -56,7 +56,7 @@
 			</li>
 		</ul>
 	</div>
-
+	
 	<div id="content_box">
 		<div class="content_inner">
 			<%-- <c:forEach var="novel_home" items="${novel_home}"> --%>

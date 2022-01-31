@@ -44,7 +44,7 @@
 	<div id="profile">
 		<div id="profile_shadow">
 			<c:if test="${numSess==memberDto.m_num}">
-			<a href="${root}/member/setting.do?memberNum=${memberDto.m_num}"
+			<a href="${root}/member/profileEdit.do?nickname=${memberDto.m_nickname}"
 				class="profile_setting"> 프로필 설정</a>
 			</c:if>
 		</div>
@@ -142,10 +142,10 @@
 										<c:if test="${memberDto.m_sex == 1}">
 											남성
 										</c:if>
-										<c:if test="${memberDto.m_sex == 0}">
+										<c:if test="${memberDto.m_sex == 2}">
 											여성
 										</c:if>
-										<c:if test="${(memberDto.m_sex != 0) && (memberDto.m_sex != 1)}">
+										<c:if test="${(memberDto.m_sex != 1) && (memberDto.m_sex != 2)}">
 											기타
 										</c:if>
 									</c:if>

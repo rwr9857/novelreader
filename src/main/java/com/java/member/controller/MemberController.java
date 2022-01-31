@@ -140,6 +140,34 @@ public class MemberController {
     return mav;
   }
   
+  @RequestMapping(value = "/member/profileEdit.do", method = RequestMethod.GET)
+  public ModelAndView profileEdit(HttpServletRequest request, HttpServletResponse response) {
+    ModelAndView mav = new ModelAndView();
+    mav.addObject("request", request);
+    
+    memberService.profileEdit(mav);
+    return mav;
+  }
+  
+  @RequestMapping(value = "/member/nicknameCheck.do", method = RequestMethod.POST)
+  public ModelAndView nicknameCheck(HttpServletRequest request, HttpServletResponse response) throws Throwable {
+    ModelAndView mav = new ModelAndView();
+    mav.addObject("request", request);
+    mav.addObject("response", response);
+    
+    memberService.nicknameCheck(mav);
+    return mav;
+  }  
+  
+  @RequestMapping(value = "/member/profileEditOk.do", method = RequestMethod.POST)
+  public ModelAndView profileEditOk(HttpServletRequest request, HttpServletResponse response, MemberDto memberDto) throws Throwable{
+    ModelAndView mav = new ModelAndView();
+    mav.addObject("request", request);
+    mav.addObject("memberDto", memberDto);
+    
+    memberService.profileEditOk(mav);
+    return mav;
+  }  
 }
 
 

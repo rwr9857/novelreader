@@ -26,4 +26,10 @@ public interface MemberService {
 	public void follower_followDelete(ModelAndView mav);
 
 	public void following_followDelete(ModelAndView mav);
+
+	public void profileEdit(ModelAndView mav);
+
+	public void nicknameCheck(ModelAndView mav) throws Throwable;
+
+	public void profileEditOk(ModelAndView mav) throws Throwable;
 }

@@ -148,6 +148,8 @@ ul{
 	margin-left:40px;
 	float:left;
 	border: 0px solid red;
+	
+	height:100px;
 }
 
 .profile_intro p.info_label{
@@ -243,6 +245,8 @@ ul{
 .profile_right_box .table .td2{
 	display:table-cell;
 }
+
+
 
 /* 아래 리스트들 */
 

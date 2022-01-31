@@ -99,6 +99,18 @@ public class MemberDaoImp implements MemberDao {
 	}
 	
 	
+	@Override
+	public int nicknameCheck(String nickname) {
+		return sqlSessionTemplate.selectOne("nicknameCheck",nickname);
+	}
+	
+	
+	@Override
+	public int profileEditOk(MemberDto memberDto) {		
+		return sqlSessionTemplate.update("profileEditOk",memberDto);
+	}
+	
+	
 	
 	
 	// -------------관리자 회원조회--------------
