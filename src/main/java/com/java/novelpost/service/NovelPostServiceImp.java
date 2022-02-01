@@ -1,6 +1,5 @@
 package com.java.novelpost.service;
 
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,46 +18,19 @@ public class NovelPostServiceImp implements NovelPostService {
 	private NovelPostDao novelPostDao;
 
 	@Override
-	public void novelhomeRegister(ModelAndView mav) {
-		Map<String, Object> map = mav.getModelMap();
-		HttpServletRequest request = (HttpServletRequest) map.get("request");
-
-		String pageNumber = request.getParameter("pageNumber");
-		if (pageNumber == null)
-			pageNumber = "1";
-
-		int currentPage = Integer.parseInt(pageNumber);
-		LogAspect.logger.info(LogAspect.LogMsg + "currentPage=" + currentPage);
-
-		int boardSize = 4;
-		int startRow = (currentPage - 1) * boardSize + 1;
-		int endRow = currentPage * boardSize;
-
-		int count = novelPostDao.getCount();
-		LogAspect.logger.info(LogAspect.LogMsg + "count=" + count);
-
-		List<NovelPostDto> novelPostList = null;
-		if (count > 0) {
-			novelPostList = novelPostDao.novelPostList(startRow, endRow);
-		}
-//		LogAspect.logger.info(LogAspect.LogMsg + novelPostList.size());
-
-		mav.addObject("novelPostList", novelPostList);
-		mav.addObject("count", count);
-		mav.addObject("boardSize", boardSize);
-		mav.addObject("currentPage", currentPage);
-		mav.setViewName("novelpost/register");
-	}
-
-	@Override
-	public void novelhomeRegisterOk(ModelAndView mav) {
+	public void novelPostRegisterOk(ModelAndView mav) {
 		Map<String, Object> map = mav.getModelMap();
 		NovelPostDto novelPostDto = (NovelPostDto) map.get("novelPostDto");
+		HttpServletRequest request = (HttpServletRequest) map.get("request");
 
+		int n_num = Integer.parseInt(request.getParameter("n_num"));
+
+		LogAspect.logger.info(LogAspect.LogMsg + novelPostDto.toString());
 		int check = novelPostDao.novelPostInsert(novelPostDto);
 		LogAspect.logger.info(LogAspect.LogMsg + check);
 
 		mav.addObject("check", check);
+		mav.addObject("n_num", n_num);
 		mav.setViewName("novelpost/registerOk");
 	}
 

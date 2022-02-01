@@ -4,6 +4,23 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.java.novelhome.dao.mapper.NovelHomeMapper">
+	<resultMap type="com.java.novelpost.dto.NovelPostDto"
+		id="novelPostDto">
+		<result column="n_num" property="n_num" />
+		<result column="N_POST_EPISODE" property="N_POST_EPISODE" />
+		<result column="N_POST_TITLE" property="N_POST_TITLE" />
+		<result column="N_POST_CONTENT_NAME"
+			property="N_POST_CONTENT_NAME" />
+		<result column="N_POST_CONTENT_PATH"
+			property="N_POST_CONTENT_PATH" />
+		<result column="N_POST_CONTENT_SIZE"
+			property="N_POST_CONTENT_SIZE" />
+		<result column="N_POST_LIKE" property="N_POST_LIKE" />
+		<result column="N_POST_DISLIKE" property="N_POST_DISLIKE" />
+		<result column="N_POST_VIEWCOUNT" property="N_POST_VIEWCOUNT" />
+		<result column="N_POST_TIME" property="N_POST_TIME" />
+	</resultMap>
+	
 	<insert id="novelhomeInsert" parameterType="com.java.novelhome.dto.NovelHomeDto">
 		INSERT INTO NOVEL_HOME(n_num,
 							n_title,
@@ -35,5 +52,22 @@
 		SELECT *
 		FROM NOVEL_HOME WHERE n_num=#{n_num}
 	</select>
+	
+	<select id="novelPostCount" resultType="int">
+		SELECT COUNT(*) FROM
+		NOVEL_POST WHERE N_NUM=#{n_num, jdbcType=NUMERIC}
+	</select>
+
+	<select id="novelPostList" parameterType="java.util.HashMap"
+		resultMap="novelPostDto">
+		<![CDATA[
+			SELECT * FROM (SELECT
+			ROWNUM AS rnum, a.* FROM
+			(SELECT * FROM NOVEL_POST ORDER BY n_num DESC) a) b
+			WHERE b.rnum >=#{startRow} AND
+			b.rnum <=#{endRow}
+		]]>
+	</select>
+
 </mapper>   		
   	
