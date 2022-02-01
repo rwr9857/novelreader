@@ -19,7 +19,7 @@ public class NovelPostController {
 
 	@RequestMapping(value = "/novelpost/register.do", method = RequestMethod.GET)
 	public ModelAndView novelPostRegister(HttpServletRequest request, HttpServletResponse response) {
-		return new ModelAndView("novelpost/register");
+		return new ModelAndView("novelpost/register.tiles");
 	}
 
 	@RequestMapping(value = "/novelpost/registerOk.do", method = RequestMethod.POST)
