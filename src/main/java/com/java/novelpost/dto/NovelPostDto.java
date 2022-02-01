@@ -3,31 +3,30 @@ package com.java.novelpost.dto;
 import java.util.Date;
 
 public class NovelPostDto {
-	private int N_NUM; // 소설로고번호
-	private int N_POST_EPISODE; // 소설_회차
+	private int n_num; // 소설로고번호
+	private int N_POST_NUM; // 소설_회차
 	private String N_POST_TITLE; // 회차_제목
-	private String N_POST_CONTENT_NAME;// 회차_내용_이름
-	private String N_POST_CONTENT_PATH;// 회차_내용_경로
+	private String N_POST_CONTENT; // 회차_내용
 	private Long N_POST_CONTENT_SIZE;// 회차_내용_사이즈
 	private int N_POST_LIKE;// 회차_좋아요
 	private int N_POST_DISLIKE;// 회차_싫어요
 	private int N_POST_VIEWCOUNT;// 게시글조회수
 	private Date N_POST_TIME;// 소설업로드시간
 
-	public int getN_NUM() {
-		return N_NUM;
+	public int getN_num() {
+		return n_num;
 	}
 
-	public void setN_NUM(int n_NUM) {
-		N_NUM = n_NUM;
+	public void setN_num(int n_num) {
+		this.n_num = n_num;
 	}
 
-	public int getN_POST_EPISODE() {
-		return N_POST_EPISODE;
+	public int getN_POST_NUM() {
+		return N_POST_NUM;
 	}
 
-	public void setN_POST_EPISODE(int n_POST_EPISODE) {
-		N_POST_EPISODE = n_POST_EPISODE;
+	public void setN_POST_NUM(int n_POST_NUM) {
+		N_POST_NUM = n_POST_NUM;
 	}
 
 	public String getN_POST_TITLE() {
@@ -38,20 +37,12 @@ public class NovelPostDto {
 		N_POST_TITLE = n_POST_TITLE;
 	}
 
-	public String getN_POST_CONTENT_NAME() {
-		return N_POST_CONTENT_NAME;
+	public String getN_POST_CONTENT() {
+		return N_POST_CONTENT;
 	}
 
-	public void setN_POST_CONTENT_NAME(String n_POST_CONTENT_NAME) {
-		N_POST_CONTENT_NAME = n_POST_CONTENT_NAME;
-	}
-
-	public String getN_POST_CONTENT_PATH() {
-		return N_POST_CONTENT_PATH;
-	}
-
-	public void setN_POST_CONTENT_PATH(String n_POST_CONTENT_PATH) {
-		N_POST_CONTENT_PATH = n_POST_CONTENT_PATH;
+	public void setN_POST_CONTENT(String n_POST_CONTENT) {
+		N_POST_CONTENT = n_POST_CONTENT;
 	}
 
 	public Long getN_POST_CONTENT_SIZE() {
@@ -96,10 +87,10 @@ public class NovelPostDto {
 
 	@Override
 	public String toString() {
-		return "NovelPostDto [N_NUM=" + N_NUM + ", N_POST_EPISODE=" + N_POST_EPISODE + ", N_POST_TITLE=" + N_POST_TITLE
-				+ ", N_POST_CONTENT_NAME=" + N_POST_CONTENT_NAME + ", N_POST_CONTENT_PATH=" + N_POST_CONTENT_PATH
-				+ ", N_POST_CONTENT_SIZE=" + N_POST_CONTENT_SIZE + ", N_POST_LIKE=" + N_POST_LIKE + ", N_POST_DISLIKE="
-				+ N_POST_DISLIKE + ", N_POST_VIEWCOUNT=" + N_POST_VIEWCOUNT + ", N_POST_TIME=" + N_POST_TIME + "]";
+		return "NovelPostDto [n_num=" + n_num + ", N_POST_NUM=" + N_POST_NUM + ", N_POST_TITLE=" + N_POST_TITLE
+				+ ", N_POST_CONTENT=" + N_POST_CONTENT + ", N_POST_CONTENT_SIZE=" + N_POST_CONTENT_SIZE
+				+ ", N_POST_LIKE=" + N_POST_LIKE + ", N_POST_DISLIKE=" + N_POST_DISLIKE + ", N_POST_VIEWCOUNT="
+				+ N_POST_VIEWCOUNT + ", N_POST_TIME=" + N_POST_TIME + "]";
 	}
 
 }

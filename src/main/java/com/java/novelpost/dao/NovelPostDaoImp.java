@@ -15,20 +15,9 @@ public class NovelPostDaoImp implements NovelPostDao {
 	private SqlSessionTemplate sqlSessionTemplate;
 
 	@Override
-	public int getCount() {
-		return sqlSessionTemplate.selectOne("novelPostCount");
-	}
-
-	@Override
-	public List<NovelPostDto> novelPostList(int startRow, int endRow) {
-		HashMap<String, Integer> hMap = new HashMap<String, Integer>();
-		hMap.put("startRow", startRow);
-		hMap.put("endRow", endRow);
-		return sqlSessionTemplate.selectList("novelPostList", hMap);
-	}
-
-	@Override
 	public int novelPostInsert(NovelPostDto novelPostDto) {
 		return sqlSessionTemplate.insert("novelPostInsert", novelPostDto);
 	}
+
+	
 }

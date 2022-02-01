@@ -18,20 +18,18 @@ public class NovelPostController {
 	private NovelPostService novelPostService;
 
 	@RequestMapping(value = "/novelpost/register.do", method = RequestMethod.GET)
-	public ModelAndView novelHomeRegister(HttpServletRequest request, HttpServletResponse response) {
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("request", request);
-		novelPostService.novelhomeRegister(mav);
-
-		return mav;
+	public ModelAndView novelPostRegister(HttpServletRequest request, HttpServletResponse response) {
+		return new ModelAndView("novelpost/register");
 	}
 
 	@RequestMapping(value = "/novelpost/registerOk.do", method = RequestMethod.POST)
-	public ModelAndView novelHomeRegisterOk(HttpServletRequest request, HttpServletResponse response,
+	public ModelAndView novelPostRegisterOk(HttpServletRequest request, HttpServletResponse response,
 			NovelPostDto novelPostDto) {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("novelPostDto", novelPostDto);
-		novelPostService.novelhomeRegisterOk(mav);
+		mav.addObject("request", request);
+		
+		novelPostService.novelPostRegisterOk(mav);
 
 		return mav;
 	}

@@ -1,6 +1,7 @@
 package com.java.novelhome.service;
 
 import java.io.File;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.java.aop.LogAspect;
 import com.java.novelhome.dao.NovelHomeDao;
 import com.java.novelhome.dto.NovelHomeDto;
+import com.java.novelpost.dto.NovelPostDto;
 
 @Component
 public class NovelHomeServiceImp implements NovelHomeService {
@@ -32,10 +34,10 @@ public class NovelHomeServiceImp implements NovelHomeService {
 
 		if (upFile.getSize() != 0) {
 			File path = new File(
-					"C:\\Users\\User\\OneDrive\\바탕 화면\\ikcon\\Spring\\workspace\\novelreader\\src\\main\\webapp\\images\\novelLabel");
+					"C:\\Users\\skcak\\Desktop\\student\\Spring\\workspace\\novelreader\\src\\main\\webapp\\images\\novelLabel");
 //		노트북 - C:\\Users\\User\\OneDrive\\바탕 화면\\ikcon\\Spring\\workspace\\novelreader\\src\\main\\webapp\\images\\novelLabel
 //		집 - C:\\Users\\skcak\\Desktop\\student\\Spring\\workspace\\novelreader\\src\\main\\webapp\\images\\novelLabel\\
-			
+
 			path.mkdir();
 			LogAspect.logger.info(LogAspect.LogMsg + path);
 			String fileName = Long.toString(System.currentTimeMillis()) + "_" + upFile.getOriginalFilename();
@@ -83,11 +85,38 @@ public class NovelHomeServiceImp implements NovelHomeService {
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 
 		int n_num = Integer.parseInt(request.getParameter("n_num"));
-		LogAspect.logger.info(LogAspect.LogMsg + n_num);
+		LogAspect.logger.info(LogAspect.LogMsg + "n_num="+n_num);
 
 		NovelHomeDto novelHomeDto = novelHomeDao.novelHomeList(n_num);
+		
+		int nNumSess = novelHomeDto.getN_num();
+		
+		String pageNumber = request.getParameter("pageNumber");
+		if (pageNumber == null)
+			pageNumber = "1";
 
+		int currentPage = Integer.parseInt(pageNumber);
+		LogAspect.logger.info(LogAspect.LogMsg + "currentPage=" + currentPage);
+
+		int boardSize = 4;
+		int startRow = (currentPage - 1) * boardSize + 1;
+		int endRow = currentPage * boardSize;
+
+		int count = novelHomeDao.getCount(n_num);
+		LogAspect.logger.info(LogAspect.LogMsg + "count=" + count);
+
+		List<NovelPostDto> novelPostList = null;
+		if (count > 0) {
+			novelPostList = novelHomeDao.novelPostList(startRow, endRow);
+			LogAspect.logger.info(LogAspect.LogMsg + "novelPostList.size=" + novelPostList.size());
+		}
+
+		mav.addObject("novelPostList", novelPostList);
+		mav.addObject("currentPage", currentPage);
+		mav.addObject("boardSize", boardSize);
+		mav.addObject("count", count);
 		mav.addObject("novelHomeDto", novelHomeDto);
+		mav.addObject("nNumSess", nNumSess);
 		mav.setViewName("novelhome/list");
 	}
 
