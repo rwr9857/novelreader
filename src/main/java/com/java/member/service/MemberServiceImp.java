@@ -650,7 +650,7 @@ public class MemberServiceImp implements MemberService {
 	}
 	
 	@Override
-	public void profileEditOk(ModelAndView mav) throws Throwable {							//프로필 수정 submit
+	public void profileEditOk(ModelAndView mav) throws Throwable {				//프로필 수정 submit
 		Map<String, Object> map = mav.getModelMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		MemberDto memberDto = (MemberDto) map.get("memberDto");
@@ -689,6 +689,101 @@ public class MemberServiceImp implements MemberService {
 		
 		mav.setViewName("member/profileEditOk");
 	}
+	
+	
+	//////////////////// 계정 설정
+	
+	@Override
+	public void accountEdit(ModelAndView mav) {						//계정 설정
+		Map<String, Object> map = mav.getModelMap();
+		HttpServletRequest request = (HttpServletRequest) map.get("request");
+		
+		String nickname = request.getParameter("nickname");
+		
+		MemberDto memberDto = memberDao.profileSelect(nickname);
+		
+		mav.addObject("memberDto",memberDto); 
+		
+		mav.setViewName("member/accountEdit.tiles");
+	}
+	
+	
+	@Override
+	public void emailCheck(ModelAndView mav) throws Throwable {
+		Map<String, Object> map = mav.getModelMap();
+		HttpServletRequest request = (HttpServletRequest) map.get("request");
+		HttpServletResponse response = (HttpServletResponse) map.get("response");
+		
+		String email = request.getParameter("email");
+		
+		System.out.println("Ajax email 가져오기 : " + email);
+		
+		int check=memberDao.emailCheck(email);
+		
+		System.out.println("Ajax 중복체크 check : "+check);
+		
+		PrintWriter out=response.getWriter();  //다시 ajax로 보내는함수들
+		out.println(check);			//뭐지?
+		out.flush();				//check값을 보냄
+		out.close();				//이 함수를 종료.
+		
+		mav.setViewName("member/accountEdit");
+	}
+	
+	@Override
+	public void accountEditOk(ModelAndView mav) {
+		Map<String, Object> map = mav.getModelMap();
+		HttpServletRequest request = (HttpServletRequest) map.get("request");
+		MemberDto memberDto = (MemberDto) map.get("memberDto");
+		
+		System.out.println("계정설정 테스트 : "+memberDto.toString());
+		
+		String nickname=request.getParameter("nicknameSess");
+		
+		int check=0;
+		
+		if(memberDto.getM_pw()==null ||memberDto.getM_pw().equals("")) {	//비밀번호가 빈칸일때
+			System.out.println("비밀번호 변경 없음");
+			check=memberDao.accountEditNoPw(memberDto);
+		}else {															//비밀번호도 같이 변경할때
+			System.out.println("비밀번호 변경함");
+			check=memberDao.accountEdit(memberDto);
+		}
+		
+		System.out.println("check : " + check);
+		
+		
+		
+		
+		mav.addObject("check",check);
+		mav.addObject("nicknameSess",nickname);
+		
+		mav.setViewName("member/accountEditOk");
+		
+	}
+	
+	
+	
+	
+	@Override
+	public void resign(ModelAndView mav) {					//회원 탈퇴
+		Map<String, Object> map = mav.getModelMap();
+		HttpServletRequest request = (HttpServletRequest) map.get("request");
+		
+		int m_num=Integer.parseInt(request.getParameter("m_num"));
+		
+		int check=memberDao.accountDelete(m_num);
+		
+		LogAspect.logger.info(LogAspect.LogMsg + "탈퇴 check: "+ check);
+		
+		mav.addObject("check",check);
+		
+		mav.setViewName("member/resign");
+	}
+	
+	
+	
+	
 	
 	
 	

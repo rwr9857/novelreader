@@ -236,7 +236,7 @@
 					function deleteFollower(path,params){
 						method = "post";
 						
-						if (confirm("팔로워를 삭제하겠습니까?") == true){    //확인
+						if (confirm("팔로우를 취소 하시겠습니까?") == true){    //확인
 							
 							 var form = document.createElement("form");
 							    form.setAttribute("method", method);

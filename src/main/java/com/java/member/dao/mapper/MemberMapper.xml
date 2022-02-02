@@ -135,7 +135,6 @@
 				 m_photo_path=#{m_photo_path, jdbcType=VARCHAR},
 				 m_photo_size=#{m_photo_size, jdbcType=NUMERIC},
 				 m_nickname=#{m_nickname, jdbcType=VARCHAR},
-				 m_email=#{m_email, jdbcType=VARCHAR},
 				 m_homepage_address=#{m_homepage_address, jdbcType=VARCHAR},
 				 m_homepage_public=#{m_homepage_public, jdbcType=NUMERIC},
 				 m_sex=#{m_sex, jdbcType=NUMERIC},
@@ -149,8 +148,35 @@
 			 WHERE m_num=#{m_num}
 		]]>
 	</update>
-
 	
+	<select id="emailCheck" parameterType="String" resultType="int">
+		<![CDATA[
+		SELECT count(*) FROM member WHERE m_email=#{email}
+		]]>
+	</select>
+	
+	<update id="accountEdit" parameterType="com.java.member.dto.MemberDto">
+		<![CDATA[
+			UPDATE MEMBER SET
+				 m_email=#{m_email, jdbcType=VARCHAR},
+				 m_pw=#{m_pw},
+				 m_email_agree=#{m_email_agree, jdbcType=NUMERIC}
+			 WHERE m_num=#{m_num}
+		]]>
+	</update>
+	
+	<update id="accountEditNoPw" parameterType="com.java.member.dto.MemberDto">
+		<![CDATA[
+			UPDATE MEMBER SET
+				 m_email=#{m_email, jdbcType=VARCHAR},
+				 m_email_agree=#{m_email_agree, jdbcType=NUMERIC}
+			 WHERE m_num=#{m_num}
+		]]>
+	</update>
+	
+	<delete id="accountDelete" parameterType="int">
+		DELETE MEMBER WHERE m_num=#{m_num}
+	</delete>
 	
 </mapper>   		
   	

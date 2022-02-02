@@ -168,6 +168,44 @@ public class MemberController {
     memberService.profileEditOk(mav);
     return mav;
   }  
+  
+  @RequestMapping(value = "/member/accountEdit.do", method = RequestMethod.GET)
+  public ModelAndView accountEdit(HttpServletRequest request, HttpServletResponse response) {
+    ModelAndView mav = new ModelAndView();
+    mav.addObject("request", request);
+    
+    memberService.accountEdit(mav);
+    return mav;
+  }  
+  
+  @RequestMapping(value = "/member/emailCheck.do", method = RequestMethod.POST)
+  public ModelAndView emailCheck(HttpServletRequest request, HttpServletResponse response) throws Throwable {
+    ModelAndView mav = new ModelAndView();
+    mav.addObject("request", request);
+    mav.addObject("response", response);
+    
+    memberService.emailCheck(mav);
+    return mav;
+  }  
+  
+  @RequestMapping(value = "/member/accountEditOk.do", method = RequestMethod.POST)
+  public ModelAndView accountEditOk(HttpServletRequest request, HttpServletResponse response, MemberDto memberDto) throws Throwable{
+    ModelAndView mav = new ModelAndView();
+    mav.addObject("request", request);
+    mav.addObject("memberDto", memberDto);
+    
+    memberService.accountEditOk(mav);
+    return mav;
+  }  
+  
+  @RequestMapping(value = "/member/resign.do", method = RequestMethod.POST)
+  public ModelAndView resign(HttpServletRequest request, HttpServletResponse response){
+    ModelAndView mav = new ModelAndView();
+    mav.addObject("request", request);
+    
+    memberService.resign(mav);
+    return mav;
+  }  
 }
 
 
