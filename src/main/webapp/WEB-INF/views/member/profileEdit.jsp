@@ -50,11 +50,11 @@
 	
 	<div id="menu_bar">
 		<ul id="menu_bar_ul">
-			<li onclick="profileEdit('${root}','${nickname}')" class="profile_edit">
+			<li onclick="profileEdit('${root}','${nicknameSess}')" class="profile_edit">
 				<p>프로필 수정</p>
 			</li>
 			
-			<li onclick="accountEdit('${root}','${nickname}')" >
+			<li onclick="accountEdit('${root}','${nicknameSess}')" >
 				<p>계정 설정</p>
 			</li>
 		</ul>
@@ -63,7 +63,7 @@
 	<div id="content_box">
 		<div class="content_outer">
 			<div class="content_inner">
-				<form action="${root}/member/profileEditOk.do" method="post">
+				<form action="${root}/member/profileEditOk.do" method="post" onsubmit="return nicknameCheck('${memberDto.m_nickname}')">
 					<span class="menu">프로필 수정</span>
 					<div class="table">
 						<div class="tr">
@@ -148,17 +148,6 @@
 						</script>
 						
 						
-						
-						<div class="tr">
-							<div class="td1">
-								이메일
-							</div>
-							
-							<div class="td2">
-								<input type="text" name="m_email" value="${memberDto.m_email}" class="email" id="email" style="width:300px;">
-								<p id="emailCount">(0 / 64)</p>
-							</div>
-						</div>
 						
 						<div class="tr">
 							<div class="td1">
@@ -264,7 +253,7 @@
 								내 소개
 							</div>
 							
-							<div class="td2" style="border-radius: 0px 0px 25px 0px; border:0px;">
+							<div class="td2" style="border:0px;">
 								<textarea cols="50" rows="4" name="m_info" class="info" id="info" style="resize:none; margin:10px; width:370px; height:80px">${memberDto.m_info}</textarea>
 								<p id="textCount" style="margin-top:40px;">(0 / 60)</p>
 								<select name="m_info_public" class="info_public" id="info_public" style="margin-top:40px;">
@@ -298,21 +287,6 @@
 							    })
 							});
 							
-							//닉네임
-							$(document).ready(function() {
-							    $('#emailCount').html("("+$('#email').val().length+" / 64)");
-							});
-							
-							$(document).ready(function() {
-							    $('#email').on('keyup', function() {
-							        $('#emailCount').html("("+$('#email').val().length+" / 64)");
-							 
-							        if($(this).val().length > 64) {
-							            $(this).val($(this).val().substring(0, 64));
-							            $('#emailCount').html("(64 / 64)");
-							        }
-							    })
-							});
 							
 							//홈페이지 주소
 							$(document).ready(function() {

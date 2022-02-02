@@ -34,4 +34,12 @@ public interface MemberDao {
 	public int nicknameCheck(String nickname);
 
 	public int profileEditOk(MemberDto memberDto);
+
+	public int emailCheck(String email);
+
+	public int accountEditNoPw(MemberDto memberDto);
+	
+	public int accountEdit(MemberDto memberDto);
+
+	public int accountDelete(int m_num);
 }

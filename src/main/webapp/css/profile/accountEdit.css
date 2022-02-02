@@ -218,6 +218,22 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#113b7f', end
 }
 
 
-
-
-
+.content_inner .resign{
+	float:left;
+	
+	text-align:center;
+	line-height:30px;
+	
+	background:#e72828;
+	color:#ffffff;
+	
+	margin-top: 20px;
+	margin-left:10px;
+	
+	height: 30px;
+	width:50px;
+	
+	border-radius:10px;
+	
+	cursor:pointer;
+}

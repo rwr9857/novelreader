@@ -110,6 +110,26 @@ public class MemberDaoImp implements MemberDao {
 		return sqlSessionTemplate.update("profileEditOk",memberDto);
 	}
 	
+	@Override
+	public int emailCheck(String email) {
+		return sqlSessionTemplate.selectOne("emailCheck",email);
+	}
+	
+	@Override
+	public int accountEditNoPw(MemberDto memberDto) {		
+		return sqlSessionTemplate.update("accountEditNoPw",memberDto);
+	}
+	
+	@Override
+	public int accountEdit(MemberDto memberDto) {
+		return sqlSessionTemplate.update("accountEdit",memberDto);
+	}
+	
+	@Override
+	public int accountDelete(int m_num) {
+		return sqlSessionTemplate.delete("accountDelete",m_num);
+	}
+	
 	
 	
 	

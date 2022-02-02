@@ -32,4 +32,12 @@ public interface MemberService {
 	public void nicknameCheck(ModelAndView mav) throws Throwable;
 
 	public void profileEditOk(ModelAndView mav) throws Throwable;
+
+	public void accountEdit(ModelAndView mav);
+
+	public void emailCheck(ModelAndView mav) throws Throwable;
+
+	public void accountEditOk(ModelAndView mav);
+
+	public void resign(ModelAndView mav);
 }
