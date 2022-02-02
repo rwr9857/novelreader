@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.JsonElement;
@@ -33,6 +34,12 @@ import com.java.member.dto.MemberDto;
 public class MemberServiceImp implements MemberService {
 	@Autowired
 	private MemberDao memberDao;
+	
+	@Value("#{properties['naver.client_id']}")
+	private String naverClientId;
+	
+	@Value("#{properties['naver.client_secret']}")
+	private String naverClientSecret;
 
 	@Override
 	public void memberRegisterOk(ModelAndView mav) {
@@ -195,8 +202,8 @@ public class MemberServiceImp implements MemberService {
 			BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
 			StringBuilder sb = new StringBuilder();
 			sb.append("grant_type=authorization_code");
-			sb.append("&client_id=k7RIM1ejpagn8MbzDO3E"); // 발급받은 Client ID 값
-			sb.append("&client_secret=Zx8CBh_NIp"); // 발급받은 Client secret 값
+			sb.append("&client_id="+ naverClientId); // 발급받은 Client ID 값
+			sb.append("&client_secret=" + naverClientSecret); // 발급받은 Client secret 값
 			sb.append("&code=" + code);
 			sb.append("&state=" + state);
 			bw.write(sb.toString());

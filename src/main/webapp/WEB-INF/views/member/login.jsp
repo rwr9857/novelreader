@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <c:set var="root" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
@@ -17,15 +17,12 @@
     <title>로그인페이지</title>
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
     <script type="text/javascript" src="${root}/javascript/xhr/xhr.js"></script>
-    <script>
-        // SDK를 초기화 합니다. 사용할 앱의 JavaScript 키를 설정해 주세요.
-        Kakao.init('4113a385559d634d4d781dc26f04e432');
-
-        // SDK 초기화 여부를 판단합니다.
-        console.log(Kakao.isInitialized());
-    </script>
+  
     <script type="text/javascript">
-        function loginFormWithKakao() {
+        function loginFormWithKakao(kakaoJavascript) {
+         	// SDK를 초기화 합니다. 사용할 앱의 JavaScript 키를 설정해 주세요.
+    		Kakao.init(kakaoJavascript);
+         
             Kakao.Auth
                 .loginForm({
                     success: function (authObj) {
@@ -48,18 +45,24 @@
                 })
         }
 
-        function naverlogin() {
-            window.open('https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=k7RIM1ejpagn8MbzDO3E&redirect_uri=http://localhost:8181/novelreader/member/naverlogin.do&state=dc1bf16a5614dbb206e9b9629154c1ef', 'naver', 'width=490,height=500,status=no,toolbar=no,resizable=yes,scrollbars=no')
+        function naverlogin(naverClientId,naverRedirectUri) {
+            window.open('https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=' + naverClientId + '&redirect_uri='+ naverRedirectUri +'&state=dc1bf16a5614dbb206e9b9629154c1ef','naver','width=490,height=500,status=no,toolbar=no,resizable=yes,scrollbars=no')
         }
     </script>
 </head>
 <body>
-<c:if test="${numSess !=null}">
-    <script type="text/javascript">
-        location.href = "/novelreader";
-    </script>
-</c:if>
-<c:if test="${numSess == null}">
+<!-- properties 내용 로드 -->
+	<spring:eval var="kakaoJavascript" expression="@properties['kakao.javascript']"/>
+	<spring:eval var="naverClientId" expression="@properties['naver.client_id']"/>
+	<spring:eval var="naverRedirectUri" expression="@properties['naver.redirect_uri']"/>
+	
+	<c:if test="${numSess !=null}">
+    	<script type="text/javascript">
+        	location.href = "/novelreader";
+    	</script>
+	</c:if>
+	
+	<c:if test="${numSess == null}">
     <div class="loginbox">
         <form action="${root}/member/loginOk.do" method="post">
             <h1 style="margin-top : 10px; color : #0096fa; cursor: pointer" onclick="location.href = '/novelreader'">NOVELREADER</h1>
@@ -73,11 +76,11 @@
             <div class="social">
                 <h3>다음으로 로그인</h3>
                 <a id="reauthenticate-popup-btn"
-                   href="javascript:loginFormWithKakao()"> <img
+                   href="javascript:loginFormWithKakao('${kakaoJavascript}')"> <img
                         src="${root}/images/login/kakao.png"
                         alt="카카오 로그인 버튼"/>
                 </a>
-                <a href="javascript:naverlogin()"> <img
+                <a href="javascript:naverlogin('${naverClientId}','${naverRedirectUri}')"> <img
                         src="${root}/images/login/naver.jpg"/>
                 </a>
                 <img src="${root}/images/login/google.jpg" />
@@ -86,6 +89,7 @@
         </form>
         <h3 class="footer">Copyright ⓒ 2022 by GTEC Kmove JP-A All Pictures cannot be copied without permission.</h3>
     </div>
-</c:if>
+	</c:if>
+	
 </body>
 </html>
