@@ -292,8 +292,9 @@ ul{
 /*소설*/
 .content div.list .novel_image{
 	margin-left:20px;
-	height:100%;
-	max-width: 250px;
+	height:180px;
+	width: 120px;
+	margin-top:-1px;
 }
 
 .content div.list .novel_inner{

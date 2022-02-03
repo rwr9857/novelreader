@@ -36,6 +36,8 @@ import com.java.novelhome.dto.NovelHomeDto;
 public class MemberServiceImp implements MemberService {
 	@Autowired
 	private MemberDao memberDao;
+	
+	@Autowired
 	private NovelHomeDao novelHomeDao;
 	
 	@Value("#{properties['naver.client_id']}")
@@ -370,9 +372,9 @@ public class MemberServiceImp implements MemberService {
 		MemberDto memberDto = memberDao.profileSelect(nickname);
 		LogAspect.logger.info(LogAspect.LogMsg + " 프로필 정보 : " + memberDto.toString());
 		
-		int num = memberDto.getM_num();
-		int profileFollowerCount = memberDao.profileFollowerCount(num);
-		int profileFollowingCount = memberDao.profileFollowingCount(num);
+		int m_num = memberDto.getM_num();
+		int profileFollowerCount = memberDao.profileFollowerCount(m_num);
+		int profileFollowingCount = memberDao.profileFollowingCount(m_num);
 			
 		//팔로우 됐는지 확인용
 		HttpSession session=request.getSession();
@@ -381,16 +383,40 @@ public class MemberServiceImp implements MemberService {
 			me = (Integer) session.getAttribute("numSess");
 		}
 		
-		LogAspect.logger.info(LogAspect.LogMsg + "본인 : "+me + "  현재 프로필 번호 : "+num);
+		LogAspect.logger.info(LogAspect.LogMsg + "본인 : "+me + "  현재 프로필 번호 : "+m_num);
 		
-		int followCheck = memberDao.profileFollowCheck(me, num);	//현재 보고있는 프로필 팔로우중인지.
-		
-		
-		
-	//	NovelHomeDto novelHomeDto=new NovelHomeDto();
-	//	novelHomeDto=novelHomeDao.novelHomeList(num);
+		int followCheck = memberDao.profileFollowCheck(me, m_num);	//현재 보고있는 프로필 팔로우중인지.
 		
 		
+		
+		
+		/////////////소설 리스트 페이지
+		
+		int novelCount=novelHomeDao.novelCount(m_num);
+		
+		if (pageNumber == null)
+			pageNumber = "1";
+		
+		int currentPage = Integer.parseInt(pageNumber);
+		LogAspect.logger.info(LogAspect.LogMsg + "현재 페이지 : " +currentPage);
+
+		// 한페이지당 게시물 10개/ start 1, end 10
+		int listSize = 10;
+		int startRow = (currentPage - 1) * listSize + 1;
+		int endRow = currentPage * listSize;
+		
+		LogAspect.logger.info(LogAspect.LogMsg + "소설 개수" +novelCount);
+		
+		List<NovelHomeDto> novelList = null;
+		if (novelCount > 0) {
+			novelList = novelHomeDao.novelListMember(startRow,endRow,m_num);
+			LogAspect.logger.info(novelList.toString());
+		}		
+		
+		mav.addObject("listSize",listSize); // 한페이지당 보여지는 팔로워수
+		mav.addObject("currentPage", currentPage); // 요청페이지
+		mav.addObject("novelList",novelList);		//소설 리스트
+		mav.addObject("novelCount",novelCount);		//소설 개수
 		
 		mav.addObject("profileFollowerCount",profileFollowerCount);
 		mav.addObject("profileFollowingCount",profileFollowingCount);
@@ -418,6 +444,7 @@ public class MemberServiceImp implements MemberService {
 		
 		int profileFollowerCount = memberDao.profileFollowerCount(num);    //팔로워수
 		int profileFollowingCount = memberDao.profileFollowingCount(num);  //팔로잉수		
+		int novelCount=novelHomeDao.novelCount(num);					   //소설수
 		
 		//팔로워 리스트 페이지 
 		
@@ -463,6 +490,7 @@ public class MemberServiceImp implements MemberService {
 		mav.addObject("followerList",followerList); //팔로워 리스트
 		mav.addObject("profileFollowerCount",profileFollowerCount);// 전체 팔로워 수
 		
+		mav.addObject("novelCount",novelCount);	//프로필 상단 - 전체 소설 수
 		mav.addObject("profileFollowingCount",profileFollowingCount);//프로필 상단 - 전체 팔로잉 수
 		mav.addObject("memberDto", memberDto); //프로필 상단 - 프로필정보들
 		mav.addObject("followCheck",followCheck);//팔로우 됐는지 확인용
@@ -500,6 +528,7 @@ public class MemberServiceImp implements MemberService {
 		
 		int profileFollowerCount = memberDao.profileFollowerCount(num);    //팔로워수
 		int profileFollowingCount = memberDao.profileFollowingCount(num);  //팔로잉수		
+		int novelCount=novelHomeDao.novelCount(num);					   //소설수
 		
 		//팔로워 리스트 페이지 
 		
@@ -528,6 +557,7 @@ public class MemberServiceImp implements MemberService {
 		mav.addObject("followingList",followingList); //팔로잉 리스트
 		mav.addObject("profileFollowerCount",profileFollowerCount);//프로필 상단 - 전체 팔로워 수
 		
+		mav.addObject("novelCount",novelCount);	//프로필 상단 - 전체 소설 수
 		mav.addObject("profileFollowingCount",profileFollowingCount);//프로필 상단 - 전체 팔로잉 수
 		mav.addObject("memberDto", memberDto); //프로필 상단 - 프로필정보들
 		mav.addObject("followCheck",followCheck);//팔로우 됐는지 확인용

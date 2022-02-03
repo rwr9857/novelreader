@@ -29,7 +29,7 @@
 				<div class="leftbox">
 					<!-- 이미지불러오기 -->
 					<div class="image_container">
-						<img src='${root}/file/${novelHomeDto.n_image_name}' />
+						<img src='${root}/file/${novelHomeDto.n_image_name}'/>
 					</div>
 					<button style="margin-left: 0px; color: rgb(209, 206, 206);">첫화보기</button>
 				</div>
