@@ -15,6 +15,6 @@ public interface NovelHomeDao {
 
 	public int getCount(int n_num);
 
-	public List<NovelPostDto> novelPostList(int startRow, int endRow);
+	public List<NovelPostDto> novelPostList(int startRow, int endRow, int n_num);
 
 }

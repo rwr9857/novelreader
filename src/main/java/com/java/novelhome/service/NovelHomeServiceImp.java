@@ -110,7 +110,7 @@ public class NovelHomeServiceImp implements NovelHomeService {
 
 		List<NovelPostDto> novelPostList = null;
 		if (count > 0) {
-			novelPostList = novelHomeDao.novelPostList(startRow, endRow);
+			novelPostList = novelHomeDao.novelPostList(startRow, endRow,n_num);
 			LogAspect.logger.info(LogAspect.LogMsg + "novelPostList.size=" + novelPostList.size());
 		}
 

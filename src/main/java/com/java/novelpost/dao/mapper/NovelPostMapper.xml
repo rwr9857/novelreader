@@ -23,7 +23,10 @@
 		#{N_POST_VIEWCOUNT, jdbcType=NUMERIC},
 		sysdate)
 	</insert>
-
+	
+	<select id="novelPostSelect" resultType="int">
+		SELECT * FROM NOVEL_POST WHERE n_num=#{n_num}
+	</select>
 	
 </mapper>   		
   	
