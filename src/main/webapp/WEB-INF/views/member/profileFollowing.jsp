@@ -52,7 +52,7 @@
 				<div class="profile_info">
 					<div class="profile_left_box">
 						<c:if test="${memberDto.m_photo_path == null}">
-							<img class="profile_image" alt="기본값" src="${root}/images/profile_default.png"
+							<img class="profile_image" alt="기본값" src="${root}/images/profile/profile_default.png"
 								onclick="">
 						</c:if>
 						<c:if test="${memberDto.m_photo_path != null}">
@@ -205,13 +205,13 @@
 											<img alt="이미지 준비중" src="${profileFollowing.m_photo_path}" class="profile_img" onclick="goToProfile('${root}','${profileFollowing.m_nickname}')">
 										</c:if>
 										<c:if test="${profileFollowing.m_photo_path==null}">
-											<img alt="기본값" src="${root}/images/profile_default.png" class="profile_img" onclick="goToProfile('${root}','${profileFollowing.m_nickname}')">
+											<img alt="기본값" src="${root}/images/profile/profile_default.png" class="profile_img" onclick="goToProfile('${root}','${profileFollowing.m_nickname}')">
 										</c:if>									
 										<div class="follow_nickname" onclick="goToProfile('${root}','${profileFollowing.m_nickname}')">${profileFollowing.m_nickname}</div>
 										
 										<c:if test="${numSess == memberDto.m_num}">
-											<img alt="x" src="${root}/images/x_icon.png" class="follow_delete" 
-											onclick="deleteFollower('${root}/member/following_followDelete.do', {'numSess':'${memberDto.m_num}','nickname':'${memberDto.m_nickname}','pageNumber':'${currentPage}','numDel':'${profileFollowing.m_num}'})">
+											<img alt="x" src="${root}/images/profile/x_icon.png" class="follow_delete"
+                                                 onclick="deleteFollower('${root}/member/following_followDelete.do', {'numSess':'${memberDto.m_num}','nickname':'${memberDto.m_nickname}','pageNumber':'${currentPage}','numDel':'${profileFollowing.m_num}'})">
 										</c:if>
 									</div>
 									

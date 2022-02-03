@@ -56,7 +56,7 @@
 					<div class="profile_left_box">
 						
 						<c:if test="${memberDto.m_photo_path == null}">
-							<img class="profile_image" alt="기본값" src="${root}/images/profile_default.png"
+							<img class="profile_image" alt="기본값" src="${root}/images/profile/profile_default.png"
 								onclick="">
 						</c:if>
 						
@@ -202,11 +202,11 @@
 								
 								<div class="like_box">
 									<div class="like">
-										<img alt="좋아요" src="${root}/images/like.png"> <span>65536</span>
+										<img alt="좋아요" src="${root}/images/profile/like.png"> <span>65536</span>
 									</div>
 								
 									<div class="dislike">
-										<img alt="싫어요" src="${root}/images/dislike.png"> <span>256</span>
+										<img alt="싫어요" src="${root}/images/profile/dislike.png"> <span>256</span>
 									</div>
 								</div>
 							</div>

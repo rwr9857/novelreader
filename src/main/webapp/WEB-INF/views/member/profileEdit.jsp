@@ -73,7 +73,7 @@
 							
 							<div class="td2">
 								<c:if test="${memberDto.m_photo_path == null}">
-								<img class="profile_image" alt="기본값" src="${root}/images/profile_default.png"
+								<img class="profile_image" alt="기본값" src="${root}/images/profile/profile_default.png"
 									onclick="" style="float:left;">
 								</c:if>
 								<c:if test="${memberDto.m_photo_path != null}">
