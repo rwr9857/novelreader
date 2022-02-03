@@ -20,9 +20,9 @@
 <body>
 <div class="field">
     <div class="menuText">
-        <h1>소설 카테고리 관리</h1>
+        <h1>알림 조회</h1>
         <h3>
-            관리자 모드 -> <span style="color: gray;">소설 카테고리 관리</span> -> 카테고리 삭제
+            관리자 모드 -> <span style="color: gray;">알림</span> -> 알람 조회 -> 보관된 알림
         </h3>
     </div>
 </div>
