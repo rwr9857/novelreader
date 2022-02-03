@@ -69,19 +69,9 @@
 		]]>
 	</select>
 
-	<select id="novelCount" parameterType="int" resultType="int">
-		<![CDATA[
-			SELECT count(*) FROM novel_home WHERE m_num=#{m_num}
-		]]>
+	<select id="getNickname" parameterType="int" resultType="String">
+		SELECT m_nickname FROM MEMBER
+		WHERE m_num=(SELECT m_num FROM NOVEL_HOME WHERE n_num=#{n_num})
 	</select>
-	
-	<select id="novelListMember" parameterType="java.util.HashMap" resultType="com.java.novelhome.dto.NovelHomeDto">
-		<![CDATA[
-			SELECT * FROM
-			(SELECT ROWNUM rnum, n_num, n_title, n_summary, n_image_name, n_image_path, n_image_size, n_pub_date, n_report, m_num FROM novel_home WHERE m_num=#{m_num} ORDER BY n_num DESC)
-			WHERE rnum>=#{startRow} AND rnum<=#{endRow}
-		]]>
-	</select>
-
 </mapper>   		
   	

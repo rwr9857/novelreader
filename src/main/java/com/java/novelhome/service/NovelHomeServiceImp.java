@@ -46,9 +46,8 @@ public class NovelHomeServiceImp implements NovelHomeService {
 
 			LogAspect.logger.info(LogAspect.LogMsg + path);
 
-
 			if (path.exists() && path.isDirectory()) {
-				File file = new File(path,fileName);
+				File file = new File(path, fileName);
 				try {
 					upFile.transferTo(file);
 
@@ -88,12 +87,11 @@ public class NovelHomeServiceImp implements NovelHomeService {
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 
 		int n_num = Integer.parseInt(request.getParameter("n_num"));
-		LogAspect.logger.info(LogAspect.LogMsg + "n_num="+n_num);
+		LogAspect.logger.info(LogAspect.LogMsg + "n_num=" + n_num);
 
 		NovelHomeDto novelHomeDto = novelHomeDao.novelHomeList(n_num);
-		
 		int nNumSess = novelHomeDto.getN_num();
-		
+
 		String pageNumber = request.getParameter("pageNumber");
 		if (pageNumber == null)
 			pageNumber = "1";
@@ -110,16 +108,20 @@ public class NovelHomeServiceImp implements NovelHomeService {
 
 		List<NovelPostDto> novelPostList = null;
 		if (count > 0) {
-			novelPostList = novelHomeDao.novelPostList(startRow, endRow,n_num);
+			novelPostList = novelHomeDao.novelPostList(startRow, endRow, n_num);
 			LogAspect.logger.info(LogAspect.LogMsg + "novelPostList.size=" + novelPostList.size());
 		}
-
+		String nickname = novelHomeDao.getNickname(n_num);
+		LogAspect.logger.info(LogAspect.LogMsg + "nickname=" + nickname);
+		
+		mav.addObject("nickname", nickname);
 		mav.addObject("novelPostList", novelPostList);
 		mav.addObject("currentPage", currentPage);
 		mav.addObject("boardSize", boardSize);
 		mav.addObject("count", count);
 		mav.addObject("novelHomeDto", novelHomeDto);
 		mav.addObject("nNumSess", nNumSess);
+		mav.addObject("n_num", n_num);
 
 		mav.setViewName("novelhome/list.tiles");
 	}
