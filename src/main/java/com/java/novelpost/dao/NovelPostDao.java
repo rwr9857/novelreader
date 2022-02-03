@@ -6,4 +6,6 @@ public interface NovelPostDao {
 
 	public int novelPostInsert(NovelPostDto novelPostDto);
 
+//	public int novelPostSelect(int n_num);
+
 }

@@ -28,7 +28,13 @@ public class NovelPostServiceImp implements NovelPostService {
 		LogAspect.logger.info(LogAspect.LogMsg + novelPostDto.toString());
 		int check = novelPostDao.novelPostInsert(novelPostDto);
 		LogAspect.logger.info(LogAspect.LogMsg + check);
-
+//		if (ch > 0) {
+//			int check = novelPostDao.novelPostSelect(n_num);
+//			LogAspect.logger.info(LogAspect.LogMsg + check);
+//			
+//			mav.addObject("check", check);
+//		}
+		
 		mav.addObject("check", check);
 		mav.addObject("n_num", n_num);
 		mav.setViewName("novelpost/registerOk");

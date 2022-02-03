@@ -65,7 +65,7 @@
 			ROWNUM AS rnum, a.* FROM
 			(SELECT * FROM NOVEL_POST ORDER BY n_num DESC) a) b
 			WHERE b.rnum >=#{startRow} AND
-			b.rnum <=#{endRow}
+			b.rnum <=#{endRow} AND n_num=#{n_num}
 		]]>
 	</select>
 

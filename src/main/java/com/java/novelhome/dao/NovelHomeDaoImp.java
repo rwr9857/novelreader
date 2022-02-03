@@ -39,10 +39,11 @@ public class NovelHomeDaoImp implements NovelHomeDao {
 	}
 
 	@Override
-	public List<NovelPostDto> novelPostList(int startRow, int endRow) {
+	public List<NovelPostDto> novelPostList(int startRow, int endRow, int n_num) {
 		HashMap<String, Integer> hMap = new HashMap<String, Integer>();
 		hMap.put("startRow", startRow);
 		hMap.put("endRow", endRow);
+		hMap.put("n_num", n_num);
 		return sqlSessionTemplate.selectList("novelPostList", hMap);
 	}
 

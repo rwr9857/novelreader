@@ -1,8 +1,5 @@
 package com.java.novelpost.dao;
 
-import java.util.HashMap;
-import java.util.List;
-
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -18,6 +15,11 @@ public class NovelPostDaoImp implements NovelPostDao {
 	public int novelPostInsert(NovelPostDto novelPostDto) {
 		return sqlSessionTemplate.insert("novelPostInsert", novelPostDto);
 	}
+
+//	@Override
+//	public int novelPostSelect(int n_num) {
+//		return sqlSessionTemplate.selectOne("novelPostSelect", n_num);
+//	}
 
 	
 }
