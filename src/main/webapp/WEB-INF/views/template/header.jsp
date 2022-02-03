@@ -51,9 +51,11 @@
 					<c:if test="${numSess!=null}">
 					<a href="${root}/member/profile.do?nickname=${nicknameSess}">프로필관리</a>
 					<a href="${root}/member/logout.do">로그아웃</a>
-					<br />
 				</c:if>
-                
+
+                    <c:if test="${permissionSess=='MA'}">
+                        <a href="${root}/manager/menu.do">관리자 메뉴</a>
+                    </c:if>
                 
                 </div>
               </div> 
