@@ -20,9 +20,9 @@
 <body>
 <div class="field">
     <div class="menuText">
-        <h1>자주 묻는 질문</h1>
+        <h1>문의정보</h1>
         <h3>
-            관리자 모드 -> <span style="color: gray;">게시글 관리</span> -> 자주 묻는 질문
+            관리자 모드 -> <span style="color: gray;">게시글 관리</span> -> 문의정보
         </h3>
     </div>
 </div>

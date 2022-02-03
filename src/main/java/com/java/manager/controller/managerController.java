@@ -63,20 +63,22 @@ public class managerController {
 		return new ModelAndView("manager/memberPost.tiles1");
 	}
 
-	@RequestMapping(value = "/manager/Notice.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/manager/notice.do", method = RequestMethod.GET)
 	public ModelAndView managerNotice(HttpServletRequest request, HttpServletResponse response) {
 		return new ModelAndView("manager/notice.tiles1");
 	}
-
-	@RequestMapping(value = "/manager/questionInformation.do", method = RequestMethod.GET)
-	public ModelAndView managerQuestion(HttpServletRequest request, HttpServletResponse response) {
-		return new ModelAndView("manager/questionInformation.tiles1");
+	
+	@RequestMapping(value = "/manager/faq.do", method = RequestMethod.GET)
+	public ModelAndView managerQuestionInformation(HttpServletRequest request, HttpServletResponse response) {
+		return new ModelAndView("manager/faq.tiles1");
 	}
 
 	@RequestMapping(value = "/manager/question.do", method = RequestMethod.GET)
-	public ModelAndView managerQuestionInformation(HttpServletRequest request, HttpServletResponse response) {
+	public ModelAndView managerQuestion(HttpServletRequest request, HttpServletResponse response) {
 		return new ModelAndView("manager/question.tiles1");
 	}
+
+
 
 	@RequestMapping(value = "/manager/categoryView.do", method = RequestMethod.GET)
 	public ModelAndView managerCategoryView(HttpServletRequest request, HttpServletResponse response) {

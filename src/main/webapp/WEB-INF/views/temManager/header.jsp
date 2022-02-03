@@ -44,13 +44,13 @@
 					<a href="${root}/manager/memberPost.do">회원 게시물</a>
 				</ul>
 				<ul class="summary_ul">
-					<a href="${root}/manager/Notice.do">공지사항</a>
+					<a href="${root}/manager/notice.do">공지사항</a>
 				</ul>
 				<ul class="summary_ul">
-					<a href="${root}/manager/question.do">자주 묻는 질문</a>
+					<a href="${root}/manager/faq.do">자주 묻는 질문</a>
 				</ul>
 				<ul class="summary_ul">
-					<a href="${root}/manager/questionInformation.do">문의정보</a>
+					<a href="${root}/manager/question.do">문의정보</a>
 				</ul>
 
 

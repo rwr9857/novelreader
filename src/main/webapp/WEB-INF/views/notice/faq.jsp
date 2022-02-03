@@ -24,7 +24,6 @@
                     <th style="width:45%">글 제목</th>
                     <th>작성자</th>
                     <th>조회</th>
-                    <th>추천</th>
                     <th>시간</th>
                 </tr>
                 <tr>
@@ -32,7 +31,6 @@
                     <td>안녕하세요 나는 안태균이라고 해</td>
                     <td>작성자</td>
                     <td>조회수</td>
-                    <td>추천수</td>
                     <td>시간</td>
                 </tr>
             </table>
