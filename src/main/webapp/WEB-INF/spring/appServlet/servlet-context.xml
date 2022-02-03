@@ -19,6 +19,8 @@
 	<resources mapping="/css/**"  location="/css/"/>
 	<resources mapping="/javascript/**" location="/javascript/" />
 	<resources  mapping="/images/**" location="/images/"/>
+	<!-- mapping : 가상 주소 location : 물리적 주소 /  -->
+	<resources  mapping="/file/**" location="file:///C:/pds/"/>
 
 	<!-- Tiles2 -->
 	<beans:bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
