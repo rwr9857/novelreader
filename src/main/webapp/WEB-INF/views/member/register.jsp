@@ -101,10 +101,11 @@
 					<input type="radio" id="female" name="m_sex" value="2">
 					
 					<label for="etc">기타</label> 
-					<input type="radio" id="etc" name="m_sex" value="0" checked="checked">
+					<input type="radio" id="etc" name="m_sex" value="3" checked="checked">
 				</div>
 				<div class="E-mail_check">
-					<label for="E-mail_check">이메일 수신 동의</label> <input type="checkbox" id="E-mail_check" name="m_email_agree" value="1">
+					<label for="E-mail_check">이메일 수신 동의</label> 
+					<input type="checkbox" id="E-mail_check" name="m_email_agree" value="1">
 				</div>
 				<div class="social">
 					<h3>다음으로 로그인</h3>

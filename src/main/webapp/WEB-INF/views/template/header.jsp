@@ -22,7 +22,7 @@
         </div>
         <div class="Upspan">
             <span onclick="location.href='${root}/novel/top10.do'">TOP10</span>
-            <span onclick="location.href='${root}/member/ranking.do'">인기작가</span>
+            <span onclick="location.href='${root}/novel/ranking.do'">인기작가</span>
             <span style="margin-right:50px;"  onclick="location.href='${root}/notice/notice.do'">공지사항</span>
         </div>
         <div class="Upserchbar">
