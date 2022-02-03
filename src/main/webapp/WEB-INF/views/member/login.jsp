@@ -86,6 +86,7 @@
                 <img src="${root}/images/login/google.jpg" />
             </div>
             <input class="registerbutton" type="submit" value="로그인"/>
+            <input class="registerbutton" type="button" value="회원가입"/ style="margin-top:10px;">
         </form>
         <h3 class="footer">Copyright ⓒ 2022 by GTEC Kmove JP-A All Pictures cannot be copied without permission.</h3>
     </div>

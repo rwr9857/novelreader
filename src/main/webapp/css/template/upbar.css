@@ -1,57 +1,59 @@
-* {
+.Upwrap{
 	list-style : none;
 	text-decoration: none;
 	border-collapse: collapse;
 	margin: 0px;
 	padding: 0px;
 	font-family: 'Noto Sans KR', sans-serif;
+	display:flex;
+	width : 100%;
+	height : 70px;
+	margin:0 auto;
+	justify-content: center;
+	line-height:70px;
+	background:#e5e5e5;
+	box-shadow: 0 0 10px 0 rgb(0 0 0 / 35%);
+}
+
+a:link {
+	text-decoration: none;
 }
 
 input:focus{
 	outline:none;
 }
 
-.wrap{
-	display:flex;
-	width : 2000px;
-	height : 70px;
-	margin:0 auto;
-	justify-content: center;
-	line-height:70px;
-	background:#4692d8;
+.Upimg h1{
+    font-family: 'Mochiy Pop P One', sans-serif;
+    font-size : 30px;
 }
 
-.img img{
-	width : 150px;
-	height: 40px;
-}
-
-.span span{
+.Upspan span{
 	margin-left : 80px;
 	cursor:pointer;
 	font-size : 22px;
 	font-weight:bold;
-	color:white;
+	color:#423c3c;
 }
 
-.serchbar input{
+.Upserchbar input{
 	margin-right : 50px;
 	height:26px;
 }
 
-.icon{
+.Upicon{
 	text-align:;
 }
 
-.dropdown{
+.Updropdown{
 	position : relative;
 	display : inline-block;
 }
   
-  .dropbtn{
+  .Updropbtn{
 	cursor : pointer;
 }
-  .dropdown-content{
+  .Updropdown-content{
 	display : none;
 	position : absolute;
 	z-index : 1; /*다른 요소들보다 앞에 배치*/
@@ -60,7 +62,7 @@ input:focus{
 	min-width : 200px;
 }
   
-  .dropdown-content a{
+  .Updropdown-content a{
 	display : block;
 	text-decoration : none;
 	color : rgb(37, 37, 37);
@@ -68,11 +70,11 @@ input:focus{
 	line-height : -30px;
 }
   
-  .dropdown-content a:hover{
+  .Updropdown-content a:hover{
 	background-color : #ececec
 }
   
-  .dropdown:hover .dropdown-content {
+  .Updropdown:hover .Updropdown-content {
 	display: block;
 }
 

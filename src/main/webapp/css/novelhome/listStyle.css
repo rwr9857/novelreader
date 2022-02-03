@@ -7,12 +7,12 @@
 	font-family: 'Noto Sans KR', sans-serif;
 }
 
-#wrap {
+.wrap {
 	width: 1300px;
 	margin: 0 auto;
 }
 
-#wrap button {
+.wrap button {
 	margin-left: 8px;
 }
 
@@ -59,6 +59,17 @@ h1 {
 	text-align: center;
 	cursor: pointer;
 }
+
+.right_up img{ 
+    width : 30px;
+    height: 30px;
+    padding : 0px;
+    text-align : center;
+    cursor : pointer;
+    margin-top : 13px;
+    margin-left :10px;
+}
+
 
 .right_up2 {
 	margin-top: 5px;
