@@ -116,7 +116,7 @@
 							</div>
 							<div class="following_box"
 								onclick="novel('${root}','${memberDto.m_nickname}')">
-								미완${novel_count}<br />소설
+								${novelCount}<br />소설
 							</div>
 						</div>
 					</div>
@@ -185,32 +185,53 @@
 						</div>
 					</div>
 				</div>
-			
+				
+				<%-- 소설 리스트 --%>
 				<div class="content">
-					<%-- <c:forEach var="novel_homeDto" items="${novel_homeDto}"> --%>
+					listSize: ${listSize}/ currentPage: ${currentPage}/ novelList.size():${novelList.size()}/ novelCount:${novelCount}
 					<div class="novel_list" id="novel_list">
-						<span class="menu">소설</span>
-						<!-- while/for문 추가 -->
-						<div class="list" onclick="소설바로가기함수">
-							<img alt="이미지 불러오는중" src="${root}/images/novelLabel/label1.jpg" class="novel_image">
-							<div class="novel_inner">
-								<div class="titleNdate">
-									<div class="title">모르는 만화에 빙의했다</div>
-								
-									<div class="date">2021.02.23</div>
-								</div>
-								
-								<div class="like_box">
-									<div class="like">
-										<img alt="좋아요" src="${root}/images/profile/like.png"> <span>65536</span>
+						<c:if test="${novelList.size() > 0}">
+							<span class="menu">소설</span>
+						</c:if>
+						<c:if test="${novelList.size() == null || novelList.size() == 0}">
+							<span class="menu">소설 목록이 없습니다</span>
+						</c:if>
+						
+						<c:forEach var="novelDto" items="${novelList}">
+							
+							<div class="list" onclick="goNovel('${root}','${novelDto.n_num}')" style="cursor: pointer;">
+								<c:if test="${novelDto.n_image_name!=null}">
+									<img alt="이미지 불러오는중" src="${root}/file/${novelDto.n_image_name}" class="novel_image">
+								</c:if>
+								<c:if test="${novelDto.n_image_name==null}">
+									<img alt="이미지 불러오는중" src="${root}/images/novelLabel/defaultImage.png" class="novel_image">
+								</c:if>
+								<div class="novel_inner">
+									<div class="titleNdate">
+										<div class="title">${novelDto.n_title}</div>
+											
+										<div class="date"><fmt:formatDate value="${novelDto.n_pub_date}" pattern="YYYY.MM.dd"/></div>
 									</div>
-								
-									<div class="dislike">
-										<img alt="싫어요" src="${root}/images/profile/dislike.png"> <span>256</span>
+									
+									<div class="like_box">
+										<div class="like">
+											<img alt="좋아요" src="${root}/images/profile/like.png"> <span>미완</span>
+										</div>
+									
+										<div class="dislike">
+											<img alt="싫어요" src="${root}/images/profile/dislike.png"> <span>미완</span>
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
+							
+							<script type="text/javascript">
+								function goNovel(root,n_num){
+									location.href=root+"/novelhome/list.do?n_num="+n_num;
+								}
+							</script>
+							
+						</c:forEach>
 					</div>
 					<%-- </c:forEach> --%>
 					

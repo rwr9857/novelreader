@@ -111,7 +111,7 @@
 							</div>
 							<div class="following_box"
 								onclick="novel('${root}','${memberDto.m_nickname}')">
-								미완${novel_count}<br />소설
+								${novelCount}<br />소설
 							</div>
 						</div>
 					</div>

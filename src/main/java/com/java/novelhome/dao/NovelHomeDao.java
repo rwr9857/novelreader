@@ -17,4 +17,8 @@ public interface NovelHomeDao {
 
 	public List<NovelPostDto> novelPostList(int startRow, int endRow, int n_num);
 
+	public int novelCount(int m_num);	//한 사람의 소설 개수 가져오기
+
+	public List<NovelHomeDto> novelListMember(int startRow, int endRow, int m_num);	//한 사람의 소설 내용 가져오기
+
 }

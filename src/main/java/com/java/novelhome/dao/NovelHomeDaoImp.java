@@ -14,17 +14,17 @@ import com.java.novelpost.dto.NovelPostDto;
 public class NovelHomeDaoImp implements NovelHomeDao {
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
-
+	
 	@Override
 	public int novelHomeUpload(NovelHomeDto novelHomeDto) {
 		return sqlSessionTemplate.insert("novelhomeInsert", novelHomeDto);
 	}
-
+	
 	@Override
 	public int novelHomeSelectGetNum(int m_num) {
 		return sqlSessionTemplate.selectOne("novelhomeSelectGetNum", m_num);
 	}
-
+	
 	@Override
 	public NovelHomeDto novelHomeList(int n_num) {
 		NovelHomeDto novelHomeDto = null;
@@ -32,12 +32,12 @@ public class NovelHomeDaoImp implements NovelHomeDao {
 		novelHomeDto = sqlSessionTemplate.selectOne("novelhomeSelect", n_num);
 		return novelHomeDto;
 	}
-
+	
 	@Override
 	public int getCount(int n_num) {
 		return sqlSessionTemplate.selectOne("novelPostCount", n_num);
 	}
-
+	
 	@Override
 	public List<NovelPostDto> novelPostList(int startRow, int endRow, int n_num) {
 		HashMap<String, Integer> hMap = new HashMap<String, Integer>();
@@ -46,5 +46,19 @@ public class NovelHomeDaoImp implements NovelHomeDao {
 		hMap.put("n_num", n_num);
 		return sqlSessionTemplate.selectList("novelPostList", hMap);
 	}
-
+	
+	@Override
+	public int novelCount(int m_num) {				//한 사람의 소설 개수
+		return sqlSessionTemplate.selectOne("novelCount",m_num);
+	}
+	
+	@Override
+	public List<NovelHomeDto> novelListMember(int startRow, int endRow, int m_num) {	//한 사람의 소설 리스트
+		HashMap<String, Integer> hMap = new HashMap<String, Integer>();
+		hMap.put("startRow", startRow);
+		hMap.put("endRow", endRow);
+		hMap.put("m_num", m_num);
+		return sqlSessionTemplate.selectList("novelListMember",hMap);
+	}
+	
 }
