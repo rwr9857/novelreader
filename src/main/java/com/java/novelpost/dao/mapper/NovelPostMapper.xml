@@ -4,6 +4,7 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.java.novelpost.dao.mapper.NovelPostMapper">
+
 	<insert id="novelPostInsert"
 		parameterType="com.java.novelpost.dto.NovelPostDto">
 		INSERT INTO NOVEL_POST(n_num,
@@ -16,17 +17,34 @@
 		N_POST_TIME)
 		VALUES(#{n_num},
 		N_POST_NUM_SEQ.nextval,
-		#{N_POST_TITLE, jdbcType=VARCHAR},
+		#{N_POST_TITLE,
+		jdbcType=VARCHAR},
 		#{N_POST_CONTENT, jdbcType=VARCHAR},
-		#{N_POST_LIKE, jdbcType=NUMERIC},
+		#{N_POST_LIKE,
+		jdbcType=NUMERIC},
 		#{N_POST_DISLIKE, jdbcType=NUMERIC},
 		#{N_POST_VIEWCOUNT, jdbcType=NUMERIC},
 		sysdate)
 	</insert>
-	
-	<select id="novelPostSelect" resultType="int">
-		SELECT * FROM NOVEL_POST WHERE n_num=#{n_num}
+
+	<select id="novelPostNumSelect" resultType="int">
+		SELECT N_POST_NUM FROM NOVEL_POST
+		WHERE n_num=#{n_num}
 	</select>
-	
+
+	<update id="novelPostReadCount" parameterType="int">
+		UPDATE NOVEL_POST
+		SET
+		N_POST_VIEWCOUNT=N_POST_VIEWCOUNT+1
+		WHERE n_post_num=#{n_post_num}
+	</update>
+
+
+	<select id="novelPostRead" parameterType="int"
+		resultType="com.java.novelpost.dto.NovelPostDto">
+		SELECT *
+		FROM NOVEL_POST
+		WHERE n_post_num=#{n_post_num}
+	</select>
 </mapper>   		
   	

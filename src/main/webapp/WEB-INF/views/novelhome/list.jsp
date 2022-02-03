@@ -13,6 +13,8 @@
 	href="https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR&display=swap"
 	rel="stylesheet">
 <link rel="stylesheet" href="${root}/css/novelhome/listStyle.css">
+<script type="text/javascript"
+	src="${root}/javascript/novelpost/list.js"></script>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta charset="UTF-8">
@@ -29,9 +31,10 @@
 				<div class="leftbox">
 					<!-- 이미지불러오기 -->
 					<div class="image_container">
-						<img src="${novelHomeDto.n_image_name}" />
+						<img src="${root}/file/${novelHomeDto.n_image_name}" />
 					</div>
-					<button style="margin-left: 0px; color: rgb(209, 206, 206);">첫화보기</button>
+					<button style="margin-left: 0px; color: rgb(209, 206, 206);"
+						onclick="">첫화보기</button>
 				</div>
 			</div>
 			<!-- 소설 -->
@@ -45,10 +48,9 @@
 				</div>
 			</div>
 			<div class="right_up2">
-				<h3>
-					작가 : <span style="color: rgb(148, 21, 127); font-weight: bold;">작가이름</span>
+				<h3 onclick="javascript:goProfile('${root}','${nickname}')" style="cursor: pointer">
+					작가 : <span style="color: rgb(148, 21, 127); font-weight: bold;">${nickname}</span>
 				</h3>
-				<button class="right_up2_span">+팔로우</button>
 			</div>
 			<div class="right_middle">
 				<img src="https://novelpia.com/img/new/icon/count_view.png"
@@ -77,33 +79,35 @@
 				</script>
 			</div>
 		</div>
-	</form>
-	<div class="bottombox">
-		<div class="bottom_up">
-			<div>회차리스트</div>
-			<a href="${root}/novelpost/register.do">등록</a>
 
-		</div>
-		<!-- 회차리스트 -->
-		<c:if test="${novelPostList.size() > 0 }">
-			<c:forEach var="novelPostDto" items="${novelPostList}"
-				varStatus="status">
-				<div class="form_style"
-					style="height: 30px; border: 1px solid black;">
-					<div class="disp" style="border-width: 1px;">
-						Ep.${status.count} ${novelPostDto.n_POST_TITLE} <a
-							href="javascript:updateCheck('${novelPostDto.n_POST_NUM}', '${root}')">수정</a>
-						<a
-							href="javascript:deleteCheck('${novelPostDto.n_POST_NUM}', '${root}')">삭제</a>
-						<fmt:formatDate value="${novelPostDto.n_POST_TIME}"
-							pattern="yyyy-MM-DD HH:mm:ss" />
+		<div class="bottombox">
+			<div class="bottom_up">
+				<div>회차리스트</div>
+				<a href="${root}/novelpost/register.do">등록</a>
+
+			</div>
+			<!-- 회차리스트 -->
+			<c:if test="${novelPostList.size() > 0 }">
+				<c:forEach var="novelPostDto" items="${novelPostList}"
+					varStatus="status">
+					<div class="form_style"
+						style="height: 30px; border: 1px solid black;">
+						<div class="disp" style="border-width: 1px;">
+							Ep.${status.count} <a
+								href="javascript:readCheck('${novelPostDto.n_POST_NUM}', '${root}')">
+								${novelPostDto.n_POST_TITLE}</a> <a
+								href="javascript:updateCheck('${novelPostDto.n_POST_NUM}', '${root}')">수정</a>
+							<a
+								href="javascript:deleteCheck('${novelPostDto.n_POST_NUM}', '${root}')">삭제</a>
+							<fmt:formatDate value="${novelPostDto.n_POST_TIME}"
+								pattern="yyyy-MM-DD HH:mm:ss" />
+						</div>
+
 					</div>
-
-				</div>
-			</c:forEach>
-		</c:if>
-	</div>
-
+				</c:forEach>
+			</c:if>
+		</div>
+	</form>
 
 
 	<div align="center">
@@ -141,5 +145,7 @@
 		<div>pageCount : ${pageCount} startPage : ${startPage} endPage :
 			${endPage}</div>
 	</div>
+
+
 </body>
 </html>

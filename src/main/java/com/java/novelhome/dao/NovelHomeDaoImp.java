@@ -47,4 +47,9 @@ public class NovelHomeDaoImp implements NovelHomeDao {
 		return sqlSessionTemplate.selectList("novelPostList", hMap);
 	}
 
+	@Override
+	public String getNickname(int n_num) {
+		return sqlSessionTemplate.selectOne("getNickname", n_num);
+	}
+
 }

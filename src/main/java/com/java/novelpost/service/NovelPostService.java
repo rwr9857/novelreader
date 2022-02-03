@@ -6,4 +6,6 @@ public interface NovelPostService {
 	
 	public void novelPostRegisterOk(ModelAndView mav);
 
+	public void novelPostRead(ModelAndView mav);
+
 }

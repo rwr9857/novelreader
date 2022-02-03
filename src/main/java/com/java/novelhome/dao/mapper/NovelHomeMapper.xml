@@ -69,5 +69,9 @@
 		]]>
 	</select>
 
+	<select id="getNickname" parameterType="int" resultType="String">
+		SELECT m_nickname FROM MEMBER
+		WHERE m_num=(SELECT m_num FROM NOVEL_HOME WHERE n_num=#{n_num})
+	</select>
 </mapper>   		
   	

@@ -34,10 +34,25 @@ public class NovelPostServiceImp implements NovelPostService {
 //			
 //			mav.addObject("check", check);
 //		}
-		
+
 		mav.addObject("check", check);
 		mav.addObject("n_num", n_num);
 		mav.setViewName("novelpost/registerOk");
+	}
+
+	@Override
+	public void novelPostRead(ModelAndView mav) {
+		Map<String, Object> map = mav.getModelMap();
+		HttpServletRequest request = (HttpServletRequest) map.get("request");
+		
+		int n_post_num = Integer.parseInt(request.getParameter("n_post_num"));
+		LogAspect.logger.info(LogAspect.LogMsg + n_post_num);
+		
+		NovelPostDto novelPostDto = novelPostDao.read(n_post_num);
+
+		mav.addObject("novelPostDto", novelPostDto);
+		mav.addObject("n_post_num", n_post_num);
+		mav.setViewName("novelpost/read");
 	}
 
 }

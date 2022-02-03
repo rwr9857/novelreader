@@ -33,5 +33,15 @@ public class NovelPostController {
 
 		return mav;
 	}
+	
+	@RequestMapping(value = "/novelpost/read.do", method = RequestMethod.GET)
+	public ModelAndView boardRead(HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("request", request);
+
+		novelPostService.novelPostRead(mav);
+
+		return mav;
+	}
 
 }
