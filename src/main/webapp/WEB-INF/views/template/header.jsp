@@ -15,6 +15,7 @@
 	<a href="${root}/member/ranking.do">인기작가</a>
 	<!-- 박웅종 -->
 	<a href="${root}/notice/notice.do">공지사항</a>
+	<a href="${root}/notice/question.do?m_num=${numSess}">문의하기</a>
 	<!-- 안태균 -->
 
 	<a href="${root}/novel/search.do">검색</a>

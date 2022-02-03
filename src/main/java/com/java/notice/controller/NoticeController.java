@@ -29,7 +29,11 @@ public class NoticeController {
 	
 	@RequestMapping(value = "/notice/question.do", method = RequestMethod.GET)
 	  public ModelAndView question(HttpServletRequest request, HttpServletResponse response) {	
-	    return new ModelAndView("notice/question.tiles");
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("request", request);
+		noticeService.question(mav);
+		
+	    return mav;
 	  }
 	
 	@RequestMapping(value = "/notice/questionWrite.do", method = RequestMethod.GET)

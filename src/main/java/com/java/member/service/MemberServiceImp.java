@@ -29,11 +29,14 @@ import com.google.gson.JsonParser;
 import com.java.aop.LogAspect;
 import com.java.member.dao.MemberDao;
 import com.java.member.dto.MemberDto;
+import com.java.novelhome.dao.NovelHomeDao;
+import com.java.novelhome.dto.NovelHomeDto;
 
 @Component
 public class MemberServiceImp implements MemberService {
 	@Autowired
 	private MemberDao memberDao;
+	private NovelHomeDao novelHomeDao;
 	
 	@Value("#{properties['naver.client_id']}")
 	private String naverClientId;
@@ -380,8 +383,14 @@ public class MemberServiceImp implements MemberService {
 		
 		LogAspect.logger.info(LogAspect.LogMsg + "본인 : "+me + "  현재 프로필 번호 : "+num);
 		
-		int followCheck = memberDao.profileFollowCheck(me, num);
-		/////////////////
+		int followCheck = memberDao.profileFollowCheck(me, num);	//현재 보고있는 프로필 팔로우중인지.
+		
+		
+		
+	//	NovelHomeDto novelHomeDto=new NovelHomeDto();
+	//	novelHomeDto=novelHomeDao.novelHomeList(num);
+		
+		
 		
 		mav.addObject("profileFollowerCount",profileFollowerCount);
 		mav.addObject("profileFollowingCount",profileFollowingCount);
