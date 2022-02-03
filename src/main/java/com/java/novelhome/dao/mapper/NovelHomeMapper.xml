@@ -47,12 +47,46 @@
 		FROM NOVEL_HOME WHERE m_num=#{m_num} AND ROWNUM=1 ORDER BY n_num DESC
 		]]>
 	</select>
+
+	<select id="novelhomeSelect" parameterType="int" resultType="com.java.novelhome.dto.NovelHomeDto">
+		SELECT *
+		FROM NOVEL_HOME WHERE n_num=#{n_num}
+	</select>
+
+	<select id="novelPostCount" resultType="int">
+		SELECT COUNT(*) FROM
+			NOVEL_POST WHERE N_NUM=#{n_num, jdbcType=NUMERIC}
+	</select>
+
+	<select id="novelPostList" parameterType="java.util.HashMap"
+			resultMap="novelPostDto">
+		<![CDATA[
+		SELECT * FROM (SELECT
+						   ROWNUM AS rnum, a.* FROM
+							   (SELECT * FROM NOVEL_POST ORDER BY n_num DESC) a) b
+		WHERE b.rnum >=#{startRow} AND
+			b.rnum <=#{endRow} AND n_num=#{n_num}
+		]]>
+	</select>
 	
 	<select id="novelhomeSelect" parameterType="int" resultType="com.java.novelhome.dto.NovelHomeDto">
 		SELECT *
 		FROM NOVEL_HOME WHERE n_num=#{n_num}
 	</select>
 
+	<select id="novelCount" parameterType="int" resultType="int">
+		<![CDATA[
+		SELECT count(*) FROM novel_home WHERE m_num=#{m_num}
+		]]>
+	</select>
+
+	<select id="novelListMember" parameterType="java.util.HashMap" resultType="com.java.novelhome.dto.NovelHomeDto">
+		<![CDATA[
+		SELECT * FROM
+			(SELECT ROWNUM rnum, n_num, n_title, n_summary, n_image_name, n_image_path, n_image_size, n_pub_date, n_report, m_num FROM novel_home WHERE m_num=#{m_num} ORDER BY n_num DESC)
+		WHERE rnum>=#{startRow} AND rnum<=#{endRow}
+		]]>
+	</select>
 
 	<select id="getNickname" parameterType="int" resultType="String">
 		SELECT m_nickname FROM MEMBER

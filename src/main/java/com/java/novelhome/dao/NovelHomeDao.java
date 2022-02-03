@@ -17,6 +17,10 @@ public interface NovelHomeDao {
 
 	public List<NovelPostDto> novelPostList(int startRow, int endRow, int n_num);
 
+	public int novelCount(int m_num);
+
+	public List<NovelHomeDto> novelListMember(int startRow, int endRow, int m_num);
+
 	public String getNickname(int n_num);
 
 }
