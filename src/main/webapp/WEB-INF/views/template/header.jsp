@@ -18,7 +18,7 @@
     <div class="wrap">
         <div class="img">
             <!--로고-->
-            <a href=""><img src ="${root}/images/rogo.png"></a>
+            <a href=""><img src ="${root}/images/upbar/rogo.png"></a>
         </div>
         <div class="span">
             <span onclick="location.href='${root}/novel/top10.do'">TOP10</span>
@@ -34,11 +34,11 @@
         </div>
         <div class="icon">
             <!--투고-->
-            <a href="${root}/novelhome/upload.do"><img src ="${root}/images/write.jpg" style="width:35px; height:30px; margin-right:20px;"></a>
+            <a href="${root}/novelhome/upload.do"><img src ="${root}/images/upbar/write.jpg" style="width:35px; height:30px; margin-right:20px;"></a>
             <!--프로필-->
-            <a href=""><img src ="${root}/images/profile.jpg" style="width:35px; height:30px; margin-left:10px;"></a>
+            <a href=""><img src ="${root}/images/upbar/profile.jpg" style="width:35px; height:30px; margin-left:10px;"></a>
             <div class="dropdown">
-                <span class="dropbtn"><img src="${root}/images/down.jpg"
+                <span class="dropbtn"><img src="${root}/images/upbar/down.jpg"
                     style="width:20px; height:20px; margin-left:-2px;"></span>
                 <div class="dropdown-content">
                   <a href="#">즐겨찾기 목록</a>
