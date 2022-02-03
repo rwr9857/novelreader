@@ -63,6 +63,7 @@ ul{
 	overflow:visible;
 	
 	border:1px solid #0000;
+	margin-bottom: 200px;
 }
 
 #inner_box .profile_info{
@@ -402,7 +403,7 @@ ul{
 
 .page{
 	border:0px solid red;	
-	margin-top:50px;
+	margin-top:100px;
 	text-align: center;
 	margin-bottom:200px;
 }

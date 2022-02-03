@@ -1,6 +1,9 @@
 package com.java.notice.service;
 
+import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -29,5 +32,45 @@ public class NoticeServiceImp implements NoticeService {
 		
 		mav.setViewName("notice/questionWriteOk");
 	}
+	
+	@Override
+	public void question(ModelAndView mav) {
+		Map<String, Object> map = mav.getModelMap();
+		HttpServletRequest request = (HttpServletRequest) map.get("request");
+		
+		int m_num = Integer.parseInt(request.getParameter("m_num"));
+		String pageNumber = request.getParameter("pageNumber");
+		
+		if (pageNumber == null)
+			pageNumber = "1";
+		
+		int currentPage = Integer.parseInt(pageNumber);
+		LogAspect.logger.info(LogAspect.LogMsg + "현재 페이지 : " +currentPage);
 
+		// 한페이지당 게시물 10개/ start 1, end 10
+		int listSize = 20;
+		int startRow = (currentPage - 1) * listSize + 1;
+		int endRow = currentPage * listSize;
+		
+		
+		List<QuestionDto> questionList = noticeDao.selectQuestion(m_num, startRow, endRow);
+		
+		int questionCount = noticeDao.selectQuestionCount(m_num);
+		
+		System.out.println(" 개수 " + questionCount);
+		
+		
+		
+		mav.addObject("listSize", listSize);
+		mav.addObject("questionList", questionList);
+		mav.addObject("questionCount", questionCount);
+		mav.addObject("pageNumber",currentPage);
+		mav.addObject("m_num",m_num);
+				
+		mav.setViewName("notice/question.tiles");
+	}
+	
+	
+	
+	
 }

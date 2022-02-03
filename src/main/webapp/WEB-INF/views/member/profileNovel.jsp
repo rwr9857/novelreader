@@ -54,10 +54,12 @@
 			<div id="inner_box">
 				<div class="profile_info">
 					<div class="profile_left_box">
+						
 						<c:if test="${memberDto.m_photo_path == null}">
 							<img class="profile_image" alt="기본값" src="${root}/images/profile_default.png"
 								onclick="">
 						</c:if>
+						
 						<c:if test="${memberDto.m_photo_path != null}">
 							<img class="profile_image" alt="프로필사진" src="${root}/images/????"
 								onclick="">
@@ -155,6 +157,7 @@
 									</c:if>
 								</div>
 							</div>
+							
 							<div class="tr">
 								<div class="td1">거주지</div>
 								<div class="td2">
@@ -166,6 +169,7 @@
 									</c:if>
 								</div>
 							</div>
+							
 							<div class="tr">
 								<div class="td1">생일</div>
 								<div class="td2">
@@ -192,7 +196,7 @@
 							<div class="novel_inner">
 								<div class="titleNdate">
 									<div class="title">모르는 만화에 빙의했다</div>
-
+								
 									<div class="date">2021.02.23</div>
 								</div>
 								

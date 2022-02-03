@@ -74,12 +74,27 @@
 							<div class="td2">
 								<c:if test="${memberDto.m_photo_path == null}">
 								<img class="profile_image" alt="기본값" src="${root}/images/profile_default.png"
-									onclick="">
+									onclick="" style="float:left;">
 								</c:if>
 								<c:if test="${memberDto.m_photo_path != null}">
-									<img class="profile_image" alt="프로필사진" src="${root}/images/????"
-										onclick="">
+								<img class="profile_image" alt="프로필사진" src="${root}/images/????"
+									onclick="" style="float:left;">
 								</c:if>
+								
+								<div class="imageUpload" onclick="imageUpload()">업로드</div>
+								<div class="imageDelete" onclick="imageDelete()">삭제</div>
+								
+								<script type="text/javascript">
+									
+									function imageUpload(){
+										
+									}
+									
+									function imageDelete(){
+										
+									}
+									
+								</script>
 							</div>
 						</div>
 						

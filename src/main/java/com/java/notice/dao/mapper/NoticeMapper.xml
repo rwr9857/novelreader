@@ -13,4 +13,27 @@
 			sysdate,
 			#{q_category ,jdbcType=VARCHAR})
 		</insert>
+		
+		
+		
+		
+		<select id="selectQuestion" parameterType="java.util.HashMap" resultType="com.java.notice.dto.QuestionDto">
+			<![CDATA[
+			
+				SELECT * FROM
+					(SELECT q_num, m_num, q_title, q_content, q_viewcount, q_time, q_category, ROWNUM rnum FROM question WHERE m_num=#{m_num} ORDER BY q_num DESC)
+				WHERE rnum>=#{startRow} AND rnum<=#{endRow}
+				
+			]]>
+		</select>
+		
+		<select id="selectQuestionCount" parameterType="int" resultType="int">
+			<![CDATA[
+				SELECT COUNT(*) FROM question WHERE m_num = #{m_num}
+			]]>
+		</select>
+		
+		
+		
+				
     </mapper>

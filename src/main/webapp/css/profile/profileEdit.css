@@ -217,6 +217,33 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#113b7f', end
 	font-size:18px;
 }
 
+.content_inner .td2 .imageUpload, .content_inner .td2 .imageDelete{
+	background:#2254ca; 
+	width:60px; 
+	height:30px; 
+	float:left; 
+	color:#ffffff; 
+	text-align: center;
+	
+	margin-left:10px;
+	
+	line-height: 30px;
+	
+	border-radius:15px;
+	
+	cursor: pointer;	
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
