@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="${root}/css/manager/menu.css">
+<link rel="stylesheet" href="${root}/css/manager/header.css">
 <title>Document</title>
 </head>
 <body>
@@ -41,7 +41,7 @@
 			<details id="details">
 				<summary class="summary">게시물관리</summary>
 				<ul class="summary_ul" style="margin-top: 10px;">
-					<a href="${root}/manager/memberPost">회원 게시물</a>
+					<a href="${root}/manager/memberPost.do">회원 게시물</a>
 				</ul>
 				<ul class="summary_ul">
 					<a href="${root}/manager/Notice.do">공지사항</a>
@@ -58,7 +58,7 @@
 			<details id="details">
 				<summary class="summary">소설카테고리관리</summary>
 				<ul class="summary_ul" style="margin-top: 10px;">
-					<a href="${root}/manager/categoryCheck.do">카테고리 조회</a>
+					<a href="${root}/manager/categoryView.do">카테고리 조회</a>
 				</ul>
 				<ul class="summary_ul">
 					<a href="${root}/manager/categoryDelete.do">카테고리 삭제</a>

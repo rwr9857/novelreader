@@ -1,5 +1,7 @@
 package com.java.manager.controller;
 
+
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -9,12 +11,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.java.manager.service.ManagerService;
 import com.java.member.service.MemberService;
 
 @Controller
 public class managerController {
 	@Autowired
 	private MemberService memberService;
+	
+	@Autowired
+	private ManagerService managerService;
 	
 	@RequestMapping(value = "/manager/menu.do", method = RequestMethod.GET)
 	  public ModelAndView managerMenu(HttpServletRequest request, HttpServletResponse response) {	
@@ -49,4 +55,55 @@ public class managerController {
 	  public ModelAndView managerReportComment(HttpServletRequest request, HttpServletResponse response) {
 	    return new ModelAndView("manager/reportComment.tiles1");
 	  }
+	
+
+
+	@RequestMapping(value = "/manager/memberPost.do", method = RequestMethod.GET)
+	public ModelAndView managerMemberPost(HttpServletRequest request, HttpServletResponse response) {
+		return new ModelAndView("manager/memberPost.tiles1");
+	}
+
+	@RequestMapping(value = "/manager/Notice.do", method = RequestMethod.GET)
+	public ModelAndView managerNotice(HttpServletRequest request, HttpServletResponse response) {
+		return new ModelAndView("manager/notice.tiles1");
+	}
+
+	@RequestMapping(value = "/manager/questionInformation.do", method = RequestMethod.GET)
+	public ModelAndView managerQuestion(HttpServletRequest request, HttpServletResponse response) {
+		return new ModelAndView("manager/questionInformation.tiles1");
+	}
+
+	@RequestMapping(value = "/manager/question.do", method = RequestMethod.GET)
+	public ModelAndView managerQuestionInformation(HttpServletRequest request, HttpServletResponse response) {
+		return new ModelAndView("manager/question.tiles1");
+	}
+
+	@RequestMapping(value = "/manager/categoryView.do", method = RequestMethod.GET)
+	public ModelAndView managerCategoryView(HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("request", request);
+		managerService.categoryList(mav);
+
+		return mav;
+	}
+
+	@RequestMapping(value = "/manager/categoryWrite.do", method = RequestMethod.POST)
+	  public String managerCategoryWrite(HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mav = new ModelAndView();
+	    mav.addObject("request", request);
+	    mav.addObject("response", response);
+	    
+		managerService.categoryWrite(mav);
+	    return null;
+	  }
+
+	@RequestMapping(value = "/manager/categoryDelete.do", method = RequestMethod.GET)
+	public ModelAndView managerCategoryDelete(HttpServletRequest request, HttpServletResponse response) {
+		return new ModelAndView("manager/categoryDelete.tiles1");
+	}
+
+	@RequestMapping(value = "/manager/authorManage.do", method = RequestMethod.GET)
+	public ModelAndView managerAuthorManage(HttpServletRequest request, HttpServletResponse response) {
+		return new ModelAndView("manager/authorManage.tiles1");
+	}
 }

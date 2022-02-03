@@ -17,7 +17,7 @@
 		<c:set var="nicknameSess" value="${nicknameSess}" scope="session" />
 
 		<script type="text/javascript">
-			alert("로그인 성공${nicknameSess}");
+			alert("로그인 성공[${nicknameSess}]");
 			location.href = "/novelreader";
 		</script>
 	</c:if>

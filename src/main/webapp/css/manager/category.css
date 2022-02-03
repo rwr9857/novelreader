@@ -1,0 +1,36 @@
+
+.container {
+	width: 100px;
+	height: 100px;
+	cursor: pointer;
+	perspective: 100rem;
+}
+.card {
+	/*webkit을 사용해야지 사파리에서도 정상적으로 동작함*/
+	width: 100px;
+	height: 50px;
+	-webkit-backface-visibility: hidden;
+	-webkit-transform: translate3d(0,0,0);
+	-webkit-perspective: 0;
+	-webkit-transition: 1s;
+	backface-visibility: hidden; /*뒷면 숨기기*/
+	visibility: visible;
+	transition: 1s;
+}
+.front {
+	position: absolute;
+	background: blanchedalmond;
+	transform: rotateY(0deg);
+}
+.back {
+	background: white;
+	transform: rotateY(-180deg);
+}
+.container:hover .front {
+	transform: rotateY(180deg);
+	/*y축을 기준으로 180도까지회전*/
+}
+.container:hover .back {
+	transform: rotateY(0deg);
+	/*y축을 기준으로 0도 까지회전*/
+}
