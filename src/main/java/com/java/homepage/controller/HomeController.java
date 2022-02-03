@@ -1,4 +1,4 @@
-package com.java.homepage;
+package com.java.homepage.controller;
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -18,7 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	  public ModelAndView home(HttpServletRequest request, HttpServletResponse response,Locale locale) {
+	public ModelAndView index(HttpServletRequest request, HttpServletResponse response,Locale locale) {
 
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
@@ -27,8 +27,16 @@ public class HomeController {
 
 		request.setAttribute("serverTime", formattedDate);
 	    return new ModelAndView("index.tiles");
-	  }
+	 }
 	
-
+	@RequestMapping(value = "/novel/top10.do", method = RequestMethod.GET)
+	  public ModelAndView top10(HttpServletRequest request, HttpServletResponse response) {
+	    return new ModelAndView("home/top10.tiles");
+	}
+	
+	@RequestMapping(value = "/novel/ranking.do", method = RequestMethod.GET)
+	  public ModelAndView ranking(HttpServletRequest request, HttpServletResponse response) {
+	    return new ModelAndView("home/ranking.tiles");
+	}
 	
 }
