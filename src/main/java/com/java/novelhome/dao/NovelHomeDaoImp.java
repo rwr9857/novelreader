@@ -46,19 +46,11 @@ public class NovelHomeDaoImp implements NovelHomeDao {
 		hMap.put("n_num", n_num);
 		return sqlSessionTemplate.selectList("novelPostList", hMap);
 	}
-	
+
+
 	@Override
-	public int novelCount(int m_num) {				//한 사람의 소설 개수
-		return sqlSessionTemplate.selectOne("novelCount",m_num);
-	}
-	
-	@Override
-	public List<NovelHomeDto> novelListMember(int startRow, int endRow, int m_num) {	//한 사람의 소설 리스트
-		HashMap<String, Integer> hMap = new HashMap<String, Integer>();
-		hMap.put("startRow", startRow);
-		hMap.put("endRow", endRow);
-		hMap.put("m_num", m_num);
-		return sqlSessionTemplate.selectList("novelListMember",hMap);
+	public String getNickname(int n_num) {
+		return sqlSessionTemplate.selectOne("getNickname", n_num);
 	}
 	
 }
