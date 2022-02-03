@@ -79,7 +79,7 @@
 				<details>
 					<summary class="summary_1">알림 조회</summary>
 					<ul class="summary_ul2" style="margin-top: 5px;">
-						<a href="${root}/manager/AlarmCheck.do">보낸 알림 조회</a>
+						<a href="${root}/manager/alarmCheck.do">보낸 알림 조회</a>
 					</ul>
 					<ul class="summary_ul2">
 						<a href="${root}/manager/savedAlarm.do">보관된 알림</a>

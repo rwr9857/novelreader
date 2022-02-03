@@ -30,7 +30,6 @@ import com.java.aop.LogAspect;
 import com.java.member.dao.MemberDao;
 import com.java.member.dto.MemberDto;
 import com.java.novelhome.dao.NovelHomeDao;
-import com.java.novelhome.dto.NovelHomeDto;
 
 @Component
 public class MemberServiceImp implements MemberService {

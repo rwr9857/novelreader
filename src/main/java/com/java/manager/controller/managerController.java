@@ -43,7 +43,20 @@ public class managerController {
 	
 	@RequestMapping(value = "/manager/memberDelete.do", method = RequestMethod.GET)
 	  public ModelAndView managerMemberDelete(HttpServletRequest request, HttpServletResponse response) {
-	    return new ModelAndView("manager/memberDelete.tiles1");
+		ModelAndView mav = new ModelAndView();
+	    mav.addObject("request", request);
+	    
+	    managerService.memberDelete(mav);
+	    return mav;
+	  }
+	
+	@RequestMapping(value = "/manager/memberDeleteOk.do", method = RequestMethod.POST)
+	  public ModelAndView managerMemberDeleteOk(HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mav = new ModelAndView();
+	    mav.addObject("request", request);
+	    
+	    managerService.memberDeleteOk(mav);
+	    return mav;
 	  }
 	
 	@RequestMapping(value = "/manager/reportPost.do", method = RequestMethod.GET)
@@ -103,6 +116,27 @@ public class managerController {
 	public ModelAndView managerCategoryDelete(HttpServletRequest request, HttpServletResponse response) {
 		return new ModelAndView("manager/categoryDelete.tiles1");
 	}
+	
+	@RequestMapping(value = "/manager/indiAlarm.do", method = RequestMethod.GET)
+	public ModelAndView managerIndiAlarm(HttpServletRequest request, HttpServletResponse response) {
+		return new ModelAndView("manager/indiAlarm.tiles1");
+	}
+	
+	@RequestMapping(value = "/manager/entireAlarm.do", method = RequestMethod.GET)
+	public ModelAndView managerEntireAlarm(HttpServletRequest request, HttpServletResponse response) {
+		return new ModelAndView("manager/entireAlarm.tiles1");
+	}
+	
+	@RequestMapping(value = "/manager/alarmCheck.do", method = RequestMethod.GET)
+	public ModelAndView managerAlarmCheck(HttpServletRequest request, HttpServletResponse response) {
+		return new ModelAndView("manager/alarmCheck.tiles1");
+	}
+	
+	@RequestMapping(value = "/manager/savedAlarm.do", method = RequestMethod.GET)
+	public ModelAndView managerSavedAlarm(HttpServletRequest request, HttpServletResponse response) {
+		return new ModelAndView("manager/savedAlarm.tiles1");
+	}
+	
 
 	@RequestMapping(value = "/manager/authorManage.do", method = RequestMethod.GET)
 	public ModelAndView managerAuthorManage(HttpServletRequest request, HttpServletResponse response) {
