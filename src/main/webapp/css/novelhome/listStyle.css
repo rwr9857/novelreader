@@ -1,0 +1,168 @@
+* {
+	list-style: none;
+	text-decoration: none;
+	border-collapse: collapse;
+	margin: 0px;
+	padding: 0px;
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+#wrap {
+	width: 1300px;
+	margin: 0 auto;
+}
+
+#wrap button {
+	margin-left: 8px;
+}
+
+h1 {
+	font-size: 30px;
+	font-family: 'Jua', sans-serif;
+}
+
+.upbox {
+	display: flex;
+}
+
+.leftbox button {
+	width: 180px;
+	height: 40px;
+	margin-top: 10px;
+	background: black;
+	color: white;
+	text-align: center;
+	margin-left: -8px;
+}
+
+.leftbox img {
+	width: 180px;
+	height: 250px;
+}
+
+.rightbox {
+	margin-left: 40px;
+}
+
+.right_up {
+	display: flex;
+}
+
+.right_up_span {
+	background: rgb(255, 255, 255);
+	color: rgb(51, 51, 51);
+	border-radius: 10px;
+	border: 0.5px solid rgb(44, 44, 44);
+	height: 25px;
+	padding: 0px;
+	margin-left: 730px;
+	text-align: center;
+	cursor: pointer;
+}
+
+.right_up2 {
+	margin-top: 5px;
+}
+
+.right_up2 h3 {
+	font-size: 18px;
+}
+
+.right_up2_span {
+	background: rgb(66, 28, 156);
+	margin-top: -3px;
+	color: white;
+	border-radius: 15px;
+	text-align: center;
+	margin-left: 5px;
+	padding: 3px;
+	height: 25px;
+	font-size: 15px;
+	cursor: pointer;
+}
+
+.right_up2 {
+	display: flex;
+}
+
+.right_up2 button {
+	height: 20px;
+	background: #0096fa;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	padding: 3px;
+	text-align: center;
+}
+
+.right_up2 h3 {
+	font-size: 17px;
+}
+
+.right_middle {
+	display: flex;
+	margin-top: 30px;
+}
+
+.right_middle img {
+	width: 15px;
+	height: 15px;
+	margin-left: 10px;
+}
+
+.right_middle h3 {
+	font-size: 15px;
+}
+
+.right_bottom {
+	display: flex;
+	margin-top: 50px;
+}
+
+.right_bottom2 {
+	display: flex;
+	margin-top: 30px;
+}
+
+.right_bottom2 h3 {
+	font-size: 16px;
+}
+
+.right_bottom2 span {
+	height: 30px;
+	color: blue;
+	font-size: 15px;
+	margin-bottom: 10px;
+	border: 2px solid blue;
+	border-radius: 20px;
+	margin: 5px;
+	margin-top: -5px;
+	text-align: center;
+	padding: 2px;
+}
+
+.bottombox {
+	margin-top: 100px;
+}
+
+.bottom_up {
+	width: 800px;
+	display: flex;
+	border-bottom: 2px solid;
+	padding-bottom: 20px;
+}
+
+.bottom_up h3 {
+	font-weight: bold;
+}
+
+.bottom_up span {
+	border: 1px solid rgb(19, 19, 19);
+	margin-top: 30px;
+	margin-left: 600px;
+	font-weight: bold;
+	width: 40px;
+	height: 30px;
+	text-align: center;
+	cursor: pointer;
+}
