@@ -16,26 +16,27 @@
 		<form name="novelhomeForm" action="${root}/novelhome/uploadOk.do"
 			method="post" enctype="multipart/form-data">
 		
-			<div id="nhAll">
+			<div class="wrap">
 				<!-- 표지 -->
-				<div class="nhF1">
-					<div class="nhF2">
+				<div class="img">
+					<div class="img_box">
 						<div class="image_container"></div>
+					</div>
 						<input type="file" id="image" accept="image/*" name="file" size="40"
 							onchange="setThumbnail(event);" />
 						
-					</div>
+					
 				</div>
 				<!-- 소설 -->
-				<div class="nhF2">
-					<div class="nhF21">
-						<textarea rows="4" cols="80" name="n_title" placeholder="소설 제목(필수)"></textarea>
+				<div class="box">
+					<div class="title2">
+						<textarea rows="2" cols="80" name="n_title" placeholder="소설 제목(필수)"></textarea>
 					</div>
-					<div class="nhF21">
-						<textarea rows="10" cols="80" name="n_summary"
+					<div class="content">
+						<textarea rows="6" cols="80" name="n_summary"
 							placeholder="소설 줄거리(선택)"></textarea>
 					</div>
-					<div class="nhF21">
+					<div class="submit">
 						<input type="submit" value="소설투고" />
 					</div>
 				</div>
