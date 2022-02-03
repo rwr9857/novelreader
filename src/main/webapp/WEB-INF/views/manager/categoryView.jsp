@@ -13,7 +13,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="${root}/css/manager/body.css">
     <link rel="stylesheet" href="${root}/css/manager/category.css">
+
 
     <script type="text/javascript" src="${root}/javascript/xhr/xhr.js"></script>
     <script type="text/javascript" src="${root}/javascript/manager/categoryWrite.js"></script>
@@ -21,7 +23,7 @@
     <title>Insert title here</title>
 </head>
 <body>
-<div style="margin-left: 265px; margin-top: 0px; border: 1px solid black; height: 1100px; background: rgb(234, 240, 253);overflow: scroll;">
+<div class="field">
     <div class="menuText">
         <h1>소설 카테고리 관리</h1>
         <h3>
@@ -49,13 +51,13 @@
         <c:set var="lastIndex" value="${fn:length(categoryList)}"/>
         <!-- 새로운 카테고리 ajax -->
         
-        <div class="container" style="position: absolute; margin-left: ${(lastIndex % 4)*300}px; margin-top:${Math.floor(lastIndex / 4)*100}px">
+        <div id="add" class="container" style="position: absolute; margin-left: ${(lastIndex % 4)*300}px; margin-top:${Math.floor(lastIndex / 4)*100}px">
         	<div class="front card">
             	<p>추가</p>
         	</div>
         	<div class="back card">
             	<input style="width:90px;" id="writeCategory" type="text" size="45" name="writer"
-                   onkeydown="javascript:if(event.keyCode==13) {writeToServer('${root}');}"/>
+                   onkeydown="javascript:if(event.keyCode==13) {writeToServer('${root}','${lastIndex}');}"/>
         	</div>
     	</div>
     	

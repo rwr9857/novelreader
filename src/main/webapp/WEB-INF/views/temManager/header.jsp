@@ -41,7 +41,7 @@
 			<details id="details">
 				<summary class="summary">게시물관리</summary>
 				<ul class="summary_ul" style="margin-top: 10px;">
-					<a href="${root}/manager/memberPost">회원 게시물</a>
+					<a href="${root}/manager/memberPost.do">회원 게시물</a>
 				</ul>
 				<ul class="summary_ul">
 					<a href="${root}/manager/Notice.do">공지사항</a>

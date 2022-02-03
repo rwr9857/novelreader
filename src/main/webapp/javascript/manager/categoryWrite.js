@@ -1,7 +1,15 @@
 var root = null;
+var lastIndex = null;
+var inc_num = null;
 
-function writeToServer(requestRoot) {
+function writeToServer(requestRoot,index, increase) {
 	root = requestRoot;
+	lastIndex = Number(index);
+	inc_num = increase;
+
+	// console.log(lastIndex);
+	// console.log(number);
+	console.log(lastIndex + inc_num);
 
 	var writeCategory = document.getElementById("writeCategory").value;
 
@@ -30,6 +38,7 @@ function writeFromServer() {
 		/*애니메이션 용 카드 생성*/
 		var container = document.createElement("div");
 		container.className = "container";
+		container.style.cssText =  "position: absolute; margin-left: "+ (lastIndex % 4)*300 +"px;"+  "margin-top: "+ Math.floor(lastIndex / 4)*100 +"px";
 
 		var front = document.createElement("div");
 		front.className = "front card";
@@ -66,6 +75,7 @@ function writeFromServer() {
 		container.appendChild(back);
 
 		listAllDiv.insertBefore(container, null);
+		document.getElementById("add").style.cssText =  "position: absolute; margin-left: "+ ((lastIndex+1) % 4)*300 +"px;" + "margin-top: "+ Math.floor(lastIndex / 4)*100 +"px";
 
 	}
 }

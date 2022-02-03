@@ -56,15 +56,37 @@ public class managerController {
 	    return new ModelAndView("manager/reportComment.tiles1");
 	  }
 	
+
+
+	@RequestMapping(value = "/manager/memberPost.do", method = RequestMethod.GET)
+	public ModelAndView managerMemberPost(HttpServletRequest request, HttpServletResponse response) {
+		return new ModelAndView("manager/memberPost.tiles1");
+	}
+
+	@RequestMapping(value = "/manager/Notice.do", method = RequestMethod.GET)
+	public ModelAndView managerNotice(HttpServletRequest request, HttpServletResponse response) {
+		return new ModelAndView("manager/notice.tiles1");
+	}
+
+	@RequestMapping(value = "/manager/questionInformation.do", method = RequestMethod.GET)
+	public ModelAndView managerQuestion(HttpServletRequest request, HttpServletResponse response) {
+		return new ModelAndView("manager/questionInformation.tiles1");
+	}
+
+	@RequestMapping(value = "/manager/question.do", method = RequestMethod.GET)
+	public ModelAndView managerQuestionInformation(HttpServletRequest request, HttpServletResponse response) {
+		return new ModelAndView("manager/question.tiles1");
+	}
+
 	@RequestMapping(value = "/manager/categoryView.do", method = RequestMethod.GET)
-	  public ModelAndView managerCategoryView(HttpServletRequest request, HttpServletResponse response) {
+	public ModelAndView managerCategoryView(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("request", request);
 		managerService.categoryList(mav);
-		return mav;
 
-	  }
-	
+		return mav;
+	}
+
 	@RequestMapping(value = "/manager/categoryWrite.do", method = RequestMethod.POST)
 	  public String managerCategoryWrite(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView();
@@ -74,4 +96,14 @@ public class managerController {
 		managerService.categoryWrite(mav);
 	    return null;
 	  }
+
+	@RequestMapping(value = "/manager/categoryDelete.do", method = RequestMethod.GET)
+	public ModelAndView managerCategoryDelete(HttpServletRequest request, HttpServletResponse response) {
+		return new ModelAndView("manager/categoryDelete.tiles1");
+	}
+
+	@RequestMapping(value = "/manager/authorManage.do", method = RequestMethod.GET)
+	public ModelAndView managerAuthorManage(HttpServletRequest request, HttpServletResponse response) {
+		return new ModelAndView("manager/authorManage.tiles1");
+	}
 }
