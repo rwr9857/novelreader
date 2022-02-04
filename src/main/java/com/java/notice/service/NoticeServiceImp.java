@@ -48,7 +48,7 @@ public class NoticeServiceImp implements NoticeService {
 		LogAspect.logger.info(LogAspect.LogMsg + "현재 페이지 : " +currentPage);
 
 		// 한페이지당 게시물 10개/ start 1, end 10
-		int listSize = 20;
+		int listSize = 10;
 		int startRow = (currentPage - 1) * listSize + 1;
 		int endRow = currentPage * listSize;
 		
@@ -64,7 +64,7 @@ public class NoticeServiceImp implements NoticeService {
 		mav.addObject("listSize", listSize);
 		mav.addObject("questionList", questionList);
 		mav.addObject("questionCount", questionCount);
-		mav.addObject("pageNumber",currentPage);
+		mav.addObject("currentPage",currentPage);
 		mav.addObject("m_num",m_num);
 				
 		mav.setViewName("notice/question.tiles");

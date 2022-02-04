@@ -11,7 +11,7 @@
 	<c:if test="${check > 0}">
 		<script type="text/javascript">
 			alert("입력이 완료 되었습니다.");
-			location.href = "${root}/notice/question.do";
+			location.href = "${root}/notice/question.do?m_num=${numSess}";
 		</script>
 	</c:if>
 

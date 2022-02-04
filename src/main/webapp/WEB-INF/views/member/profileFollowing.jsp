@@ -56,7 +56,7 @@
 								onclick="">
 						</c:if>
 						<c:if test="${memberDto.m_photo_path != null}">
-							<img class="profile_image" alt="프로필사진" src="${root}/images/????"
+							<img class="profile_image" alt="프로필사진" src="${root}/memberfile/${memberDto.m_photo_name}"
 								onclick="">
 						</c:if>
 						
@@ -183,43 +183,42 @@
 				
 				<%-- 팔로잉 리스트 --%>
 				<div class="content">
-					listSize: ${listSize}/ currentPage: ${currentPage}/ followingList.size():${followingList.size()}/ profileFollowingCount:${profileFollowingCount}
-						<div class="follow_list" id="following_list">
-							<c:if test="${followingList.size() > 0}">
-								<span class="menu">팔로잉</span>
-							</c:if>
-							<c:if test="${followingList.size() == null || followingList.size() == 0}">
-								<span class="menu">팔로잉 목록이 없습니다</span>
-							</c:if>
-							
-							<c:forEach var="profileFollowing" items="${followingList}">
-								<form action="${root}/member/following_followDelete.do" method="post" id="following_followDelete">
-									
-									<input type="hidden" name="numSess" value="${numSess}">
-									<input type="hidden" name="numDel" value="${profileFollowing.m_num}">
-									<input type="hidden" name="nickname" value="${memberDto.m_nickname}">	
-									<input type="hidden" name="pageNumber" value="${currentPage}">
+					<div class="follow_list" id="following_list">
+						<c:if test="${followingList.size() > 0}">
+							<span class="menu">팔로잉</span>
+						</c:if>
+						<c:if test="${followingList.size() == null || followingList.size() == 0}">
+							<span class="menu">팔로잉 목록이 없습니다</span>
+						</c:if>
+						
+						<c:forEach var="profileFollowing" items="${followingList}">
+							<form action="${root}/member/following_followDelete.do" method="post" id="following_followDelete">
 								
-									<div class="list">
-										<c:if test="${profileFollowing.m_photo_path!=null}">
-											<img alt="이미지 준비중" src="${profileFollowing.m_photo_path}" class="profile_img" onclick="goToProfile('${root}','${profileFollowing.m_nickname}')">
-										</c:if>
-										<c:if test="${profileFollowing.m_photo_path==null}">
-											<img alt="기본값" src="${root}/images/profile/profile_default.png" class="profile_img" onclick="goToProfile('${root}','${profileFollowing.m_nickname}')">
-										</c:if>									
-										<div class="follow_nickname" onclick="goToProfile('${root}','${profileFollowing.m_nickname}')">${profileFollowing.m_nickname}</div>
-										
-										<c:if test="${numSess == memberDto.m_num}">
-											<img alt="x" src="${root}/images/profile/x_icon.png" class="follow_delete"
-                                                 onclick="deleteFollower('${root}/member/following_followDelete.do', {'numSess':'${memberDto.m_num}','nickname':'${memberDto.m_nickname}','pageNumber':'${currentPage}','numDel':'${profileFollowing.m_num}'})">
-										</c:if>
-									</div>
+								<input type="hidden" name="numSess" value="${numSess}">
+								<input type="hidden" name="numDel" value="${profileFollowing.m_num}">
+								<input type="hidden" name="nickname" value="${memberDto.m_nickname}">	
+								<input type="hidden" name="pageNumber" value="${currentPage}">
+							
+								<div class="list">
+									<c:if test="${profileFollowing.m_photo_path!=null}">
+										<img alt="이미지 준비중" src="${root}/memberfile/${profileFollowing.m_photo_name}" class="profile_img" onclick="goToProfile('${root}','${profileFollowing.m_nickname}')">
+									</c:if>
+									<c:if test="${profileFollowing.m_photo_path==null}">
+										<img alt="기본값" src="${root}/images/profile/profile_default.png" class="profile_img" onclick="goToProfile('${root}','${profileFollowing.m_nickname}')">
+									</c:if>									
+									<div class="follow_nickname" onclick="goToProfile('${root}','${profileFollowing.m_nickname}')">${profileFollowing.m_nickname}</div>
 									
+									<c:if test="${numSess == memberDto.m_num}">
+										<img alt="x" src="${root}/images/profile/x_icon.png" class="follow_delete"
+                                                onclick="deleteFollower('${root}/member/following_followDelete.do', {'numSess':'${memberDto.m_num}','nickname':'${memberDto.m_nickname}','pageNumber':'${currentPage}','numDel':'${profileFollowing.m_num}'})">
+									</c:if>
+								</div>
+								
 
-									
-								</form>
-							</c:forEach>
-						</div>
+								
+							</form>
+						</c:forEach>
+					</div>
 				</div>
 				
 				<c:if test="${followingList.size()==0 && profileFollowingCount>0}">
@@ -296,13 +295,6 @@
 					
 					
 					
-					<br/><br/>
-					<div>
-						총 페이지 수 : ${pageCount}
-						시작 페이지 번호 : ${startPage}
-						끝 페이지 번호 : ${endPage}
-					</div>
-				
 				</div>
 			</div>
 		</div>

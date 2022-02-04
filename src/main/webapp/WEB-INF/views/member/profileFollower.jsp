@@ -58,7 +58,7 @@
 								onclick="">
 						</c:if>
 						<c:if test="${memberDto.m_photo_path != null}">
-							<img class="profile_image" alt="프로필사진" src="${root}/images/????"
+							<img class="profile_image" alt="프로필사진" src="${root}/memberfile/${memberDto.m_photo_name}"
 								onclick="">
 						</c:if>
 						
@@ -184,34 +184,33 @@
 				
 				<%-- 팔로워 리스트 --%>
 				<div class="content">
-					listSize: ${listSize}/ currentPage: ${currentPage}/ followerList.size():${followerList.size()}/ profileFollowerCount:${profileFollowerCount}
-						<div class="follow_list" id="follower_list">
-							<c:if test="${followerList.size() > 0}">
-								<span class="menu">팔로워</span>
-							</c:if>
-							<c:if test="${followerList.size() == null || followerList.size() == 0}">
-								<span class="menu">팔로워 목록이 없습니다</span>
-							</c:if>
+					<div class="follow_list" id="follower_list">
+						<c:if test="${followerList.size() > 0}">
+							<span class="menu">팔로워</span>
+						</c:if>
+						<c:if test="${followerList.size() == null || followerList.size() == 0}">
+							<span class="menu">팔로워 목록이 없습니다</span>
+						</c:if>
+						
+						<c:forEach var="profileFollower" items="${followerList}">
 							
-							<c:forEach var="profileFollower" items="${followerList}">
 								
+								<div class="list">
+									<c:if test="${profileFollower.m_photo_path!=null}">
+										<img alt="이미지 준비중" src="${root}/memberfile/${profileFollower.m_photo_name}" class="profile_img" onclick="goToProfile('${root}','${profileFollower.m_nickname}')">
+									</c:if>
+									<c:if test="${profileFollower.m_photo_path==null}">
+										<img alt="기본값" src="${root}/images/profile/profile_default.png" class="profile_img" onclick="goToProfile('${root}','${profileFollower.m_nickname}')">
+									</c:if>									
+									<div class="follow_nickname" onclick="goToProfile('${root}','${profileFollower.m_nickname}')">${profileFollower.m_nickname}</div>
 									
-									<div class="list">
-										<c:if test="${profileFollower.m_photo_path!=null}">
-											<img alt="이미지 준비중" src="${profileFollower.m_photo_path}" class="profile_img" onclick="goToProfile('${root}','${profileFollower.m_nickname}')">
-										</c:if>
-										<c:if test="${profileFollower.m_photo_path==null}">
-											<img alt="기본값" src="${root}/images/profile/profile_default.png" class="profile_img" onclick="goToProfile('${root}','${profileFollower.m_nickname}')">
-										</c:if>									
-										<div class="follow_nickname" onclick="goToProfile('${root}','${profileFollower.m_nickname}')">${profileFollower.m_nickname}</div>
-										
-										<c:if test="${numSess == memberDto.m_num}">
-											<img alt="x" src="${root}/images/profile/x_icon.png" class="follow_delete"
-                                                 onclick="deleteFollower('${root}/member/follower_followDelete.do', {'numSess':'${memberDto.m_num}','nickname':'${memberDto.m_nickname}','pageNumber':'${currentPage}','numDel':'${profileFollower.m_num}'})">
-										</c:if>
-									</div>
-							</c:forEach>
-						</div>
+									<c:if test="${numSess == memberDto.m_num}">
+										<img alt="x" src="${root}/images/profile/x_icon.png" class="follow_delete"
+                                                onclick="deleteFollower('${root}/member/follower_followDelete.do', {'numSess':'${memberDto.m_num}','nickname':'${memberDto.m_nickname}','pageNumber':'${currentPage}','numDel':'${profileFollower.m_num}'})">
+									</c:if>
+								</div>
+						</c:forEach>
+					</div>
 				</div>
 				
 				<c:if test="${followerList.size()==0 && profileFollowerCount>0}">
@@ -287,14 +286,6 @@
 						<a href="${root}/member/profileFollower.do?nickname=${memberDto.m_nickname}&pageNumber=${startPage+pageBlock}">[다음]</a>
 					</c:if>
 					
-					
-					
-					<br/><br/>
-					<div>
-						총 페이지 수 : ${pageCount}
-						시작 페이지 번호 : ${startPage}
-						끝 페이지 번호 : ${endPage}
-					</div>
 				
 				</div>
 				

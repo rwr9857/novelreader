@@ -24,7 +24,7 @@ ul{
 	top:30%;
 	left:10px;
 	border:0px solid red;
-	width:150px;
+	width:180px;
 	overflow:hidden;
 }
 
@@ -67,9 +67,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#113b7f', end
 	text-shadow: -1px 0 #617fd7, 0 1px #617fd7, 1px 0 #617fd7, 0 -1px #617fd7;
 	
 	margin-top:8px;
-	font-size: 22px;
+	font-size: 20px;
 	font-weight: 500;
-	padding-left:10px;
+	padding-left:15px;
 	
 }
 
@@ -160,13 +160,13 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#113b7f', end
 }
 
 
-.content_inner .table .tr .td2 img{
+.content_inner .table .tr .td2 > img{
 	height:100px;
 	width:100px;
 	
 	float:left;
 	
-	border:4px solid #001887;
+	border:0px solid #001887;
 	border-radius: 75px 75px 75px 75px;
 }
 
@@ -219,17 +219,17 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#113b7f', end
 
 .content_inner .td2 .imageUpload, .content_inner .td2 .imageDelete{
 	background:#2254ca; 
-	width:60px; 
-	height:30px; 
+	width:70px; 
+	height:40px; 
 	float:left; 
 	color:#ffffff; 
 	text-align: center;
 	
 	margin-left:10px;
 	
-	line-height: 30px;
+	border-radius:20px;
 	
-	border-radius:15px;
+	margin-top:30px;
 	
 	cursor: pointer;	
 }

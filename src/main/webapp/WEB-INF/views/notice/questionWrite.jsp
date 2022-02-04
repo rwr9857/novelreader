@@ -26,7 +26,7 @@
 				<a href="${root}/notice/faq.do">
 					<button>자주묻는질문</button>
 				</a>
-				<a href="${root}/notice/question.do">
+				<a href="${root}/notice/question.do?m_num=${numSess}">
 					<button style="background-color: #9fc5f8">문의하기</button>
 				</a>
 			</div>
@@ -41,9 +41,9 @@
 					<!-- 제목입력칸-->
 					<select name="q_category">
 						<optgroup label="카테고리">
-							<option value="service">서비스문의</option>
-							<option value="bug">버그문의</option>
-							<option value="singo">신고문의</option>
+							<option value="서비스문의">서비스문의</option>
+							<option value="버그문의">버그문의</option>
+							<option value="신고문의">신고문의</option>
 						</optgroup>
 					</select>
 
