@@ -42,7 +42,7 @@
             <h3 style ="margin-right : 100px;">이메일 수신여부</h3>
         </div>
         
-        	<c:if test="${count==0}">
+        <c:if test="${count==0}">
 			<div align="center">회원이 없습니다.</div>
 		</c:if>
 
@@ -103,15 +103,15 @@
 			</c:if>
 
 			<c:if test="${startPage > pageBlock}">
-				<a href="${root}/manager/memberView.do?pageNumber=${startPage - pageBlock}">[이전]</a>
+				<a href="${root}/manager/memberDelete.do?pageNumber=${startPage - pageBlock}">[이전]</a>
 			</c:if>
 
 			<c:forEach var="i" begin="${startPage}" end="${endPage}">
-				<a href="${root}/manager/memberView.do?pageNumber=${i}">[${i}]</a>
+				<a href="${root}/manager/memberDelete.do?pageNumber=${i}">[${i}]</a>
 			</c:forEach>
 
 			<c:if test="${endPage < pageCount}">
-				<a href="${root}/manager/memberView.do?pageNumber=${startPage + pageBlock}">[다음]</a>
+				<a href="${root}/manager/memberDelete.do?pageNumber=${startPage + pageBlock}">[다음]</a>
 			</c:if>
 		</div>
 		

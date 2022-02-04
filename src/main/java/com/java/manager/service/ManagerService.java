@@ -3,6 +3,8 @@ package com.java.manager.service;
 import org.springframework.web.servlet.ModelAndView;
 
 public interface ManagerService {
+	public void memberModify(ModelAndView mav);
+	
 	public void memberDelete(ModelAndView mav);
 	
 	public void memberDeleteOk(ModelAndView mav);

@@ -1,7 +1,5 @@
 package com.java.manager.controller;
 
-
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -18,58 +16,65 @@ import com.java.member.service.MemberService;
 public class managerController {
 	@Autowired
 	private MemberService memberService;
-	
+
 	@Autowired
 	private ManagerService managerService;
-	
-	@RequestMapping(value = "/manager/menu.do", method = RequestMethod.GET)
-	  public ModelAndView managerMenu(HttpServletRequest request, HttpServletResponse response) {	
-	    return new ModelAndView("manager/menu.tiles1");
-	  }
-	
-	@RequestMapping(value = "/manager/memberView.do", method = RequestMethod.GET)
-	  public ModelAndView managerMemberView(HttpServletRequest request, HttpServletResponse response) {
-		ModelAndView mav = new ModelAndView();
-	    mav.addObject("request", request);
-	    
-	    memberService.memberSelect(mav);
-	    return mav;
-	  }
-	
-	@RequestMapping(value = "/manager/memberModify.do", method = RequestMethod.GET)
-	  public ModelAndView managerMemberModify(HttpServletRequest request, HttpServletResponse response) {
-	    return new ModelAndView("manager/memberModify.tiles1");
-	  }
-	
-	@RequestMapping(value = "/manager/memberDelete.do", method = RequestMethod.GET)
-	  public ModelAndView managerMemberDelete(HttpServletRequest request, HttpServletResponse response) {
-		ModelAndView mav = new ModelAndView();
-	    mav.addObject("request", request);
-	    
-	    managerService.memberDelete(mav);
-	    return mav;
-	  }
-	
-	@RequestMapping(value = "/manager/memberDeleteOk.do", method = RequestMethod.POST)
-	  public ModelAndView managerMemberDeleteOk(HttpServletRequest request, HttpServletResponse response) {
-		ModelAndView mav = new ModelAndView();
-	    mav.addObject("request", request);
-	    
-	    managerService.memberDeleteOk(mav);
-	    return mav;
-	  }
-	
-	@RequestMapping(value = "/manager/reportPost.do", method = RequestMethod.GET)
-	  public ModelAndView managerReportPost(HttpServletRequest request, HttpServletResponse response) {
-	    return new ModelAndView("manager/reportPost.tiles1");
-	  }
-	
-	@RequestMapping(value = "/manager/reportComment.do", method = RequestMethod.GET)
-	  public ModelAndView managerReportComment(HttpServletRequest request, HttpServletResponse response) {
-	    return new ModelAndView("manager/reportComment.tiles1");
-	  }
-	
 
+	@RequestMapping(value = "/manager/menu.do", method = RequestMethod.GET)
+	public ModelAndView managerMenu(HttpServletRequest request, HttpServletResponse response) {
+		return new ModelAndView("manager/menu.tiles1");
+	}
+
+	@RequestMapping(value = "/manager/memberView.do", method = RequestMethod.GET)
+	public ModelAndView managerMemberView(HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("request", request);
+
+		memberService.memberSelect(mav);
+		return mav;
+	}
+
+	@RequestMapping(value = "/manager/memberModify.do", method = RequestMethod.GET)
+	public ModelAndView managerMemberModify(HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("request", request);
+
+		managerService.memberModify(mav);
+		return mav;
+	}
+
+	@RequestMapping(value = "/manager/memberUpdate.do", method = RequestMethod.GET)
+	public ModelAndView managerMemberUpdate(HttpServletRequest request, HttpServletResponse response) {
+		return new ModelAndView("manager/memberUpdate");
+	}
+
+	@RequestMapping(value = "/manager/memberDelete.do", method = RequestMethod.GET)
+	public ModelAndView managerMemberDelete(HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("request", request);
+
+		managerService.memberDelete(mav);
+		return mav;
+	}
+
+	@RequestMapping(value = "/manager/memberDeleteOk.do", method = RequestMethod.POST)
+	public ModelAndView managerMemberDeleteOk(HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("request", request);
+
+		managerService.memberDeleteOk(mav);
+		return mav;
+	}
+
+	@RequestMapping(value = "/manager/reportPost.do", method = RequestMethod.GET)
+	public ModelAndView managerReportPost(HttpServletRequest request, HttpServletResponse response) {
+		return new ModelAndView("manager/reportPost.tiles1");
+	}
+
+	@RequestMapping(value = "/manager/reportComment.do", method = RequestMethod.GET)
+	public ModelAndView managerReportComment(HttpServletRequest request, HttpServletResponse response) {
+		return new ModelAndView("manager/reportComment.tiles1");
+	}
 
 	@RequestMapping(value = "/manager/memberPost.do", method = RequestMethod.GET)
 	public ModelAndView managerMemberPost(HttpServletRequest request, HttpServletResponse response) {
@@ -80,7 +85,7 @@ public class managerController {
 	public ModelAndView managerNotice(HttpServletRequest request, HttpServletResponse response) {
 		return new ModelAndView("manager/notice.tiles1");
 	}
-	
+
 	@RequestMapping(value = "/manager/faq.do", method = RequestMethod.GET)
 	public ModelAndView managerQuestionInformation(HttpServletRequest request, HttpServletResponse response) {
 		return new ModelAndView("manager/faq.tiles1");
@@ -90,8 +95,6 @@ public class managerController {
 	public ModelAndView managerQuestion(HttpServletRequest request, HttpServletResponse response) {
 		return new ModelAndView("manager/question.tiles1");
 	}
-
-
 
 	@RequestMapping(value = "/manager/categoryView.do", method = RequestMethod.GET)
 	public ModelAndView managerCategoryView(HttpServletRequest request, HttpServletResponse response) {
@@ -103,40 +106,39 @@ public class managerController {
 	}
 
 	@RequestMapping(value = "/manager/categoryWrite.do", method = RequestMethod.POST)
-	  public String managerCategoryWrite(HttpServletRequest request, HttpServletResponse response) {
+	public String managerCategoryWrite(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView();
-	    mav.addObject("request", request);
-	    mav.addObject("response", response);
-	    
+		mav.addObject("request", request);
+		mav.addObject("response", response);
+
 		managerService.categoryWrite(mav);
-	    return null;
-	  }
+		return null;
+	}
 
 	@RequestMapping(value = "/manager/categoryDelete.do", method = RequestMethod.GET)
 	public ModelAndView managerCategoryDelete(HttpServletRequest request, HttpServletResponse response) {
 		return new ModelAndView("manager/categoryDelete.tiles1");
 	}
-	
+
 	@RequestMapping(value = "/manager/indiAlarm.do", method = RequestMethod.GET)
 	public ModelAndView managerIndiAlarm(HttpServletRequest request, HttpServletResponse response) {
 		return new ModelAndView("manager/indiAlarm.tiles1");
 	}
-	
+
 	@RequestMapping(value = "/manager/entireAlarm.do", method = RequestMethod.GET)
 	public ModelAndView managerEntireAlarm(HttpServletRequest request, HttpServletResponse response) {
 		return new ModelAndView("manager/entireAlarm.tiles1");
 	}
-	
+
 	@RequestMapping(value = "/manager/alarmCheck.do", method = RequestMethod.GET)
 	public ModelAndView managerAlarmCheck(HttpServletRequest request, HttpServletResponse response) {
 		return new ModelAndView("manager/alarmCheck.tiles1");
 	}
-	
+
 	@RequestMapping(value = "/manager/savedAlarm.do", method = RequestMethod.GET)
 	public ModelAndView managerSavedAlarm(HttpServletRequest request, HttpServletResponse response) {
 		return new ModelAndView("manager/savedAlarm.tiles1");
 	}
-	
 
 	@RequestMapping(value = "/manager/authorManage.do", method = RequestMethod.GET)
 	public ModelAndView managerAuthorManage(HttpServletRequest request, HttpServletResponse response) {
