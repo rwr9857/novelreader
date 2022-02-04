@@ -9,7 +9,6 @@
 <body>
 	<!-- header.jsp -->
 	<tiles:insertAttribute name="header" />
-	<hr color="black">
 
 	<!-- 
 		content
