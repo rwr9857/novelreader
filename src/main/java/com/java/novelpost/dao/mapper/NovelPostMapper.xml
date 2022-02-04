@@ -28,7 +28,8 @@
 	</insert>
 
 	<select id="novelPostNumSelect" resultType="int">
-		SELECT N_POST_NUM FROM NOVEL_POST
+		SELECT N_POST_NUM
+		FROM NOVEL_POST
 		WHERE n_num=#{n_num}
 	</select>
 
@@ -46,5 +47,24 @@
 		FROM NOVEL_POST
 		WHERE n_post_num=#{n_post_num}
 	</select>
+
+	<delete id="novelPostDelete" parameterType="int">
+		DELETE FROM
+		NOVEL_POST WHERE
+		n_post_num=#{n_post_num}
+	</delete>
+
+	<select id="novelPostSelect" parameterType="int"
+		resultType="com.java.novelpost.dto.NovelPostDto">
+		SELECT * FROM NOVEL_POST WHERE n_post_num=#{n_post_num}
+	</select>
+
+	<update id="novelPostUpdate"
+		parameterType="com.java.novelpost.dto.NovelPostDto">
+		UPDATE NOVEL_POST SET N_POST_TITLE=#{N_POST_TITLE},
+		N_POST_CONTENT=#{N_POST_TITLE} WHERE n_post_num=#{n_POST_NUM}
+	</update>
+
+
 </mapper>   		
   	

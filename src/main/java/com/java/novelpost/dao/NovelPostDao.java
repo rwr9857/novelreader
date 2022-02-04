@@ -10,6 +10,12 @@ public interface NovelPostDao {
 
 	public int nPostNumSelect(int n_num);
 
-//	public int novelPostSelect(int n_num);
+	public int delete(int n_post_num);
+
+	public NovelPostDto novelPostSelect(int n_post_num);
+	
+	public int novelPostUpdate(NovelPostDto novelPostDto);
+
+	
 
 }
