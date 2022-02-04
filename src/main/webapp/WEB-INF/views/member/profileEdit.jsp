@@ -63,7 +63,7 @@
 	<div id="content_box">
 		<div class="content_outer">
 			<div class="content_inner">
-				<form action="${root}/member/profileEditOk.do" method="post" onsubmit="return nicknameCheck('${memberDto.m_nickname}')">
+				<form action="${root}/member/profileEditOk.do" method="post" onsubmit="return nicknameCheck('${memberDto.m_nickname}')" enctype="multipart/form-data">
 					<span class="menu">프로필 수정</span>
 					<div class="table">
 						<div class="tr">
@@ -71,26 +71,41 @@
 								프로필 이미지
 							</div>
 							
-							<div class="td2">
-								<c:if test="${memberDto.m_photo_path == null}">
-								<img class="profile_image" alt="기본값" src="${root}/images/profile/profile_default.png"
-									onclick="" style="float:left;">
-								</c:if>
-								<c:if test="${memberDto.m_photo_path != null}">
-								<img class="profile_image" alt="프로필사진" src="${root}/images/????"
-									onclick="" style="float:left;">
-								</c:if>
+							<div class="td2" class="image_preview">
+								<img class="profile_image" id="profile_image" alt="프로필사진" 
+								src="<c:if test="${memberDto.m_photo_path == null}">
+										${root}/images/profile/profile_default.png
+									</c:if>
+									<c:if test="${memberDto.m_photo_path != null}">
+										${root}/memberfile/${memberDto.m_photo_name}
+									</c:if>"
+								onclick="" style="float:left;">
 								
-								<div class="imageUpload" onclick="imageUpload()">업로드</div>
-								<div class="imageDelete" onclick="imageDelete()">삭제</div>
+								<label class="imageUpload" for="image" style="font-size:16px; line-height:24px">업로드</label>
+								<input type="file" name="file" id="image" accept="image/*" style="display:none;" onchange="setThumbnail(event);">
+								
+								<label class="imageDelete" for="imageDelete" style="font-size:16px; line-height:24px" onclick="deleteImage()">삭제</label>
+								<input type="hidden" name="file" id="imageDelete" style="display:none;" value="null">
 								
 								<script type="text/javascript">
 									
-									function imageUpload(){
-										
-									}
+									function setThumbnail(event) { 
+										for (var image of event.target.files) { 
+											var reader = new FileReader(); 
+											reader.onload = function(event) { 
+												var img = document.getElementById("profile_image"); 
+												img.setAttribute("src", event.target.result); 
+											}; 
+											console.log(image); 
+											reader.readAsDataURL(image); 
+											} 
+										}
 									
-									function imageDelete(){
+									
+									function deleteImage(){
+										var img = document.getElementById("profile_image"); 
+										img.setAttribute("src", '${root}/images/profile/profile_default.png'); 
+										img.value=null;
 										
 									}
 									

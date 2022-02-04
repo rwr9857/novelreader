@@ -24,7 +24,7 @@ ul{
 	top:30%;
 	left:10px;
 	border:0px solid red;
-	width:150px;
+	width: 180px;
 	overflow:hidden;
 }
 
@@ -67,9 +67,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#113b7f', end
 	text-shadow: -1px 0 #617fd7, 0 1px #617fd7, 1px 0 #617fd7, 0 -1px #617fd7;
 	
 	margin-top:8px;
-	font-size: 22px;
+	font-size: 20px;
 	font-weight: 500;
-	padding-left:10px;
+	padding-left:15px;
 	
 }
 

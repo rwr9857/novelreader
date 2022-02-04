@@ -2,6 +2,7 @@ package com.java.member.service;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -23,6 +24,8 @@ import com.java.novelhome.dto.NovelHomeDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -45,7 +48,10 @@ public class MemberServiceImp implements MemberService {
 	
 	@Value("#{properties['naver.client_secret']}")
 	private String naverClientSecret;
-
+	
+	@Value("#{properties['member.imagepath']}")
+	private String imagepath;
+	
 	@Override
 	public void memberRegisterOk(ModelAndView mav) {
 		Map<String, Object> map = mav.getModelMap();
@@ -698,8 +704,43 @@ public class MemberServiceImp implements MemberService {
 	@Override
 	public void profileEditOk(ModelAndView mav) throws Throwable {				//프로필 수정 submit
 		Map<String, Object> map = mav.getModelMap();
-		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		MemberDto memberDto = (MemberDto) map.get("memberDto");
+		MultipartHttpServletRequest request = (MultipartHttpServletRequest) map.get("request");
+		
+		MultipartFile upFile = request.getFile("file");
+//		LogAspect.logger.info(LogAspect.LogMsg + upFile);
+		
+		if (upFile.getSize() != 0) {
+			String fileName = Long.toString(System.currentTimeMillis()) + "_" + upFile.getOriginalFilename();
+			long fileSize = upFile.getSize();
+//			LogAspect.logger.info(LogAspect.LogMsg + fileName + fileSize);
+
+			File path = new File(imagepath);
+			path.mkdir();
+
+			LogAspect.logger.info(LogAspect.LogMsg + path);
+
+			if (path.exists() && path.isDirectory()) {
+				File file = new File(path, fileName);
+				try {
+					upFile.transferTo(file);
+
+					memberDto.setM_photo_path(file.getAbsolutePath());
+					memberDto.setM_photo_name(fileName);
+					memberDto.setM_photo_size(fileSize);
+
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				
+			} else {
+
+			}
+
+		}
+		
+		
+		
 		
 		System.out.println("프로필수정 테스트 : "+memberDto.toString());
 		

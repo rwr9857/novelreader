@@ -11,7 +11,7 @@
 	margin:0 auto;
 	justify-content: center;
 	line-height:70px;
-	background:#e5e5e5;
+	background:#d5e8ff;
 	box-shadow: 0 0 10px 0 rgb(0 0 0 / 35%);
 }
 
@@ -33,7 +33,7 @@ input:focus{
 	cursor:pointer;
 	font-size : 22px;
 	font-weight:bold;
-	color:#423c3c;
+	color:#0068c1;
 }
 
 .Upserchbar input{
@@ -48,6 +48,8 @@ input:focus{
 .Updropdown{
 	position : relative;
 	display : inline-block;
+	margin-left:20px;
+	width: 150px;
 }
   
   .Updropbtn{
@@ -60,6 +62,7 @@ input:focus{
 	font-weight: 400;
 	background-color: #f9f9f9;
 	min-width : 200px;
+	box-shadow: 0px 30px 30px -5px rgb(0 0 0 / 30%);
 }
   
   .Updropdown-content a{
@@ -68,6 +71,7 @@ input:focus{
 	color : rgb(37, 37, 37);
 	font-size: 12px;
 	line-height : -30px;
+	padding-left: 10px;
 }
   
   .Updropdown-content a:hover{

@@ -15,7 +15,6 @@
 		-- member.jsp
 	 -->
 	<tiles:insertAttribute name="content" />
-	<hr color="black">
 	<!-- foot.jsp -->
 	<tiles:insertAttribute name="foot" />
 </body>
