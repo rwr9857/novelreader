@@ -28,18 +28,47 @@ public class NovelPostController {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("novelPostDto", novelPostDto);
 		mav.addObject("request", request);
-		
+
 		novelPostService.novelPostRegisterOk(mav);
 
 		return mav;
 	}
-	
+
 	@RequestMapping(value = "/novelpost/read.do", method = RequestMethod.GET)
-	public ModelAndView boardRead(HttpServletRequest request, HttpServletResponse response) {
+	public ModelAndView novelPostRead(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("request", request);
 
 		novelPostService.novelPostRead(mav);
+
+		return mav;
+	}
+
+	@RequestMapping(value = "/novelpost/delete.do", method = RequestMethod.GET)
+	public ModelAndView novelPostDelete(HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("request", request);
+		novelPostService.novelPostDelete(mav);
+
+		return mav;
+	}
+
+	@RequestMapping(value = "/novelpost/update.do", method = RequestMethod.GET)
+	public ModelAndView novelPostUpdate(HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("request", request);
+		novelPostService.novelPostUpdate(mav);
+
+		return mav;
+	}
+
+	@RequestMapping(value = "/novelpost/updateOk.do", method = RequestMethod.POST)
+	public ModelAndView novelPostUpdateOk(HttpServletRequest request, HttpServletResponse response,
+			NovelPostDto novelPostDto) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("request", request);
+		mav.addObject("novelPostDto", novelPostDto);
+		novelPostService.novelPostUpdateOk(mav);
 
 		return mav;
 	}

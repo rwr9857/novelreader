@@ -8,4 +8,10 @@ public interface NovelPostService {
 
 	public void novelPostRead(ModelAndView mav);
 
+	public void novelPostDelete(ModelAndView mav);
+
+	public void novelPostUpdate(ModelAndView mav);
+
+	public void novelPostUpdateOk(ModelAndView mav);
+
 }

@@ -23,7 +23,7 @@
 	<c:if test="${nNumSess !=null}">
 		<c:set var="nNumSess" value="${nNumSess}" scope="session" />
 	</c:if>
-		<div class="wrap">
+		<div class="wrap" style="margin-top:100px;">
 			<!-- 표지 -->
 			<div class="upbox">
 				<div class="leftbox">
@@ -88,8 +88,8 @@
 						<div class="bottom_down1">
 							<h3 onclick="javascript:readCheck('${novelPostDto.n_POST_NUM}', '${root}')" style="cursor: pointer; font-weight:bold; font-size:17px;">
 								Ep.${status.count} ${novelPostDto.n_POST_TITLE}</h3> 
-							<span onclick="javascript:updateCheck('${novelPostDto.n_POST_NUM}', '${root}')" >수정</span>
-							<span onclick="javascript:deleteCheck('${novelPostDto.n_POST_NUM}', '${root}')" >삭제</span>
+							<span onclick="javascript:updateCheck('${novelPostDto.n_POST_NUM}', '${root}'),'${novelPostDto.n_num}'" >수정</span>
+							<span onclick="javascript:deleteCheck('${novelPostDto.n_POST_NUM}', '${root}','${novelPostDto.n_num}')" >삭제</span>
 						</div>
 						<div class="bottom_down2">
 							<h3><fmt:formatDate value="${novelPostDto.n_POST_TIME}" pattern="yyyy-MM-DD HH:mm:ss" /></h3>
@@ -120,13 +120,13 @@
 					<c:set var="endPage" value="${pageCount}" />
 				</c:if>
 				<c:if test="${startPage > pageBlock}">
-					<a href="${root}/guest/write.do?pageNumber=${startPage-pageBlock}">[이전]</a>
+					<a href="${root}/novelhome/list.do?pageNumber=${startPage-pageBlock}&n_num=${n_num}">[이전]</a>
 				</c:if>
 				<c:forEach var="i" begin="${startPage}" end="${endPage}">
-					<a href="${root}/guest/write.do?pageNumber=${i}">[${i}]</a>
+					<a href="${root}/novelhome/list.do?pageNumber=${i}&n_num=${n_num}">[${i}]</a>
 				</c:forEach>
 				<c:if test="${endPage < pageCount}">
-					<a href="${root}/guest/write.do?pageNumber=${startPage+pageBlock}">[다음]</a>
+					<a href="${root}/novelhome/list.do?pageNumber=${startPage+pageBlock}&n_num=${n_num}">[다음]</a>
 				</c:if>
 				<div>pageCount : ${pageCount} startPage : ${startPage} endPage :
 					${endPage}

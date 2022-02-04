@@ -52,7 +52,66 @@ public class NovelPostServiceImp implements NovelPostService {
 
 		mav.addObject("novelPostDto", novelPostDto);
 		mav.addObject("n_post_num", n_post_num);
-		mav.setViewName("novelpost/read");
+		mav.setViewName("novelpost/read.tiles");
+	}
+
+	@Override
+	public void novelPostDelete(ModelAndView mav) {
+		Map<String, Object> map = mav.getModelMap();
+		HttpServletRequest request = (HttpServletRequest) map.get("request");
+
+		int n_num = Integer.parseInt(request.getParameter("n_num"));
+		LogAspect.logger.info(LogAspect.LogMsg + "n_num=" + n_num);
+		
+		int n_post_num = Integer.parseInt(request.getParameter("n_post_num"));
+		LogAspect.logger.info(LogAspect.LogMsg + n_post_num);
+		
+		int check = novelPostDao.delete(n_post_num);
+		LogAspect.logger.info(LogAspect.LogMsg + check);
+
+		mav.addObject("check", check);
+		mav.addObject("n_num", n_num);
+		mav.setViewName("novelpost/delete.tiles");
+		
+	}
+
+	@Override
+	public void novelPostUpdate(ModelAndView mav) {
+		Map<String, Object> map = mav.getModelMap();
+		HttpServletRequest request = (HttpServletRequest) map.get("request");
+
+		int n_post_num = Integer.parseInt(request.getParameter("n_post_num"));
+		NovelPostDto novelPostDto = novelPostDao.novelPostSelect(n_post_num);
+		
+		LogAspect.logger.info(LogAspect.LogMsg + novelPostDto.toString());
+
+		mav.addObject("novelPostDto", novelPostDto);
+		mav.addObject("n_post_num", n_post_num);
+		mav.setViewName("novelpost/update.tiles");
+	}
+
+	@Override
+	public void novelPostUpdateOk(ModelAndView mav) {
+		Map<String, Object> map = mav.getModelMap();
+		HttpServletRequest request = (HttpServletRequest) map.get("request");
+		NovelPostDto novelPostDto = (NovelPostDto) map.get("novelPostDto");
+		
+		int n_post_num = Integer.parseInt(request.getParameter("n_post_num"));
+		LogAspect.logger.info(LogAspect.LogMsg + n_post_num);
+		
+		novelPostDto.setN_POST_NUM(n_post_num);
+		
+		
+		int n_num = Integer.parseInt(request.getParameter("n_num"));
+		LogAspect.logger.info(LogAspect.LogMsg + "n_num=" + n_num);
+		
+		int check = novelPostDao.novelPostUpdate(novelPostDto);
+		LogAspect.logger.info(LogAspect.LogMsg + "check="+ check);
+		LogAspect.logger.info(LogAspect.LogMsg + novelPostDto.toString());
+		
+		mav.addObject("check", check);
+		mav.addObject("n_num", n_num);
+		mav.setViewName("novelpost/updateOk.tiles");
 	}
 
 }

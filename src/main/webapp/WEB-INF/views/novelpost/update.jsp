@@ -10,23 +10,26 @@
 <title>회차등록</title>
 </head>
 <body>
-	<form action="${root}/novelpost/registerOk.do" method="post" >
+	<form action="${root}/novelpost/updateOk.do" method="post">
 		<table border="1">
 			<tr>
 				<td>회차제목</td>
 				<td><textarea rows="1" cols="80" name="N_POST_TITLE"
-						placeholder="회차 제목을 입력하세요"></textarea></td>
+						placeholder="회차 제목을 입력하세요">${novelPostDto.n_POST_TITLE}</textarea>
+				</td>
 			</tr>
 			<tr>
 				<td>내용</td>
 				<td><textarea rows="4" cols="80" name="N_POST_CONTENT"
-						placeholder="회차 내용을 입력하세요"></textarea></td>
+						placeholder="회차 내용을 입력하세요">${novelPostDto.n_POST_CONTENT}</textarea>
+				</td>
 			</tr>
 
 		</table>
 		<input type="submit" value="확인" /> <input type="reset" value="취소" />
 		<input type="hidden" name="n_num" value="${nNumSess}" />
+		<input type="hidden" name="n_post_num" value="${novelPostDto.n_POST_NUM}" />
 	</form>
-	
+
 </body>
 </html>

@@ -7,8 +7,8 @@ function readCheck(n_post_num, root) {
 
 	location.href = url;
 }
-function deleteCheck(num, root) {
-	var url = root + "/novelpost/delete.do?num=" + num;
+function deleteCheck(n_POST_NUM, root, n_num) {
+	var url = root + "/novelpost/delete.do?n_post_num=" + n_POST_NUM + "&n_num=" + n_num;
 	//	alert(url);
 
 	var value = confirm("정말로 삭제 하겠습니까?");
@@ -19,8 +19,8 @@ function deleteCheck(num, root) {
 	}
 }
 
-function updateCheck(num, root) {
-	var url = root + "/novelpost/update.do?num=" + num;
+function updateCheck(n_POST_NUM, root, n_num) {
+	var url = root + "/novelpost/update.do?n_post_num=" + n_POST_NUM + "&n_num=" + n_num;
 	//	alert(url);
 
 	location.href = url;

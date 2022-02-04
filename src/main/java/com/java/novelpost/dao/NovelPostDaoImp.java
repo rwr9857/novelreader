@@ -34,4 +34,19 @@ public class NovelPostDaoImp implements NovelPostDao {
 		return sqlSessionTemplate.selectOne("novelPostNumSelect", n_num);
 	}
 
+	@Override
+	public int delete(int n_post_num) {
+		return sqlSessionTemplate.delete("novelPostDelete", n_post_num);
+	}
+
+	@Override
+	public NovelPostDto novelPostSelect(int n_post_num) {
+		return sqlSessionTemplate.selectOne("novelPostSelect", n_post_num);
+	}
+
+	@Override
+	public int novelPostUpdate(NovelPostDto novelPostDto) {
+		return sqlSessionTemplate.update("novelPostUpdate", novelPostDto);
+	}
+
 }
