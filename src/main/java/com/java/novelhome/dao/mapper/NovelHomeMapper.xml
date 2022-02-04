@@ -89,5 +89,32 @@
 		SELECT m_nickname FROM MEMBER
 		WHERE m_num=(SELECT m_num FROM NOVEL_HOME WHERE n_num=#{n_num})
 	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<!-- index -->
+	
+	<select id="novelHomeAllCount" resultType="int">
+		SELECT COUNT(*) FROM NOVEL_HOME
+	</select>
+
+	<select id="novelHomeList" parameterType="java.util.HashMap" resultType="com.java.novelhome.dto.NovelHomeDto">
+     <![CDATA[
+     	SELECT * FROM (SELECT ROWNUM rnum, a.* FROM (SELECT * FROM NOVEL_HOME ORDER BY n_pub_date DESC) a) b WHERE b.rnum >=#{startRow} AND b.rnum <=#{endRow}
+     ]]>
+	</select>
+	
+	
+	
+	
+	
+	
 </mapper>   		
   	

@@ -22,5 +22,28 @@ public interface NovelHomeDao {
 	public List<NovelHomeDto> novelListMember(int startRow, int endRow, int m_num);
 
 	public String getNickname(int n_num);
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// ----------------- index
+	
+	
+	public int getAllCount();
+	
+	public List<NovelHomeDto> novelHomeList(int startRow,int endRow);
+	
+	
+	
+	
+	
+	
+	
+	
 
 }
