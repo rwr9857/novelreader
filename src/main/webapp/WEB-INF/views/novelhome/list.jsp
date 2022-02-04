@@ -27,7 +27,7 @@
         <div class = "upbox">
             <div class= "leftbox">
                 <div class="profile">
-                    <img src="${root}/images/novelLabel/${novelHomeDto.n_image_name}" style ="border-radius : 15px;">
+                    <img src="${root}/file/${novelHomeDto.n_image_name}" style ="border-radius : 15px;">
                 </div>
                 <button style = "margin-left:0px; color : rgb(209, 206, 206);">첫화보기</button>
             </div>
