@@ -1,0 +1,130 @@
+@charset "UTF-8";
+
+
+/* 메인 */
+#novelleader_main {
+	font-size: 0;
+	text-align: center;
+}
+
+#top_category {
+	width: 67%;
+	text-align: center;
+	display: block;
+	padding-top: 70px;
+	padding-bottom: 10px;
+	font-size: 1rem;
+	margin: 0 auto;
+}
+
+#novelleader_main {
+	width: 67%;
+	display: block;
+	padding-top: 30px;
+	margin: 0 auto;
+}
+
+.main_novels {
+	margin: 0 auto;
+}
+
+.views_novel {
+	width: 33.2%;
+	float: left;
+}
+
+.likes_novel {
+	width: 33.1%;
+	float: left;
+}
+
+.lastests_novel {
+	width: 33.2%;
+	float: right;
+}
+
+.novels_more {
+	width: 92%;
+	height: 50px;
+	font-size: 1rem;
+	text-align: center;
+	margin: 0 auto;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-bottom: 50px;
+}
+
+.main_views {
+	height: 251px;
+}
+
+.views_image {
+	border: 1px solid black;
+	float: left;
+}
+
+.views_infor {
+	padding: 10px;
+	font-size: 1rem;
+	float: left;
+}
+
+.follow_novels {
+	margin: 0 auto;
+}
+
+.follower_novels {
+	width: 100%;
+	display: block;
+	padding-top: 100px;
+	margin: 0 auto;
+}
+
+/* 검색창 */
+#search_main {
+	font-size: 0;
+	text-align: center;
+}
+
+#search_result {
+	width: 67%;
+	text-align: center;
+	display: block;
+	padding-top: 70px;
+	padding-bottom: 10px;
+	font-size: 1rem;
+	margin: 0 auto;
+}
+
+#search_novel {
+	width: 67%;
+	display: block;
+	padding-top: 100px;
+	margin: 0 auto;
+}
+
+.search_image {
+	border: 1px solid black;
+	float: left;
+	width: 120px;
+	height: 180px;
+}
+
+.search_image img{
+	width: 120px;
+	height: 180px;
+}
+
+.search_infor {
+	padding: 10px;
+	font-size: 1rem;
+	float: left;
+}
+
+.novel_list {
+	width: 67%;
+	font-size: 1rem;
+	text-align: center;
+	margin: 0 auto;
+	text-align: center;
+}
