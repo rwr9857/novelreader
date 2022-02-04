@@ -1,0 +1,25 @@
+@charset "UTF-8";
+.downwrap {
+	list-style : none;
+	text-decoration: none;
+	border-collapse: collapse;
+	margin: 0px;
+	padding: 0px;
+	font-family: 'Noto Sans KR', sans-serif;
+    display:flex;
+    justify-content: center;
+}
+
+.downfooter{
+    width:350px;
+}
+
+.downrogo{
+    margin-left:1000px;
+}
+
+.downrogo h1{
+    font-family: 'Mochiy Pop P One', sans-serif;
+    font-size : 30px;
+}
+

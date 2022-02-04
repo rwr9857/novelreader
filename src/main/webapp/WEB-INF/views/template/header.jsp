@@ -21,8 +21,8 @@
             <a href="${root}"><h1 style="margin-top : 15px; color : #0096fa; cursor: pointer">NOVELREADER</h1></a>
         </div>
         <div class="Upspan">
-            <span onclick="location.href='${root}/novel/top10.do'">TOP10</span>
-            <span onclick="location.href='${root}/novel/ranking.do'">인기작가</span>
+            <span onclick="location.href='${root}/home/top10.do'">TOP10</span>
+            <span onclick="location.href='${root}/home/ranking.do'">인기작가</span>
             <span style="margin-right:50px;"  onclick="location.href='${root}/notice/notice.do'">공지사항</span>
         </div>
         <div class="Upserchbar">
