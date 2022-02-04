@@ -13,6 +13,7 @@
    href="https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR&display=swap"
    rel="stylesheet">
 <link rel="stylesheet" href="${root}/css/novelhome/listStyle.css">
+<script type="text/javascript" src="${root}/javascript/novelpost/list.js"></script>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta charset="UTF-8">
@@ -39,8 +40,7 @@
                     <span class = "right_up_span">전체 삭제</span>
                 </div>
                 <div class="right_up2">
-                    <h3>작가 : <span style= "color : rgb(148, 21, 127); font-weight : bold;">고속도루</span></h3>
-                    <span class = "right_up2_span">+팔로우</span>
+                    <h3 onclick="goProfile('${root}', '${nickname}')" style="cursor: pointer;">작가 : <span style= "color : rgb(148, 21, 127); font-weight : bold;">${nickname}</span></h3>
                 </div>
                 <div class="right_middle">
                     <img src="https://novelpia.com/img/new/icon/count_view.png" style="margin-top:2px; margin-right : 2px;">
