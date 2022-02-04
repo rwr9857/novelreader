@@ -24,21 +24,21 @@ import com.java.member.dto.MemberDto;
 public class ManagerServiceImp implements ManagerService {
 	@Autowired
 	private ManagerDao managerDao;
-	
+
 	@Autowired
 	private MemberDao memberDao;
-	
+
 	@Override
 	public void memberModify(ModelAndView mav) {
 		Map<String, Object> map = mav.getModelMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
-		
+
 		String pageNumber = request.getParameter("pageNumber");
 		if (pageNumber == null)
 			pageNumber = "1";
 
 		int currentPage = Integer.parseInt(pageNumber);
-		LogAspect.logger.info(LogAspect.LogMsg + "현재 페이지: "+ currentPage);
+		LogAspect.logger.info(LogAspect.LogMsg + "현재 페이지: " + currentPage);
 
 		// 한 페이지 당 게시물 1page 10개 / start 1, end 10
 		int boardSize = 10;
@@ -47,7 +47,7 @@ public class ManagerServiceImp implements ManagerService {
 
 		int count = memberDao.getCount();
 		LogAspect.logger.info(LogAspect.LogMsg + count);
-		
+
 		List<MemberDto> memberList = null;
 		if (count > 0) {
 			memberList = memberDao.memberList(startRow, endRow);
@@ -58,27 +58,73 @@ public class ManagerServiceImp implements ManagerService {
 		mav.addObject("currentPage", currentPage); // 요청페이지
 		mav.addObject("memberList", memberList); // 회원 리스트
 		mav.addObject("count", count); // 전체 게시물 수
-		
+
 		mav.setViewName("manager/memberModify.tiles1");
 	}
+
+	@Override
+	public void memberUpdate(ModelAndView mav) {
+		Map<String, Object> map = mav.getModelMap();
+		HttpServletRequest request = (HttpServletRequest) map.get("request");
+
+		String m_num = request.getParameter("m_num");
+		LogAspect.logger.info(LogAspect.LogMsg + m_num);
+
+		mav.setViewName("manager/memberUpdate");
+	}
 	
+	@Override
+	public void memberDelete(ModelAndView mav) {
+		Map<String, Object> map = mav.getModelMap();
+		HttpServletRequest request = (HttpServletRequest) map.get("request");
+
+		String pageNumber = request.getParameter("pageNumber");
+		if (pageNumber == null)
+			pageNumber = "1";
+
+		int currentPage = Integer.parseInt(pageNumber);
+		LogAspect.logger.info(LogAspect.LogMsg + "현재 페이지: " + currentPage);
+
+		// 한 페이지 당 게시물 1page 10개 / start 1, end 10
+		int boardSize = 10;
+		int startRow = (currentPage - 1) * boardSize + 1;
+		int endRow = currentPage * boardSize;
+
+		int count = memberDao.getCount();
+		LogAspect.logger.info(LogAspect.LogMsg + count);
+
+		List<MemberDto> memberList = null;
+		if (count > 0) {
+			memberList = memberDao.memberList(startRow, endRow);
+			LogAspect.logger.info(LogAspect.LogMsg + memberList.size());
+		}
+
+		mav.addObject("boardSize", boardSize); // 한페이지당 게시물 수
+		mav.addObject("currentPage", currentPage); // 요청페이지
+		mav.addObject("memberList", memberList); // 회원 리스트
+		mav.addObject("count", count); // 전체 게시물 수
+
+		mav.setViewName("manager/memberDelete.tiles1");
+
+	}
+
 	@Override
 	public void memberDeleteOk(ModelAndView mav) {
 		Map<String, Object> map = mav.getModelMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
-		
+
 		LogAspect.logger.info(LogAspect.LogMsg + request.getParameter("m_num"));
-		
-		int m_num=Integer.parseInt(request.getParameter("m_num"));
+
+		int m_num = Integer.parseInt(request.getParameter("m_num"));
 		int check = memberDao.accountDelete(m_num);
 		LogAspect.logger.info(LogAspect.LogMsg + check);
-		
+
 		String pageNumber = request.getParameter("pageNumber");
 		if (pageNumber == null)
 			pageNumber = "1";
 
 		int currentPage = Integer.parseInt(pageNumber);
-		LogAspect.logger.info(LogAspect.LogMsg + "현재 페이지: "+ currentPage);
+		LogAspect.logger.info(LogAspect.LogMsg + "현재 페이지: " + currentPage);
 
 		// 한 페이지 당 게시물 1page 10개 / start 1, end 10
 		int boardSize = 10;
@@ -87,7 +133,7 @@ public class ManagerServiceImp implements ManagerService {
 
 		int count = memberDao.getCount();
 		LogAspect.logger.info(LogAspect.LogMsg + count);
-		
+
 		List<MemberDto> memberList = null;
 		if (count > 0) {
 			memberList = memberDao.memberList(startRow, endRow);
@@ -98,10 +144,15 @@ public class ManagerServiceImp implements ManagerService {
 		mav.addObject("currentPage", currentPage); // 요청페이지
 		mav.addObject("memberList", memberList); // 회원 리스트
 		mav.addObject("count", count); // 전체 게시물 수
-		
+
 		mav.setViewName("manager/memberDelete.tiles1");
 	}
-
+	
+	
+	
+	
+	// ------------------ 카테고리
+	
 	@Override
 	public void categoryList(ModelAndView mav) {
 		Map<String, Object> map = mav.getModelMap();
@@ -116,7 +167,7 @@ public class ManagerServiceImp implements ManagerService {
 
 		mav.setViewName("manager/categoryView.tiles1");
 	}
-
+	
 	@Override
 	public void categoryWrite(ModelAndView mav) {
 		Map<String, Object> map = mav.getModelMap();
@@ -135,16 +186,16 @@ public class ManagerServiceImp implements ManagerService {
 		if (check > 0) {
 			int categoryId = managerDao.getCategoryId();
 			LogAspect.logger.info(LogAspect.LogMsg + categoryId);
-			
+
 			// HashMap에 카테고리 id와 카테고리 이름 넣기
 			HashMap<String, Object> map1 = new HashMap<String, Object>();
 			map1.put("categoryId", categoryId);
 			map1.put("writeCategory", writeCategory);
-			
+
 			// map1을 json으로 만들다.
 			String jsonText = JSONValue.toJSONString(map1);
 			LogAspect.logger.info(LogAspect.LogMsg + jsonText);
-			
+
 			// json을 뷰에 넘겨준다.
 			if (jsonText != null) {
 				response.setContentType("application/x-json;charset=utf-8");
@@ -160,41 +211,43 @@ public class ManagerServiceImp implements ManagerService {
 		}
 
 	}
+
 	
+
 	@Override
-	public void memberDelete(ModelAndView mav) {
+	public void categoryDelete(ModelAndView mav) {
 		Map<String, Object> map = mav.getModelMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 
-		String pageNumber = request.getParameter("pageNumber");
-		if (pageNumber == null)
-			pageNumber = "1";
+		List<CategoryDto> categoryList = managerDao.getCategoryList();
+		LogAspect.logger.info(LogAspect.LogMsg + categoryList.size());
 
-		int currentPage = Integer.parseInt(pageNumber);
-		LogAspect.logger.info(LogAspect.LogMsg + "현재 페이지: "+ currentPage);
-
-		// 한 페이지 당 게시물 1page 10개 / start 1, end 10
-		int boardSize = 10;
-		int startRow = (currentPage - 1) * boardSize + 1;
-		int endRow = currentPage * boardSize;
-
-		int count = memberDao.getCount();
-		LogAspect.logger.info(LogAspect.LogMsg + count);
-		
-		List<MemberDto> memberList = null;
-		if (count > 0) {
-			memberList = memberDao.memberList(startRow, endRow);
-			LogAspect.logger.info(LogAspect.LogMsg + memberList.size());
+		if (categoryList.size() != 0) {
+			mav.addObject("categoryList", categoryList);
 		}
 
-		mav.addObject("boardSize", boardSize); // 한페이지당 게시물 수
-		mav.addObject("currentPage", currentPage); // 요청페이지
-		mav.addObject("memberList", memberList); // 회원 리스트
-		mav.addObject("count", count); // 전체 게시물 수
-
-		mav.setViewName("manager/memberDelete.tiles1");
-		
+		mav.setViewName("manager/categoryDelete.tiles1");
 	}
 
+	@Override
+	public void categoryDeleteOk(ModelAndView mav) {
+		Map<String, Object> map = mav.getModelMap();
+		HttpServletRequest request = (HttpServletRequest) map.get("request");
+
+		String categoryId = request.getParameter("id");
+		LogAspect.logger.info(LogAspect.LogMsg + "categoryId : " + categoryId);
+		
+		int check = managerDao.categoryDelete(categoryId);
+		LogAspect.logger.info(LogAspect.LogMsg + "categoryDelete check : " + check);
+		
+		List<CategoryDto> categoryList = managerDao.getCategoryList();
+		LogAspect.logger.info(LogAspect.LogMsg + categoryList.size());
+
+		if (categoryList.size() != 0) {
+			mav.addObject("categoryList", categoryList);
+		}
+		
+		mav.setViewName("manager/categoryDelete.tiles1");
+	}
 
 }

@@ -27,6 +27,11 @@ public class ManagerDaoImp implements ManagerDao {
 	public List<CategoryDto> getCategoryList() {
 		return sqlSessionTemplate.selectList("categoryList");
 	}
+	
+	@Override
+	public int categoryDelete(String categoryId) {
+		return sqlSessionTemplate.delete("categoryDelete",categoryId);
+	}
 
 
 }

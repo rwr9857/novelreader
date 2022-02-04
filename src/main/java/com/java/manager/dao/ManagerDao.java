@@ -10,4 +10,6 @@ public interface ManagerDao {
 	public int getCategoryId();
 
 	public List<CategoryDto> getCategoryList();
+	
+	public int categoryDelete(String categoryId);
 }

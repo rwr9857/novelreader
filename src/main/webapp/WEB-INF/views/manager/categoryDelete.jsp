@@ -14,6 +14,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
     <link rel="stylesheet" href="${root}/css/manager/body.css">
+    <link rel="stylesheet" href="${root}/css/manager/category.css">
 
     <title>Document</title>
 </head>
@@ -25,6 +26,21 @@
             관리자 모드 -> <span style="color: gray;">소설 카테고리 관리</span> -> 카테고리 삭제
         </h3>
     </div>
+    
+    <c:forEach var="categoryDto" items="${categoryList}" varStatus="status">
+            <div class="container" style="position: absolute; margin-left: ${(status.index % 4)*300}px; margin-top:${Math.floor(status.index / 4)*100}px">
+                <div class="front card">
+                    <div class="categoryDiv" id="${categoryDto.c_category_id}">
+                        <span class="cssCategory">${categoryDto.c_category_name}</span>
+                    </div>
+                </div>
+                <div class="back card">
+					<span class="cssDel">
+					    <a href="${root}/manager/categoryDeleteOk.do?id=${categoryDto.c_category_id}">삭제</a>
+				    </span>
+                </div>
+            </div>
+        </c:forEach>
 </div>
 </body>
 </html>

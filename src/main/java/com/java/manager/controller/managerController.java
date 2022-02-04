@@ -45,7 +45,11 @@ public class managerController {
 
 	@RequestMapping(value = "/manager/memberUpdate.do", method = RequestMethod.GET)
 	public ModelAndView managerMemberUpdate(HttpServletRequest request, HttpServletResponse response) {
-		return new ModelAndView("manager/memberUpdate");
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("request", request);
+
+		managerService.memberUpdate(mav);
+		return mav;
 	}
 
 	@RequestMapping(value = "/manager/memberDelete.do", method = RequestMethod.GET)
@@ -117,7 +121,20 @@ public class managerController {
 
 	@RequestMapping(value = "/manager/categoryDelete.do", method = RequestMethod.GET)
 	public ModelAndView managerCategoryDelete(HttpServletRequest request, HttpServletResponse response) {
-		return new ModelAndView("manager/categoryDelete.tiles1");
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("request", request);
+		
+		managerService.categoryDelete(mav);
+		return mav;
+	}
+	
+	@RequestMapping(value = "/manager/categoryDeleteOk.do", method = RequestMethod.GET)
+	public ModelAndView managerCategoryDeleteOk(HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("request", request);
+		
+		managerService.categoryDeleteOk(mav);
+		return mav;
 	}
 
 	@RequestMapping(value = "/manager/indiAlarm.do", method = RequestMethod.GET)

@@ -18,5 +18,10 @@
 	<select id="categoryList" resultType="com.java.category.dto.CategoryDto">
 		SELECT * FROM category
 	</select>
+	
+	<delete id="categoryDelete" parameterType="String">
+		DELETE FROM category
+		WHERE c_category_id=#{categoryId}
+	</delete>
 
 </mapper>   
