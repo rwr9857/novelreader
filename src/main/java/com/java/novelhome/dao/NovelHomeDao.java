@@ -37,6 +37,14 @@ public interface NovelHomeDao {
 	public int getAllCount();
 	
 	public List<NovelHomeDto> novelHomeList(int startRow,int endRow);
+
+	public int getTitleSearchCount(String keyword);
+
+	public List<NovelHomeDto> titleSearchList(int startRow, int endRow, String keyword);
+
+	public int getWriterSearchCount(String keyword);
+
+	public List<NovelHomeDto> writerSearchList(int startRow, int endRow, String keyword);
 	
 	
 	

@@ -35,12 +35,17 @@
 				onclick="location.href='${root}/notice/notice.do'">공지사항</span>
 		</div>
 		<div class="Upserchbar">
-			<form action="${root}/검색주소" method="get">
+			<form action="${root}/novelhome/search.do" method="get">
 				<select name="search_method" style="background:#ffffff;">
 					<option value="title">제목</option>
-					<option value="writer">작가명</option>
+					<c:if test="${search_method!='writer'}">
+						<option value="writer">작가명</option>
+					</c:if>
+					<c:if test="${search_method=='writer'}">
+						<option value="writer" selected="selected">작가명</option>
+					</c:if>
 				</select> 
-				<input type="text" name="search" placeholder="검색" style="background:#ffffff;">
+				<input type="text" name="keyword" placeholder="검색어" style="background:#ffffff;">
 					
 				<input type="submit" value="검색" style="display:none;">
 			</form>
@@ -61,8 +66,7 @@
 					</c:if>
 					
 					<c:if test="${numSess!=null}">
-						<a href="#">즐겨찾기 목록</a> 
-						<a href="#">문의하기</a>
+						<a href="${root}/notice/question.do?m_num=${numSess}">문의하기</a>
 					</c:if>
 					<c:if test="${numSess==null}">
 						<a href="${root}/member/login.do">로그인</a>

@@ -56,6 +56,7 @@
 
 .main_views {
 	height: 251px;
+	cursor: pointer;
 }
 
 .views_image {
@@ -122,9 +123,11 @@
 }
 
 .novel_list {
-	width: 67%;
+	width: 800px;
 	font-size: 1rem;
 	text-align: center;
-	margin: 0 auto;
+	margin: 0px auto;
 	text-align: center;
+	margin-top:800px;
+	margin-bottom:200px;
 }

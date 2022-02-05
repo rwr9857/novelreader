@@ -97,5 +97,37 @@ public class NovelHomeDaoImp implements NovelHomeDao {
 	
 	
 	
+	// ---------------------   search
+	
+	@Override
+	public int getTitleSearchCount(String keyword) {
+		return sqlSessionTemplate.selectOne("getTitleSearchCount", keyword);
+	}
+	
+	@Override
+	public List<NovelHomeDto> titleSearchList(int startRow, int endRow, String keyword) {
+		HashMap<String, Object> hMap = new HashMap<String, Object>();
+		hMap.put("startRow", startRow);
+		hMap.put("endRow", endRow);
+		hMap.put("keyword", keyword);
+		
+		return sqlSessionTemplate.selectList("titleSearchList",hMap);
+	}
+	
+	@Override
+	public int getWriterSearchCount(String keyword) {
+		return sqlSessionTemplate.selectOne("getWriterSearchCount", keyword);
+	}
+	
+	@Override
+	public List<NovelHomeDto> writerSearchList(int startRow, int endRow, String keyword) {
+		HashMap<String, Object> hMap = new HashMap<String, Object>();
+		hMap.put("startRow", startRow);
+		hMap.put("endRow", endRow);
+		hMap.put("keyword", keyword);
+		
+		return sqlSessionTemplate.selectList("writerSearchList",hMap);
+	}
+	
 	
 }
