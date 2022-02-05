@@ -63,15 +63,20 @@
 						<p style="font-size: 15px;">소설 줄거리:${novelHomeDto.n_summary}</p>
 					</div>
 					<div class="right_bottom2">
-						<!-- 장르값 != null 이면 장르 리스트 -->
-						<input type="button" value="장르선택" onclick="categoryRead('${root}')" />
-						<script type="text/javascript">
-							function categoryRead(root) {
-								var url = root + "/novelCategory/novelCategoryAdd.do";
-								//alert(url);
-								window.open(url, "", "width=400, height=400");
-							}
-						</script>
+						<c:forEach var="categoryDto" items="${categoryList}" varStatus="status">
+								<div class="container" style="position: absolute; margin-left: ${(status.index % 4)*50}px; margin-top:${Math.floor(status.index / 4)*100}px">
+					                <div class="front card" style="width:50px;">
+					                    <label for="${categoryDto.c_category_id}">${categoryDto.c_category_name}</label>
+					                    <input type="radio" id="${categoryDto.c_category_id}" name="c_category_id" value="${categoryDto.c_category_id}" style="display: inline-block;">  
+					                    <c:if test="${categoryDto.c_category_id == c_category_id}">
+					                    	<script type="text/javascript">
+					                    		document.getElementById("${categoryDto.c_category_id}").checked = true;
+					                    	</script>
+					                    </c:if>
+					                </div>
+					        	</div>
+						</c:forEach>
+						
 				</div>
 			</div>
 		</div>

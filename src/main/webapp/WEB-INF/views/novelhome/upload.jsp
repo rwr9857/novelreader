@@ -36,6 +36,17 @@
 						<textarea rows="6" cols="80" name="n_summary"
 							placeholder="소설 줄거리(선택)"></textarea>
 					</div>
+					<div class="categoryAdd">
+						<c:forEach var="categoryDto" items="${categoryList}" varStatus="status">
+								<div class="container" style="position: absolute; margin-left: ${(status.index % 4)*50}px; margin-top:${Math.floor(status.index / 4)*100}px">
+					                <div class="front card" style="width:50px;">
+					                    <label for="${categoryDto.c_category_id}" style="width:50px;">${categoryDto.c_category_name}</label>
+					                    <input type="radio" id="${categoryDto.c_category_id}" name="c_category_id" value="${categoryDto.c_category_id}" style="display: inline-block;">  
+					                    
+					                </div>
+					        	</div>
+						</c:forEach>
+					</div>
 					<div class="submit">
 						<input type="submit" value="소설투고" />
 					</div>

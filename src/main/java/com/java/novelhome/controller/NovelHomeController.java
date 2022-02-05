@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.java.novelcategory.dto.NovelCategoryDto;
 import com.java.novelhome.dto.NovelHomeDto;
 import com.java.novelhome.service.NovelHomeService;
 
@@ -19,16 +20,22 @@ public class NovelHomeController {
 
 	@RequestMapping(value = "/novelhome/upload.do", method = RequestMethod.GET)
 	public ModelAndView novelHomeUpload(HttpServletRequest request, HttpServletResponse response) {
-		return new ModelAndView("novelhome/upload.tiles");
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("request", request);
+
+		novelHomeService.novelhomeUpload(mav);
+
+		return mav;
 	}
 
 	@RequestMapping(value = "/novelhome/uploadOk.do", method = RequestMethod.POST)
 	public ModelAndView novelHomeUploadOk(HttpServletRequest request, HttpServletResponse response,
-			NovelHomeDto novelHomeDto) {
+			NovelHomeDto novelHomeDto, NovelCategoryDto novelCategoryDto) {
 
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("request", request);
 		mav.addObject("novelHomeDto", novelHomeDto);
+		mav.addObject("novelCategoryDto", novelCategoryDto);
 
 		novelHomeService.novelhomeUploadOk(mav);
 
@@ -36,10 +43,12 @@ public class NovelHomeController {
 	}
 
 	@RequestMapping(value = "/novelhome/list.do", method = RequestMethod.GET)
-	public ModelAndView novelHomeList(HttpServletRequest request, HttpServletResponse response) {
+	public ModelAndView novelHomeList(HttpServletRequest request, HttpServletResponse response,
+			NovelCategoryDto novelCategoryDto) {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("request", request);
-
+		mav.addObject("novelCategoryDto", novelCategoryDto);
+		
 		novelHomeService.novelHomeList(mav);
 
 		return mav;

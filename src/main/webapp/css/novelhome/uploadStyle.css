@@ -38,7 +38,13 @@
 	margin-left: 30px;
 }
 
+.categoryAdd {
+	border: 1px solid gray;
+	margin-bottom: 10px;
+	margin-left: 30px;
+}
+
 .submit {
-	margin-top: 5px;
+	margin-top: 50px;
 	margin-left: 597px;
 }

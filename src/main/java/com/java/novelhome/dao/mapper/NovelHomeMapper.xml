@@ -4,23 +4,6 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.java.novelhome.dao.mapper.NovelHomeMapper">
-	<resultMap type="com.java.novelpost.dto.NovelPostDto"
-		id="novelPostDto">
-		<result column="n_num" property="n_num" />
-		<result column="N_POST_EPISODE" property="N_POST_EPISODE" />
-		<result column="N_POST_TITLE" property="N_POST_TITLE" />
-		<result column="N_POST_CONTENT_NAME"
-			property="N_POST_CONTENT_NAME" />
-		<result column="N_POST_CONTENT_PATH"
-			property="N_POST_CONTENT_PATH" />
-		<result column="N_POST_CONTENT_SIZE"
-			property="N_POST_CONTENT_SIZE" />
-		<result column="N_POST_LIKE" property="N_POST_LIKE" />
-		<result column="N_POST_DISLIKE" property="N_POST_DISLIKE" />
-		<result column="N_POST_VIEWCOUNT" property="N_POST_VIEWCOUNT" />
-		<result column="N_POST_TIME" property="N_POST_TIME" />
-	</resultMap>
-	
 	<insert id="novelhomeInsert" parameterType="com.java.novelhome.dto.NovelHomeDto">
 		INSERT INTO NOVEL_HOME(n_num,
 							n_title,
@@ -41,7 +24,11 @@
 							#{n_report,jdbcType=NUMERIC},
 							#{m_num})
 	</insert>
-
+	
+	<insert id="novelCategoryInsert" parameterType="com.java.novelcategory.dto.NovelCategoryDto">
+		INSERT INTO NOVEL_CATEGORY(C_CATEGORY_ID,n_num)
+		VALUES(#{c_category_id},#{n_num})
+	</insert>
 	<select id="novelhomeSelect" parameterType="int" resultType="com.java.novelhome.dto.NovelHomeDto">
 		SELECT *
 		FROM NOVEL_HOME WHERE n_num=#{n_num}
@@ -53,7 +40,9 @@
 		]]>
 	</select>
 
-
+	<select id="getCategoryId" parameterType="int" resultType="int">
+		SELECT c_category_id FROM NOVEL_CATEGORY WHERE n_num=#{n_num}
+	</select>
 
 	<select id="novelPostCount" resultType="int">
 		SELECT COUNT(*) FROM
@@ -61,7 +50,7 @@
 	</select>
 
 	<select id="novelPostList" parameterType="java.util.HashMap"
-			resultMap="novelPostDto">
+			resultType="com.java.novelpost.dto.NovelPostDto">
 		<![CDATA[
 		SELECT * FROM (SELECT
 						   ROWNUM AS rnum, a.* FROM

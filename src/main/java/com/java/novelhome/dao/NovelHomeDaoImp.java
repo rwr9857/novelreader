@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.java.novelcategory.dto.NovelCategoryDto;
 import com.java.novelhome.dto.NovelHomeDto;
 import com.java.novelpost.dto.NovelPostDto;
 
@@ -18,6 +19,16 @@ public class NovelHomeDaoImp implements NovelHomeDao {
 	@Override
 	public int novelHomeUpload(NovelHomeDto novelHomeDto) {
 		return sqlSessionTemplate.insert("novelhomeInsert", novelHomeDto);
+	}
+	
+	@Override
+	public int novelCategoryAdd(NovelCategoryDto novelCategoryDto) {
+		return sqlSessionTemplate.insert("novelCategoryInsert", novelCategoryDto);
+	}
+	
+	@Override
+	public int getCategoryId(int n_num) {
+		return sqlSessionTemplate.selectOne("getCategoryId", n_num);
 	}
 	
 	@Override
@@ -95,6 +106,11 @@ public class NovelHomeDaoImp implements NovelHomeDao {
 
 		return sqlSessionTemplate.selectList("novelHomeList", hMap);
 	}
+
+	
+
+
+	
 	
 	
 	// 조회순

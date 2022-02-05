@@ -14,6 +14,9 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.java.aop.LogAspect;
+import com.java.category.dto.CategoryDto;
+import com.java.manager.dao.ManagerDao;
+import com.java.novelcategory.dto.NovelCategoryDto;
 import com.java.novelhome.dao.NovelHomeDao;
 import com.java.novelhome.dto.NovelHomeDto;
 import com.java.novelpost.dto.NovelPostDto;
@@ -24,13 +27,29 @@ public class NovelHomeServiceImp implements NovelHomeService {
 	@Autowired
 	private NovelHomeDao novelHomeDao;
 
+	@Autowired
+	private ManagerDao managerDao;
+
 	@Value("#{properties['novelhome.imagepath']}")
 	private String imagepath;
 
 	@Override
+	public void novelhomeUpload(ModelAndView mav) {
+		Map<String, Object> map = mav.getModelMap();
+		HttpServletRequest request = (HttpServletRequest) map.get("request");
+		
+		List<CategoryDto> categoryList = managerDao.getCategoryList();
+		LogAspect.logger.info(LogAspect.LogMsg + "categoryList=" + categoryList.size());
+
+		mav.addObject("categoryList", categoryList);
+		mav.setViewName("novelhome/upload.tiles");
+	}
+	
+	@Override
 	public void novelhomeUploadOk(ModelAndView mav) {
 		Map<String, Object> map = mav.getModelMap();
 		NovelHomeDto novelHomeDto = (NovelHomeDto) map.get("novelHomeDto");
+		NovelCategoryDto novelCategoryDto = (NovelCategoryDto) map.get("novelCategoryDto");
 		MultipartHttpServletRequest request = (MultipartHttpServletRequest) map.get("request");
 
 		MultipartFile upFile = request.getFile("file");
@@ -74,10 +93,19 @@ public class NovelHomeServiceImp implements NovelHomeService {
 		int n_num = novelHomeDao.novelHomeSelectGetNum(m_num);
 		LogAspect.logger.info(LogAspect.LogMsg + n_num);
 
+		int c_category_id = Integer.parseInt(request.getParameter("c_category_id"));
+		LogAspect.logger.info(LogAspect.LogMsg + c_category_id);
+		novelCategoryDto.setC_category_id(c_category_id);
+		novelCategoryDto.setN_num(n_num);
+		
+		LogAspect.logger.info(LogAspect.LogMsg + novelCategoryDto.toString());
+		int ch = novelHomeDao.novelCategoryAdd(novelCategoryDto);
+		LogAspect.logger.info(LogAspect.LogMsg + ch);
+		
 		mav.addObject("n_num", n_num);
 		mav.addObject("check", check);
 		mav.addObject("novelHomeDto", novelHomeDto);
-
+		mav.addObject("novelCategoryDto", novelCategoryDto);
 		mav.setViewName("novelhome/uploadOk");
 	}
 
@@ -85,7 +113,8 @@ public class NovelHomeServiceImp implements NovelHomeService {
 	public void novelHomeList(ModelAndView mav) {
 		Map<String, Object> map = mav.getModelMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
-
+		NovelCategoryDto novelCategoryDto = (NovelCategoryDto) map.get("novelCategoryDto");
+		
 		int n_num = Integer.parseInt(request.getParameter("n_num"));
 		LogAspect.logger.info(LogAspect.LogMsg + "n_num=" + n_num);
 
@@ -113,6 +142,11 @@ public class NovelHomeServiceImp implements NovelHomeService {
 		}
 		String nickname = novelHomeDao.getNickname(n_num);
 		LogAspect.logger.info(LogAspect.LogMsg + "nickname=" + nickname);
+
+		List<CategoryDto> categoryList = managerDao.getCategoryList();
+		LogAspect.logger.info(LogAspect.LogMsg + "categoryList=" + categoryList.size());
+
+		int c_category_id = novelHomeDao.getCategoryId(n_num);
 		
 		mav.addObject("nickname", nickname);
 		mav.addObject("novelPostList", novelPostList);
@@ -122,7 +156,10 @@ public class NovelHomeServiceImp implements NovelHomeService {
 		mav.addObject("novelHomeDto", novelHomeDto);
 		mav.addObject("nNumSess", nNumSess);
 		mav.addObject("n_num", n_num);
-
+		mav.addObject("categoryList", categoryList);
+		mav.addObject("novelCategoryDto", novelCategoryDto);
+		mav.addObject("c_category_id", c_category_id);
+		
 		mav.setViewName("novelhome/list.tiles");
 	}
 	
@@ -175,4 +212,5 @@ public class NovelHomeServiceImp implements NovelHomeService {
 		mav.addObject("searchList", searchList);
 		mav.setViewName("novelhome/search.tiles");
 	}
+
 }
