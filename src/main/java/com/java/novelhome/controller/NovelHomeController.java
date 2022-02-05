@@ -44,4 +44,14 @@ public class NovelHomeController {
 
 		return mav;
 	}
+	
+	@RequestMapping(value = "/novelhome/search.do", method = RequestMethod.GET)
+	public ModelAndView search(HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("request", request);
+		
+		novelHomeService.search(mav);
+
+		return mav;
+	}
 }

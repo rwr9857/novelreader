@@ -116,6 +116,45 @@
 	
 	
 	
+	<!-- search -->
+	
+	<select id="getTitleSearchCount" parameterType="String" resultType="int">
+		<![CDATA[
+		SELECT count(*) FROM novel_home WHERE UPPER(n_title) LIKE UPPER('%'||#{keyword}||'%')
+		]]>
+	</select>
+	
+	<select id="titleSearchList" parameterType="java.util.HashMap" resultType="com.java.novelhome.dto.NovelHomeDto">
+		<![CDATA[
+			SELECT a.*, m_nickname FROM (SELECT novel_home.*, ROWNUM rnum FROM novel_home WHERE UPPER(n_title) LIKE UPPER('%'||#{keyword}||'%') ORDER BY n_num DESC) a, member
+			WHERE (rnum>=#{startRow} AND rnum<=#{endRow}) AND member.m_num=a.m_num
+			ORDER BY rnum asc
+		]]>
+	</select>
+	
+	<select id="getWriterSearchCount" parameterType="String" resultType="int">
+		<![CDATA[
+		SELECT count(*)
+     	FROM novel_home 
+     	WHERE m_num IN(SELECT m_num FROM member WHERE UPPER(m_nickname) LIKE UPPER('%'||#{keyword}||'%'))
+		]]>
+	</select>
+	
+	<select id="writerSearchList" parameterType="java.util.HashMap" resultType="com.java.novelhome.dto.NovelHomeDto">
+		<![CDATA[
+		SELECT b.*, m_nickname
+		FROM (SELECT a.*, ROWNUM rnum FROM
+		                (SELECT novel_home.*
+		                 FROM novel_home 
+		                 WHERE m_num IN(SELECT m_num 
+		                                            FROM member 
+		                                            WHERE UPPER(m_nickname) LIKE UPPER('%'||#{keyword}||'%'))
+		                ORDER BY n_num DESC) a) b,
+		            member
+		WHERE (rnum>=#{startRow} AND rnum<=#{endRow}) AND member.m_num=b.m_num
+		ORDER BY rnum ASC
+		]]>
+	</select>
 	
 </mapper>   		
   	

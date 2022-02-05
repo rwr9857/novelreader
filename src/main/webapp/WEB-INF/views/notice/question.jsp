@@ -13,6 +13,14 @@
 <link rel="stylesheet" type="text/css" href="${root}/css/notice/style1.css">
 </head>
 <body>
+	
+	<c:if test="${numSess==null}">
+		<script type="text/javascript">
+			alert("로그인이 필요합니다.");
+			location.href="${root}/notice/notice.do"
+		</script>
+	</c:if>
+	
     <div class="zentaiwaku"> <!-- 전체 와꾸 다 합친 와꾸-->
         <div class="head"> <!-- 상단 탭버튼 와꾸-->
             <a href="${root}/notice/notice.do"><button>공지사항</button></a> 

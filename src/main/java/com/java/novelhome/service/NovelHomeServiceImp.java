@@ -125,5 +125,54 @@ public class NovelHomeServiceImp implements NovelHomeService {
 
 		mav.setViewName("novelhome/list.tiles");
 	}
+	
+	
+	@Override
+	public void search(ModelAndView mav) {
+		Map<String, Object> map = mav.getModelMap();
+		HttpServletRequest request = (HttpServletRequest) map.get("request");
+		
+		String pageNumber = request.getParameter("pageNumber");
+		if (pageNumber == null)
+			pageNumber = "1";
+		int currentPage = Integer.parseInt(pageNumber);
+		LogAspect.logger.info(LogAspect.LogMsg + "currentPage=" + currentPage);
+		
+		String search_method=request.getParameter("search_method");
+		String keyword=request.getParameter("keyword");
+		LogAspect.logger.info(LogAspect.LogMsg + "search_method=" + search_method + "keyword=" + keyword);
+		
+		int boardSize = 9;
+		int startRow = (currentPage - 1) * boardSize + 1;
+		int endRow = currentPage * boardSize;
 
+		int count = 0;
+		List<NovelHomeDto> searchList = null;
+		
+		if(search_method.equals("title")) {		//제목검색
+			count = novelHomeDao.getTitleSearchCount(keyword);
+			if (count > 0) {
+				searchList = novelHomeDao.titleSearchList(startRow, endRow, keyword);
+				LogAspect.logger.info(LogAspect.LogMsg + "titleSearchList.toString" + searchList.toString());
+			}
+		}else if(search_method.equals("writer")) {	//작가검색
+			count = novelHomeDao.getWriterSearchCount(keyword);
+			if (count > 0) {
+				searchList = novelHomeDao.writerSearchList(startRow, endRow, keyword);
+				LogAspect.logger.info(LogAspect.LogMsg + "writerSearchList.toString=" + searchList.toString());
+			}
+		}
+
+		LogAspect.logger.info(LogAspect.LogMsg + "count=" + count);
+		
+		
+		
+		mav.addObject("search_method", search_method);
+		mav.addObject("keyword", keyword);
+		mav.addObject("currentPage", currentPage);
+		mav.addObject("boardSize", boardSize);
+		mav.addObject("count", count);
+		mav.addObject("searchList", searchList);
+		mav.setViewName("novelhome/search.tiles");
+	}
 }

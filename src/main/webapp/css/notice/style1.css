@@ -23,7 +23,7 @@
 	color: white;
 	font-size: 16px;
 	font-style: arial;
-	margin: auto;
+	margin: 10px auto;
 }
 .head button:hover{
 	background-color: #37afff;
@@ -33,17 +33,17 @@
     width: 1200px;
     height: 800px;
 	background-color: #F4F2F4;
-    margin: auto;
+    margin: 10px auto;
 	float: center;
 }
 .board table{
 	width: 100%;
 }
 .board table th{
-	border: 0.8px solid #afdfff;
-	background-color: #afdfff;
-	color: #0096FA;
-	font-size: 12px;
+	border: 1px solid #ffffff;
+	background-color: #9dd8ff;
+	color: #0300b0;
+	font-size: 18px;
 	font-style: arial;
 	margin: auto;
 	text-align: center;
@@ -51,12 +51,13 @@
 }
 .board table td{
 	margin: auto;
-	font-size: 12px;
-	font-style: arial;
+	font-size: 20px;
 	text-align: center;
+	border:1px solid #ffffff;
 }
 .board table tr{
-	border: 0.8px solid black;
+	height:70px;
+	border-bottom: 1px solid black;
 }
 
 

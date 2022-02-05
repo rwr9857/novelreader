@@ -8,4 +8,6 @@ public interface NovelHomeService {
 
 	public void novelHomeList(ModelAndView mav);
 
+	public void search(ModelAndView mav);
+
 }
