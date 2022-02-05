@@ -32,7 +32,7 @@
 							<div class=search_infor>
 								<p align="left">
 									제목 : ${novelhomeDto.n_title}<br> <br>
-									작가 : <br> <br> <br>
+									작가 : ${novelhomeDto.m_nickname}<br> <br> <br>
 									장르1<br>
 								</p>
 							</div>

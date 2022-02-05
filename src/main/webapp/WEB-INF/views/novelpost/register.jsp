@@ -8,24 +8,33 @@
 <head>
 <meta charset="UTF-8">
 <title>회차등록</title>
+<link rel="stylesheet" type="text/css" href="${root}/css/novelpost/styleNp.css">
 </head>
 <body>
 	<form action="${root}/novelpost/registerOk.do" method="post" >
-		<table border="1">
-			<tr>
-				<td>회차제목</td>
-				<td><textarea rows="1" cols="80" name="N_POST_TITLE"
-						placeholder="회차 제목을 입력하세요"></textarea></td>
-			</tr>
-			<tr>
-				<td>내용</td>
-				<td><textarea rows="4" cols="80" name="N_POST_CONTENT"
-						placeholder="회차 내용을 입력하세요"></textarea></td>
-			</tr>
-
-		</table>
-		<input type="submit" value="확인" /> <input type="reset" value="취소" />
-		<input type="hidden" name="n_num" value="${nNumSess}" />
+		<div class="zentaiwaku">
+		<div style="border: white; width: 1100px; height: 10px;"></div><!-- 한칸띄우기-->
+            <div class="line2"> <!-- 빈칸, 카테고리 와꾸-->
+             <font>회차등록</font>
+                <input type="text" name="title" placeholder="회차 제목을 입력하세요"></input><!-- 제목입력칸-->
+           </div>
+            <div style="border: white; width: 1100px; height: 10px;"></div><!-- 한칸띄우기-->
+        <div class="textsty"> <!-- 글꼴굵기 글꼴기울기 글꼴....-->
+            <button type="button"><img src="${root}/images/notice/bold.png" width="15px" height="15px"></button>
+            <button type="button"><img src="${root}/images/notice/italic-text.png" width="15px" height="15px"></button>
+            <button type="button"><img src="${root}/images/notice/underline.png" width="15px" height="18px"></button>
+        </div>
+        <div style="border: white; width: 1100px; height: 10px;"></div><!-- 한칸띄우기-->
+        <div class="blenk"> <!-- 텍스트박스 와꾸-->
+            <textarea class="writingbox" placeholder="내용을 입력하세요"></textarea>
+        </div>
+        <div style="border: white; width: 1100px; height: 10px;"></div>
+		<div class="footer">
+			<input type="submit" value="확인"></input>
+			<input type="reset" value="취소"></input>
+			<input type="hidden" name="n_num" value="${nNumSess}" />
+		</div>
+	</div>
 	</form>
 	
 </body>
