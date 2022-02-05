@@ -10,6 +10,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.java.aop.LogAspect;
+import com.java.category.dto.CategoryDto;
+import com.java.manager.dao.ManagerDao;
 import com.java.novelhome.dao.NovelHomeDao;
 import com.java.novelhome.dto.NovelHomeDto;
 
@@ -17,6 +19,9 @@ import com.java.novelhome.dto.NovelHomeDto;
 public class HomeServiceImp implements HomeService {
 	@Autowired
 	private NovelHomeDao novelHomeDao;
+
+	@Autowired
+	private ManagerDao managerDao;
 
 	@Override
 	public void index(ModelAndView mav) {
@@ -43,7 +48,17 @@ public class HomeServiceImp implements HomeService {
 			LogAspect.logger.info(LogAspect.LogMsg + novelHomeList.size());
 		}
 
+		int categoryCount = managerDao.getCategoryId();
+		LogAspect.logger.info(LogAspect.LogMsg + categoryCount);
+
+		List<CategoryDto> CategoryList = null;
+		if (categoryCount > 0) {
+			CategoryList = managerDao.getCategoryList();
+			LogAspect.logger.info(LogAspect.LogMsg + CategoryList.size());
+		}
+
 		mav.addObject("novelHomeList", novelHomeList);
+		mav.addObject("CategoryList", CategoryList);
 		mav.addObject("count", count);
 		mav.addObject("boardSize", boardSize);
 		mav.addObject("currentPage", currentPage);

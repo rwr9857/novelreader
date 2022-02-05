@@ -107,7 +107,8 @@
 
 	<select id="novelHomeList" parameterType="java.util.HashMap" resultType="com.java.novelhome.dto.NovelHomeDto">
      <![CDATA[
-     	SELECT * FROM (SELECT ROWNUM rnum, a.* FROM (SELECT * FROM NOVEL_HOME ORDER BY n_pub_date DESC) a) b WHERE b.rnum >=#{startRow} AND b.rnum <=#{endRow}
+     	SELECT * FROM (SELECT ROWNUM rnum, a.* FROM (SELECT * FROM NOVEL_HOME ORDER BY n_pub_date DESC) a) b ,MEMBER m
+     	WHERE b.rnum >=#{startRow} AND b.rnum <=#{endRow} AND  b.m_num = m.m_num
      ]]>
 	</select>
 	

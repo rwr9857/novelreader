@@ -13,6 +13,10 @@ public class NovelHomeDto {
 	private Date n_pub_date;
 	private int n_report;
 	private int m_num;
+	
+	
+	// JOIN
+	private String m_nickname;
 
 	public int getN_num() {
 		return n_num;
@@ -85,12 +89,25 @@ public class NovelHomeDto {
 	public void setM_num(int m_num) {
 		this.m_num = m_num;
 	}
+	
+	
+	
+
+	public String getM_nickname() {
+		return m_nickname;
+	}
+
+	public void setM_nickname(String m_nickname) {
+		this.m_nickname = m_nickname;
+	}
 
 	@Override
 	public String toString() {
 		return "NovelHomeDto [n_num=" + n_num + ", n_title=" + n_title + ", n_summary=" + n_summary + ", n_image_name="
 				+ n_image_name + ", n_image_path=" + n_image_path + ", n_image_size=" + n_image_size + ", n_pub_date="
-				+ n_pub_date + ", n_report=" + n_report + ", m_num=" + m_num + "]";
+				+ n_pub_date + ", n_report=" + n_report + ", m_num=" + m_num + ", m_nickname=" + m_nickname + "]";
 	}
+
+	
 
 }

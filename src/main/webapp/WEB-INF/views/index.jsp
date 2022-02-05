@@ -9,21 +9,14 @@
 </head>
 <body>	
 	<div id=top_category>
-		<button name="cButton1" type="button" onclick="">전체</button>
-		<button name="cButton2" type="button" onclick="">추리/미스터리</button>
-		<button name="cButton3" type="button" onclick="">라이트 노벨</button>
-		<button name="cButton4" type="button" onclick="">판타지</button>
-		<button name="cButton5" type="button" onclick="">SF 과학소설</button>
-		<button name="cButton1" type="button" onclick="">무협</button>
-		<button name="cButton2" type="button" onclick="">액션</button>
-		<button name="cButton3" type="button" onclick="">공포/스릴러</button>
-		<button name="cButton4" type="button" onclick="">로맨스</button>
-		<button name="cButton5" type="button" onclick="">고전문학</button>
+		<c:forEach var="categoryDto" items="${CategoryList}" varStatus="status">
+			<button type="button" onclick="">${categoryDto.c_category_name}</button>
+		</c:forEach>
 	</div>
 
 	<div id=novelleader_main>
 		<div class=follow_novels>
-			<p style="text-align: left; font-size: 1rem; padding: 15px;">조회수</p>
+			<p style="text-align: left; font-size: 1rem; padding: 15px;">최신수</p>
 			<div id=follower_novels>
 			
 				<c:if test="${count==0}">
@@ -39,7 +32,7 @@
 							<div class=search_infor>
 								<p align="left">
 									제목 : ${novelhomeDto.n_title}<br> <br>
-									회원번호 : ${novelhomeDto.m_num}<br> <br> <br>
+									작가 : ${novelhomeDto.m_nickname}<br> <br> <br>
 									장르1<br>
 								</p>
 							</div>
