@@ -104,7 +104,8 @@
 	<select id="novelHomeAllCount" resultType="int">
 		SELECT COUNT(*) FROM NOVEL_HOME
 	</select>
-
+	
+	<!-- 최신순 -->
 	<select id="novelHomeList" parameterType="java.util.HashMap" resultType="com.java.novelhome.dto.NovelHomeDto">
      <![CDATA[
      	SELECT * FROM (SELECT ROWNUM rnum, a.* FROM (SELECT * FROM NOVEL_HOME ORDER BY n_pub_date DESC) a) b ,MEMBER m
@@ -113,7 +114,13 @@
 	</select>
 	
 	
-	
+	<!-- 조회순 -->
+	<select id="novelViewCountList" parameterType="java.util.HashMap" resultType="com.java.novelhome.dto.NovelHomeDto">
+    	 <![CDATA[
+     		SELECT * FROM (SELECT ROWNUM rnum, a.* FROM (  SELECT nh.* FROM NOVEL_HOME nh ,(SELECT N_NUM, sum(N_POST_VIEWCOUNT) AS viewcount FROM NOVEL_POST np GROUP BY N_NUM ORDER BY viewcount DESC)b WHERE nh.N_NUM  = b.n_num(+) )a) b ,MEMBER m
+			WHERE b.rnum >=#{startRow} AND b.rnum <=#{endRow} AND  b.m_num = m.m_num
+     	]]>
+	</select>
 	
 	
 	<!-- search -->

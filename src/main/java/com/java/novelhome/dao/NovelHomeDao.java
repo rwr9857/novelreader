@@ -46,6 +46,8 @@ public interface NovelHomeDao {
 
 	public List<NovelHomeDto> writerSearchList(int startRow, int endRow, String keyword);
 	
+	public List<NovelHomeDto> novelViewCountList(int startRow,int endRow);
+	
 	
 	
 	
