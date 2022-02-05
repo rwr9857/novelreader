@@ -84,6 +84,9 @@ public class NovelHomeDaoImp implements NovelHomeDao {
 	}
 	
 	
+	
+	// 최신순
+	
 	@Override
 	public List<NovelHomeDto> novelHomeList(int startRow, int endRow) {
 		HashMap<String, Integer> hMap = new HashMap<String, Integer>();
@@ -94,7 +97,16 @@ public class NovelHomeDaoImp implements NovelHomeDao {
 	}
 	
 	
+	// 조회순
 	
+	@Override
+	public List<NovelHomeDto> novelViewCountList(int startRow, int endRow) {
+		HashMap<String, Integer> hMap = new HashMap<String, Integer>();
+		hMap.put("startRow", startRow);
+		hMap.put("endRow", endRow);
+
+		return sqlSessionTemplate.selectList("novelViewCountList", hMap);
+	}
 	
 	
 	

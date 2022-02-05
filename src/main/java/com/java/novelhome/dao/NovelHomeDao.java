@@ -38,6 +38,8 @@ public interface NovelHomeDao {
 	
 	public List<NovelHomeDto> novelHomeList(int startRow,int endRow);
 	
+	public List<NovelHomeDto> novelViewCountList(int startRow,int endRow);
+	
 	
 	
 	

@@ -16,7 +16,7 @@
 
 	<div id=novelleader_main>
 		<div class=follow_novels>
-			<p style="text-align: left; font-size: 1rem; padding: 15px;">최신순</p>
+			<p style="text-align: left; font-size: 1rem; padding: 15px;">조회수 순</p>
 			<div id=follower_novels>
 			
 				<c:if test="${count==0}">
@@ -24,7 +24,7 @@
 				</c:if>
 
 				<c:if test="${count>0}">
-					<c:forEach var="novelhomeDto" items="${novelHomeList}" varStatus="status">
+					<c:forEach var="novelhomeDto" items="${novelViewCountList}" varStatus="status">
 						<div class=main_views style="width: 33.2%; float: left;" onclick="location.href='${root}/novelhome/list.do?n_num=${novelhomeDto.n_num}'">
 							<div class=search_image>
 								<img align="left" src="${root}/file/${novelhomeDto.n_image_name}">
@@ -32,7 +32,7 @@
 							<div class=search_infor>
 								<p align="left">
 									제목 : ${novelhomeDto.n_title}<br> <br>
-									작가 : ${novelhomeDto.m_nickname}<br> <br> <br>
+									작가 : <br> <br> <br>
 									장르1<br>
 								</p>
 							</div>
@@ -75,15 +75,15 @@
 		</c:if>
 
 		<c:if test="${startPage > pageBlock}">
-			<a href="${root}/?pageNumber=${startPage - pageBlock}">[이전]</a>
+			<a href="${root}/novel/top10.do?pageNumber=${startPage - pageBlock}">[이전]</a>
 		</c:if>
 
 		<c:forEach var="i" begin="${startPage}" end="${endPage}">
-			<a href="${root}/?pageNumber=${i}">[${i}]</a>
+			<a href="${root}/novel/top10.do?pageNumber=${i}">[${i}]</a>
 		</c:forEach>
 
 		<c:if test="${endPage < pageCount}">
-			<a href="${root}/?pageNumber=${startPage + pageBlock}">[다음]</a>
+			<a href="${root}/novel/top10.do?pageNumber=${startPage + pageBlock}">[다음]</a>
 		</c:if>
 	</div>
 </body>

@@ -28,7 +28,11 @@ public class HomeController {
 	
 	@RequestMapping(value = "/novel/top10.do", method = RequestMethod.GET)
 	  public ModelAndView top10(HttpServletRequest request, HttpServletResponse response) {
-	    return new ModelAndView("index.tiles");
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("request", request);
+		
+		homeService.top10(mav);
+		return mav;
 	}
 	
 	@RequestMapping(value = "/novel/ranking.do", method = RequestMethod.GET)
