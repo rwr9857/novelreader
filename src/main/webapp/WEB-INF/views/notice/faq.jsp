@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="${root}/css/notice/style1.css">
+<link rel="stylesheet" type="text/css" href="${root}/css/notice/notice.css">
 <title>Insert title here</title>
 </head>
 <body>

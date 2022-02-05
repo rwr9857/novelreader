@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>회차등록</title>
-<link rel="stylesheet" type="text/css" href="${root}/css/novelpost/styleNp.css">
+<link rel="stylesheet" type="text/css" href="${root}/css/novelpost/register.css">
 </head>
 <body>
 	<form action="${root}/novelpost/registerOk.do" method="post" >

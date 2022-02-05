@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="${root}/css/notice/style1.css">
+<link rel="stylesheet" type="text/css" href="${root}/css/notice/notice.css">
 </head>
 <body>
 	<c:if test="${numSess == null}">
