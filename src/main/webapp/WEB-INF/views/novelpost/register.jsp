@@ -16,17 +16,14 @@
 		<div style="border: white; width: 1100px; height: 10px;"></div><!-- 한칸띄우기-->
             <div class="line2"> <!-- 빈칸, 카테고리 와꾸-->
              <font>회차등록</font>
-                <input type="text" name="title" placeholder="회차 제목을 입력하세요"></input><!-- 제목입력칸-->
+                <input type="text" name="N_POST_TITLE" placeholder="회차 제목을 입력하세요"></input><!-- 제목입력칸-->
            </div>
             <div style="border: white; width: 1100px; height: 10px;"></div><!-- 한칸띄우기-->
         <div class="textsty"> <!-- 글꼴굵기 글꼴기울기 글꼴....-->
-            <button type="button"><img src="${root}/images/notice/bold.png" width="15px" height="15px"></button>
-            <button type="button"><img src="${root}/images/notice/italic-text.png" width="15px" height="15px"></button>
-            <button type="button"><img src="${root}/images/notice/underline.png" width="15px" height="18px"></button>
         </div>
         <div style="border: white; width: 1100px; height: 10px;"></div><!-- 한칸띄우기-->
         <div class="blenk"> <!-- 텍스트박스 와꾸-->
-            <textarea class="writingbox" placeholder="내용을 입력하세요"></textarea>
+            <textarea class="writingbox" name="N_POST_CONTENT" placeholder="내용을 입력하세요"></textarea>
         </div>
         <div style="border: white; width: 1100px; height: 10px;"></div>
 		<div class="footer">
