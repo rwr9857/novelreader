@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="${root}/css/notice/notice.css">
+<script type="text/javascript" src="${root}/javascript/notice/notice.js"></script>
 </head>
 <body>
 	<c:if test="${numSess == null}">
@@ -39,35 +40,33 @@
 
 					<input type="text" name="q_title" placeholder="제목을 입력하세요" />
 					<!-- 제목입력칸-->
-					<select name="q_category">
-						<optgroup label="카테고리">
+					<select name="q_category" id="q_category">
+						<optgroup label="카테고리" >
 							<option value="서비스문의">서비스문의</option>
 							<option value="버그문의">버그문의</option>
-							<option value="신고문의">신고문의</option>
+							<c:if test="${n_title != null}">
+								<option value="신고문의" selected="selected">신고문의</option>
+							</c:if>
+							<c:if test="${n_title == null}">
+								<option value="신고문의" >신고문의</option>
+							</c:if>
 						</optgroup>
 					</select>
-
+					
 				</div>
 
 				<div style="border: white; width: 1200px; height: 8px;"></div>
 				<!-- 한칸띄우기-->
 				<div class="textsty">
-					<!-- 글꼴굵기 글꼴기울기 글꼴....-->
-					<button type="button">
-						<img src="${root}/images/notice/bold.png" width="15px" height="15px">
-					</button>
-					<button type="button">
-						<img src="${root}/images/notice/italic-text.png" width="15px" height="15px">
-					</button>
-					<button type="button">
-						<img src="${root}/images/notice/underline.png" width="15px" height="18px">
-					</button>
 				</div>
 				<div style="border: white; width: 1200px; height: 8px;"></div>
 				<!-- 한칸띄우기-->
 				<div class="blenk">
 					<!-- 텍스트박스 와꾸-->
-					<textarea name="q_content" class="writingbox" placeholder="내용을 입력하세요"></textarea>
+					<textarea name="q_content" class="writingbox" placeholder="내용을 입력하세요"><c:if test="${n_title != null}">[게시글 제목] : ${n_title}
+--------------------------------------------------
+						</c:if>
+					</textarea>
 				</div>
 				<div style="border: white; width: 1200px; height: 16px;"></div>
 				<!-- 한칸띄우기-->
