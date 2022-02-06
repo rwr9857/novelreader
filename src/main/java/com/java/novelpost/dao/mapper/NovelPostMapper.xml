@@ -65,6 +65,49 @@
 		N_POST_CONTENT=#{N_POST_TITLE} WHERE n_post_num=#{n_POST_NUM}
 	</update>
 
+	<select id="nNumSelect" parameterType="int" resultType="int">
+		SELECT
+		n_num FROM NOVEL_POST WHERE n_post_num=#{n_post_num}
+	</select>
 
+	<select id="mNumSelect" parameterType="int" resultType="int">
+		SELECT
+		m_num FROM NOVEL_HOME WHERE n_num=#{n_num}
+	</select>
+
+	<select id="getCount" resultType="int">
+		<![CDATA[SELECT COUNT(*) FROM "COMMENT"
+		]]>
+	</select>
+
+	<select id="commentList" parameterType="java.util.HashMap"
+		resultType="com.java.comment.dto.CommentDto">
+		<![CDATA[
+		SELECT * FROM (SELECT
+						   ROWNUM AS rnum, a.* FROM
+							   (SELECT * FROM "COMMENT" ORDER BY n_post_num DESC, comment_num) a) b
+		WHERE b.rnum >=#{startRow} AND
+			b.rnum <=#{endRow} AND n_post_num=#{n_post_num} ORDER BY comment_num
+		]]>
+	</select>
+
+	<insert id="novelPostCommentInsert"
+		parameterType="com.java.comment.dto.CommentDto">
+		INSERT INTO "COMMENT"(comment_num,
+		m_num,
+		comment_content,
+		comment_time,
+		n_post_num)
+		VALUES(comment_num_SEQ.nextval,
+		#{m_num, jdbcType=NUMERIC},
+		#{comment_content, jdbcType=VARCHAR},
+		sysdate,
+		#{n_post_num, jdbcType=NUMERIC})
+	</insert>
+	
+	<delete id="novelPostCommentDelete" parameterType="int">
+		DELETE FROM "COMMENT" WHERE comment_num=#{comment_num}
+	</delete>
+	
 </mapper>   		
   	
