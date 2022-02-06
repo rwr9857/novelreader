@@ -19,6 +19,17 @@ public class NoticeServiceImp implements NoticeService {
 	private NoticeDao noticeDao;
 
 	@Override
+	public void questionWrite(ModelAndView mav) {
+		Map<String, Object> map = mav.getModelMap();
+		HttpServletRequest request = (HttpServletRequest) map.get("request");
+		
+		String n_title = request.getParameter("n_title");
+		
+		mav.addObject("n_title", n_title);
+		mav.setViewName("notice/questionWrite.tiles");
+	}
+	
+	@Override
 	public void questionWriteOk(ModelAndView mav) {
 		Map<String, Object> map = mav.getModelMap();
 		QuestionDto questionDto = (QuestionDto) map.get("questionDto");
@@ -72,6 +83,8 @@ public class NoticeServiceImp implements NoticeService {
 		
 		mav.setViewName("notice/question.tiles");
 	}
+
+	
 	
 	
 	
