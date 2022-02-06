@@ -63,8 +63,9 @@
 				<!-- 한칸띄우기-->
 				<div class="blenk">
 					<!-- 텍스트박스 와꾸-->
-					<textarea name="q_content" class="writingbox" placeholder="내용을 입력하세요"><c:if test="${n_title != null}">[게시글 제목] : ${n_title}
---------------------------------------------------
+					<textarea name="q_content" class="writingbox" placeholder="내용을 입력하세요">
+						<c:if test="${n_title != null}">[게시글 제목] : ${n_title}
+							--------------------------------------------------
 						</c:if>
 					</textarea>
 				</div>
