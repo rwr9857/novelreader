@@ -14,4 +14,8 @@ public interface NovelPostService {
 
 	public void novelPostUpdateOk(ModelAndView mav);
 
+	public void novelPostCommentOk(ModelAndView mav);
+
+	public void novelPostCommentDelete(ModelAndView mav);
+
 }

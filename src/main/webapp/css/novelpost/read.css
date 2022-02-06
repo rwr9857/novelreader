@@ -54,26 +54,9 @@
 
 /* 하단 */
 
-
-.footer_bar{
-	/* position: fixed; */
-    background-color: rgb(255, 255, 255);
-    width: 100%;
-    left: 0px;
-    right: 0px;
-    bottom: 0px; 
-    height: 60px;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px -1px 4px 0px;
-    user-select: none;
-    color: rgb(0, 0, 0);
-    display: block;
+.form_style {
+	border:0px solid black;
+	width:900px;
 }
-
-.footer_bar td{
-    text-align:center;
-    font-size:12px;
-    width:19%;
-}
-
 
 

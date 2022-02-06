@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.java.comment.dto.CommentDto;
 import com.java.novelpost.dto.NovelPostDto;
 import com.java.novelpost.service.NovelPostService;
 
@@ -69,6 +70,27 @@ public class NovelPostController {
 		mav.addObject("request", request);
 		mav.addObject("novelPostDto", novelPostDto);
 		novelPostService.novelPostUpdateOk(mav);
+
+		return mav;
+	}
+	
+	@RequestMapping(value = "/novelpost/commentOk.do", method = RequestMethod.POST)
+	public ModelAndView novelPostCommentOk(HttpServletRequest request, HttpServletResponse response,
+			CommentDto commentDto) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("request", request);
+		mav.addObject("commentDto", commentDto);
+		novelPostService.novelPostCommentOk(mav);
+
+		return mav;
+	}
+	
+	@RequestMapping(value = "/novelpost/commentdelete.do", method = RequestMethod.GET)
+	public ModelAndView novelPostCommentDelete(HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("request", request);
+		
+		novelPostService.novelPostCommentDelete(mav);
 
 		return mav;
 	}
