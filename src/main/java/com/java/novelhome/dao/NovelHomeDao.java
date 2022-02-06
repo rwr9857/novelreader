@@ -48,6 +48,10 @@ public interface NovelHomeDao {
 	
 	public List<NovelHomeDto> novelViewCountList(int startRow,int endRow);
 
+	public int getCategoryCount(String category);
+
+	public List<NovelHomeDto> getCategoryList(int startRow, int endRow, String category);
+
 	
 	
 

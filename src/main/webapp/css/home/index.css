@@ -117,10 +117,10 @@ body{
 }
 
 .search_image {
-	border: 1px solid black;
+	border: 1px solid #cdd8ff;
 	float: left;
-	width: 120px;
-	height: 180px;
+	width: 122px;
+	height: 182px;
 }
 
 .search_image img{

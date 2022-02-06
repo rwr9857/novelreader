@@ -13,13 +13,21 @@
 <body>	
 	<div id=top_category>
 		<c:forEach var="categoryDto" items="${CategoryList}" varStatus="status">
-			<button type="button" onclick="">${categoryDto.c_category_name}</button>
+			<button type="button" onclick="goCategory('${root}','${categoryDto.c_category_name}')">${categoryDto.c_category_name}</button>
 		</c:forEach>
 	</div>
-
+		
+		
+	<script type="text/javascript">
+		function goCategory(root, category){
+			location.href=root+"/novelhome/category.do?category="+category;
+		}
+	</script>
+		
+		
 	<div id=novelleader_main>
 		<div class=follow_novels>
-			<p style="text-align: left; font-size: 1rem; padding: 15px;">최신순</p>
+			<p style="text-align: left; font-size: 26px; padding: 15px; font-weight:bolder;">최신순</p>
 			<div id=follower_novels>
 			
 				<c:if test="${count==0}">

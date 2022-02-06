@@ -63,4 +63,14 @@ public class NovelHomeController {
 
 		return mav;
 	}
+	
+	@RequestMapping(value = "/novelhome/category.do", method = RequestMethod.GET)
+	public ModelAndView category(HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("request", request);
+		
+		novelHomeService.category(mav);
+
+		return mav;
+	}
 }

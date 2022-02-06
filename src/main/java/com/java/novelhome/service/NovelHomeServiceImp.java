@@ -212,5 +212,76 @@ public class NovelHomeServiceImp implements NovelHomeService {
 		mav.addObject("searchList", searchList);
 		mav.setViewName("novelhome/search.tiles");
 	}
+	
+	
+	
+	@Override
+	public void category(ModelAndView mav) {
+		
+		Map<String, Object> map = mav.getModelMap();
+		HttpServletRequest request = (HttpServletRequest) map.get("request");
+		
+		String pageNumber = request.getParameter("pageNumber");
+		if (pageNumber == null)
+			pageNumber = "1";
+		int currentPage = Integer.parseInt(pageNumber);
+		LogAspect.logger.info(LogAspect.LogMsg + "currentPage=" + currentPage);
+		
+		String category=request.getParameter("category");
+		System.out.println(category);
+		
+		int boardSize = 9;
+		int startRow = (currentPage - 1) * boardSize + 1;
+		int endRow = currentPage * boardSize;
+		
+		int count = 0;
+		List<NovelHomeDto> searchList = null;
+		
+		if(!category.equals("") || category!=null) {				//제목검색
+			
+			count = novelHomeDao.getCategoryCount(category);
+			LogAspect.logger.info(LogAspect.LogMsg + "count" + count);
+			
+			if (count > 0) {
+				searchList = novelHomeDao.getCategoryList(startRow, endRow, category);
+				LogAspect.logger.info(LogAspect.LogMsg + "titleSearchList.toString" + searchList.toString());
+			}
+			
+		}		
+		
+		//위에 카테고리 메뉴 표시
+		int categoryCount = managerDao.getCategoryId();
+		LogAspect.logger.info(LogAspect.LogMsg + categoryCount);
 
+		List<CategoryDto> categoryList = null;
+		if (categoryCount > 0) {
+			categoryList = managerDao.getCategoryList();
+			LogAspect.logger.info(LogAspect.LogMsg + categoryList.toString());
+		}
+		
+		mav.addObject("categoryList", categoryList);
+		mav.addObject("category", category);
+		mav.addObject("currentPage", currentPage);
+		mav.addObject("boardSize", boardSize);
+		mav.addObject("count", count);
+		mav.addObject("searchList", searchList);
+		mav.setViewName("novelhome/category.tiles");
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

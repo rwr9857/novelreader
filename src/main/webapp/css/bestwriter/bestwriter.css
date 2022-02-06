@@ -10,7 +10,13 @@
 
 .wrap{
     width : 100%;
-    margin: 0 auto;
+    margin: 0px auto;
+}
+
+.wrap_inner{
+	margin: 0px auto;
+	width: 1900px;
+	margin-bottom:120px;
 }
 
 .profile{
@@ -29,6 +35,8 @@
     border :2px solid rgb(37, 37, 37);
     border-radius: 50%;
     margin-top : 70px;
+    
+    cursor:pointer;
 }
 
 .profile2 h2{
@@ -36,6 +44,8 @@
     font-weight: bold;
     margin-top :10px;
     text-align :center;
+    
+    cursor:pointer;
 }
 
 .textbox{
@@ -44,6 +54,7 @@
 }
 
 .textbox2{
+	margin-top:50px;
     width : 200px;
     height : 500px;
     margin-left : 150px;

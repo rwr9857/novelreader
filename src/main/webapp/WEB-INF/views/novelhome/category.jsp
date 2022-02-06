@@ -10,21 +10,24 @@
 <body>	
 	<div id=top_category>
 		<c:forEach var="categoryDto" items="${categoryList}" varStatus="status">
-			<button type="button" onclick="">${categoryDto.c_category_name}</button>
+			<button type="button" onclick="goCategory('${root}','${categoryDto.c_category_name}')">${categoryDto.c_category_name}</button>
 		</c:forEach>
 	</div>
+		
+	<script type="text/javascript">
+		function goCategory(root, category){
+			location.href=root+"/novelhome/category.do?category="+category;
+		}
+	</script>
 
 	<div id=novelleader_main>
 		<div class=follow_novels>
-			<c:if test="${search_method=='title'}">
-				<p style="text-align: left; font-size: 26px; padding: 15px; font-weight:bolder">제목 검색목록</p>
-			</c:if>
-			<c:if test="${search_method=='writer'}">
-				<p style="text-align: left; font-size: 26px; padding: 15px; font-weight:bolder;">작성자 검색목록</p>
+			<c:if test="${category!=null}">
+				<p style="text-align: left; font-size: 26px; padding: 15px; font-weight:bolder">${category}</p>
 			</c:if>
 			<div id=follower_novels>
 				
-				<div class="resultCount" style="width:100%; text-align:left; padding-left:15px; height:50px; font-size:16px; margin-bottom:50px;">검색 결과 ${count}건</div>
+				<div class="resultCount" style="width:100%; text-align:left; padding-left:15px; height:50px; font-size:20px; margin-bottom:50px;">${count}건</div>
 
 				<c:if test="${count>0}">
 					<c:forEach var="novelhomeDto" items="${searchList}" varStatus="status">
@@ -41,7 +44,7 @@
 								<p align="left">
 									제목 : ${novelhomeDto.n_title}<br> <br>
 									작가 : ${novelhomeDto.m_nickname}<br> <br> <br>
-									장르1<br>
+									장르 : ${category}<br>
 								</p>
 							</div>
 						</div>

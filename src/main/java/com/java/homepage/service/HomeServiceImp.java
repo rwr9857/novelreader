@@ -12,6 +12,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.java.aop.LogAspect;
 import com.java.category.dto.CategoryDto;
 import com.java.manager.dao.ManagerDao;
+import com.java.member.dao.MemberDao;
+import com.java.member.dto.MemberDto;
 import com.java.novelhome.dao.NovelHomeDao;
 import com.java.novelhome.dto.NovelHomeDto;
 
@@ -22,6 +24,9 @@ public class HomeServiceImp implements HomeService {
 
 	@Autowired
 	private ManagerDao managerDao;
+	
+	@Autowired
+	private MemberDao memberDao;
 
 	@Override
 	public void index(ModelAndView mav) {
@@ -112,5 +117,28 @@ public class HomeServiceImp implements HomeService {
 		mav.setViewName("home/indexAdd.tiles");
 		
 	}
+	
+	
+	
+	
+	
+	@Override
+	public void ranking(ModelAndView mav) {
+		
+		List<MemberDto> rankingList=null;
+		
+		rankingList=memberDao.ranking();
+		
+		System.out.println(rankingList.toString());
+		
+		
+		mav.addObject("rankingList", rankingList);
+		
+		mav.setViewName("home/ranking.tiles");
+	}
+	
+	
+	
+	
 	
 }

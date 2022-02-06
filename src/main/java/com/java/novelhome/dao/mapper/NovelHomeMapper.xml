@@ -152,5 +152,25 @@
 		]]>
 	</select>
 	
+	<select id="getCategoryCount" parameterType="String" resultType="int">
+		<![CDATA[
+			SELECT count(*) FROM category ca, novel_category nc
+			WHERE ca.c_category_id = nc.c_category_id AND ca.c_category_name = #{category}
+		]]>
+	</select>
+	
+	
+	<select id="getCategoryList" parameterType="java.util.HashMap" resultType="com.java.novelhome.dto.NovelHomeDto">
+		<![CDATA[
+			SELECT a.* , m_nickname
+			FROM(SELECT novel_home.* , ROWNUM rnum FROM novel_home
+			        WHERE n_num IN(SELECT n_num FROM category ca, novel_category nc
+			        WHERE ca.c_category_id = nc.c_category_id AND ca.c_category_name = #{category})
+			        ORDER BY novel_home.n_num DESC) a, member
+			WHERE rnum>=#{startRow} AND rnum<=#{endRow} AND a.m_num = member.m_num
+		]]>
+	</select>
+	
+	
 </mapper>   		
   	

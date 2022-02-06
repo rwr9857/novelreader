@@ -149,4 +149,22 @@ public class MemberDaoImp implements MemberDao {
 		return sqlSessionTemplate.selectList("memberList", hMap);
 	}
 
+	
+	
+	
+	
+	
+	// --------------인기작가 ------------------
+	
+	@Override
+	public List<MemberDto> ranking() {
+		return sqlSessionTemplate.selectList("ranking");
+	}
+	
+	
+	
+	
+	
+	
+	
 }
