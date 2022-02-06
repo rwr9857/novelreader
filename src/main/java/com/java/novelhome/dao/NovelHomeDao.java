@@ -23,20 +23,25 @@ public interface NovelHomeDao {
 	public List<NovelHomeDto> novelListMember(int startRow, int endRow, int m_num);
 
 	public String getNickname(int n_num);
-	
+
 	public int novelCategoryAdd(NovelCategoryDto novelCategoryDto);
-	
+
 	public int getCategoryId(int n_num);
+
+	public int getAllViewCount(int n_num);
 	
-	
-	
-	
+	public int novelFirstView(int n_num);
+
+	public int postDelete(int n_num);
+
+	public int homeDelete(int n_num);
+
+	public int getAllPostCount(int n_num);
 	// ----------------- index
-	
-	
+
 	public int getAllCount();
-	
-	public List<NovelHomeDto> novelHomeList(int startRow,int endRow);
+
+	public List<NovelHomeDto> novelHomeList(int startRow, int endRow);
 
 	public int getTitleSearchCount(String keyword);
 
@@ -45,18 +50,15 @@ public interface NovelHomeDao {
 	public int getWriterSearchCount(String keyword);
 
 	public List<NovelHomeDto> writerSearchList(int startRow, int endRow, String keyword);
-	
-	public List<NovelHomeDto> novelViewCountList(int startRow,int endRow);
+
+	public List<NovelHomeDto> novelViewCountList(int startRow, int endRow);
 
 	public int getCategoryCount(String category);
 
 	public List<NovelHomeDto> getCategoryList(int startRow, int endRow, String category);
 
 	
-	
 
-	
-	
 	
 
 }

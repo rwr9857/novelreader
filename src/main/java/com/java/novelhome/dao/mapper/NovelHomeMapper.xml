@@ -48,15 +48,27 @@
 		SELECT COUNT(*) FROM
 			NOVEL_POST WHERE N_NUM=#{n_num, jdbcType=NUMERIC}
 	</select>
+	
+	<select id="getAllViewCount" resultType="int">
+		SELECT SUM(n_post_viewcount) FROM NOVEL_POST
+		WHERE n_num=#{n_num} GROUP BY n_num 
+	</select>
+	
+	<select id="getAllPostCount" resultType="int">
+		SELECT COUNT(n_post_num) FROM NOVEL_POST
+		WHERE n_num=#{n_num} GROUP BY n_num
+	</select>
+	
 
 	<select id="novelPostList" parameterType="java.util.HashMap"
 			resultType="com.java.novelpost.dto.NovelPostDto">
 		<![CDATA[
 		SELECT * FROM (SELECT
 						   ROWNUM AS rnum, a.* FROM
-							   (SELECT * FROM NOVEL_POST ORDER BY n_num DESC) a) b
+							   (SELECT * FROM NOVEL_POST ORDER BY n_num DESC,N_POST_NUM) a) b
 		WHERE b.rnum >=#{startRow} AND
-			b.rnum <=#{endRow} AND n_num=#{n_num}
+			b.rnum <=#{endRow} AND n_num=#{n_num} 
+			ORDER BY N_POST_NUM
 		]]>
 	</select>
 
@@ -79,10 +91,18 @@
 		WHERE m_num=(SELECT m_num FROM NOVEL_HOME WHERE n_num=#{n_num})
 	</select>
 	
+
+	<select id="novelFirstView" parameterType="int" resultType="int">
+		SELECT n_post_num FROM NOVEL_POST WHERE n_num=#{n_num} AND ROWNUM =1 ORDER BY n_post_num
+	</select>
 	
+	<delete id="postDelete" parameterType="int">
+		DELETE FROM NOVEL_POST WHERE n_num=#{n_num}
+	</delete>
 	
-	
-	
+	<delete id="homeDelete" parameterType="int">
+		DELETE FROM NOVEL_HOME WHERE n_num=#{n_num}
+	</delete>
 	
 	
 	

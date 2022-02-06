@@ -61,7 +61,7 @@ h1{
     cursor : pointer;
 }
 
-.right_up img{ 
+.right_up button{ 
     width : 30px;
     height: 30px;
     padding : 0px;
@@ -69,6 +69,14 @@ h1{
     cursor : pointer;
     margin-top : 13px;
     margin-left :10px;
+}
+
+.right_up img{ 
+    width : 30px;
+    height: 30px;
+    padding : 0px;
+    text-align : center;
+    cursor : pointer;
 }
 
 

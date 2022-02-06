@@ -8,11 +8,14 @@ public interface NovelHomeService {
 
 	public void novelHomeList(ModelAndView mav);
 
-
 	public void search(ModelAndView mav);
 
 	public void novelhomeUpload(ModelAndView mav);
 
 	public void category(ModelAndView mav);
+
+	public void novelHomeDelete(ModelAndView mav);
+
+	public void novelHomeAllDelete(ModelAndView mav);
 
 }
