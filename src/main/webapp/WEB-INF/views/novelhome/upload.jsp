@@ -14,7 +14,7 @@
 <body>
 	<c:if test="${numSess !=null}">
 		<form name="novelhomeForm" action="${root}/novelhome/uploadOk.do"
-			method="post" enctype="multipart/form-data">
+			method="post" enctype="multipart/form-data" onsubmit="return checkAll()">
 		
 			<div class="wrap">
 				<!-- 표지 -->
@@ -42,7 +42,6 @@
 					                <div class="front card" style="width:50px;">
 					                    <label for="${categoryDto.c_category_id}" style="width:50px;">${categoryDto.c_category_name}</label>
 					                    <input type="radio" id="${categoryDto.c_category_id}" name="c_category_id" value="${categoryDto.c_category_id}" style="display: inline-block;">  
-					                    
 					                </div>
 					        	</div>
 						</c:forEach>
