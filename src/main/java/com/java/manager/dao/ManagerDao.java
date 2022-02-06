@@ -11,5 +11,7 @@ public interface ManagerDao {
 
 	public List<CategoryDto> getCategoryList();
 	
+	public List<CategoryDto> getCategoryListDesc();
+	
 	public int categoryDelete(String categoryId);
 }

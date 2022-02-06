@@ -17,7 +17,7 @@ public class ManagerDaoImp implements ManagerDao {
 	public int categoryInsert(CategoryDto categoryDto) {
 		return sqlSessionTemplate.insert("categoryInsert", categoryDto);
 	}
-	
+
 	@Override
 	public int getCategoryId() {
 		return sqlSessionTemplate.selectOne("categoryId");
@@ -27,11 +27,15 @@ public class ManagerDaoImp implements ManagerDao {
 	public List<CategoryDto> getCategoryList() {
 		return sqlSessionTemplate.selectList("categoryList");
 	}
-	
+
 	@Override
-	public int categoryDelete(String categoryId) {
-		return sqlSessionTemplate.delete("categoryDelete",categoryId);
+	public List<CategoryDto> getCategoryListDesc() {
+		return sqlSessionTemplate.selectList("categoryListDesc");
 	}
 
+	@Override
+	public int categoryDelete(String categoryId) {
+		return sqlSessionTemplate.delete("categoryDelete", categoryId);
+	}
 
 }

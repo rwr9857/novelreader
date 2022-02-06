@@ -58,7 +58,7 @@ public class HomeServiceImp implements HomeService {
 
 		List<CategoryDto> CategoryList = null;
 		if (categoryCount > 0) {
-			CategoryList = managerDao.getCategoryList();
+			CategoryList = managerDao.getCategoryListDesc();
 			LogAspect.logger.info(LogAspect.LogMsg + CategoryList.size());
 		}
 		

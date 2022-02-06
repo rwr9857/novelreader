@@ -19,6 +19,10 @@
 		SELECT * FROM category
 	</select>
 	
+	<select id="categoryListDesc" resultType="com.java.category.dto.CategoryDto">
+		SELECT * FROM category ORDER BY c_category_id DESC
+	</select>
+	
 	<delete id="categoryDelete" parameterType="String">
 		DELETE FROM category
 		WHERE c_category_id=#{categoryId}

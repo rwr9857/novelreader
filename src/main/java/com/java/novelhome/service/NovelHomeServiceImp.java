@@ -255,7 +255,7 @@ public class NovelHomeServiceImp implements NovelHomeService {
 
 		List<CategoryDto> categoryList = null;
 		if (categoryCount > 0) {
-			categoryList = managerDao.getCategoryList();
+			categoryList = managerDao.getCategoryListDesc();
 			LogAspect.logger.info(LogAspect.LogMsg + categoryList.toString());
 		}
 		
