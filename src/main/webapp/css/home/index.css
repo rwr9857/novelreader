@@ -1,5 +1,7 @@
 @charset "UTF-8";
-
+body{
+    font-family: 'Noto Sans KR', sans-serif;
+}
 
 /* 메인 */
 #novelleader_main {
@@ -15,6 +17,16 @@
 	padding-bottom: 10px;
 	font-size: 1rem;
 	margin: 0 auto;
+}
+
+#top_category button{
+    height: 32px;
+    border-radius: 30px;
+    border : 1px solid rgb(207 202 202);;
+    margin-left: 20px;
+    font-weight:bold;
+    font-size : 14px;
+
 }
 
 #novelleader_main {

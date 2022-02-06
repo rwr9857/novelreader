@@ -55,9 +55,6 @@
 						<img src="https://novelpia.com/img/new/icon/count_book.png"
 							style="margin-top: 2px; margin-right: 2px;">
 						<h3>11111 회차</h3>
-						<img src="https://novelpia.com/img/new/icon/count_good.png"
-							style="margin-top: 2px; margin-right: 2px;">
-						<h3>11111 개</h3>
 					</div>
 					<div class=right_bottom>
 						<p style="font-size: 15px;">소설 줄거리:${novelHomeDto.n_summary}</p>
