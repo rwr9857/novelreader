@@ -66,7 +66,7 @@
 					</c:if>
 					
 					<c:if test="${numSess!=null}">
-						<a href="${root}/notice/question.do?m_num=${numSess}">문의하기</a>
+						<a href="${root}/notice/question.do">문의하기</a>
 					</c:if>
 					<c:if test="${numSess==null}">
 						<a href="${root}/member/login.do">로그인</a>

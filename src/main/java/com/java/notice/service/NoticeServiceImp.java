@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -11,13 +12,63 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.java.aop.LogAspect;
 import com.java.notice.dao.NoticeDao;
+import com.java.notice.dto.NoticeDto;
 import com.java.notice.dto.QuestionDto;
 
 @Component
 public class NoticeServiceImp implements NoticeService {
 	@Autowired
 	private NoticeDao noticeDao;
+	
+	@Override
+	public void noticeWriteOk(ModelAndView mav) {
+		Map<String, Object> map = mav.getModelMap();
+		NoticeDto noticeDto = (NoticeDto) map.get("noticeDto");
+		
+		LogAspect.logger.info(LogAspect.LogMsg + noticeDto);
+		
+		int check = noticeDao.noticeInsert(noticeDto);
+		LogAspect.logger.info(LogAspect.LogMsg + check);
 
+		mav.addObject("check", check);
+		
+		mav.setViewName("notice/noticeWriteOk.tiles");
+	}
+	
+	@Override
+	public void question(ModelAndView mav) {
+		Map<String, Object> map = mav.getModelMap();
+		HttpServletRequest request = (HttpServletRequest) map.get("request");
+		HttpSession session = request.getSession();
+
+		String pageNumber = request.getParameter("pageNumber");
+
+		if (pageNumber == null)
+			pageNumber = "1";
+
+		int currentPage = Integer.parseInt(pageNumber);
+		LogAspect.logger.info(LogAspect.LogMsg + "현재 페이지 : " + currentPage);
+
+		// 한페이지당 게시물 10개/ start 1, end 10
+		int listSize = 10;
+		int startRow = (currentPage - 1) * listSize + 1;
+		int endRow = currentPage * listSize;
+
+		List<QuestionDto> questionList = noticeDao.selectQuestion(startRow, endRow);
+
+		int questionCount = noticeDao.selectQuestionCount();
+
+		System.out.println(" 개수 " + questionCount);
+
+		mav.addObject("listSize", listSize);
+		mav.addObject("questionList", questionList);
+		mav.addObject("questionCount", questionCount);
+		mav.addObject("currentPage", currentPage);
+
+		mav.setViewName("notice/question.tiles");
+	}
+
+	
 	@Override
 	public void questionWrite(ModelAndView mav) {
 		Map<String, Object> map = mav.getModelMap();
@@ -35,58 +86,39 @@ public class NoticeServiceImp implements NoticeService {
 		QuestionDto questionDto = (QuestionDto) map.get("questionDto");
 
 		LogAspect.logger.info(LogAspect.LogMsg + questionDto);
-		
+
 		int check = noticeDao.questionInsert(questionDto);
 		LogAspect.logger.info(LogAspect.LogMsg + check);
-		
+
 		mav.addObject("check", check);
-		
+
 		mav.setViewName("notice/questionWriteOk");
-	}
-	
-	@Override
-	public void question(ModelAndView mav) {
-		Map<String, Object> map = mav.getModelMap();
-		HttpServletRequest request = (HttpServletRequest) map.get("request");
-		
-		if(request.getParameter("m_num")!=null && !request.getParameter("m_num").equals("")) {
-			int m_num = Integer.parseInt(request.getParameter("m_num"));
-			
-			String pageNumber = request.getParameter("pageNumber");
-			
-			if (pageNumber == null)
-				pageNumber = "1";
-			
-			int currentPage = Integer.parseInt(pageNumber);
-			LogAspect.logger.info(LogAspect.LogMsg + "현재 페이지 : " +currentPage);
-	
-			// 한페이지당 게시물 10개/ start 1, end 10
-			int listSize = 10;
-			int startRow = (currentPage - 1) * listSize + 1;
-			int endRow = currentPage * listSize;
-			
-			
-			List<QuestionDto> questionList = noticeDao.selectQuestion(m_num, startRow, endRow);
-			
-			int questionCount = noticeDao.selectQuestionCount(m_num);
-			
-			System.out.println(" 개수 " + questionCount);
-			
-			
-			
-			mav.addObject("listSize", listSize);
-			mav.addObject("questionList", questionList);
-			mav.addObject("questionCount", questionCount);
-			mav.addObject("currentPage",currentPage);
-			mav.addObject("m_num",m_num);
-		}
-		
-		mav.setViewName("notice/question.tiles");
 	}
 
 	
-	
-	
-	
+
+	@Override
+	public void questionView(ModelAndView mav) {
+		Map<String, Object> map = mav.getModelMap();
+		HttpServletRequest request = (HttpServletRequest) map.get("request");
+
+		int q_num = Integer.parseInt(request.getParameter("q_num"));
+		String pageNumber = request.getParameter("pageNumber");
+
+		if (pageNumber == null)
+			pageNumber = "1";
+
+		Integer.parseInt(pageNumber);
+
+		LogAspect.logger.info(LogAspect.LogMsg + q_num + "," + pageNumber);
+
+		QuestionDto questionDto = noticeDao.questionRead(q_num);
+		LogAspect.logger.info(LogAspect.LogMsg + questionDto.toString());
+
+		request.setAttribute("questionDto", questionDto);
+		request.setAttribute("pageNumber", pageNumber);
+
+		mav.setViewName("notice/questionView.tiles");
+	}
 	
 }

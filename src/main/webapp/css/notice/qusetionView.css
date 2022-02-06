@@ -1,0 +1,50 @@
+@charset "UTF-8";
+*{
+	margin: 0px;
+	padding: 0px;
+}
+.wrap{
+	margin: auto;
+}
+
+.head{
+	width: 1200px;
+	height: 60px;
+	margin: auto;
+	float: center;
+}
+.head button{
+	width: 396px;
+	height: 60px;
+	border: 0.8px solid;
+	border-radius: 18px;
+	border-color: #0096FA;
+	background-color:#0096FA;
+	color: white;
+	font-size: 16px;
+	font-style: arial;
+	margin: 10px auto;
+}
+.head button:hover{
+	background-color: #37afff;
+}
+
+.board{
+    width: 1200px;
+    height: 1200px;
+	background-color: #F4F2F4;
+    margin: 10px auto;
+	float: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+

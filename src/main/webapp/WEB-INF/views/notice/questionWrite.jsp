@@ -27,7 +27,7 @@
 				<a href="${root}/notice/faq.do">
 					<button>자주묻는질문</button>
 				</a>
-				<a href="${root}/notice/question.do?m_num=${numSess}">
+				<a href="${root}/notice/question.do">
 					<button style="background-color: #9fc5f8">문의하기</button>
 				</a>
 			</div>

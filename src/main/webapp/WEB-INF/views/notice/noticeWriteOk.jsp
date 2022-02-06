@@ -10,16 +10,16 @@
 <body>
 	<c:if test="${check > 0}">
 		<script type="text/javascript">
-			alert("입력이 완료 되었습니다.");
-			location.href = "${root}/notice/question.do";
-		</script>
+	    alert("입력이 완료 되었습니다.");
+	    location.href = "${root}/notice/notice.do";
+	</script>
 	</c:if>
 
 	<c:if test="${check==0}">
 		<script type="text/javascript">
-			alert("입력에 실패 하였습니다.")
-			location.href = "${root}/notice/questionWrite.do";
-		</script>
+	    alert("입력에 실패 하였습니다.")
+	    location.href = "${root}/notice/questionWrite.do";
+	</script>
 	</c:if>
 </body>
 </html>

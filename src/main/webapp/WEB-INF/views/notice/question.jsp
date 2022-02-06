@@ -14,18 +14,11 @@
 </head>
 <body>
 	
-	<c:if test="${numSess==null}">
-		<script type="text/javascript">
-			alert("로그인이 필요합니다.");
-			location.href="${root}/notice/notice.do"
-		</script>
-	</c:if>
-	
     <div class="zentaiwaku"> <!-- 전체 와꾸 다 합친 와꾸-->
         <div class="head"> <!-- 상단 탭버튼 와꾸-->
             <a href="${root}/notice/notice.do"><button>공지사항</button></a> 
             <a href="${root}/notice/faq.do"><button>자주묻는질문</button></a>
-            <a href="${root}/notice/question.do?m_num=${numSess}"><button style="background-color:#9fc5f8">문의하기</button></a>
+            <a href="${root}/notice/question.do"><button style="background-color:#9fc5f8">문의하기</button></a>
         </div>
         <div style="border: white; width: 1200px; height: 8px;"></div><!-- 한칸띄우기-->
         <div class="board"> <!-- 공지사항 와꾸-->
@@ -38,11 +31,16 @@
                     <th>시간</th>
                     <th>카테고리</th>
                 </tr>
-                
-                <c:forEach var="questionDto" items="${questionList}">
+ 
+                <c:forEach var="questionDto" items="${questionList}">	
 	                <tr>
 	                    <td>${questionDto.q_num}</td>
-	                    <td onclick="location.href='${root}/notice/questionView.do?q_num=${questionDto.q_num}'" style="cursor: pointer;">${questionDto.q_title}</td>
+	                    <c:if test="${numSess == questionDto.m_num || permissionSess=='MA'}">
+	                    	 <td onclick="location.href='${root}/notice/questionView.do?q_num=${questionDto.q_num}&pageNumber=${currentPage}'" style="cursor: pointer;">${questionDto.q_title}</td>
+	                    </c:if>
+	                     <c:if test="${questionDto.m_num != numSess && permissionSess!='MA'}">
+	                    	<td>작성자와 관리자만 볼 수 있습니다.</td>
+	                     </c:if>
 	                    <td>${questionDto.m_num}</td>
 	                    <td>${questionDto.q_viewcount}</td>
 	                    <td><fmt:formatDate value="${questionDto.q_time}" pattern="YYYY년 MM월 DD일 hh:mm"/></td>
@@ -71,20 +69,20 @@
 					</c:if>
 					
 					<c:if test="${startPage > pageBlock}"> <%-- 시작이11페이지인데 페이지 블록이 10이하일 경우 --%>
-						<a href="${root}/notice/question.do?m_num=${m_num}&pageNumber=${startPage-pageBlock}">[이전]</a>
+						<a href="${root}/notice/question.do?pageNumber=${startPage-pageBlock}">[이전]</a>
 					</c:if>
 					
 					<c:forEach var="i" begin="${startPage}" end="${endPage}">
 						<c:if test="${i == currentPage}">
-						<a href="${root}/notice/question.do?m_num=${m_num}&pageNumber=${i}" style="cursor:pointer; color:#001076; font-weight:800; font-size:18px;">[${i}]</a>
+						<a href="${root}/notice/question.do?pageNumber=${i}" style="cursor:pointer; color:#001076; font-weight:800; font-size:18px;">[${i}]</a>
 						</c:if>
 						<c:if test="${i != currentPage}">
-						<a href="${root}/notice/question.do?m_num=${m_num}&pageNumber=${i}" style="cursor:pointer; color:#83aaff; font-weight:600; font-size:18px;">[${i}]</a>
+						<a href="${root}/notice/question.do?pageNumber=${i}" style="cursor:pointer; color:#83aaff; font-weight:600; font-size:18px;">[${i}]</a>
 						</c:if>
 					</c:forEach>
 					
 					<c:if test="${endPage < pageCount}">   <%-- 끝이10페이지인데 총 페이지수가 11이상일경우--%>
-						<a href="${root}/notice/question.do?m_num=${m_num}&pageNumber=${startPage+pageBlock}">[다음]</a>
+						<a href="${root}/notice/question.do?pageNumber=${startPage+pageBlock}">[다음]</a>
 					</c:if>
 					
 					
@@ -100,9 +98,13 @@
 				</div>
             
         </div>
+        
+        
         <div style="border: white; width: 1200px; height: 8px;"></div><!-- 한칸띄우기-->
         <div class="footer"> <!-- 하단 와꾸-->
-            <a href="${root}/notice/questionWrite.do"><button>문의하기</button></a>
+        	<c:if test="${permissionSess!='MA'}">
+        		 <a href="${root}/notice/questionWrite.do"><button>문의하기</button></a>
+        	</c:if>
         </div>
     </div>
 </body>

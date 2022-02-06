@@ -14,7 +14,7 @@
         <div class="head"> <!-- 상단 탭버튼 와꾸-->
             <a href="${root}/notice/notice.do"><button>공지사항</button></a> 
             <a href="${root}/notice/faq.do"><button style="background-color:#9fc5f8">자주묻는질문</button></a>
-            <a href="${root}/notice/question.do?m_num=${numSess}"><button>문의하기</button></a>
+            <a href="${root}/notice/question.do"><button>문의하기</button></a>
         </div>
         <div style="border: white; width: 1200px; height: 8px;"></div><!-- 한칸띄우기-->
         <div class="board"> <!-- 공지사항 와꾸-->
@@ -26,17 +26,13 @@
                     <th>조회</th>
                     <th>시간</th>
                 </tr>
-                <tr>
-                    <td>번호</td>
-                    <td>안녕하세요 나는 안태균이라고 해</td>
-                    <td>작성자</td>
-                    <td>조회수</td>
-                    <td>시간</td>
-                </tr>
             </table>
         </div>
         <div style="border: white; width: 1200px; height: 8px;"></div><!-- 한칸띄우기-->
         <div class="footer"> <!-- 하단 와꾸-->
+            <c:if test="${permissionSess=='MA'}">
+        		<a href=""><button>등록하기</button></a>
+        	</c:if>
         </div>
     </div>
 </body>
