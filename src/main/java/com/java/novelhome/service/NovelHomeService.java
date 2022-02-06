@@ -13,4 +13,6 @@ public interface NovelHomeService {
 
 	public void novelhomeUpload(ModelAndView mav);
 
+	public void category(ModelAndView mav);
+
 }

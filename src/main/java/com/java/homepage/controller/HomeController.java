@@ -37,7 +37,11 @@ public class HomeController {
 	
 	@RequestMapping(value = "/novel/ranking.do", method = RequestMethod.GET)
 	  public ModelAndView ranking(HttpServletRequest request, HttpServletResponse response) {
-	    return new ModelAndView("home/ranking.tiles");
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("request", request);
+		
+		homeService.ranking(mav);
+	    return mav;
 	}
 	
 }

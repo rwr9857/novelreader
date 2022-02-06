@@ -9,7 +9,7 @@
 </head>
 <body>	
 	<div id=top_category>
-		<c:forEach var="categoryDto" items="${CategoryList}" varStatus="status">
+		<c:forEach var="categoryDto" items="${categoryList}" varStatus="status">
 			<button type="button" onclick="">${categoryDto.c_category_name}</button>
 		</c:forEach>
 	</div>
@@ -17,14 +17,14 @@
 	<div id=novelleader_main>
 		<div class=follow_novels>
 			<c:if test="${search_method=='title'}">
-				<p style="text-align: left; font-size: 1rem; padding: 15px; font-size:20px; font-weight:bolder">제목 검색목록</p>
+				<p style="text-align: left; font-size: 26px; padding: 15px; font-weight:bolder">제목 검색목록</p>
 			</c:if>
 			<c:if test="${search_method=='writer'}">
-				<p style="text-align: left; font-size: 1rem; padding: 15px; font-size:20px; font-weight:bolder;">작성자 검색목록</p>
+				<p style="text-align: left; font-size: 26px; padding: 15px; font-weight:bolder;">작성자 검색목록</p>
 			</c:if>
 			<div id=follower_novels>
 				
-				<div class="resultCount" style="width:100%; text-align:left; padding-left:15px; height:50px; font-size:16px; ">검색 결과 ${count}건</div>
+				<div class="resultCount" style="width:100%; text-align:left; padding-left:15px; height:50px; font-size:16px; margin-bottom:50px;">검색 결과 ${count}건</div>
 
 				<c:if test="${count>0}">
 					<c:forEach var="novelhomeDto" items="${searchList}" varStatus="status">

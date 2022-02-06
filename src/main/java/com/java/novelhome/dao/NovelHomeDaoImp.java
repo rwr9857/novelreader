@@ -157,5 +157,26 @@ public class NovelHomeDaoImp implements NovelHomeDao {
 		return sqlSessionTemplate.selectList("writerSearchList",hMap);
 	}
 	
+	@Override
+	public int getCategoryCount(String category) {
+		return sqlSessionTemplate.selectOne("getCategoryCount", category);
+	}
+	
+	@Override
+	public List<NovelHomeDto> getCategoryList(int startRow, int endRow, String category) {
+		HashMap<String, Object> hMap = new HashMap<String, Object>();
+		hMap.put("startRow", startRow);
+		hMap.put("endRow", endRow);
+		hMap.put("category", category);
+		return sqlSessionTemplate.selectList("getCategoryList",hMap);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }

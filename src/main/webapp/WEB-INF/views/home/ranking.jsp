@@ -16,62 +16,43 @@
 </head>
 <body>
     <div class="wrap">
-        <h1 style="text-align:center; margin-top:30px; font-weight:bold; color:rgb(58, 52, 52);">인기작가</h1>
-        <div class="profile">
-            <div class="profile2">
-                <div class="sajin"></div>
-                <h2>닉네임</h2>
-            </div>
-            <div class="profile2">
-                <div class="sajin"></div>
-                <h2>닉네임</h2>
-            </div>
-            <div class="profile2">
-                <div class="sajin"></div>
-                <h2>닉네임</h2>
-            </div>
-            <div class="profile2">
-                <div class="sajin"></div>
-                <h2>닉네임</h2>
-            </div>
-            <div class="profile2">
-                <div class="sajin"></div>
-                <h2>닉네임</h2>
-            </div>
-        </div>
-        <div class="textbox">
-            <div class="textbox2">
-                <h3>소개</h3>
-                <p>안녕하세요 소설가의 꿈을 가지고 있는 ~에요</p>
-                <h3>대표작</h3>
-                <p>모르는 만화에 빙의했다</p>
-            </div>
-            <div class="textbox2">
-                <h3>소개</h3>
-                <p>안녕하세요 소설가의 꿈을 가지고 있는 ~에요</p>
-                <h3 style="margin-top:20px;">대표작</h3>
-                <p>모르는 만화에 빙의했다</p>
-            </div>
-            <div class="textbox2">
-                <h3>소개</h3>
-                <p>안녕하세요 소설가의 꿈을 가지고 있는 ~에요</p>
-                <h3>대표작</h3>
-                <p>모르는 만화에 빙의했다</p>
-            </div>
-            <div class="textbox2">
-                <h3>소개</h3>
-                <p>안녕하세요 소설가의 꿈을 가지고 있는 ~에요</p>
-                <h3>대표작</h3>
-                <p>모르는 만화에 빙의했다</p>
-            </div>
-            <div class="textbox2">
-                <h3>소개</h3>
-                <p>안녕하세요 소설가의 꿈을 가지고 있는 ~에요</p>
-                <h3>대표작</h3>
-                <p>모르는 만화에 빙의했다</p>
-            </div>
-        </div> 
-
+    	<div class="wrap_inner">
+	        <h1 style="text-align:center; margin-top:30px; font-weight:bold; color:rgb(58, 52, 52);">인기작가</h1>
+	        <div class="profile">
+	        	<c:forEach var="memberDto" items="${rankingList}">
+		            <div class="profile2">
+		            	<c:if test="${memberDto.m_photo_path == null}">
+							<img class="sajin" alt="프로필사진" src="${root}/images/profile/profile_default.png"
+								onclick="goToProfile('${root}','${memberDto.m_nickname}')">
+						</c:if>
+						<c:if test="${memberDto.m_photo_path != null}">
+							<img class="sajin" alt="프로필사진" src="${root}/memberfile/${memberDto.m_photo_name}"
+								onclick="goToProfile('${root}','${memberDto.m_nickname}')">
+						</c:if>
+		                <h2 onclick="goToProfile('${root}','${memberDto.m_nickname}')">${memberDto.m_nickname}</h2>
+		            </div>
+	            </c:forEach>
+	        </div>
+	        
+	        <script type="text/javascript">
+		        function goToProfile(root,nickname){
+					location.href=root+"/member/profile.do?nickname="+nickname;
+				}
+	        </script>
+	        
+	        <div class="textbox">
+	        	<c:forEach var="memberDto" items="${rankingList}">
+		            <div class="textbox2">
+		                <h3>소개</h3>
+		                <p style="min-height: 120px;">${memberDto.m_info}</p>
+		                
+		                <!-- <h3 style="margin-top:50px;">최신작</h3>
+		                <p>(미구현)</p>-->
+		                 
+		            </div>
+		        </c:forEach>
+	        </div> 
+		</div>
     </div>
 
 

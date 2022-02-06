@@ -178,5 +178,23 @@
 		DELETE MEMBER WHERE m_num=#{m_num}
 	</delete>
 	
+	
+	<select id="ranking" resultType="com.java.member.dto.MemberDto">
+		<![CDATA[
+			SELECT * 
+			FROM member
+			WHERE m_num IN(SELECT FOLLOWING
+			                       FROM(SELECT b.*
+			                                FROM(SELECT a.*, ROWNUM ranking
+			                                         FROM(SELECT following, COUNT(following) AS follower_count
+			                                                    FROM follow
+			                                                    GROUP BY following ORDER BY follower_count DESC
+			                                             ) a
+			                                    ) b
+			                            WHERE ranking<=5)
+			               )
+		]]>
+	</select>
+	
 </mapper>   		
   	

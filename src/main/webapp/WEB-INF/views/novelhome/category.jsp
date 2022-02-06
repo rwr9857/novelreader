@@ -9,39 +9,42 @@
 </head>
 <body>	
 	<div id=top_category>
-		<c:forEach var="categoryDto" items="${CategoryList}" varStatus="status">
+		<c:forEach var="categoryDto" items="${categoryList}" varStatus="status">
 			<button type="button" onclick="goCategory('${root}','${categoryDto.c_category_name}')">${categoryDto.c_category_name}</button>
 		</c:forEach>
 	</div>
-		
 		
 	<script type="text/javascript">
 		function goCategory(root, category){
 			location.href=root+"/novelhome/category.do?category="+category;
 		}
 	</script>
-		
-		
+
 	<div id=novelleader_main>
 		<div class=follow_novels>
-			<p style="text-align: left; font-size: 26px; padding: 15px; font-weight:bolder;">최신순</p>
+			<c:if test="${category!=null}">
+				<p style="text-align: left; font-size: 26px; padding: 15px; font-weight:bolder">${category}</p>
+			</c:if>
 			<div id=follower_novels>
-			
-				<c:if test="${count==0}">
-					<div align="center">소설이 없습니다.</div>
-				</c:if>
+				
+				<div class="resultCount" style="width:100%; text-align:left; padding-left:15px; height:50px; font-size:20px; margin-bottom:50px;">${count}건</div>
 
 				<c:if test="${count>0}">
-					<c:forEach var="novelhomeDto" items="${novelHomeList}" varStatus="status">
+					<c:forEach var="novelhomeDto" items="${searchList}" varStatus="status">
 						<div class=main_views style="width: 33.2%; float: left;" onclick="location.href='${root}/novelhome/list.do?n_num=${novelhomeDto.n_num}'">
 							<div class=search_image>
-								<img align="left" src="${root}/file/${novelhomeDto.n_image_name}">
+								<c:if test="${novelhomeDto.n_image_name!=null}">
+									<img align="left" src="${root}/file/${novelhomeDto.n_image_name}">
+								</c:if>
+								<c:if test="${novelhomeDto.n_image_name==null}">
+									<img align="left" src="${root}/images/novelLabel/defaultImage.png">
+								</c:if>
 							</div>
 							<div class=search_infor>
 								<p align="left">
 									제목 : ${novelhomeDto.n_title}<br> <br>
 									작가 : ${novelhomeDto.m_nickname}<br> <br> <br>
-									장르1<br>
+									장르 : ${category}<br>
 								</p>
 							</div>
 						</div>
@@ -71,7 +74,7 @@
 		<%-- 총페이지 수 --%>
 		<fmt:parseNumber var="pageCount" value="${count/boardSize+(count%boardSize==0? 0:1)}" integerOnly="true" />
 		<%-- 페이지 블럭 --%>
-		<c:set var="pageBlock" value="${3}" />
+		<c:set var="pageBlock" value="${10}" />
 
 		<%-- 블럭의 시작번호, 끝번호 --%>
 		<fmt:parseNumber var="rs" value="${(currentPage-1)/pageBlock}" integerOnly="true" />
@@ -83,15 +86,17 @@
 		</c:if>
 
 		<c:if test="${startPage > pageBlock}">
-			<a href="${root}/?pageNumber=${startPage - pageBlock}">[이전]</a>
+			<a href="${root}/novelhome/search.do?search_method=${search_method}&keyword=${keyword}&pageNumber=${startPage - pageBlock}">[이전]</a>
 		</c:if>
-
+		
 		<c:forEach var="i" begin="${startPage}" end="${endPage}">
-			<a href="${root}/?pageNumber=${i}">[${i}]</a>
+			<c:if test="${count>=boardSize}">
+				<a href="${root}/novelhome/search.do?search_method=${search_method}&keyword=${keyword}&pageNumber=${i}">[${i}]</a>
+			</c:if>
 		</c:forEach>
 
 		<c:if test="${endPage < pageCount}">
-			<a href="${root}/?pageNumber=${startPage + pageBlock}">[다음]</a>
+			<a href="${root}/novelhome/search.do?search_method=${search_method}&keyword=${keyword}&pageNumber=${startPage + pageBlock}">[다음]</a>
 		</c:if>
 	</div>
 </body>

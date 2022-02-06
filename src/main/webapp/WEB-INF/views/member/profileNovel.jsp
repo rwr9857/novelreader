@@ -229,7 +229,8 @@
 												pattern="YYYY.MM.dd" />
 										</div>
 									</div>
-
+									
+									<!-- 
 									<div class="like_box">
 										<div class="like">
 											<img alt="좋아요" src="${root}/images/profile/like.png"> <span>미완</span>
@@ -240,9 +241,11 @@
 											<span>미완</span>
 										</div>
 									</div>
+									 -->
 								</div>
 							</div>
-
+							
+							 
 							<script type="text/javascript">
 								function goNovel(root, n_num) {
 									location.href = root

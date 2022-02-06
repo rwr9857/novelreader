@@ -25,6 +25,7 @@ ul{
 	overflow:hidden;
 	
 	border:0px solid red;
+	background:#f9fbff;
 }
 
 #profile > #profile_shadow {

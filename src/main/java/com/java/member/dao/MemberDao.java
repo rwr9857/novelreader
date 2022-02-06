@@ -42,4 +42,6 @@ public interface MemberDao {
 	public int accountEdit(MemberDto memberDto);
 
 	public int accountDelete(int m_num);
+
+	public List<MemberDto> ranking();
 }
