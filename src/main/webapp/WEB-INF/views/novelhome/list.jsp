@@ -117,7 +117,9 @@
 		<div class="bottombox">
 			<div class="bottom_up">
 				<h3>회차리스트</h3>
-				<span onClick="location.href='${root}/novelpost/register.do'">등록</span>
+				<c:if test="${numSess == novelHomeDto.m_num}">
+					<span onClick="location.href='${root}/novelpost/register.do'">등록</span>
+				</c:if>
 			</div>
 			<!-- 회차리스트 -->
 			<c:if test="${novelPostList.size() > 0 }">
