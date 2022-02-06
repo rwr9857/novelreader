@@ -37,14 +37,14 @@ public class NovelHomeServiceImp implements NovelHomeService {
 	public void novelhomeUpload(ModelAndView mav) {
 		Map<String, Object> map = mav.getModelMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
-		
+
 		List<CategoryDto> categoryList = managerDao.getCategoryList();
 		LogAspect.logger.info(LogAspect.LogMsg + "categoryList=" + categoryList.size());
 
 		mav.addObject("categoryList", categoryList);
 		mav.setViewName("novelhome/upload.tiles");
 	}
-	
+
 	@Override
 	public void novelhomeUploadOk(ModelAndView mav) {
 		Map<String, Object> map = mav.getModelMap();
@@ -97,11 +97,11 @@ public class NovelHomeServiceImp implements NovelHomeService {
 		LogAspect.logger.info(LogAspect.LogMsg + c_category_id);
 		novelCategoryDto.setC_category_id(c_category_id);
 		novelCategoryDto.setN_num(n_num);
-		
+
 		LogAspect.logger.info(LogAspect.LogMsg + novelCategoryDto.toString());
 		int ch = novelHomeDao.novelCategoryAdd(novelCategoryDto);
 		LogAspect.logger.info(LogAspect.LogMsg + ch);
-		
+
 		mav.addObject("n_num", n_num);
 		mav.addObject("check", check);
 		mav.addObject("novelHomeDto", novelHomeDto);
@@ -114,7 +114,7 @@ public class NovelHomeServiceImp implements NovelHomeService {
 		Map<String, Object> map = mav.getModelMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		NovelCategoryDto novelCategoryDto = (NovelCategoryDto) map.get("novelCategoryDto");
-		
+
 		int n_num = Integer.parseInt(request.getParameter("n_num"));
 		LogAspect.logger.info(LogAspect.LogMsg + "n_num=" + n_num);
 
@@ -139,6 +139,20 @@ public class NovelHomeServiceImp implements NovelHomeService {
 		if (count > 0) {
 			novelPostList = novelHomeDao.novelPostList(startRow, endRow, n_num);
 			LogAspect.logger.info(LogAspect.LogMsg + "novelPostList.size=" + novelPostList.size());
+			if (novelPostList.size() > 0) {
+
+				int firstView = novelHomeDao.novelFirstView(n_num);
+				LogAspect.logger.info(LogAspect.LogMsg + "firstView=" + firstView);
+
+				int allViewCount = novelHomeDao.getAllViewCount(n_num);
+				
+				int allPostCount = novelHomeDao.getAllPostCount(n_num);
+				
+				mav.addObject("firstView", firstView);
+				mav.addObject("allViewCount", allViewCount);
+				mav.addObject("allPostCount", allPostCount);
+			}
+
 		}
 		String nickname = novelHomeDao.getNickname(n_num);
 		LogAspect.logger.info(LogAspect.LogMsg + "nickname=" + nickname);
@@ -147,6 +161,8 @@ public class NovelHomeServiceImp implements NovelHomeService {
 		LogAspect.logger.info(LogAspect.LogMsg + "categoryList=" + categoryList.size());
 
 		int c_category_id = novelHomeDao.getCategoryId(n_num);
+
+		
 		
 		mav.addObject("nickname", nickname);
 		mav.addObject("novelPostList", novelPostList);
@@ -159,40 +175,38 @@ public class NovelHomeServiceImp implements NovelHomeService {
 		mav.addObject("categoryList", categoryList);
 		mav.addObject("novelCategoryDto", novelCategoryDto);
 		mav.addObject("c_category_id", c_category_id);
-		
 		mav.setViewName("novelhome/list.tiles");
 	}
-	
-	
+
 	@Override
 	public void search(ModelAndView mav) {
 		Map<String, Object> map = mav.getModelMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
-		
+
 		String pageNumber = request.getParameter("pageNumber");
 		if (pageNumber == null)
 			pageNumber = "1";
 		int currentPage = Integer.parseInt(pageNumber);
 		LogAspect.logger.info(LogAspect.LogMsg + "currentPage=" + currentPage);
-		
-		String search_method=request.getParameter("search_method");
-		String keyword=request.getParameter("keyword");
+
+		String search_method = request.getParameter("search_method");
+		String keyword = request.getParameter("keyword");
 		LogAspect.logger.info(LogAspect.LogMsg + "search_method=" + search_method + "keyword=" + keyword);
-		
+
 		int boardSize = 9;
 		int startRow = (currentPage - 1) * boardSize + 1;
 		int endRow = currentPage * boardSize;
 
 		int count = 0;
 		List<NovelHomeDto> searchList = null;
-		
-		if(search_method.equals("title")) {		//제목검색
+
+		if (search_method.equals("title")) { // 제목검색
 			count = novelHomeDao.getTitleSearchCount(keyword);
 			if (count > 0) {
 				searchList = novelHomeDao.titleSearchList(startRow, endRow, keyword);
 				LogAspect.logger.info(LogAspect.LogMsg + "titleSearchList.toString" + searchList.toString());
 			}
-		}else if(search_method.equals("writer")) {	//작가검색
+		} else if (search_method.equals("writer")) { // 작가검색
 			count = novelHomeDao.getWriterSearchCount(keyword);
 			if (count > 0) {
 				searchList = novelHomeDao.writerSearchList(startRow, endRow, keyword);
@@ -201,9 +215,7 @@ public class NovelHomeServiceImp implements NovelHomeService {
 		}
 
 		LogAspect.logger.info(LogAspect.LogMsg + "count=" + count);
-		
-		
-		
+
 		mav.addObject("search_method", search_method);
 		mav.addObject("keyword", keyword);
 		mav.addObject("currentPage", currentPage);
@@ -211,6 +223,43 @@ public class NovelHomeServiceImp implements NovelHomeService {
 		mav.addObject("count", count);
 		mav.addObject("searchList", searchList);
 		mav.setViewName("novelhome/search.tiles");
+	}
+
+	@Override
+	public void novelHomeDelete(ModelAndView mav) {
+		Map<String, Object> map = mav.getModelMap();
+		HttpServletRequest request = (HttpServletRequest) map.get("request");
+
+		int n_num = Integer.parseInt(request.getParameter("n_num"));
+		LogAspect.logger.info(LogAspect.LogMsg + "n_num=" + n_num);
+
+		int check = novelHomeDao.homeDelete(n_num);
+
+		mav.addObject("check", check);
+		mav.addObject("n_num", n_num);
+		mav.setViewName("novelhome/delete.tiles");
+
+	}
+
+	@Override
+	public void novelHomeAllDelete(ModelAndView mav) {
+		Map<String, Object> map = mav.getModelMap();
+		HttpServletRequest request = (HttpServletRequest) map.get("request");
+
+		int n_num = Integer.parseInt(request.getParameter("n_num"));
+		LogAspect.logger.info(LogAspect.LogMsg + "n_num=" + n_num);
+
+		int ch = novelHomeDao.postDelete(n_num);
+
+		if (ch > 0) {
+			int check = novelHomeDao.homeDelete(n_num);
+
+			mav.addObject("check", check);
+
+		}
+
+		mav.addObject("n_num", n_num);
+		mav.setViewName("novelhome/alldelete.tiles");
 	}
 
 }

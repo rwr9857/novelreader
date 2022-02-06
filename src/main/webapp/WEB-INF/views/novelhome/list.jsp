@@ -29,18 +29,34 @@
 				<div class="leftbox">
 					<!-- 이미지불러오기 -->
 					<div class="image_container">
+						<c:if test="${novelHomeDto.n_image_name != null}">
 						<img src="${root}/file/${novelHomeDto.n_image_name}" style ="border-radius : 15px;"/>
+						</c:if>
+						<c:if test="${novelHomeDto.n_image_name == null}">
+							<img src="${root}/images/novelLabel/defalutImage.png">
+						</c:if>
 					</div>
-					<button style="margin-left: 0px; color: rgb(209, 206, 206);"
-						onclick="">첫화보기</button>
+						<button style="margin-left: 0px; color: rgb(209, 206, 206);"
+						onclick="javascript:readFirstCheck('${firstView}','${root}')">첫화보기</button>
+					
 				</div>
 			
 				<!-- 소설 -->
 				<div class="rightbox">
 					 <div class="right_up">
 	                    <h1 style ="margin-top : 10px;">${novelHomeDto.n_title}</h1>
-	                    <img src="https://img2.quasarzone.co.kr/img/data/img/editor/1906/1906___1791183465.jpg">
-	                    <span class = "right_up_span">전체 삭제</span>
+	                    <button type="button" class="btm_image" id="img_btn" onclick="questionWrite('${novelHomeDto.n_num}', '${root}','${novelHomeDto.n_title}')">
+	                    	<img src="https://img2.quasarzone.co.kr/img/data/img/editor/1906/1906___1791183465.jpg">
+	                    </button>
+	                    <!-- 회원만 삭제 -->
+	                    <c:if test="${numSess == novelHomeDto.m_num}">
+		                    <c:if test="${novelPostDto.n_POST_NUM == null}">
+		                    	<span class = "right_up_span" onclick="javascript:novelHomeDeleteCheck('${root}','${novelHomeDto.n_num}')">게시글 삭제</span>
+		                    </c:if>
+		                    <c:if test="${novelPostDto.n_POST_NUM != null}">
+		                    <span class = "right_up_span" onclick="javascript:allDeleteCheck('${root}','${novelHomeDto.n_num}')">전체 삭제</span>
+	                    </c:if>
+	                    </c:if>
 	                </div>
 					<div class="right_up2">
 						<h3 onclick="javascript:goProfile('${root}','${nickname}')"
@@ -49,12 +65,26 @@
 						</h3>
 					</div>
 					<div class="right_middle">
-						<img src="https://novelpia.com/img/new/icon/count_view.png"
+						<img src="https://cdn-icons.flaticon.com/png/512/2767/premium/2767194.png?token=exp=1644154980~hmac=6920b4d05e573d30564f053a1a84ddeb"
 							style="margin-top: 2px; margin-right: 2px;">
-						<h3>11111 명</h3>
+						<c:choose>
+							<c:when test="${allViewCount != null}">
+								<h3>${allViewCount}</h3>
+							</c:when>
+							<c:otherwise>
+								<h3>0</h3>
+							</c:otherwise>
+						</c:choose>
 						<img src="https://novelpia.com/img/new/icon/count_book.png"
 							style="margin-top: 2px; margin-right: 2px;">
-						<h3>11111 회차</h3>
+						<c:choose>
+							<c:when test="${allPostCount != null}">
+								<h3>${allPostCount}</h3>
+							</c:when>
+							<c:otherwise>
+								<h3>0</h3>
+							</c:otherwise>
+						</c:choose>
 						<img src="https://novelpia.com/img/new/icon/count_good.png"
 							style="margin-top: 2px; margin-right: 2px;">
 						<h3>11111 개</h3>
@@ -71,6 +101,7 @@
 					                    <c:if test="${categoryDto.c_category_id == c_category_id}">
 					                    	<script type="text/javascript">
 					                    		document.getElementById("${categoryDto.c_category_id}").checked = true;
+					                    		document.getElementById("${categoryDto.c_category_id}").disabled = true;
 					                    	</script>
 					                    </c:if>
 					                </div>
@@ -93,15 +124,16 @@
 						<div class="bottom_down1">
 							<h3 onclick="javascript:readCheck('${novelPostDto.n_POST_NUM}', '${root}')" style="cursor: pointer; font-weight:bold; font-size:17px;">
 								Ep.${status.count} ${novelPostDto.n_POST_TITLE}</h3> 
-							<span onclick="javascript:updateCheck('${novelPostDto.n_POST_NUM}', '${root}','${novelPostDto.n_num}')" >수정</span>
-							<span onclick="javascript:deleteCheck('${novelPostDto.n_POST_NUM}', '${root}','${novelPostDto.n_num}')" >삭제</span>
+							<c:if test="${numSess == novelHomeDto.m_num}">
+								<span onclick="javascript:updateCheck('${novelPostDto.n_POST_NUM}', '${root}','${novelPostDto.n_num}')" >수정</span>
+								<span onclick="javascript:deleteCheck('${novelPostDto.n_POST_NUM}', '${root}','${novelPostDto.n_num}')" >삭제</span>
+							</c:if>
 						</div>
 						<div class="bottom_down2">
 							<h3><fmt:formatDate value="${novelPostDto.n_POST_TIME}" pattern="yyyy-MM-DD HH:mm:ss" /></h3>
-							<h3 style="margin-left : 10px;"><img src="${root}/images/novelpost/people.svg" style="width:18px; height:18px; margin-top:-3px;">1111</h3>
+							<h3 style="margin-left : 10px;"><img src="https://cdn-icons.flaticon.com/png/512/2767/premium/2767194.png?token=exp=1644154980~hmac=6920b4d05e573d30564f053a1a84ddeb" style="width:18px; height:18px; margin-top:-3px;">${novelPostDto.n_POST_VIEWCOUNT}</h3>
 		                  	<h3 style="margin-left : 10px;"><img src="https://novelpia.com/img/new/icon/count_good.png" style="margin-top:-5px;">1111</h3>
 		                  	<h3 style="margin-left : 10px;"><img src="https://t1.daumcdn.net/cfile/blog/241BC2475465ABB42F" style="width:10px; height:10px; margin-top:-4px;">1111</h3>
-		                  	<h3 style="margin-left : 10px;">조회수 : ${novelPostDto.n_POST_VIEWCOUNT}</h3>
                 		</div>
 					</div>
 				</c:forEach>
@@ -133,9 +165,7 @@
 				<c:if test="${endPage < pageCount}">
 					<a href="${root}/novelhome/list.do?pageNumber=${startPage+pageBlock}&n_num=${n_num}">[다음]</a>
 				</c:if>
-				<div>pageCount : ${pageCount} startPage : ${startPage} endPage :
-					${endPage}
-				</div>
+				
 			</c:if>
 		</div>
 

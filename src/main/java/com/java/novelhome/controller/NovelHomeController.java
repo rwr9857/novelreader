@@ -63,4 +63,25 @@ public class NovelHomeController {
 
 		return mav;
 	}
+	
+	@RequestMapping(value = "/novelhome/delete.do", method = RequestMethod.GET)
+	public ModelAndView novelHomeDelete(HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("request", request);
+
+		novelHomeService.novelHomeDelete(mav);
+
+		return mav;
+	}
+	
+	@RequestMapping(value = "/novelhome/alldelete.do", method = RequestMethod.GET)
+	public ModelAndView novelHomeAllDelete(HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("request", request);
+
+		novelHomeService.novelHomeAllDelete(mav);
+
+		return mav;
+	}
+	
 }
