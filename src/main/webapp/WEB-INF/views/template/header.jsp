@@ -71,6 +71,9 @@
 					<c:if test="${numSess==null}">
 						<a href="${root}/member/login.do">로그인</a>
 					</c:if>
+					<c:if test="${numSess==null}">
+						<a href="${root}/member/register.do">회원가입</a>
+					</c:if>
 					<c:if test="${numSess!=null}">
 						<a href="${root}/member/logout.do">로그아웃</a>
 					</c:if>

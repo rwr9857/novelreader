@@ -38,7 +38,16 @@
 					<c:forEach var="novelhomeDto" items="${novelHomeList}" varStatus="status">
 						<div class=main_views style="width: 33.2%; float: left;" onclick="location.href='${root}/novelhome/list.do?n_num=${novelhomeDto.n_num}'">
 							<div class=search_image>
-								<img align="left" src="${root}/file/${novelhomeDto.n_image_name}">
+								<c:if test="${novelhomeDto.n_image_name!=null}">
+									<img alt="이미지 불러오는중"
+										src="${root}/file/${novelhomeDto.n_image_name}"
+										class="novel_image">
+								</c:if>
+								<c:if test="${novelhomeDto.n_image_name==null}">
+									<img alt="이미지 불러오는중"
+										src="${root}/images/novelLabel/defaultImage.png"
+										class="novel_image">
+								</c:if>
 							</div>
 							<div class=search_infor>
 								<p align="left">

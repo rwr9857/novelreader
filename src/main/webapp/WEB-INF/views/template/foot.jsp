@@ -16,7 +16,7 @@
 </head>
 <body>
     <div class="downwrap">
-        <div class="downfooter">
+        <div class="downfooter" style="color:#1260c1;">
             <p>Copyright ⓒ 2022 by GTEC Kmove JP-A All Pictures cannot be copied without permission.</p>
         </div>
         <div class="downrogo">
