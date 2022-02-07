@@ -10,41 +10,146 @@
 }
 
 .wrap {
-	margin-left: 100px;
-	display: flex;
+	margin: auto;
+	margin-top: 100px;
+	float: center;
+	width: 1100px;
+	height: 700px;
+	border: 0px solid black;
+}
+
+.img{
+	width: 120px;
+	height: 450px;
+	border: 0px solid salmon;
+	float: left;
 }
 
 .img_box {
 	width: 120px;
 	height: 180px;
 	border: 1px solid red;
-	margin-bottom: 10px;
 }
+
+
+
+.img button{
+	width: 120px;
+    height: 50px;
+	border: solid; 
+	border-radius: 18px;
+	border-color: #da2323;
+	color: white;
+	font-size: 14px;
+	font-style: arial;
+	background-color: #da2323;
+	float: center;
+	margin-top: 12px;
+}
+
+.img button:hover{
+	background-color: #fa6262;
+}
+
+
 .image_container  img{
 	width: 120px;
 	height: 180px;
 }
 
-.box {
-	margin-left: -100px;
+.box{
+	width: 800px;
+	height: 700px;
+	margin-left: 120px;
+	float: left;
+	border: 0px solid pink;
 }
 
 .title2 {
-	margin-bottom: 10px;
-	margin-left: 30px;
+	margin: auto;
+	width: 800px;
+	height: 40px;
+	float: center;
+	padding-top: 10px;
+	border: 0px solid black;
+}
+
+.title2 textarea{
+	width: 800px;
+	height: 30px;
+	float: center;
+	border-radius: 18px;
+	background-color: rgb(233, 233, 233);
+	padding-left: 10px;
+	padding-top: 5px;
+	border: 0px solid;
+	resize: none;
 }
 
 .content {
-	margin-left: 30px;
+	margin: auto;
+	width: 800px;
+	height:	200px;
+	float: center;
+	border: 0px solid black;
 }
 
-.categoryAdd {
-	border: 1px solid gray;
-	margin-bottom: 10px;
-	margin-left: 30px;
+.content textarea{
+	margin: auto;
+	width: 800px;
+	height: 200px;
+	float: center;
+	border-radius: 18px;
+	background-color: rgb(233, 233, 233);
+	padding-left: 10px;
+	padding-top: 10px;
+	border: 0px solid;
+	resize: none;
 }
 
-.submit {
-	margin-top: 50px;
-	margin-left: 597px;
+
+.categoryAdd { 
+	border: 0px solid gray;
+	margin: auto;
+	float: center;
+	width: 1000px;
+	height: 200px;
+	
+}
+
+
+
+
+.front_card{
+	width:50px;
+	height: 50px;
+	border: 1px solid black;
+	margin: auto;
+	float: left;
+}
+
+.front_card label{
+	width:50px;
+	height: 50px;
+	margin: auto;
+	font-size: 10px;
+	border: 0px solid black;
+}
+
+.front_card input{
+	width:50px;
+	margin: auto;
+	display: inline-block;
+}
+
+
+.blank{
+	width: 800px;
+	height: 10px;
+	float: center;
+}
+
+.box font{
+	font-size: 28px;
+	font-size: 25px;
 }
