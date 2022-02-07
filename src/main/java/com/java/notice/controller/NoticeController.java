@@ -20,7 +20,20 @@ public class NoticeController {
 
 	@RequestMapping(value = "/notice/notice.do", method = RequestMethod.GET)
 	public ModelAndView notice(HttpServletRequest request, HttpServletResponse response) {
-		return new ModelAndView("notice/notice.tiles");
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("request", request);
+
+		noticeService.notice(mav);
+		return mav;
+	}
+	
+	@RequestMapping(value = "/notice/noticeView.do", method = RequestMethod.GET)
+	public ModelAndView noticeView(HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("request", request);
+
+		noticeService.noticeView(mav);
+		return mav;
 	}
 
 	@RequestMapping(value = "/notice/noticeWrite.do", method = RequestMethod.GET)
@@ -48,7 +61,6 @@ public class NoticeController {
 		mav.addObject("request", request);
 
 		noticeService.question(mav);
-
 		return mav;
 	}
 

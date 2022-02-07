@@ -13,6 +13,31 @@
 			#{not_viewcount ,jdbcType=NUMERIC},
 			sysdate)
 		</insert>
+		
+		<select id="selectNotice" parameterType="java.util.HashMap" resultType="com.java.notice.dto.NoticeDto">
+			<![CDATA[
+				SELECT * FROM
+					(SELECT not_num, m_num, not_title, not_content, not_viewcount, not_time ,ROWNUM rnum FROM notice ORDER BY not_num DESC)
+				WHERE rnum>=#{startRow} AND rnum<=#{endRow}
+			]]>
+		</select>
+		
+		<select id="selectNoticeCount" parameterType="int" resultType="int">
+			<![CDATA[
+				SELECT COUNT(*) FROM notice
+			]]>
+		</select>
+		
+		<update id="noticeReadCount" parameterType="int">
+			UPDATE notice SET not_viewcount=not_viewcount+1 WHERE 
+			not_num=#{not_num}
+		</update>
+
+		<select id="noticeRead" parameterType="int" resultType="com.java.notice.dto.NoticeDto">
+			SELECT * FROM notice WHERE not_num=#{not_num}
+		</select>
+		
+		
     
     	<insert id="questionInsert" parameterType="com.java.notice.dto.QuestionDto">
 			INSERT INTO question VALUES(Q_NUM_SEQ.nextval,
