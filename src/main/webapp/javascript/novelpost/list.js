@@ -19,17 +19,7 @@ function novelHomeDeleteCheck(root, n_num) {
 		alert("삭제 되지 않았습니다.");
 	}
 }
-function allDeleteCheck(root, n_num) {
-	var url = root + "/novelhome/alldelete.do?n_num=" + n_num;
-	//	alert(url);
-	
-	var value = confirm("정말로 삭제 하겠습니까?");
-	if (value == true) {
-		location.href = url;
-	} else {
-		alert("삭제 되지 않았습니다.");
-	}
-}
+
 function readCheck(n_post_num, root) {
 	var url = root + "/novelpost/read.do?n_post_num=" + n_post_num;
 	//	alert(url);

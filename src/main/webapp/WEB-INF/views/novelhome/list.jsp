@@ -50,12 +50,8 @@
 	                    </button>
 	                    <!-- 회원만 삭제 -->
 	                    <c:if test="${numSess == novelHomeDto.m_num}">
-		                    <span class = "right_up_span" onclick="javascript:novelHomeDeleteCheck('${root}','${novelHomeDto.n_num}')">게시글 삭제</span>
-						<span
-							style="background: rgb(255, 255, 255); color: rgb(51, 51, 51); border-radius: 10px; border: 0.5px solid rgb(44, 44, 44); height: 25px; padding: 0px; text-align: center; cursor: pointer; margin-left: 3px;"
-							onclick="javascript:allDeleteCheck('${root}','${novelHomeDto.n_num}')">전체
-							삭제</span>
-					</c:if>
+		                    <span class = "right_up_span" onclick="javascript:novelHomeDeleteCheck('${root}','${novelHomeDto.n_num}')">전체 삭제</span>
+						</c:if>
 	                </div>
 					<div class="right_up2">
 						<h3 onclick="javascript:goProfile('${root}','${nickname}')"
@@ -64,7 +60,7 @@
 						</h3>
 					</div>
 					<div class="right_middle">
-						<img src="https://cdn-icons.flaticon.com/png/512/2767/premium/2767194.png?token=exp=1644154980~hmac=6920b4d05e573d30564f053a1a84ddeb"
+						<img src="${root}/images/novelpost/viewimg.png"
 							style="margin-top: 2px; margin-right: 2px;">
 						<c:choose>
 							<c:when test="${allViewCount != null}">
@@ -76,8 +72,6 @@
 						</c:choose>
 						<img src="https://novelpia.com/img/new/icon/count_book.png"
 							style="margin-top: 2px; margin-right: 2px;">
-						<h3>11111 회차</h3>
-
 						<c:choose>
 							<c:when test="${allPostCount != null}">
 								<h3>${allPostCount}</h3>
@@ -86,11 +80,6 @@
 								<h3>0</h3>
 							</c:otherwise>
 						</c:choose>
-						
-						<img src="https://novelpia.com/img/new/icon/count_good.png"
-							style="margin-top: 2px; margin-right: 2px;">
-						<h3>11111 개</h3>
-
 					</div>
 					<div class=right_bottom>
 						<p style="font-size: 15px;">소설 줄거리:${novelHomeDto.n_summary}</p>
@@ -136,7 +125,7 @@
 						</div>
 						<div class="bottom_down2">
 							<h3><fmt:formatDate value="${novelPostDto.n_POST_TIME}" pattern="yyyy-MM-DD HH:mm:ss" /></h3>
-							<h3 style="margin-left : 10px;"><img src="https://cdn-icons.flaticon.com/png/512/2767/premium/2767194.png?token=exp=1644154980~hmac=6920b4d05e573d30564f053a1a84ddeb" style="width:18px; height:18px; margin-top:-3px;">${novelPostDto.n_POST_VIEWCOUNT}</h3>
+							<h3 style="margin-left : 10px;"><img src="${root}/images/novelpost/viewimg.png" style="width:18px; height:18px; margin-top:-3px;">${novelPostDto.n_POST_VIEWCOUNT}</h3>
 		                  	<h3 style="margin-left : 10px;"><img src="https://t1.daumcdn.net/cfile/blog/241BC2475465ABB42F" style="width:10px; height:10px; margin-top:-4px;"></h3>
                 		</div>
 					</div>
