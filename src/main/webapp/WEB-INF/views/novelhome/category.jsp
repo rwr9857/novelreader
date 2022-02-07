@@ -86,17 +86,17 @@
 		</c:if>
 
 		<c:if test="${startPage > pageBlock}">
-			<a href="${root}/novelhome/search.do?search_method=${search_method}&keyword=${keyword}&pageNumber=${startPage - pageBlock}">[이전]</a>
+			<a href="${root}/novelhome/category.do?category=${category}&pageNumber=${startPage - pageBlock}">[이전]</a>
 		</c:if>
 		
 		<c:forEach var="i" begin="${startPage}" end="${endPage}">
 			<c:if test="${count>=boardSize}">
-				<a href="${root}/novelhome/search.do?search_method=${search_method}&keyword=${keyword}&pageNumber=${i}">[${i}]</a>
+				<a href="${root}/novelhome/category.do?category=${category}&pageNumber=${i}">[${i}]</a>
 			</c:if>
 		</c:forEach>
 
 		<c:if test="${endPage < pageCount}">
-			<a href="${root}/novelhome/search.do?search_method=${search_method}&keyword=${keyword}&pageNumber=${startPage + pageBlock}">[다음]</a>
+			<a href="${root}/novelhome/category.do?category=${category}&pageNumber=${startPage + pageBlock}">[다음]</a>
 		</c:if>
 	</div>
 </body>
