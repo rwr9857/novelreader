@@ -8,6 +8,12 @@ import com.java.notice.dto.QuestionDto;
 public interface NoticeDao {
 	public int noticeInsert(NoticeDto noticeDto);
 	
+	public List<NoticeDto> selectNotice(int startRow, int endRow);
+
+	public int selectNoticeCount();
+	
+	public NoticeDto noticeRead(int not_num);
+	
 	public int questionInsert(QuestionDto questionDto);
 
 	public List<QuestionDto> selectQuestion(int startRow, int endRow);

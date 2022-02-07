@@ -21,6 +21,38 @@ public class NoticeServiceImp implements NoticeService {
 	private NoticeDao noticeDao;
 	
 	@Override
+	public void notice(ModelAndView mav) {
+		Map<String, Object> map = mav.getModelMap();
+		HttpServletRequest request = (HttpServletRequest) map.get("request");
+		
+		String pageNumber = request.getParameter("pageNumber");
+
+		if (pageNumber == null)
+			pageNumber = "1";
+
+		int currentPage = Integer.parseInt(pageNumber);
+		LogAspect.logger.info(LogAspect.LogMsg + "현재 페이지 : " + currentPage);
+
+		// 한페이지당 게시물 10개/ start 1, end 10
+		int boardSize = 10;
+		int startRow = (currentPage - 1) * boardSize + 1;
+		int endRow = currentPage * boardSize;
+
+		List<NoticeDto> noticeList = noticeDao.selectNotice(startRow, endRow);
+
+		int count = noticeDao.selectNoticeCount();
+
+		System.out.println(" 개수 " + count);
+
+		mav.addObject("noticeList", noticeList);
+		mav.addObject("count", count);
+		mav.addObject("boardSize", boardSize);
+		mav.addObject("currentPage", currentPage);
+		
+		mav.setViewName("notice/notice.tiles");
+	}
+	
+	@Override
 	public void noticeWriteOk(ModelAndView mav) {
 		Map<String, Object> map = mav.getModelMap();
 		NoticeDto noticeDto = (NoticeDto) map.get("noticeDto");
@@ -33,6 +65,30 @@ public class NoticeServiceImp implements NoticeService {
 		mav.addObject("check", check);
 		
 		mav.setViewName("notice/noticeWriteOk.tiles");
+	}
+	
+	@Override
+	public void noticeView(ModelAndView mav) {
+		Map<String, Object> map = mav.getModelMap();
+		HttpServletRequest request = (HttpServletRequest) map.get("request");
+
+		int not_num = Integer.parseInt(request.getParameter("not_num"));
+		String pageNumber = request.getParameter("pageNumber");
+
+		if (pageNumber == null)
+			pageNumber = "1";
+
+		Integer.parseInt(pageNumber);
+
+		LogAspect.logger.info(LogAspect.LogMsg + not_num + "," + pageNumber);
+
+		NoticeDto noticeDto = noticeDao.noticeRead(not_num);
+		LogAspect.logger.info(LogAspect.LogMsg + noticeDto.toString());
+
+		request.setAttribute("noticeDto", noticeDto);
+		request.setAttribute("pageNumber", pageNumber);
+
+		mav.setViewName("notice/noticeView.tiles");
 	}
 	
 	@Override

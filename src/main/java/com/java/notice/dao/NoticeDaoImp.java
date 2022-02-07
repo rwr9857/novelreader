@@ -20,6 +20,29 @@ public class NoticeDaoImp implements NoticeDao {
 	public int noticeInsert(NoticeDto noticeDto) {
 		return sqlSessionTemplate.insert("noticeInsert", noticeDto);
 	}
+	
+	@Override
+	public List<NoticeDto> selectNotice(int startRow, int endRow) {
+		HashMap<String, Object> hmap = new HashMap<String, Object>();
+		hmap.put("startRow", startRow);
+		hmap.put("endRow", endRow);
+
+		return sqlSessionTemplate.selectList("selectNotice", hmap);
+	}
+	
+	@Override
+	public int selectNoticeCount() {
+		return sqlSessionTemplate.selectOne("selectNoticeCount");
+	}
+	
+	
+	public NoticeDto noticeRead(int not_num) {
+		int check = sqlSessionTemplate.update("noticeReadCount", not_num);
+		LogAspect.logger.info(LogAspect.LogMsg + check);
+
+		return sqlSessionTemplate.selectOne("noticeRead", not_num);
+	}
+	
 
 	@Override
 	public int questionInsert(QuestionDto questionDto) {
