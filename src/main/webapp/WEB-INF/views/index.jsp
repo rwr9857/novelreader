@@ -44,7 +44,7 @@
 								<p align="left">
 									제목 : ${novelhomeDto.n_title}<br> <br>
 									작가 : ${novelhomeDto.m_nickname}<br> <br> <br>
-									장르1<br>
+									장르 : ${novelhomeDto.c_category_name}<br>
 								</p>
 							</div>
 						</div>
