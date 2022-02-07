@@ -104,7 +104,27 @@
 		DELETE FROM NOVEL_HOME WHERE n_num=#{n_num}
 	</delete>
 	
-	
+	<!-- 강민수 - 카테고리 이름 가져오기 -->
+   <select id="getCategoryName" parameterType="int" resultType="String">
+      <![CDATA[
+         SELECT c_category_name FROM category WHERE c_category_id=#{c_category_id}
+      ]]>
+   </select>
+   
+   <!-- 강민수 - 댓글 전체 개수 가져오기 -->
+   <select id="getAllCommentCount" parameterType="int" resultType="int">
+      <![CDATA[
+         SELECT  count(*)
+         FROM
+                     (SELECT n_post_num
+                     FROM
+                             (SELECT * FROM (SELECT ROWNUM AS rnum, a.* FROM
+                                                                (SELECT * FROM NOVEL_POST ORDER BY n_num DESC,N_POST_NUM) a) b
+                             WHERE n_num= #{n_num})) a , 
+                     "COMMENT" com
+         WHERE com.n_post_num = a.n_post_num
+      ]]>
+   </select>
 	
 	
 	

@@ -110,73 +110,82 @@ public class NovelHomeServiceImp implements NovelHomeService {
 	}
 
 	@Override
-	public void novelHomeList(ModelAndView mav) {
-		Map<String, Object> map = mav.getModelMap();
-		HttpServletRequest request = (HttpServletRequest) map.get("request");
-		NovelCategoryDto novelCategoryDto = (NovelCategoryDto) map.get("novelCategoryDto");
+	   public void novelHomeList(ModelAndView mav) {
+	      Map<String, Object> map = mav.getModelMap();
+	      HttpServletRequest request = (HttpServletRequest) map.get("request");
+	      NovelCategoryDto novelCategoryDto = (NovelCategoryDto) map.get("novelCategoryDto");
 
-		int n_num = Integer.parseInt(request.getParameter("n_num"));
-		LogAspect.logger.info(LogAspect.LogMsg + "n_num=" + n_num);
+	      int n_num = Integer.parseInt(request.getParameter("n_num"));
+	      LogAspect.logger.info(LogAspect.LogMsg + "n_num=" + n_num);
 
-		NovelHomeDto novelHomeDto = novelHomeDao.novelHomeList(n_num);
-		int nNumSess = novelHomeDto.getN_num();
+	      NovelHomeDto novelHomeDto = novelHomeDao.novelHomeList(n_num);
+	      int nNumSess = novelHomeDto.getN_num();
 
-		String pageNumber = request.getParameter("pageNumber");
-		if (pageNumber == null)
-			pageNumber = "1";
+	      String pageNumber = request.getParameter("pageNumber");
+	      if (pageNumber == null)
+	         pageNumber = "1";
 
-		int currentPage = Integer.parseInt(pageNumber);
-		LogAspect.logger.info(LogAspect.LogMsg + "currentPage=" + currentPage);
+	      int currentPage = Integer.parseInt(pageNumber);
+	      LogAspect.logger.info(LogAspect.LogMsg + "currentPage=" + currentPage);
 
-		int boardSize = 4;
-		int startRow = (currentPage - 1) * boardSize + 1;
-		int endRow = currentPage * boardSize;
+	      int boardSize = 4;
+	      int startRow = (currentPage - 1) * boardSize + 1;
+	      int endRow = currentPage * boardSize;
 
-		int count = novelHomeDao.getCount(n_num);
-		LogAspect.logger.info(LogAspect.LogMsg + "count=" + count);
+	      int count = novelHomeDao.getCount(n_num);
+	      LogAspect.logger.info(LogAspect.LogMsg + "count=" + count);
+	      
+	      int allCommentCount=0;
+	      
+	      List<NovelPostDto> novelPostList = null;
+	      if (count > 0) {
+	         novelPostList = novelHomeDao.novelPostList(startRow, endRow, n_num);
+	         LogAspect.logger.info(LogAspect.LogMsg + "novelPostList.size=" + novelPostList.size());
+	         if (novelPostList.size() > 0) {
+	            
+	            int firstView = novelHomeDao.novelFirstView(n_num);
+	            LogAspect.logger.info(LogAspect.LogMsg + "firstView=" + firstView);
 
-		List<NovelPostDto> novelPostList = null;
-		if (count > 0) {
-			novelPostList = novelHomeDao.novelPostList(startRow, endRow, n_num);
-			LogAspect.logger.info(LogAspect.LogMsg + "novelPostList.size=" + novelPostList.size());
-			if (novelPostList.size() > 0) {
+	            int allViewCount = novelHomeDao.getAllViewCount(n_num);
+	            
+	            int allPostCount = novelHomeDao.getAllPostCount(n_num);
+	            
+	            mav.addObject("firstView", firstView);
+	            mav.addObject("allViewCount", allViewCount);
+	            mav.addObject("allPostCount", allPostCount);
+	            
+	            allCommentCount=novelHomeDao.getAllCommentCount(n_num);
+	            
+	         }
 
-				int firstView = novelHomeDao.novelFirstView(n_num);
-				LogAspect.logger.info(LogAspect.LogMsg + "firstView=" + firstView);
+	      }
+	      
+	      
+	      String nickname = novelHomeDao.getNickname(n_num);
+	      LogAspect.logger.info(LogAspect.LogMsg + "nickname=" + nickname);
 
-				int allViewCount = novelHomeDao.getAllViewCount(n_num);
-				
-				int allPostCount = novelHomeDao.getAllPostCount(n_num);
-				
-				mav.addObject("firstView", firstView);
-				mav.addObject("allViewCount", allViewCount);
-				mav.addObject("allPostCount", allPostCount);
-			}
+	      List<CategoryDto> categoryList = managerDao.getCategoryList();
+	      LogAspect.logger.info(LogAspect.LogMsg + "categoryList=" + categoryList.size());
 
-		}
-		String nickname = novelHomeDao.getNickname(n_num);
-		LogAspect.logger.info(LogAspect.LogMsg + "nickname=" + nickname);
-
-		List<CategoryDto> categoryList = managerDao.getCategoryList();
-		LogAspect.logger.info(LogAspect.LogMsg + "categoryList=" + categoryList.size());
-
-		int c_category_id = novelHomeDao.getCategoryId(n_num);
-
-		
-		
-		mav.addObject("nickname", nickname);
-		mav.addObject("novelPostList", novelPostList);
-		mav.addObject("currentPage", currentPage);
-		mav.addObject("boardSize", boardSize);
-		mav.addObject("count", count);
-		mav.addObject("novelHomeDto", novelHomeDto);
-		mav.addObject("nNumSess", nNumSess);
-		mav.addObject("n_num", n_num);
-		mav.addObject("categoryList", categoryList);
-		mav.addObject("novelCategoryDto", novelCategoryDto);
-		mav.addObject("c_category_id", c_category_id);
-		mav.setViewName("novelhome/list.tiles");
-	}
+	      int c_category_id = novelHomeDao.getCategoryId(n_num);
+	      String c_category_name = novelHomeDao.getCategoryName(c_category_id);
+	      
+	      
+	      mav.addObject("nickname", nickname);
+	      mav.addObject("novelPostList", novelPostList);
+	      mav.addObject("currentPage", currentPage);
+	      mav.addObject("boardSize", boardSize);
+	      mav.addObject("count", count);
+	      mav.addObject("novelHomeDto", novelHomeDto);
+	      mav.addObject("nNumSess", nNumSess);
+	      mav.addObject("n_num", n_num);
+	      mav.addObject("categoryList", categoryList);
+	      mav.addObject("novelCategoryDto", novelCategoryDto);
+	      mav.addObject("c_category_id", c_category_id);
+	      mav.addObject("c_category_name", c_category_name);   //카테고리 이름 표기용
+	      mav.addObject("allCommentCount", allCommentCount);
+	      mav.setViewName("novelhome/list.tiles");
+	   }
 
 	@Override
 	public void search(ModelAndView mav) {
