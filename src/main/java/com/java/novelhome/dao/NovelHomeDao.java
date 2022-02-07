@@ -57,6 +57,10 @@ public interface NovelHomeDao {
 
 	public List<NovelHomeDto> getCategoryList(int startRow, int endRow, String category);
 
+	public int getAllCommentCount(int n_num);
+
+	public String getCategoryName(int c_category_id);
+
 	
 
 	

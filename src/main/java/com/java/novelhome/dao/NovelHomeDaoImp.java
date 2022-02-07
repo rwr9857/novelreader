@@ -58,7 +58,7 @@ public class NovelHomeDaoImp implements NovelHomeDao {
 	public int getAllPostCount(int n_num) {
 		return sqlSessionTemplate.selectOne("getAllPostCount", n_num);
 	}
-	
+
 	@Override
 	public List<NovelPostDto> novelPostList(int startRow, int endRow, int n_num) {
 		HashMap<String, Integer> hMap = new HashMap<String, Integer>();
@@ -101,6 +101,16 @@ public class NovelHomeDaoImp implements NovelHomeDao {
 	@Override
 	public int homeDelete(int n_num) {
 		return sqlSessionTemplate.delete("homeDelete", n_num);
+	}
+
+	@Override
+	public int getAllCommentCount(int n_num) {
+		return sqlSessionTemplate.selectOne("getAllCommentCount", n_num);
+	}
+
+	@Override
+	public String getCategoryName(int c_category_id) {
+		return sqlSessionTemplate.selectOne("getCategoryName", c_category_id);
 	}
 
 	// -------------------- index
@@ -164,28 +174,18 @@ public class NovelHomeDaoImp implements NovelHomeDao {
 		return sqlSessionTemplate.selectList("writerSearchList", hMap);
 	}
 
-	
 	@Override
 	public int getCategoryCount(String category) {
 		return sqlSessionTemplate.selectOne("getCategoryCount", category);
 	}
-	
+
 	@Override
 	public List<NovelHomeDto> getCategoryList(int startRow, int endRow, String category) {
 		HashMap<String, Object> hMap = new HashMap<String, Object>();
 		hMap.put("startRow", startRow);
 		hMap.put("endRow", endRow);
 		hMap.put("category", category);
-		return sqlSessionTemplate.selectList("getCategoryList",hMap);
+		return sqlSessionTemplate.selectList("getCategoryList", hMap);
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 }

@@ -30,12 +30,6 @@
 
 			<td style="text-align: left; font-size: 14px; line-height: 25px; padding: 5px 0px;">
 				<b style="height: 1.3em;">${novelPostDto.n_POST_TITLE}</b>
-				<span><br> 
-					<span style="background-color: rgba(155, 155, 155, 0.5); padding: 1px 6px; border-radius: 3px; font-size: 11px; margin-right: 3px;">
-						EP.1
-					</span>
-					【제1화】 프롤로그
-				</span>
 			</td>
 
 			<!-- 버튼2 : 목차, 설정 -->

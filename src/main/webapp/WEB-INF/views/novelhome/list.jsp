@@ -45,9 +45,11 @@
 				<div class="rightbox">
 					 <div class="right_up">
 	                    <h1 style ="margin-top : 10px;">${novelHomeDto.n_title}</h1>
-	                    <button type="button" class="btm_image" id="img_btn" onclick="questionWrite('${novelHomeDto.n_num}', '${root}','${novelHomeDto.n_title}')">
-	                    	<img src="https://img2.quasarzone.co.kr/img/data/img/editor/1906/1906___1791183465.jpg">
-	                    </button>
+	                    <div style="border:0px solid red; width:550px;">
+		                    <button type="button" style="border: 0px;" class="btm_image" id="img_btn" onclick="questionWrite('${novelHomeDto.n_num}', '${root}','${novelHomeDto.n_title}')">
+		                    	<img src="https://img2.quasarzone.co.kr/img/data/img/editor/1906/1906___1791183465.jpg">
+		                    </button>
+		                </div>
 	                    <!-- 회원만 삭제 -->
 	                    <c:if test="${numSess == novelHomeDto.m_num}">
 		                    <span class = "right_up_span" onclick="javascript:novelHomeDeleteCheck('${root}','${novelHomeDto.n_num}')">전체 삭제</span>
@@ -80,26 +82,22 @@
 								<h3>0</h3>
 							</c:otherwise>
 						</c:choose>
+					<img src="${root}/images/novelpost/bubble-chat.png"
+						style="margin-top: 2px; margin-right: 2px;">
+						<c:choose>
+							<c:when test="${allCommentCount != null}">
+								<h3>${allCommentCount}</h3>
+							</c:when>
+							<c:otherwise>
+								<h3>0</h3>
+							</c:otherwise>
+						</c:choose>
 					</div>
 					<div class=right_bottom>
-						<p style="font-size: 15px;">소설 줄거리:${novelHomeDto.n_summary}</p>
+						<p style="font-size: 15px;"><span style="font-size:18px; font-weight: 600; line-height:22px;">소설 줄거리</span><br/><br/>${novelHomeDto.n_summary}</p>
 					</div>
 					<div class="right_bottom2">
-						<c:forEach var="categoryDto" items="${categoryList}" varStatus="status">
-								<div class="container" style="position: absolute; margin-left: ${(status.index % 4)*50}px; margin-top:${Math.floor(status.index / 4)*100}px">
-					                <div class="front card" style="width:50px;">
-					                    <label for="${categoryDto.c_category_id}">${categoryDto.c_category_name}</label>
-					                    <input type="radio" id="${categoryDto.c_category_id}" name="c_category_id" value="${categoryDto.c_category_id}" style="display: inline-block;">  
-					                    <c:if test="${categoryDto.c_category_id == c_category_id}">
-					                    	<script type="text/javascript">
-					                    		document.getElementById("${categoryDto.c_category_id}").checked = true;
-					                    		document.getElementById("${categoryDto.c_category_id}").disabled = true;
-					                    	</script>
-					                    </c:if>
-					                </div>
-					        	</div>
-						</c:forEach>
-						
+                     	<span>${c_category_name}</span>
 				</div>
 			</div>
 		</div>
@@ -126,7 +124,6 @@
 						<div class="bottom_down2">
 							<h3><fmt:formatDate value="${novelPostDto.n_POST_TIME}" pattern="yyyy-MM-DD HH:mm:ss" /></h3>
 							<h3 style="margin-left : 10px;"><img src="${root}/images/novelpost/viewimg.png" style="width:18px; height:18px; margin-top:-3px;">${novelPostDto.n_POST_VIEWCOUNT}</h3>
-		                  	<h3 style="margin-left : 10px;"><img src="https://t1.daumcdn.net/cfile/blog/241BC2475465ABB42F" style="width:10px; height:10px; margin-top:-4px;"></h3>
                 		</div>
 					</div>
 				</c:forEach>
