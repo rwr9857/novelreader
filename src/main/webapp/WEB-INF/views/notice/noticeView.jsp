@@ -13,9 +13,9 @@
 <body>
     <div class="wrap"> <!-- 전제-->
         <div class="head"> <!-- 상단 탭버튼 -->
-            <a href="${root}/notice/notice.do"><button>공지사항</button></a> 
+            <a href="${root}/notice/notice.do"><button style="background-color:#9fc5f8">공지사항</button></a> 
             <a href="${root}/notice/faq.do"><button>자주묻는질문</button></a>
-            <a href="${root}/notice/question.do"><button style="background-color:#9fc5f8">문의하기</button></a>
+            <a href="${root}/notice/question.do"><button>문의하기</button></a>
         </div>
         
         <div style="border: white; width: 1200px; height: 8px;"></div><!-- 한칸띄우기-->

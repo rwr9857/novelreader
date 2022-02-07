@@ -48,7 +48,7 @@
 					
 					<div class="categoryAdd">
 						<c:forEach var="categoryDto" items="${categoryList}" varStatus="status">
-								<div class="container" style="position: absolute; margin-left: ${(status.index % 4)*50}px; margin-top:${Math.floor(status.index / 4)*100}px">
+								<div class="container" style="position: absolute; margin-left: ${(status.index % 14)*50}px; margin-top:${Math.floor(status.index / 14)*100}px">
 					                <div class="front_card">
 					                    <label for="${categoryDto.c_category_id}">${categoryDto.c_category_name}</label>
 					                    <input type="radio" id="${categoryDto.c_category_id}" name="c_category_id" value="${categoryDto.c_category_id}">  
