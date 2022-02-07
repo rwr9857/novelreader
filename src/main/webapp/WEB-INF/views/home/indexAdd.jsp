@@ -63,7 +63,7 @@
 		<%-- 총페이지 수 --%>
 		<fmt:parseNumber var="pageCount" value="${count/boardSize+(count%boardSize==0? 0:1)}" integerOnly="true" />
 		<%-- 페이지 블럭 --%>
-		<c:set var="pageBlock" value="${3}" />
+		<c:set var="pageBlock" value="${10}" />
 
 		<%-- 블럭의 시작번호, 끝번호 --%>
 		<fmt:parseNumber var="rs" value="${(currentPage-1)/pageBlock}" integerOnly="true" />
