@@ -15,8 +15,10 @@ public class NovelHomeDto {
 	private int m_num;
 	
 	
-	// JOIN
+	// member table JOIN
 	private String m_nickname;
+	
+	private String c_category_name;
 
 	public int getN_num() {
 		return n_num;
@@ -99,6 +101,17 @@ public class NovelHomeDto {
 
 	public void setM_nickname(String m_nickname) {
 		this.m_nickname = m_nickname;
+	}
+	
+	
+	
+	
+	public String getC_category_name() {
+		return c_category_name;
+	}
+
+	public void setC_category_name(String c_category_name) {
+		this.c_category_name = c_category_name;
 	}
 
 	@Override

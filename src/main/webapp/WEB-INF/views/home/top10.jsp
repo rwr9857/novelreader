@@ -7,13 +7,7 @@
 <link rel="stylesheet" href="${root}/css/home/index.css">
 <title>Home</title>
 </head>
-<body>	
-	<div id=top_category>
-		<c:forEach var="categoryDto" items="${CategoryList}" varStatus="status">
-			<button type="button" onclick="">${categoryDto.c_category_name}</button>
-		</c:forEach>
-	</div>
-
+<body>
 	<div id=novelleader_main>
 		<div class=follow_novels>
 			<p style="text-align: left; font-size: 1rem; padding: 15px;">조회수 순</p>
@@ -33,7 +27,7 @@
 								<p align="left">
 									제목 : ${novelhomeDto.n_title}<br> <br>
 									작가 : ${novelhomeDto.m_nickname}<br> <br> <br>
-									장르1<br>
+									장르 : ${novelhomeDto.c_category_name}<br>
 								</p>
 							</div>
 						</div>

@@ -114,7 +114,7 @@ public class HomeServiceImp implements HomeService {
 		mav.addObject("currentPage", currentPage);
 		
 		
-		mav.setViewName("home/indexAdd.tiles");
+		mav.setViewName("home/top10.tiles");
 		
 	}
 	
