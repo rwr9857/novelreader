@@ -62,7 +62,7 @@
 	<update id="novelPostUpdate"
 		parameterType="com.java.novelpost.dto.NovelPostDto">
 		UPDATE NOVEL_POST SET N_POST_TITLE=#{N_POST_TITLE},
-		N_POST_CONTENT=#{N_POST_TITLE} WHERE n_post_num=#{n_POST_NUM}
+		N_POST_CONTENT=#{N_POST_CONTENT} WHERE n_post_num=#{n_POST_NUM}
 	</update>
 
 	<select id="nNumSelect" parameterType="int" resultType="int">

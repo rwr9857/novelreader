@@ -26,9 +26,10 @@ public class NovelPostServiceImp implements NovelPostService {
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 
 		int n_num = Integer.parseInt(request.getParameter("n_num"));
-
+		novelPostDto.setN_POST_CONTENT(novelPostDto.getN_POST_CONTENT().replace("\r\n", "<br/>"));
 		LogAspect.logger.info(LogAspect.LogMsg + novelPostDto.toString());
 		int check = novelPostDao.novelPostInsert(novelPostDto);
+		
 		LogAspect.logger.info(LogAspect.LogMsg + check);
 //		if (ch > 0) {
 //			int check = novelPostDao.novelPostSelect(n_num);
@@ -116,6 +117,7 @@ public class NovelPostServiceImp implements NovelPostService {
 		NovelPostDto novelPostDto = novelPostDao.novelPostSelect(n_post_num);
 		
 		LogAspect.logger.info(LogAspect.LogMsg + novelPostDto.toString());
+		novelPostDto.setN_POST_CONTENT(novelPostDto.getN_POST_CONTENT().replace("<br/>", "\r\n"));
 
 		mav.addObject("novelPostDto", novelPostDto);
 		mav.addObject("n_post_num", n_post_num);
@@ -132,7 +134,7 @@ public class NovelPostServiceImp implements NovelPostService {
 		LogAspect.logger.info(LogAspect.LogMsg + n_post_num);
 		
 		novelPostDto.setN_POST_NUM(n_post_num);
-		
+		novelPostDto.setN_POST_CONTENT(novelPostDto.getN_POST_CONTENT().replace("\r\n", "<br/>"));
 		
 		int n_num = Integer.parseInt(request.getParameter("n_num"));
 		LogAspect.logger.info(LogAspect.LogMsg + "n_num=" + n_num);

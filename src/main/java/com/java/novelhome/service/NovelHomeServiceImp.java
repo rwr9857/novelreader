@@ -83,7 +83,7 @@ public class NovelHomeServiceImp implements NovelHomeService {
 			}
 
 		}
-
+		novelHomeDto.setN_summary(novelHomeDto.getN_summary().replace("\r\n", "<br/>"));
 		LogAspect.logger.info(LogAspect.LogMsg + novelHomeDto.toString());
 		int check = novelHomeDao.novelHomeUpload(novelHomeDto);
 
