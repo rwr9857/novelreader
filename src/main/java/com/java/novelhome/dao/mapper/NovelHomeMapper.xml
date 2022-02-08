@@ -4,37 +4,41 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.java.novelhome.dao.mapper.NovelHomeMapper">
-	<insert id="novelhomeInsert" parameterType="com.java.novelhome.dto.NovelHomeDto">
+	<insert id="novelhomeInsert"
+		parameterType="com.java.novelhome.dto.NovelHomeDto">
 		INSERT INTO NOVEL_HOME(n_num,
-							n_title,
-							n_summary,
-							n_image_name,
-							n_image_path,
-							n_image_size,
-							n_pub_date,
-							n_report,
-							m_num)
-							VALUES(N_NUM_SEQ.nextval,
-							#{n_title, jdbcType=VARCHAR},
-							#{n_summary, jdbcType=VARCHAR},
-							#{n_image_name, jdbcType=VARCHAR},
-							#{n_image_path, jdbcType=VARCHAR},
-							#{n_image_size, jdbcType=NUMERIC},
-							sysdate,
-							#{n_report,jdbcType=NUMERIC},
-							#{m_num})
+		n_title,
+		n_summary,
+		n_image_name,
+		n_image_path,
+		n_image_size,
+		n_pub_date,
+		n_report,
+		m_num)
+		VALUES(N_NUM_SEQ.nextval,
+		#{n_title, jdbcType=VARCHAR},
+		#{n_summary, jdbcType=VARCHAR},
+		#{n_image_name, jdbcType=VARCHAR},
+		#{n_image_path, jdbcType=VARCHAR},
+		#{n_image_size, jdbcType=NUMERIC},
+		sysdate,
+		#{n_report,jdbcType=NUMERIC},
+		#{m_num})
 	</insert>
-	
-	<insert id="novelCategoryInsert" parameterType="com.java.novelcategory.dto.NovelCategoryDto">
+
+	<insert id="novelCategoryInsert"
+		parameterType="com.java.novelcategory.dto.NovelCategoryDto">
 		INSERT INTO NOVEL_CATEGORY(C_CATEGORY_ID,n_num)
 		VALUES(#{c_category_id},#{n_num})
 	</insert>
-	<select id="novelhomeSelect" parameterType="int" resultType="com.java.novelhome.dto.NovelHomeDto">
+	<select id="novelhomeSelect" parameterType="int"
+		resultType="com.java.novelhome.dto.NovelHomeDto">
 		SELECT *
 		FROM NOVEL_HOME WHERE n_num=#{n_num}
 	</select>
 
-	<select id="novelhomeSelectGetNum" parameterType="int" resultType="int">
+	<select id="novelhomeSelectGetNum" parameterType="int"
+		resultType="int">
 		<![CDATA[SELECT n_num
 		FROM NOVEL_HOME WHERE m_num=#{m_num} AND ROWNUM=1 ORDER BY n_num DESC
 		]]>
@@ -46,22 +50,25 @@
 
 	<select id="novelPostCount" resultType="int">
 		SELECT COUNT(*) FROM
-			NOVEL_POST WHERE N_NUM=#{n_num, jdbcType=NUMERIC}
+		NOVEL_POST WHERE N_NUM=#{n_num, jdbcType=NUMERIC}
 	</select>
-	
+
 	<select id="getAllViewCount" resultType="int">
-		SELECT SUM(n_post_viewcount) FROM NOVEL_POST
-		WHERE n_num=#{n_num} GROUP BY n_num 
+		SELECT
+		SUM(n_post_viewcount) FROM NOVEL_POST
+		WHERE n_num=#{n_num} GROUP BY
+		n_num
 	</select>
-	
+
 	<select id="getAllPostCount" resultType="int">
-		SELECT COUNT(n_post_num) FROM NOVEL_POST
+		SELECT COUNT(n_post_num)
+		FROM NOVEL_POST
 		WHERE n_num=#{n_num} GROUP BY n_num
 	</select>
-	
+
 
 	<select id="novelPostList" parameterType="java.util.HashMap"
-			resultType="com.java.novelpost.dto.NovelPostDto">
+		resultType="com.java.novelpost.dto.NovelPostDto">
 		<![CDATA[
 		SELECT * FROM (SELECT
 						   ROWNUM AS rnum, a.* FROM
@@ -78,7 +85,8 @@
 		]]>
 	</select>
 
-	<select id="novelListMember" parameterType="java.util.HashMap" resultType="com.java.novelhome.dto.NovelHomeDto">
+	<select id="novelListMember" parameterType="java.util.HashMap"
+		resultType="com.java.novelhome.dto.NovelHomeDto">
 		<![CDATA[
 		SELECT * FROM
 			(SELECT ROWNUM rnum, n_num, n_title, n_summary, n_image_name, n_image_path, n_image_size, n_pub_date, n_report, m_num FROM novel_home WHERE m_num=#{m_num} ORDER BY n_num DESC)
@@ -86,33 +94,44 @@
 		]]>
 	</select>
 
+
 	<select id="getNickname" parameterType="int" resultType="String">
-		SELECT m_nickname FROM MEMBER
-		WHERE m_num=(SELECT m_num FROM NOVEL_HOME WHERE n_num=#{n_num})
+		SELECT
+		m_nickname FROM MEMBER
+		WHERE m_num=(SELECT m_num FROM NOVEL_HOME WHERE
+		n_num=#{n_num})
 	</select>
-	
+
 
 	<select id="novelFirstView" parameterType="int" resultType="int">
-		SELECT n_post_num FROM NOVEL_POST WHERE n_num=#{n_num} AND ROWNUM =1 ORDER BY n_post_num
+		SELECT n_post_num FROM NOVEL_POST WHERE n_num=#{n_num} AND ROWNUM =1
+		ORDER BY n_post_num
 	</select>
-	
+
 	<delete id="postDelete" parameterType="int">
-		DELETE FROM NOVEL_POST WHERE n_num=#{n_num}
+		DELETE FROM NOVEL_POST
+		WHERE n_num=#{n_num}
 	</delete>
-	
+
 	<delete id="homeDelete" parameterType="int">
-		DELETE FROM NOVEL_HOME WHERE n_num=#{n_num}
+		DELETE FROM NOVEL_HOME
+		WHERE n_num=#{n_num}
 	</delete>
-	
-	<!-- 강민수 - 카테고리 이름 가져오기 -->
-   <select id="getCategoryName" parameterType="int" resultType="String">
+
+	<select id="novelCategoryListSelect"
+		resultType="com.java.category.dto.CategoryDto">
+		SELECT * FROM CATEGORY ORDER BY c_category_id ASC		
+	</select>
+
+	<select id="getCategoryName" parameterType="int"
+		resultType="String">
       <![CDATA[
          SELECT c_category_name FROM category WHERE c_category_id=#{c_category_id}
       ]]>
-   </select>
-   
-   <!-- 강민수 - 댓글 전체 개수 가져오기 -->
-   <select id="getAllCommentCount" parameterType="int" resultType="int">
+	</select>
+
+	<select id="getAllCommentCount" parameterType="int"
+		resultType="int">
       <![CDATA[
          SELECT  count(*)
          FROM
@@ -124,27 +143,31 @@
                      "COMMENT" com
          WHERE com.n_post_num = a.n_post_num
       ]]>
-   </select>
-	
-	
-	
-	<!-- index -->
-	
-	<select id="novelHomeAllCount" resultType="int">
-		SELECT COUNT(*) FROM NOVEL_HOME
 	</select>
-	
+
+
+
+	<!-- index -->
+
+	<select id="novelHomeAllCount" resultType="int">
+		SELECT COUNT(*) FROM
+		NOVEL_HOME
+	</select>
+
 	<!-- 최신순 -->
-	<select id="novelHomeList" parameterType="java.util.HashMap" resultType="com.java.novelhome.dto.NovelHomeDto">
+	<select id="novelHomeList" parameterType="java.util.HashMap"
+		resultType="com.java.novelhome.dto.NovelHomeDto">
      <![CDATA[
      	SELECT * FROM (SELECT ROWNUM rnum, a.* FROM (SELECT * FROM NOVEL_HOME ORDER BY n_pub_date DESC) a) b ,MEMBER m , NOVEL_CATEGORY , category 
 		WHERE b.rnum >=#{startRow} AND b.rnum <=#{endRow} AND  b.m_num = m.m_num AND b.n_num = NOVEL_CATEGORY.N_NUM AND NOVEL_CATEGORY.C_CATEGORY_ID = category.C_CATEGORY_ID
      ]]>
 	</select>
-	
-	
+
+
 	<!-- 조회순 -->
-	<select id="novelViewCountList" parameterType="java.util.HashMap" resultType="com.java.novelhome.dto.NovelHomeDto">
+	<select id="novelViewCountList"
+		parameterType="java.util.HashMap"
+		resultType="com.java.novelhome.dto.NovelHomeDto">
     	 <![CDATA[
      		SELECT k.rnum , nh1.n_num , nh1.n_title,nh1.n_summary,nh1.n_image_name,nh1.n_image_path,nh1.n_image_size,nh1.n_pub_date,nh1.m_num , m_nickname , category.C_CATEGORY_NAME 
 			FROM (SELECT nh.N_NUM ,NVL(b.viewcount, 0) AS VIEWCOUNT ,rownum AS rnum
@@ -157,33 +180,37 @@
 			ORDER BY viewcount DESC
      	]]>
 	</select>
-	
-	
+
+
 	<!-- search -->
-	
-	<select id="getTitleSearchCount" parameterType="String" resultType="int">
+
+	<select id="getTitleSearchCount" parameterType="String"
+		resultType="int">
 		<![CDATA[
 		SELECT count(*) FROM novel_home WHERE UPPER(n_title) LIKE UPPER('%'||#{keyword}||'%')
 		]]>
 	</select>
-	
-	<select id="titleSearchList" parameterType="java.util.HashMap" resultType="com.java.novelhome.dto.NovelHomeDto">
+
+	<select id="titleSearchList" parameterType="java.util.HashMap"
+		resultType="com.java.novelhome.dto.NovelHomeDto">
 		<![CDATA[
 			SELECT a.*, m_nickname FROM (SELECT novel_home.*, ROWNUM rnum FROM novel_home WHERE UPPER(n_title) LIKE UPPER('%'||#{keyword}||'%') ORDER BY n_num DESC) a, member
 			WHERE (rnum>=#{startRow} AND rnum<=#{endRow}) AND member.m_num=a.m_num
 			ORDER BY rnum asc
 		]]>
 	</select>
-	
-	<select id="getWriterSearchCount" parameterType="String" resultType="int">
+
+	<select id="getWriterSearchCount" parameterType="String"
+		resultType="int">
 		<![CDATA[
 		SELECT count(*)
      	FROM novel_home 
      	WHERE m_num IN(SELECT m_num FROM member WHERE UPPER(m_nickname) LIKE UPPER('%'||#{keyword}||'%'))
 		]]>
 	</select>
-	
-	<select id="writerSearchList" parameterType="java.util.HashMap" resultType="com.java.novelhome.dto.NovelHomeDto">
+
+	<select id="writerSearchList" parameterType="java.util.HashMap"
+		resultType="com.java.novelhome.dto.NovelHomeDto">
 		<![CDATA[
 		SELECT b.*, m_nickname
 		FROM (SELECT a.*, ROWNUM rnum FROM
@@ -198,16 +225,18 @@
 		ORDER BY rnum ASC
 		]]>
 	</select>
-	
-	<select id="getCategoryCount" parameterType="String" resultType="int">
+
+	<select id="getCategoryCount" parameterType="String"
+		resultType="int">
 		<![CDATA[
 			SELECT count(*) FROM category ca, novel_category nc
 			WHERE ca.c_category_id = nc.c_category_id AND ca.c_category_name = #{category}
 		]]>
 	</select>
-	
-	
-	<select id="getCategoryList" parameterType="java.util.HashMap" resultType="com.java.novelhome.dto.NovelHomeDto">
+
+
+	<select id="getCategoryList" parameterType="java.util.HashMap"
+		resultType="com.java.novelhome.dto.NovelHomeDto">
 		<![CDATA[
 			SELECT a.* , m_nickname
 			FROM(SELECT novel_home.* , ROWNUM rnum FROM novel_home
@@ -217,7 +246,7 @@
 			WHERE rnum>=#{startRow} AND rnum<=#{endRow} AND a.m_num = member.m_num
 		]]>
 	</select>
-	
-	
+
+
 </mapper>   		
   	

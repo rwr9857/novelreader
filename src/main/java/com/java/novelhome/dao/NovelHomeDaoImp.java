@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.java.category.dto.CategoryDto;
 import com.java.novelcategory.dto.NovelCategoryDto;
 import com.java.novelhome.dto.NovelHomeDto;
 import com.java.novelpost.dto.NovelPostDto;
@@ -59,6 +60,11 @@ public class NovelHomeDaoImp implements NovelHomeDao {
 		return sqlSessionTemplate.selectOne("getAllPostCount", n_num);
 	}
 
+	@Override
+	public List<CategoryDto> novelCategoryListSelect() {
+		return sqlSessionTemplate.selectList("novelCategoryListSelect");
+	}
+	
 	@Override
 	public List<NovelPostDto> novelPostList(int startRow, int endRow, int n_num) {
 		HashMap<String, Integer> hMap = new HashMap<String, Integer>();
@@ -187,5 +193,7 @@ public class NovelHomeDaoImp implements NovelHomeDao {
 		hMap.put("category", category);
 		return sqlSessionTemplate.selectList("getCategoryList", hMap);
 	}
+
+	
 
 }

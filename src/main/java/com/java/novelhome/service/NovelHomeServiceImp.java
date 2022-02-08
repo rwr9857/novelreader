@@ -40,7 +40,9 @@ public class NovelHomeServiceImp implements NovelHomeService {
 
 		List<CategoryDto> categoryList = managerDao.getCategoryList();
 		LogAspect.logger.info(LogAspect.LogMsg + "categoryList=" + categoryList.size());
-
+		
+		categoryList = novelHomeDao.novelCategoryListSelect();
+		
 		mav.addObject("categoryList", categoryList);
 		mav.setViewName("novelhome/upload.tiles");
 	}

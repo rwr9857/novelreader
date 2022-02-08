@@ -119,7 +119,7 @@
 					<div class="bottom_down">
 						<div class="bottom_down1">
 							<h3 onclick="javascript:readCheck('${novelPostDto.n_POST_NUM}', '${root}')" style="cursor: pointer; font-weight:bold; font-size:17px;">
-								Ep.${status.count} ${novelPostDto.n_POST_TITLE}</h3> 
+								${novelPostDto.n_POST_TITLE}</h3> 
 							<c:if test="${numSess == novelHomeDto.m_num}">
 								<span onclick="javascript:updateCheck('${novelPostDto.n_POST_NUM}', '${root}','${novelPostDto.n_num}')" >수정</span>
 								<span onclick="javascript:deleteCheck('${novelPostDto.n_POST_NUM}', '${root}','${novelPostDto.n_num}')" >삭제</span>
