@@ -18,7 +18,7 @@
 	border: 0px solid black;
 }
 
-.img{
+.img {
 	width: 120px;
 	height: 450px;
 	border: 0px solid salmon;
@@ -28,36 +28,20 @@
 .img_box {
 	width: 120px;
 	height: 180px;
-	border: 1px solid red;
+	border: 1px solid black;
+	margin-top: 20px;
 }
 
-
-
-.img button{
-	width: 120px;
-    height: 50px;
-	border: solid; 
-	border-radius: 18px;
-	border-color: #da2323;
-	color: white;
-	font-size: 14px;
-	font-style: arial;
-	background-color: #da2323;
-	float: center;
-	margin-top: 12px;
-}
-
-.img button:hover{
+.img button:hover {
 	background-color: #fa6262;
 }
 
-
-.image_container  img{
+.image_container  img {
 	width: 120px;
 	height: 180px;
 }
 
-.box{
+.box {
 	width: 800px;
 	height: 700px;
 	margin-left: 120px;
@@ -74,7 +58,7 @@
 	border: 0px solid black;
 }
 
-.title2 textarea{
+.title2 textarea {
 	width: 800px;
 	height: 30px;
 	float: center;
@@ -89,12 +73,12 @@
 .content {
 	margin: auto;
 	width: 800px;
-	height:	200px;
+	height: 200px;
 	float: center;
 	border: 0px solid black;
 }
 
-.content textarea{
+.content textarea {
 	margin: auto;
 	width: 800px;
 	height: 200px;
@@ -107,49 +91,62 @@
 	resize: none;
 }
 
-
-.categoryAdd { 
+.categoryAdd {
 	border: 0px solid gray;
 	margin: auto;
-	float: center;
-	width: 1000px;
+	width: 800px;
 	height: 200px;
-	
+	text-align: left;
 }
 
-
-
-
-.front_card{
-	width:50px;
+.uploadButton {
+	width: 120px;
 	height: 50px;
-	border: 1px solid black;
-	margin: auto;
+	border: solid;
+	border-radius: 18px;
+	border-color: #da2323;
+	color: white;
+	font-size: 14px;
+	font-style: arial;
+	background-color: #da2323;
+	float: center;
+	margin-top: 12px;
+}
+
+.container {
 	float: left;
 }
 
-.front_card label{
-	width:50px;
-	height: 50px;
-	margin: auto;
-	font-size: 10px;
-	border: 0px solid black;
+.front_card {
+	height: 30px;
+	color: blue;
+	font-size: 15px;
+	margin-bottom: 10px;
+	border: 2px solid blue;
+	border-radius: 20px;
+	margin: 5px;
+	margin-top: -5px;
+	text-align: center;
+	padding-left: 5px;
+	padding-right: 5px;
+	padding: 5px;
+	text-align: center;
+	line-height: 15px;
+	float: left;
 }
 
-.front_card input{
-	width:50px;
-	margin: auto;
-	display: inline-block;
-}
-
-
-.blank{
+.blank {
 	width: 800px;
 	height: 10px;
 	float: center;
 }
 
-.box font{
+.img font {
+	font-size: 28px;
+	font-size: 25px;
+}
+
+.box font {
 	font-size: 28px;
 	font-size: 25px;
 }
