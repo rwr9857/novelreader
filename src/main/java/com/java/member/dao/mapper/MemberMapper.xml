@@ -34,7 +34,7 @@
 	</insert>
 	
 	<select id="loginCheck" parameterType="java.util.HashMap" resultType="com.java.member.dto.MemberDto">
-		SELECT M_NUM,M_PERMISSION,M_PLATFORM,M_NICKNAME FROM member  WHERE M_ID=#{id} AND M_PW=#{pw}
+		SELECT M_NUM,M_PERMISSION,M_PLATFORM,M_NICKNAME,M_PHOTO_NAME FROM member  WHERE M_ID=#{id} AND M_PW=#{pw}
 	</select>
 
 	<select id="pmLoginCheck" parameterType="java.util.HashMap" resultType="com.java.member.dto.MemberDto">
@@ -196,5 +196,8 @@
 		]]>
 	</select>
 	
+	<select id="getPhotoName" parameterType="String" resultType="String">
+		SELECT m_photo_name FROM member WHERE m_nickname = #{nickname}
+	</select>
 </mapper>   		
   	

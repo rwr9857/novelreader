@@ -15,7 +15,14 @@
 		<c:set var="permissionSess" value="${permissionSess}" scope="session" />
 		<c:set var="platformSess" value="${platformSess}" scope="session" />
 		<c:set var="nicknameSess" value="${nicknameSess}" scope="session" />
-
+		
+		<c:if test="${photoNameSess !=null}">
+			<c:set var="photoAddressSess" value="${root}/memberfile/${photoNameSess}" scope="session" />
+		</c:if>
+		<c:if test="${photoNameSess ==null}">
+			<c:set var="photoAddressSess" value="${root}/images/profile/profile_default.png" scope="session" />
+		</c:if>
+		
 		<script type="text/javascript">
 			location.href = "/novelreader";
 		</script>

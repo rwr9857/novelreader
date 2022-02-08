@@ -13,10 +13,11 @@
 	<c:remove var="permissionSess" scope="session" />
 	<c:remove var="platformSess" scope="session" />
 	<c:remove var="nicknameSess" scope="session" />
+	<c:remove var="photoAddressSess" scope="session" />
 
 	<script type="text/javascript">
-		alert("로그아웃 되었습니다.");
-		location.href = "${root}/member/login.do";
+		//alert("로그아웃 되었습니다.");
+		location.href = "${root}";
 	</script>
 </body>
 </html>

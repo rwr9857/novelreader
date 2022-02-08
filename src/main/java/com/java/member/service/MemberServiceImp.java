@@ -88,13 +88,14 @@ public class MemberServiceImp implements MemberService {
 		String permissionSess = member.getM_permission();
 		String platformSess = member.getM_platform();
 		String nicknameSess = member.getM_nickname();
+		String photoNameSess = member.getM_photo_name();
 		LogAspect.logger.info(LogAspect.LogMsg + numSess + "\t" + permissionSess + "\t" + platformSess);
-
+		
 		mav.addObject("numSess", numSess);
 		mav.addObject("permissionSess", permissionSess);
 		mav.addObject("platformSess", platformSess);
 		mav.addObject("nicknameSess", nicknameSess);
-
+		mav.addObject("photoNameSess",photoNameSess);
 		mav.setViewName("member/loginOk");
 
 	}
@@ -770,9 +771,13 @@ public class MemberServiceImp implements MemberService {
 			nickname=memberDto.getM_nickname();
 		}
 		
+		System.out.println("nickname : " + nickname);
+		String photoNameSess = memberDao.getPhotoName(nickname);		
+		System.out.println("photoNameSess : "+photoNameSess);
 		
 		mav.addObject("check",check);
 		mav.addObject("nicknameSess",nickname);
+		mav.addObject("photoNameSess",photoNameSess);
 		
 		mav.setViewName("member/profileEditOk");
 	}
