@@ -44,16 +44,20 @@
 				<!-- 소설 -->
 				<div class="rightbox">
 					 <div class="right_up">
-	                    <h1 style ="margin-top : 10px;">${novelHomeDto.n_title}</h1>
-	                    <div style="border:0px solid red; width:550px;">
-		                    <button type="button" style="border: 0px;" class="btm_image" id="img_btn" onclick="questionWrite('${novelHomeDto.n_num}', '${root}','${novelHomeDto.n_title}')">
-		                    	<img src="https://img2.quasarzone.co.kr/img/data/img/editor/1906/1906___1791183465.jpg">
+	                    <div style="border:0px solid red; width:82%; text-align: right; float: left;">
+		                    <button type="button" style="border: 0px; max-width: 100%;" class="btm_image" id="img_btn" onclick="questionWrite('${novelHomeDto.n_num}', '${root}','${novelHomeDto.n_title}')">
+		                    	<img src="https://img2.quasarzone.co.kr/img/data/img/editor/1906/1906___1791183465.jpg" style="max-width: 100%;">
 		                    </button>
 		                </div>
-	                    <!-- 회원만 삭제 -->
-	                    <c:if test="${numSess == novelHomeDto.m_num}">
-		                    <span class = "right_up_span" onclick="javascript:novelHomeDeleteCheck('${root}','${novelHomeDto.n_num}')">전체 삭제</span>
+		                <!-- 회원만 삭제 -->
+		                <c:if test="${numSess == novelHomeDto.m_num}">
+		                	<div style="width:17%; float: left;text-align: center; margin-top: 13px;">
+		                    	<span class = "right_up_span" onclick="javascript:novelHomeDeleteCheck('${root}','${novelHomeDto.n_num}')">전체 삭제</span>
+		                    </div>
 						</c:if>
+					</div>
+					<div class="right_up1" style="">
+		                <h1>${novelHomeDto.n_title}</h1>
 	                </div>
 					<div class="right_up2">
 						<h3 onclick="javascript:goProfile('${root}','${nickname}')"
@@ -97,7 +101,7 @@
 						<p style="font-size: 15px;"><span style="font-size:18px; font-weight: 600; line-height:22px;">소설 줄거리</span><br/><br/>${novelHomeDto.n_summary}</p>
 					</div>
 					<div class="right_bottom2">
-                     	<span>${c_category_name}</span>
+                     	<span style="padding:5px; text-align: center; line-height: 15px;">${c_category_name}</span>
 				</div>
 			</div>
 		</div>
