@@ -17,10 +17,10 @@
 <body>
     <div class="downwrap">
         <div class="downfooter" style="color:#1260c1;">
-            <p style="font-weight:600;">Copyright ⓒ 2022 by GTEC Kmove JP-A All Pictures cannot be copied without permission.</p>
+            <p style="font-weight:600; line-height:0px; margin-top:30px;">Copyright ⓒ 2022 by GTEC Kmove JP-A All Pictures cannot be copied without permission.</p>
         </div>
         <div class="downrogo">
-             <a href="${root}"><h1 style = "margin-top : 5px; color : #0096fa;">NOVELREADER</h1>
+             <a href="${root}"><h1 style = "margin-top : 15px; color : #0096fa;">NOVELREADER</h1>
         </div>
     </div>
 </body>
