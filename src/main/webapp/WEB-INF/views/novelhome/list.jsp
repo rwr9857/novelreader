@@ -33,7 +33,7 @@
 						<img src="${root}/file/${novelHomeDto.n_image_name}" style ="border-radius : 15px;"/>
 						</c:if>
 						<c:if test="${novelHomeDto.n_image_name == null}">
-							<img src="${root}/images/novelLabel/defalutImage.png">
+							<img src="${root}/images/novelLabel/defaultImage.png">
 						</c:if>
 					</div>
 						<button style="margin-left: 0px; color: rgb(209, 206, 206);"

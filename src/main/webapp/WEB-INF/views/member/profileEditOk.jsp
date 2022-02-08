@@ -25,5 +25,13 @@
 		</script>
 	</c:if>
 	
+	<c:if test="${photoNameSess !=null}">
+		<c:set var="photoAddressSess" value="${root}/memberfile/${photoNameSess}" scope="session" />
+	</c:if>
+	
+	<c:if test="${photoNameSess ==null}">
+		<c:set var="photoAddressSess" value="${root}/images/profile/profile_default.png" scope="session" />
+	</c:if>
+	
 </body>
 </html>

@@ -130,7 +130,10 @@ public class MemberDaoImp implements MemberDao {
 		return sqlSessionTemplate.delete("accountDelete",m_num);
 	}
 	
-	
+	@Override
+	public String getPhotoName(String nickname) {
+		return sqlSessionTemplate.selectOne("getPhotoName", nickname);
+	}
 	
 	
 	// -------------관리자 회원조회--------------

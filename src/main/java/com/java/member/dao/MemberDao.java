@@ -44,4 +44,6 @@ public interface MemberDao {
 	public int accountDelete(int m_num);
 
 	public List<MemberDto> ranking();
+
+	public String getPhotoName(String nickname);
 }

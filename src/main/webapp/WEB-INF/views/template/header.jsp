@@ -54,12 +54,17 @@
 			<!--투고-->
 			<a href="${root}/novelhome/upload.do"><img
 				src="${root}/images/upbar/write.jpg"
-				style="width: 35px; height: 30px; margin-right: 20px;"></a>
+				style="width: 48px; height: 40px; margin-left:40px; margin-right: 20px;"></a>
 			<!--프로필-->
 			<div class="Updropdown">
-				<span class="Updropbtn"><img
-					src="${root}/images/upbar/profile.jpg"
-					style="width: 25px; height: 25px; margin-left: 10px;"></span>
+				<span class="Updropbtn">
+					<c:if test="${photoAddressSess == null}">
+						<img class="profile_image" alt="기본값" src="${root}/images/profile/profile_default.png" style="width: 50px; height: 50px; margin-left: 20px; border: 1px solid #261ca0; border-radius: 25px; background:#ffffff;">
+					</c:if>
+					<c:if test="${photoAddressSess != null}">
+						<img class="profile_image" alt="프로필사진" src="${photoAddressSess}" style="width: 50px; height: 50px; margin-left: 20px; border: 1px solid #261ca0; border-radius: 25px; background:#ffffff;">
+					</c:if>
+				</span>
 				<div class="Updropdown-content">
 					<c:if test="${numSess!=null}">
 						<a href="${root}/member/profile.do?nickname=${nicknameSess}">프로필</a>
@@ -68,6 +73,7 @@
 					<c:if test="${numSess!=null}">
 						<a href="${root}/notice/question.do">문의하기</a>
 					</c:if>
+					
 					<c:if test="${numSess==null}">
 						<a href="${root}/member/login.do">로그인</a>
 					</c:if>
@@ -77,6 +83,10 @@
 					<c:if test="${numSess!=null}">
 						<a href="${root}/member/logout.do">로그아웃</a>
 					</c:if>
+					<c:if test="${numSess!=null}">
+						<a href="${root}/member/profileEdit.do?nickname=${nicknameSess}">설정</a>
+					</c:if>
+					
 
 					<c:if test="${permissionSess=='MA'}">
 						<a href="${root}/manager/menu.do">관리자 메뉴</a>
