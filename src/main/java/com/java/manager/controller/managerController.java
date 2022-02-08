@@ -137,28 +137,4 @@ public class managerController {
 		return mav;
 	}
 
-	@RequestMapping(value = "/manager/indiAlarm.do", method = RequestMethod.GET)
-	public ModelAndView managerIndiAlarm(HttpServletRequest request, HttpServletResponse response) {
-		return new ModelAndView("manager/indiAlarm.tiles1");
-	}
-
-	@RequestMapping(value = "/manager/entireAlarm.do", method = RequestMethod.GET)
-	public ModelAndView managerEntireAlarm(HttpServletRequest request, HttpServletResponse response) {
-		return new ModelAndView("manager/entireAlarm.tiles1");
-	}
-
-	@RequestMapping(value = "/manager/alarmCheck.do", method = RequestMethod.GET)
-	public ModelAndView managerAlarmCheck(HttpServletRequest request, HttpServletResponse response) {
-		return new ModelAndView("manager/alarmCheck.tiles1");
-	}
-
-	@RequestMapping(value = "/manager/savedAlarm.do", method = RequestMethod.GET)
-	public ModelAndView managerSavedAlarm(HttpServletRequest request, HttpServletResponse response) {
-		return new ModelAndView("manager/savedAlarm.tiles1");
-	}
-
-	@RequestMapping(value = "/manager/authorManage.do", method = RequestMethod.GET)
-	public ModelAndView managerAuthorManage(HttpServletRequest request, HttpServletResponse response) {
-		return new ModelAndView("manager/authorManage.tiles1");
-	}
 }

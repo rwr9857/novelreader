@@ -65,33 +65,6 @@
 				</ul>
 
 			</details>
-			<details id="details">
-				<summary class="summary">알림</summary>
-				<details>
-					<summary class="summary_1">알림 보내기</summary>
-					<ul class="summary_ul2" style="margin-top: 10px;">
-						<a href="${root}/manager/indiAlarm.do">개별 알림 보내기</a>
-					</ul>
-					<ul class="summary_ul2">
-						<a href="${root}/manager/entireAlarm.do">전체 알림 보내기</a>
-					</ul>
-				</details>
-				<details>
-					<summary class="summary_1">알림 조회</summary>
-					<ul class="summary_ul2" style="margin-top: 5px;">
-						<a href="${root}/manager/alarmCheck.do">보낸 알림 조회</a>
-					</ul>
-					<ul class="summary_ul2">
-						<a href="${root}/manager/savedAlarm.do">보관된 알림</a>
-					</ul>
-				</details>
-			</details>
-			<details id="details">
-				<summary class="summary">인기작가</summary>
-				<ul class="summary_ul" style="margin-top: 10px;">
-					<a href="${root}/manager/authorManage.do">인기작가 관리</a>
-				</ul>
-			</details>
 		</div>
 	</div>
 </body>
