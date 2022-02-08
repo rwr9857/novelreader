@@ -60,7 +60,7 @@
 						</c:forEach>
 					</div>
 					
-					<div>
+					<div style="height: 52px;">
 						<button class="uploadButton">소설투고</button>
 					</div>
 

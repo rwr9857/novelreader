@@ -93,10 +93,38 @@
 
 .categoryAdd {
 	border: 0px solid gray;
-	margin: auto;
+	margin-top: 3px;
+	float: center;
 	width: 800px;
-	height: 200px;
-	text-align: left;
+	height: 110px;
+	
+}
+
+.front_card{
+	width: 52px;
+	height: 77px;
+	border: 1px solid #0096FA;
+	margin: auto;
+	float: left;
+	color: #0096FA;
+	text-align: center;
+	border-radius: 10px;
+	background-color: #0096FA;
+}
+
+.front_card label{
+	width:50px;
+	height: 50px;
+	margin: auto;
+	font-size: 14px;
+	border: 0px solid black;
+	color:white;
+}
+
+.front_card input{
+	width:50px;
+	margin: auto;
+	display: inline-block;
 }
 
 .uploadButton {
@@ -104,35 +132,13 @@
 	height: 50px;
 	border: solid;
 	border-radius: 18px;
-	border-color: #da2323;
+	border-color: #0096FA;
 	color: white;
 	font-size: 14px;
 	font-style: arial;
-	background-color: #da2323;
-	float: center;
-	margin-top: 12px;
-}
-
-.container {
-	float: left;
-}
-
-.front_card {
-	height: 30px;
-	color: blue;
-	font-size: 15px;
-	margin-bottom: 10px;
-	border: 2px solid blue;
-	border-radius: 20px;
-	margin: 5px;
-	margin-top: -5px;
-	text-align: center;
-	padding-left: 5px;
-	padding-right: 5px;
-	padding: 5px;
-	text-align: center;
-	line-height: 15px;
-	float: left;
+	background-color: #0096FA;
+	float: right;
+	margin-right:20px;
 }
 
 .blank {
