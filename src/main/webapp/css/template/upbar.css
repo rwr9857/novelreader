@@ -67,10 +67,11 @@ input:focus{
   .Updropdown-content a{
 	display : block;
 	text-decoration : none;
-	color : rgb(37, 37, 37);
+	color : #261ca0;
 	font-size: 12px;
-	line-height : -30px;
 	padding-left: 10px;
+	font-size:16px;
+	font-weight:600;
 }
   
   .Updropdown-content a:hover{

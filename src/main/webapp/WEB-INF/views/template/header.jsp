@@ -81,12 +81,11 @@
 						<a href="${root}/member/register.do">회원가입</a>
 					</c:if>
 					<c:if test="${numSess!=null}">
-						<a href="${root}/member/logout.do">로그아웃</a>
-					</c:if>
-					<c:if test="${numSess!=null}">
 						<a href="${root}/member/profileEdit.do?nickname=${nicknameSess}">설정</a>
 					</c:if>
-					
+					<c:if test="${numSess!=null}">
+						<a href="${root}/member/logout.do" style="color:#b20000;">로그아웃</a>
+					</c:if>
 
 					<c:if test="${permissionSess=='MA'}">
 						<a href="${root}/manager/menu.do">관리자 메뉴</a>

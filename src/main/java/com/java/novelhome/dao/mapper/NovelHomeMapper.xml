@@ -169,9 +169,16 @@
 	
 	<select id="titleSearchList" parameterType="java.util.HashMap" resultType="com.java.novelhome.dto.NovelHomeDto">
 		<![CDATA[
-			SELECT a.*, m_nickname FROM (SELECT novel_home.*, ROWNUM rnum FROM novel_home WHERE UPPER(n_title) LIKE UPPER('%'||#{keyword}||'%') ORDER BY n_num DESC) a, member
-			WHERE (rnum>=#{startRow} AND rnum<=#{endRow}) AND member.m_num=a.m_num
-			ORDER BY rnum asc
+			SELECT a.*, m_nickname, novel_category.c_category_id, category.c_category_name 
+			FROM (SELECT novel_home.*, ROWNUM rnum FROM novel_home WHERE UPPER(n_title) LIKE UPPER('%'||#{keyword}||'%') ORDER BY n_num DESC) a, 
+			        member,
+			        novel_category,
+			        category
+			WHERE (rnum>=#{startRow} AND rnum<=#{endRow}) 
+			AND member.m_num=a.m_num
+			AND a.n_num=novel_category.n_num
+			AND category.c_category_id=novel_category.c_category_id
+			ORDER BY rnum ASC
 		]]>
 	</select>
 	
@@ -185,16 +192,22 @@
 	
 	<select id="writerSearchList" parameterType="java.util.HashMap" resultType="com.java.novelhome.dto.NovelHomeDto">
 		<![CDATA[
-		SELECT b.*, m_nickname
+		SELECT b.*, m_nickname, novel_category.c_category_id, category.c_category_name 
 		FROM (SELECT a.*, ROWNUM rnum FROM
-		                (SELECT novel_home.*
-		                 FROM novel_home 
-		                 WHERE m_num IN(SELECT m_num 
-		                                            FROM member 
-		                                            WHERE UPPER(m_nickname) LIKE UPPER('%'||#{keyword}||'%'))
-		                ORDER BY n_num DESC) a) b,
-		            member
-		WHERE (rnum>=#{startRow} AND rnum<=#{endRow}) AND member.m_num=b.m_num
+				                (SELECT novel_home.*
+				                 FROM novel_home 
+				                 WHERE m_num IN(SELECT m_num 
+				                                            FROM member 
+				                                            WHERE UPPER(m_nickname) LIKE UPPER('%'||#{keyword}||'%'))
+				                ORDER BY n_num DESC) a
+		          ) b,
+		novel_category,
+		category,
+		member
+		WHERE (rnum>=#{startRow} AND rnum<=#{endRow}) 
+		AND member.m_num=b.m_num
+		AND b.n_num=novel_category.n_num
+		AND category.c_category_id=novel_category.c_category_id
 		ORDER BY rnum ASC
 		]]>
 	</select>

@@ -24,11 +24,13 @@ width:100%;
 }
 
 .downfooter{
-    width:700px;
+    position:absolute;
+    left:1%;
 }
 
 .downrogo{
-    margin-left:1000px;
+    position:absolute;
+    right:1%;
 }
 
 .downrogo h1{
