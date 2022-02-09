@@ -34,14 +34,18 @@ function updateCheck(n_POST_NUM, root, n_num) {
 }
 
 // 삭제 페이지
-function deleteCheck(comment_num, root, n_POST_NUM) {
-	var url = root + "/novelpost/commentdelete.do?comment_num=" + comment_num + "&n_post_num=" + n_POST_NUM;
-	//	alert(url);
-
-	var value = confirm("정말로 삭제 하겠습니까?");
-	if (value == true) {
-		location.href = url;
-	} else {
-		alert("삭제 되지 않았습니다.");
+function deleteCheck(comment_num, root, n_POST_NUM, m_num, numSess) {
+	if(m_num == numSess){
+		var url = root + "/novelpost/commentdelete.do?comment_num=" + comment_num + "&n_post_num=" + n_POST_NUM;
+		//	alert(url);
+	
+		var value = confirm("정말로 삭제 하겠습니까?");
+		if (value == true) {
+			location.href = url;
+		} else {
+			alert("삭제 되지 않았습니다.");
+		}
+	}else{
+		alert("잘못된 접근입니다");
 	}
 }

@@ -38,17 +38,18 @@
 				<div class="line2">
 					<!-- 빈칸, 카테고리 와꾸-->
 
-					<input type="text" name="q_title" placeholder="제목을 입력하세요" />
+					<input type="text" name="q_title" placeholder="제목을 입력하세요" value="<c:if test="${n_title != null}">
+[게시글 제목] : ${n_title}</c:if>"/>
 					<!-- 제목입력칸-->
 					<select name="q_category" id="q_category">
 						<optgroup label="카테고리" >
 							<option value="서비스문의">서비스문의</option>
-							<option value="버그문의">버그문의</option>
+							<option value="버그신고">버그신고</option>
 							<c:if test="${n_title != null}">
 								<option value="신고문의" selected="selected">신고문의</option>
 							</c:if>
 							<c:if test="${n_title == null}">
-								<option value="신고문의" >신고문의</option>
+								<option value="회원/게시물 신고" >회원/게시물 신고</option>
 							</c:if>
 						</optgroup>
 					</select>
@@ -63,11 +64,10 @@
 				<!-- 한칸띄우기-->
 				<div class="blenk">
 					<!-- 텍스트박스 와꾸-->
-					<textarea name="q_content" class="writingbox" placeholder="내용을 입력하세요">
-						<c:if test="${n_title != null}">[게시글 제목] : ${n_title}z
-							--------------------------------------------------
-						</c:if>
-					</textarea>
+					<textarea name="q_content" class="writingbox" placeholder="내용을 입력하세요"><c:if test="${n_title != null}">
+[게시글 제목] : ${n_title}
+--------------------------------------------------
+</c:if></textarea>
 				</div>
 				<div style="border: white; width: 1200px; height: 16px;"></div>
 				<!-- 한칸띄우기-->

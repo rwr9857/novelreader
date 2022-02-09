@@ -29,12 +29,12 @@
 			<td style="text-align: center; font-size: 20px; width: 2.5%;"></td>
 
 			<td style="text-align: left; font-size: 14px; line-height: 25px; padding: 5px 0px;">
-				<b style="height: 1.3em;">${novelPostDto.n_POST_TITLE}</b>
+				<b style="height: 1.3em; font-size:20px;">${novelPostDto.n_POST_TITLE}</b>
 			</td>
 
 			<!-- 버튼2 : 목차, 설정 -->
 			<td style="text-align: center; font-size: 12px; width: 63px; z-index: 10000;">
-				<img src="${root}/images/novelpost/btn_list.png" style="height: 20px; cursor: pointer;" onclick="javascript:postListCheck('${root}','${nNumSess}')">
+				<img src="${root}/images/novelpost/btn_list.png" style="height: 25px; cursor: pointer;" onclick="javascript:postListCheck('${root}','${nNumSess}')">
 			</td>
 			<td style="text-align: center; font-size: 12px; width: 63px; z-index: 10000;">
 				<c:if test="${numSess == m_num}">
@@ -72,7 +72,7 @@
 				<input type="submit" value="등록" style="background-color: rgba(155, 155, 155, 0.1); border: 1px solid rgba(155, 155, 155, 0.2); border-radius: 10px; text-align: center; cursor: pointer; margin-left: 640px;"/>
 			</div>
 			<div class="content">
-				<textarea rows="3" cols="115" name="comment_content" style="resize: none;  border-radius: 10px;"></textarea>
+				<textarea rows="3" cols="115" name="comment_content" placeholder="댓글을 입력하세요" style="resize: none;  border-radius: 10px; margin-bottom:150px;"></textarea>
 			</div>
 			<div class="title" style="text-align: right;">
 				 
@@ -85,14 +85,16 @@
 		<c:if test="${commentList.size() > 0 }">
 			<c:forEach var="commentDto" items="${commentList}">
 				<div class="commentHeader" style="border:0px solid black; width:879px; height: 25px; margin-top:3px;">
-					<h5 style="text-align: left; margin-left:10px; display: inline-block; float:left;">${commentDto.m_num}</h5>
-					<h5 style="text-align: left; margin-left:10px; display: inline-block; float:left;">작성날짜 :</h5>
-					<h5 style="text-align: left; margin-left:10px; display: inline-block; float:left;">
+					<h5 style="text-align: left; display: inline-block; float:left;">${commentDto.m_nickname}</h5>
+					<c:if test="${commentDto.m_num==numSess}">
+						<button
+							style="float:right; margin-left:50px; background-color: rgba(155, 155, 155, 0.1); border: 1px solid rgba(155, 155, 155, 0.2); border-radius: 10px; text-align: center; cursor: pointer;"
+							onclick="javascript:deleteCheck('${commentDto.comment_num}', '${root}','${novelPostDto.n_POST_NUM}','${commentDto.m_num}','${numSess}')">삭제</button>
+					</c:if>
+					<h5 style="text-align: left; margin-left:10px; display: inline-block; float:right;">
 					<fmt:formatDate value="${commentDto.comment_time}" pattern="yyyy-MM-DD HH:mm:ss"/>
 					</h5>
-					<button
-						style="margin-left: 500px; background-color: rgba(155, 155, 155, 0.1); border: 1px solid rgba(155, 155, 155, 0.2); border-radius: 10px; text-align: center; cursor: pointer;"
-						onclick="javascript:deleteCheck('${commentDto.comment_num}', '${root}','${novelPostDto.n_POST_NUM}')">삭제</button>
+					<h5 style="text-align: left; margin-left:10px; display: inline-block; float:right;">작성날짜 : </h5>
 				</div>
 					
 				<div class="form_style"  style="height: 130px; border:1px solid gray;  border-radius: 10px; text-align: left; margin-top: 6px;">

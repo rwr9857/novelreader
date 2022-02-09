@@ -8,6 +8,9 @@ public class CommentDto {
 	private String comment_content;
 	private Date comment_time;
 	private int n_post_num;
+	
+	//조인 용
+	private String m_nickname;
 
 	public int getComment_num() {
 		return comment_num;
@@ -49,10 +52,20 @@ public class CommentDto {
 		this.n_post_num = n_post_num;
 	}
 
+	public String getM_nickname() {
+		return m_nickname;
+	}
+
+	public void setM_nickname(String m_nickname) {
+		this.m_nickname = m_nickname;
+	}
+	
 	@Override
 	public String toString() {
 		return "CommentDto [comment_num=" + comment_num + ", m_num=" + m_num + ", comment_content=" + comment_content
-				+ ", comment_time=" + comment_time + ", n_post_num=" + n_post_num + "]";
+				+ ", comment_time=" + comment_time + ", n_post_num=" + n_post_num + ", m_nickname=" + m_nickname + "]";
 	}
+
+	
 
 }
