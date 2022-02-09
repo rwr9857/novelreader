@@ -70,36 +70,6 @@ public class managerController {
 		return mav;
 	}
 
-	@RequestMapping(value = "/manager/reportPost.do", method = RequestMethod.GET)
-	public ModelAndView managerReportPost(HttpServletRequest request, HttpServletResponse response) {
-		return new ModelAndView("manager/reportPost.tiles1");
-	}
-
-	@RequestMapping(value = "/manager/reportComment.do", method = RequestMethod.GET)
-	public ModelAndView managerReportComment(HttpServletRequest request, HttpServletResponse response) {
-		return new ModelAndView("manager/reportComment.tiles1");
-	}
-
-	@RequestMapping(value = "/manager/memberPost.do", method = RequestMethod.GET)
-	public ModelAndView managerMemberPost(HttpServletRequest request, HttpServletResponse response) {
-		return new ModelAndView("manager/memberPost.tiles1");
-	}
-
-	@RequestMapping(value = "/manager/notice.do", method = RequestMethod.GET)
-	public ModelAndView managerNotice(HttpServletRequest request, HttpServletResponse response) {
-		return new ModelAndView("manager/notice.tiles1");
-	}
-
-	@RequestMapping(value = "/manager/faq.do", method = RequestMethod.GET)
-	public ModelAndView managerQuestionInformation(HttpServletRequest request, HttpServletResponse response) {
-		return new ModelAndView("manager/faq.tiles1");
-	}
-
-	@RequestMapping(value = "/manager/question.do", method = RequestMethod.GET)
-	public ModelAndView managerQuestion(HttpServletRequest request, HttpServletResponse response) {
-		return new ModelAndView("manager/question.tiles1");
-	}
-
 	@RequestMapping(value = "/manager/categoryView.do", method = RequestMethod.GET)
 	public ModelAndView managerCategoryView(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView();
@@ -123,16 +93,16 @@ public class managerController {
 	public ModelAndView managerCategoryDelete(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("request", request);
-		
+
 		managerService.categoryDelete(mav);
 		return mav;
 	}
-	
+
 	@RequestMapping(value = "/manager/categoryDeleteOk.do", method = RequestMethod.GET)
 	public ModelAndView managerCategoryDeleteOk(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("request", request);
-		
+
 		managerService.categoryDeleteOk(mav);
 		return mav;
 	}

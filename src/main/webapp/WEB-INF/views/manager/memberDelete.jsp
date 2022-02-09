@@ -107,7 +107,16 @@
 			</c:if>
 
 			<c:forEach var="i" begin="${startPage}" end="${endPage}">
-				<a href="${root}/manager/memberDelete.do?pageNumber=${i}">[${i}]</a>
+				<c:if test="${i == currentPage}">
+					<a
+					href="${root}/manager/memberDelete.do?pageNumber=${i}"
+					style="cursor: pointer; color: #001076; font-weight: 800; font-size: 18px;">[${i}]</a>
+				</c:if>
+				<c:if test="${i != currentPage}">
+					<a
+					href="${root}/manager/memberDelete.do?pageNumber=${i}"
+					style="cursor: pointer; color: #83aaff; font-weight: 600; font-size: 18px;">[${i}]</a>
+				</c:if>
 			</c:forEach>
 
 			<c:if test="${endPage < pageCount}">
