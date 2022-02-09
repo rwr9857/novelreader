@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 
 import com.java.aop.LogAspect;
 import com.java.comment.dto.CommentDto;
-import com.java.novelhome.dto.NovelHomeDto;
 import com.java.novelpost.dto.NovelPostDto;
 
 @Component
