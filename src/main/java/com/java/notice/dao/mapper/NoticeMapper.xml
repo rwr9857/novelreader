@@ -55,9 +55,10 @@
 		<select id="selectQuestion" parameterType="java.util.HashMap" resultType="com.java.notice.dto.QuestionDto">
 			<![CDATA[
 			
-				SELECT * FROM
-					(SELECT q_num, m_num, q_title, q_content, q_viewcount, q_time, q_category, ROWNUM rnum FROM question ORDER BY q_num DESC)
+				SELECT a.*,m_nickname FROM
+					(SELECT q_num, m_num, q_title, q_content, q_viewcount, q_time, q_category, ROWNUM rnum FROM question ORDER BY q_num DESC)a, member
 				WHERE rnum>=#{startRow} AND rnum<=#{endRow}
+                AND member.m_num= a.m_num
 				
 			]]>
 		</select>

@@ -115,5 +115,24 @@
 		SELECT COUNT(*) FROM "COMMENT" WHERE n_post_num=#{n_post_num}
 	</select>
 	
+	<select id="backPost" parameterType="java.util.HashMap" resultType="int">
+		<![CDATA[
+		SELECT NVL(b.이전화번호,0)
+		FROM (SELECT LAG(N_POST_NUM) OVER (ORDER BY N_POST_NUM) 이전화번호, LEAD(N_POST_NUM) OVER (ORDER BY N_POST_NUM) 다음화번호, a.n_num, a.n_post_num, a.n_post_title, a.n_post_viewcount, a.n_post_time
+		            FROM (SELECT * FROM novel_post WHERE n_num=#{n_num} ORDER BY N_POST_NUM ASC) a) b
+		WHERE b.n_post_num=#{n_post_num}
+		]]>
+	</select>
+	
+	
+	<select id="nextPost" parameterType="java.util.HashMap" resultType="int">
+		<![CDATA[
+		SELECT NVL(b.다음화번호,0)
+		FROM (SELECT LAG(N_POST_NUM) OVER (ORDER BY N_POST_NUM) 이전화번호, LEAD(N_POST_NUM) OVER (ORDER BY N_POST_NUM) 다음화번호, a.n_num, a.n_post_num, a.n_post_title, a.n_post_viewcount, a.n_post_time
+		            FROM (SELECT * FROM novel_post WHERE n_num=#{n_num} ORDER BY N_POST_NUM ASC) a) b
+		WHERE b.n_post_num=#{n_post_num}
+		]]>
+	</select>
+	
 </mapper>   		
   	

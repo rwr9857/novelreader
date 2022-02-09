@@ -36,7 +36,7 @@
 		</div>
 		<div class="Upserchbar">
 			<form action="${root}/novelhome/search.do" method="get">
-				<select name="search_method" style="background:#ffffff;">
+				<select name="search_method" style="background:#ffffff;  margin-right:5px;">
 					<option value="title">제목</option>
 					<c:if test="${search_method!='writer'}">
 						<option value="writer">작가명</option>

@@ -33,4 +33,8 @@ public interface NovelPostDao {
 
 	public int commentAllCount(int n_post_num);
 
+	public int backPost(int n_num, int n_post_num);
+
+	public int nextPost(int n_num, int n_post_num);
+
 }
