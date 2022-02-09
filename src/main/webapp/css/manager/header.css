@@ -136,20 +136,7 @@ ul:hover{
 	font-weight: 700;
 }
 
-.admin_profile {
-	display : flex;
-	margin-left : 100px;
-	position: absolute;
-	top : 20px;
-	right : 20px;
 
-}
-
-.admin_profile h3{
-	margin-left : 20px;
-	font-size : 15px;
-
-}
 
 .footer h3{
 	position : fixed;
