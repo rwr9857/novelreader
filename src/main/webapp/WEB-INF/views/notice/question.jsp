@@ -41,7 +41,7 @@
 	                     <c:if test="${questionDto.m_num != numSess && permissionSess!='MA'}">
 	                    	<td>작성자와 관리자만 볼 수 있습니다.</td>
 	                     </c:if>
-	                    <td>${questionDto.m_num}</td>
+	                    <td>${questionDto.m_nickname}</td>
 	                    <td>${questionDto.q_viewcount}</td>
 	                    <td><fmt:formatDate value="${questionDto.q_time}" pattern="YYYY년 MM월 DD일 hh:mm"/></td>
 	                    <td>${questionDto.q_category}</td>

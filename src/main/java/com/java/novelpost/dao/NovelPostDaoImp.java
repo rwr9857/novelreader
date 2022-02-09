@@ -91,5 +91,21 @@ public class NovelPostDaoImp implements NovelPostDao {
 	public int commentAllCount(int n_post_num) {
 		return sqlSessionTemplate.selectOne("commentAllCount", n_post_num);
 	}
-
+	
+	@Override
+	public int backPost(int n_num, int n_post_num) {
+		HashMap<String, Integer> hMap = new HashMap<String, Integer>();
+		hMap.put("n_num", n_num);
+		hMap.put("n_post_num", n_post_num);
+		return sqlSessionTemplate.selectOne("backPost", hMap);
+	}
+	
+	@Override
+	public int nextPost(int n_num, int n_post_num) {
+		HashMap<String, Integer> hMap = new HashMap<String, Integer>();
+		hMap.put("n_num", n_num);
+		hMap.put("n_post_num", n_post_num);
+		return sqlSessionTemplate.selectOne("nextPost", hMap);
+	}
+	
 }

@@ -11,6 +11,9 @@ public class QuestionDto {
 		private Date q_time;
 		private String q_category;
 		
+		//join
+		private String m_nickname;
+		
 		public int getQ_num() {
 			return q_num;
 		}
@@ -53,12 +56,21 @@ public class QuestionDto {
 		public void setQ_category(String q_category) {
 			this.q_category = q_category;
 		}
+		public String getM_nickname() {
+			return m_nickname;
+		}
+		public void setM_nickname(String m_nickname) {
+			this.m_nickname = m_nickname;
+		}
+		
 		@Override
 		public String toString() {
 			return "QuestionDto [q_num=" + q_num + ", m_num=" + m_num + ", q_title=" + q_title + ", q_content="
 					+ q_content + ", q_viewcount=" + q_viewcount + ", q_time=" + q_time + ", q_category=" + q_category
-					+ "]";
+					+ ", m_nickname=" + m_nickname + "]";
 		}
+		
+		
 		
 		
 }

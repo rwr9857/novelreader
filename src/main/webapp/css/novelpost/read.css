@@ -60,3 +60,73 @@
 }
 
 
+
+.back_next{
+	margin:50px auto 100px;
+	max-width: 900px;
+	border-top: 2px solid #000a2c1a;
+	overflow: hidden;
+}
+
+.back_next > .back{
+	height:50px;
+	line-height:50px;
+	margin-top:70px;
+	float: left;
+    border: 0px solid blue;
+    width: 200px;
+    font-size: 24px;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    color:#ffffff;
+    background: #63c0ff;
+    border-radius: 14px;
+    
+}
+
+.back_next > .back > .left-arrow{
+	filter: invert(100%);
+	width: 22px;
+    height: 22px;
+    float: left;
+    margin-top: 15px;
+    margin-left: 10px;
+}
+
+.back_next > .next{
+	height:50px;
+	line-height:50px;
+	margin-top:70px;
+	float: right;
+    border: 0px solid blue;
+    width: 200px;
+    font-size: 24px;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    color:#ffffff;
+    background: #63c0ff;
+    border-radius: 14px;
+}
+
+.back_next > .next > .right-arrow{
+	filter: invert(100%);
+	width: 22px;
+    height: 22px;
+    float: right;
+    margin-top: 15px;
+    margin-right: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+

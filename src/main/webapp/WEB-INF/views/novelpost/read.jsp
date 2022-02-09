@@ -34,26 +34,27 @@
 
 			<!-- 버튼2 : 목차, 설정 -->
 			<td style="text-align: center; font-size: 12px; width: 63px; z-index: 10000;">
-				<img src="${root}/images/novelpost/btn_list.png" style="height: 25px; cursor: pointer;" onclick="javascript:postListCheck('${root}','${nNumSess}')">
-			</td>
-			<td style="text-align: center; font-size: 12px; width: 63px; z-index: 10000;">
 				<c:if test="${numSess == m_num}">
-					<img src="${root}/images/novelpost/btn_theme.png" style="height: 20px; cursor: pointer;" onclick="javascript:updateCheck('${novelPostDto.n_POST_NUM}', '${root}','${nNumSess}')">
+					<img src="${root}/images/novelpost/btn_theme.png" style="height: 25px; cursor: pointer; margin-top:1px;" onclick="javascript:updateCheck('${novelPostDto.n_POST_NUM}', '${root}','${nNumSess}')">
 				</c:if>
 			</td>
-			<td style="position: relative;"></td>
+			<td style="text-align: center; font-size: 12px; width: 63px; z-index: 10000;">
+				<img src="${root}/images/novelpost/btn_list.png" style="height: 25px; cursor: pointer;" onclick="javascript:postListCheck('${root}','${nNumSess}')">
+			</td>
 		</table>
 	</div>
 	
 	 <!--본문영역-->
      <div class="novel_box" oncontextmenu="return false" onselectstart="return false" ondragstart="return false" ondrop="return false">
         <div class="no-drag" oncontextmenu="return false" onselectstart="return false" ondragstart="return false" ondrop="return false">              
-        	<ol style="padding:0px;margin:0px;" class="no-drag" oncontextmenu="return false" onselectstart="return false" ondragstart="return false" ondrop="return false">
-           		${novelPostDto.n_POST_CONTENT}
-			</ol>
-           <!-- 다음화 보기 -->
-           <div class="next_epi_btn_bottom" onclick="javascript:nextViewCheck('${root}','${novelPostDto.n_POST_NUM + 1}')">다음화 보기</div><br>
-           
+			<ol style="padding: 0px;
+					    margin: 0px;
+					    border-top: 2px solid #001b7c;
+					    overflow: hidden;
+					    padding-left:10px;
+					    " class="no-drag" oncontextmenu="return false" onselectstart="return false" ondragstart="return false" ondrop="return false">
+			  		${novelPostDto.n_POST_CONTENT}
+			</ol>           
 
            <ol onclick="" style="padding:0px;margin:0px;overflow-x:hidden;max-width:900px;height:100%;margin:0px 0px;scrollbar-width: none;" class="no-drag" oncontextmenu="return false" onselectstart="return false" ondragstart="return false" ondrop="return false">
            		<span style="padding:0px;margin:0px;"></span>
@@ -62,6 +63,24 @@
          </div>
     </div>
 
+
+
+
+	<div class="back_next">
+		<c:if test="${back!=0}">
+			<div class="back" onclick="javascript:nextViewCheck('${root}','${back}')">
+			<img alt="이전화 보기" src="${root}/images/novelpost/left-arrow.png" class="left-arrow">
+				이전화 보기
+			</div>
+		</c:if>
+		<c:if test="${next!=0}">
+			<div class="next" onclick="javascript:nextViewCheck('${root}','${next}')">
+				<img alt="다음화 보기" src="${root}/images/novelpost/right-arrow.png" class="right-arrow">
+				다음화 보기</div>
+		</c:if>
+	</div>
+	
+	
 	
 	<!-- 댓글 -->
 	<div align="center">

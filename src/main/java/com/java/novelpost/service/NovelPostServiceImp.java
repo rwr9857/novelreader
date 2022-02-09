@@ -81,6 +81,14 @@ public class NovelPostServiceImp implements NovelPostService {
 			commentAllCount = novelPostDao.commentAllCount(n_post_num);
 		}
 		
+		
+		int back=novelPostDao.backPost(n_num, n_post_num);
+		int next=novelPostDao.nextPost(n_num, n_post_num);
+		
+		System.out.println(back+" ,  "+next);
+		
+		mav.addObject("back",back);
+		mav.addObject("next",next);
 		mav.addObject("m_num", m_num);
 		mav.addObject("novelPostDto", novelPostDto);
 		mav.addObject("n_post_num", n_post_num);
@@ -91,7 +99,9 @@ public class NovelPostServiceImp implements NovelPostService {
 		mav.addObject("commentAllCount", commentAllCount);
 		mav.setViewName("novelpost/read.tiles");
 	}
-
+	
+	
+	
 	@Override
 	public void novelPostDelete(ModelAndView mav) {
 		Map<String, Object> map = mav.getModelMap();
