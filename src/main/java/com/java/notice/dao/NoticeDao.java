@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.java.notice.dto.NoticeDto;
 import com.java.notice.dto.QuestionDto;
+import com.java.notice.dto.QuestionReplyDto;
 
 public interface NoticeDao {
 	public int noticeInsert(NoticeDto noticeDto);
@@ -21,4 +22,8 @@ public interface NoticeDao {
 	public int selectQuestionCount();
 	
 	public QuestionDto questionRead(int q_num);
+	
+	public int questioReplyInsert(QuestionReplyDto questionReplyDto);
+	
+	public QuestionReplyDto questionReplySelect(int q_num);
 }

@@ -14,6 +14,7 @@ import com.java.aop.LogAspect;
 import com.java.notice.dao.NoticeDao;
 import com.java.notice.dto.NoticeDto;
 import com.java.notice.dto.QuestionDto;
+import com.java.notice.dto.QuestionReplyDto;
 
 @Component
 public class NoticeServiceImp implements NoticeService {
@@ -140,7 +141,7 @@ public class NoticeServiceImp implements NoticeService {
 		Map<String, Object> map = mav.getModelMap();
 		QuestionDto questionDto = (QuestionDto) map.get("questionDto");
 
-		LogAspect.logger.info(LogAspect.LogMsg + questionDto);
+		LogAspect.logger.info(LogAspect.LogMsg + questionDto.toString());
 
 		int check = noticeDao.questionInsert(questionDto);
 		LogAspect.logger.info(LogAspect.LogMsg + check);
@@ -149,7 +150,22 @@ public class NoticeServiceImp implements NoticeService {
 
 		mav.setViewName("notice/questionWriteOk");
 	}
+	
+	@Override
+	public void questionReplyWriteOk(ModelAndView mav) {
+		Map<String, Object> map = mav.getModelMap();
+		QuestionReplyDto questionReplyDto = (QuestionReplyDto) map.get("questionReplyDto");
+		
+		LogAspect.logger.info(LogAspect.LogMsg + questionReplyDto.toString());
+		
+		int check = noticeDao.questioReplyInsert(questionReplyDto);
+		LogAspect.logger.info(LogAspect.LogMsg + check);
 
+		mav.addObject("check", check);
+		mav.addObject("q_num",questionReplyDto.getQr_num());
+		
+		mav.setViewName("notice/questionReplyWriteOk");
+	}
 	
 
 	@Override
@@ -169,9 +185,17 @@ public class NoticeServiceImp implements NoticeService {
 
 		QuestionDto questionDto = noticeDao.questionRead(q_num);
 		LogAspect.logger.info(LogAspect.LogMsg + questionDto.toString());
+		
+		// questionReply
+		QuestionReplyDto questionReplyDto =  noticeDao.questionReplySelect(q_num);
+		if (questionReplyDto != null) {
+			LogAspect.logger.info(LogAspect.LogMsg + "questionReplyDto : "+questionReplyDto.toString());
+		}
+		
 
-		request.setAttribute("questionDto", questionDto);
-		request.setAttribute("pageNumber", pageNumber);
+		mav.addObject("questionDto", questionDto);
+		mav.addObject("pageNumber", pageNumber);
+		mav.addObject("questionReplyDto", questionReplyDto);
 
 		mav.setViewName("notice/questionView.tiles");
 	}

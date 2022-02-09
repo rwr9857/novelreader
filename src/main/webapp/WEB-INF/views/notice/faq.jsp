@@ -31,7 +31,7 @@
         <div style="border: white; width: 1200px; height: 8px;"></div><!-- 한칸띄우기-->
         <div class="footer"> <!-- 하단 와꾸-->
             <c:if test="${permissionSess=='MA'}">
-        		<a href=""><button>등록하기</button></a>
+        		<button onclick="return false">등록하기</button>
         	</c:if>
         </div>
     </div>
