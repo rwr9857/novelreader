@@ -32,8 +32,7 @@
 			<hr />
 			
 			<c:if test="${permissionSess == 'MA'}">
-				<button>수정</button>
-				<button>삭제</button>
+				<button onclick="location.href='${root}/notice/noticeDelete.do?not_num=${noticeDto.not_num}'">삭제</button>
 			</c:if>
 			
 

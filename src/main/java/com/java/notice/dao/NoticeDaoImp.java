@@ -44,6 +44,9 @@ public class NoticeDaoImp implements NoticeDao {
 		return sqlSessionTemplate.selectOne("noticeRead", not_num);
 	}
 	
+	public int noticeDelete(int not_num) {
+    return sqlSessionTemplate.delete("noticeDelete",not_num);
+	}
 
 	@Override
 	public int questionInsert(QuestionDto questionDto) {

@@ -50,6 +50,15 @@ public class NoticeController {
 		noticeService.noticeWriteOk(mav);
 		return mav;
 	}
+	
+	 @RequestMapping(value = "notice/noticeDelete.do", method = RequestMethod.GET)
+	  public ModelAndView noticeDelete(HttpServletRequest request, HttpServletResponse response) {
+	    ModelAndView mav = new ModelAndView();
+	    mav.addObject("request", request);
+
+	    noticeService.noticeDelete(mav);
+	    return mav;
+	  }
 
 	@RequestMapping(value = "/notice/faq.do", method = RequestMethod.GET)
 	public ModelAndView faq(HttpServletRequest request, HttpServletResponse response) {

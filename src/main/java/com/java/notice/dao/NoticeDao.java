@@ -15,6 +15,8 @@ public interface NoticeDao {
 	
 	public NoticeDto noticeRead(int not_num);
 	
+	public int noticeDelete(int not_num);
+	
 	public int questionInsert(QuestionDto questionDto);
 
 	public List<QuestionDto> selectQuestion(int startRow, int endRow);

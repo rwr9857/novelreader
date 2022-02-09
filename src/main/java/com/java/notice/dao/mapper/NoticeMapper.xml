@@ -2,57 +2,59 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-    
-    <mapper namespace="com.java.notice.dao.mapper.NoticeMapper"> 
-    	
-    	<insert id="noticeInsert" parameterType="com.java.notice.dto.NoticeDto">
-			INSERT INTO notice VALUES(NOT_NUM_SEQ.nextval,
-			#{m_num ,jdbcType=NUMERIC},
-			#{not_title ,jdbcType=VARCHAR},
-			#{not_content ,jdbcType=VARCHAR},
-			#{not_viewcount ,jdbcType=NUMERIC},
-			sysdate)
-		</insert>
-		
-		<select id="selectNotice" parameterType="java.util.HashMap" resultType="com.java.notice.dto.NoticeDto">
+
+<mapper namespace="com.java.notice.dao.mapper.NoticeMapper">
+
+	<insert id="noticeInsert" parameterType="com.java.notice.dto.NoticeDto">
+		INSERT INTO notice VALUES(NOT_NUM_SEQ.nextval,
+		#{m_num ,jdbcType=NUMERIC},
+		#{not_title ,jdbcType=VARCHAR},
+		#{not_content ,jdbcType=VARCHAR},
+		#{not_viewcount ,jdbcType=NUMERIC},
+		sysdate)
+	</insert>
+
+	<select id="selectNotice" parameterType="java.util.HashMap" resultType="com.java.notice.dto.NoticeDto">
 			<![CDATA[
 				SELECT * FROM
 					(SELECT not_num, m_num, not_title, not_content, not_viewcount, not_time ,ROWNUM rnum FROM notice ORDER BY not_num DESC)
 				WHERE rnum>=#{startRow} AND rnum<=#{endRow}
 			]]>
-		</select>
-		
-		<select id="selectNoticeCount" parameterType="int" resultType="int">
+	</select>
+
+	<select id="selectNoticeCount" parameterType="int" resultType="int">
 			<![CDATA[
 				SELECT COUNT(*) FROM notice
 			]]>
-		</select>
-		
-		<update id="noticeReadCount" parameterType="int">
-			UPDATE notice SET not_viewcount=not_viewcount+1 WHERE 
-			not_num=#{not_num}
-		</update>
+	</select>
 
-		<select id="noticeRead" parameterType="int" resultType="com.java.notice.dto.NoticeDto">
-			SELECT * FROM notice WHERE not_num=#{not_num}
-		</select>
-		
-		
-    
-    	<insert id="questionInsert" parameterType="com.java.notice.dto.QuestionDto">
-			INSERT INTO question VALUES(Q_NUM_SEQ.nextval,
-			#{m_num ,jdbcType=NUMERIC},
-			#{q_title ,jdbcType=VARCHAR},
-			#{q_content ,jdbcType=VARCHAR},
-			#{q_viewcount ,jdbcType=NUMERIC},
-			sysdate,
-			#{q_category ,jdbcType=VARCHAR})
-		</insert>
-		
-		
-		
-		
-		<select id="selectQuestion" parameterType="java.util.HashMap" resultType="com.java.notice.dto.QuestionDto">
+	<update id="noticeReadCount" parameterType="int">
+		UPDATE notice SET not_viewcount=not_viewcount+1 WHERE
+		not_num=#{not_num}
+	</update>
+
+	<select id="noticeRead" parameterType="int" resultType="com.java.notice.dto.NoticeDto">
+		SELECT * FROM notice WHERE not_num=#{not_num}
+	</select>
+
+	<delete id="noticeDelete" parameterType="int">
+		DELETE notice WHERE not_num=#{not_num}
+	</delete>
+
+	<insert id="questionInsert" parameterType="com.java.notice.dto.QuestionDto">
+		INSERT INTO question VALUES(Q_NUM_SEQ.nextval,
+		#{m_num ,jdbcType=NUMERIC},
+		#{q_title ,jdbcType=VARCHAR},
+		#{q_content ,jdbcType=VARCHAR},
+		#{q_viewcount ,jdbcType=NUMERIC},
+		sysdate,
+		#{q_category ,jdbcType=VARCHAR})
+	</insert>
+
+
+
+
+	<select id="selectQuestion" parameterType="java.util.HashMap" resultType="com.java.notice.dto.QuestionDto">
 			<![CDATA[
 			
 				SELECT a.*,m_nickname FROM
@@ -61,36 +63,36 @@
                 AND member.m_num= a.m_num
 				
 			]]>
-		</select>
-		
-		<select id="selectQuestionCount" parameterType="int" resultType="int">
+	</select>
+
+	<select id="selectQuestionCount" parameterType="int" resultType="int">
 			<![CDATA[
 				SELECT COUNT(*) FROM question
 			]]>
-		</select>
-		
-		
-		
-		<update id="questionReadCount" parameterType="int">
-			UPDATE QUESTION SET q_viewcount=q_viewcount+1 WHERE 
-			q_num=#{q_num}
-		</update>
+	</select>
 
-		<select id="questionRead" parameterType="int" resultType="com.java.notice.dto.QuestionDto">
-			SELECT * FROM QUESTION WHERE q_num=#{q_num}
-		</select>
-		
-		<insert id="questionReplyInsert" parameterType="com.java.notice.dto.QuestionReplyDto">
-			INSERT INTO question_reply VALUES(
-			#{qr_num ,jdbcType=NUMERIC},
-			#{m_num ,jdbcType=NUMERIC},
-			#{qr_title ,jdbcType=VARCHAR},
-			#{qr_content ,jdbcType=VARCHAR},
-			sysdate)
-		</insert>
-		
-		<select id="selectQuestionReply" parameterType="int" resultType="com.java.notice.dto.QuestionReplyDto">
-			SELECT * FROM question_reply WHERE qr_num=#{q_num}
-		</select>
-				
-    </mapper>
+
+
+	<update id="questionReadCount" parameterType="int">
+		UPDATE QUESTION SET q_viewcount=q_viewcount+1 WHERE
+		q_num=#{q_num}
+	</update>
+
+	<select id="questionRead" parameterType="int" resultType="com.java.notice.dto.QuestionDto">
+		SELECT * FROM QUESTION WHERE q_num=#{q_num}
+	</select>
+
+	<insert id="questionReplyInsert" parameterType="com.java.notice.dto.QuestionReplyDto">
+		INSERT INTO question_reply VALUES(
+		#{qr_num ,jdbcType=NUMERIC},
+		#{m_num ,jdbcType=NUMERIC},
+		#{qr_title ,jdbcType=VARCHAR},
+		#{qr_content ,jdbcType=VARCHAR},
+		sysdate)
+	</insert>
+
+	<select id="selectQuestionReply" parameterType="int" resultType="com.java.notice.dto.QuestionReplyDto">
+		SELECT * FROM question_reply WHERE qr_num=#{q_num}
+	</select>
+
+</mapper>
