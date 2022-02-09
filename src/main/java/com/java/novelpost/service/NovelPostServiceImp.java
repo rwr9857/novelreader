@@ -69,7 +69,7 @@ public class NovelPostServiceImp implements NovelPostService {
 		int startRow = (currentPage - 1) * boardSize + 1;
 		int endRow = currentPage * boardSize;
 
-		int count = novelPostDao.getCount(n_num);
+		int count = novelPostDao.getCount(n_post_num);
 		LogAspect.logger.info(LogAspect.LogMsg + "count=" + count);
 		
 		int commentAllCount = 0;

@@ -76,21 +76,18 @@
 	</select>
 
 	<select id="getCount" resultType="int">
-		<![CDATA[SELECT COUNT(*) FROM "COMMENT"
+		<![CDATA[SELECT COUNT(*) FROM "COMMENT" WHERE n_post_num=#{n_post_num}
 		]]>
 	</select>
 
 	<select id="commentList" parameterType="java.util.HashMap"
 		resultType="com.java.comment.dto.CommentDto">
 		<![CDATA[
-		SELECT * FROM (SELECT
+			SELECT * FROM (SELECT
 						   ROWNUM AS rnum, a.* FROM
-							   (SELECT * FROM "COMMENT" ORDER BY n_post_num DESC, comment_num) a) b,
-						member
-		WHERE (b.rnum >=#{startRow} AND
-			b.rnum <=#{endRow} AND n_post_num=#{n_post_num})
-		AND member.m_num=b.m_num 
-		ORDER BY comment_num
+						   (SELECT * FROM "COMMENT" WHERE n_post_num=#{n_post_num} ORDER BY comment_num DESC) a) b
+			WHERE b.rnum >=#{startRow} AND
+				b.rnum <=#{endRow}
 		]]>
 	</select>
 

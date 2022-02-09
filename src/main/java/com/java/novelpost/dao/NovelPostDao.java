@@ -23,7 +23,7 @@ public interface NovelPostDao {
 
 	public int mNumSelect(int n_num);
 
-	public int getCount(int n_num);
+	public int getCount(int n_post_num);
 
 	public List<CommentDto> commentList(int startRow, int endRow, int n_post_num);
 
