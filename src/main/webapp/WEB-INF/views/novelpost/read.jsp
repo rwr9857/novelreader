@@ -68,8 +68,8 @@
 		<form class="form_style" action="${root}/novelpost/commentOk.do"
 			method="post">
 			<div class="commentHeader" style="text-align: left;">
-				<h5 style="text-align: left; margin-left:10px; display: inline-block; padding-left: 20px;">댓글 작성(총개수)</h5>
-				<input type="submit" value="등록" style="background-color: rgba(155, 155, 155, 0.1); border: 1px solid rgba(155, 155, 155, 0.2); border-radius: 10px; text-align: center; cursor: pointer; margin-left: 640px;"/>
+				<h5 style="text-align: left; margin-left:10px; display: inline-block; padding-left: 20px;">댓글 작성(${commentAllCount})</h5>
+				<input type="submit" value="등록" style="background-color: rgba(155, 155, 155, 0.1); border: 1px solid rgba(155, 155, 155, 0.2); border-radius: 10px; text-align: center; cursor: pointer; margin-left: 694px;"/>
 			</div>
 			<div class="content">
 				<textarea rows="3" cols="115" name="comment_content" style="resize: none;  border-radius: 10px;"></textarea>

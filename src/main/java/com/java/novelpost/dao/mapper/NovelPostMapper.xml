@@ -109,5 +109,9 @@
 		DELETE FROM "COMMENT" WHERE comment_num=#{comment_num}
 	</delete>
 	
+	<select id="commentAllCount" resultType="int">
+		SELECT COUNT(*) FROM "COMMENT" WHERE n_post_num=#{n_post_num}
+	</select>
+	
 </mapper>   		
   	

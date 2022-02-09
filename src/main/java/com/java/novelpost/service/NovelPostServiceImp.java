@@ -72,10 +72,13 @@ public class NovelPostServiceImp implements NovelPostService {
 		int count = novelPostDao.getCount(n_num);
 		LogAspect.logger.info(LogAspect.LogMsg + "count=" + count);
 		
+		int commentAllCount = 0;
 		List<CommentDto> commentList = null;
 		if(count > 0) {
 			commentList = novelPostDao.commentList(startRow, endRow, n_post_num);
 			LogAspect.logger.info(LogAspect.LogMsg + "commentList.size=" + commentList.size());
+			
+			commentAllCount = novelPostDao.commentAllCount(n_post_num);
 		}
 		
 		mav.addObject("m_num", m_num);
@@ -85,6 +88,7 @@ public class NovelPostServiceImp implements NovelPostService {
 		mav.addObject("boardSize", boardSize);
 		mav.addObject("count", count);
 		mav.addObject("commentList", commentList);
+		mav.addObject("commentAllCount", commentAllCount);
 		mav.setViewName("novelpost/read.tiles");
 	}
 

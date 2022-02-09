@@ -31,4 +31,6 @@ public interface NovelPostDao {
 
 	public int novelPostCommentDelete(int comment_num);
 
+	public int commentAllCount(int n_post_num);
+
 }

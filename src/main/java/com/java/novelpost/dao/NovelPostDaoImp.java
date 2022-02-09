@@ -88,6 +88,9 @@ public class NovelPostDaoImp implements NovelPostDao {
 		return sqlSessionTemplate.delete("novelPostCommentDelete", comment_num);
 	}
 
-	
+	@Override
+	public int commentAllCount(int n_post_num) {
+		return sqlSessionTemplate.selectOne("commentAllCount", n_post_num);
+	}
 
 }
