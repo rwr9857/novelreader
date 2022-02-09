@@ -26,11 +26,18 @@
 			</div>
 			<div>ID : ${noticeDto.not_num}</div>
 			<div>조회수: ${noticeDto.not_viewcount}</div>
-			<div>내용: ${noticeDto.not_content}</div>
 
-
+			<hr />
+			<div style="height: 200px">내용: ${noticeDto.not_content}</div>
+			<hr />
+			
+			<c:if test="${permissionSess == 'MA'}">
+				<button>수정</button>
+				<button>삭제</button>
+			</c:if>
 			
 
+			<button onclick="location.href='${root}/notice/notice.do?pageNumber=${pageNumber}'">목록</button>
         </div>
         
 

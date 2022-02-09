@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.java.aop.LogAspect;
 import com.java.notice.dto.NoticeDto;
 import com.java.notice.dto.QuestionDto;
+import com.java.notice.dto.QuestionReplyDto;
 import com.java.notice.service.NoticeService;
 
 @Controller
@@ -82,6 +84,15 @@ public class NoticeController {
 		mav.addObject("questionDto", questionDto);
 
 		noticeService.questionWriteOk(mav);
+		return mav;
+	}
+	
+	@RequestMapping(value = "/notice/questionReplyWriteOk.do", method = RequestMethod.POST)
+	public ModelAndView questionReplyWriteOk(HttpServletRequest request, HttpServletResponse response,QuestionReplyDto questionReplyDto) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("questionReplyDto", questionReplyDto);
+
+		noticeService.questionReplyWriteOk(mav);
 		return mav;
 	}
 

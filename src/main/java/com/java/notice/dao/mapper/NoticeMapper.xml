@@ -79,5 +79,17 @@
 			SELECT * FROM QUESTION WHERE q_num=#{q_num}
 		</select>
 		
+		<insert id="questionReplyInsert" parameterType="com.java.notice.dto.QuestionReplyDto">
+			INSERT INTO question_reply VALUES(
+			#{qr_num ,jdbcType=NUMERIC},
+			#{m_num ,jdbcType=NUMERIC},
+			#{qr_title ,jdbcType=VARCHAR},
+			#{qr_content ,jdbcType=VARCHAR},
+			sysdate)
+		</insert>
+		
+		<select id="selectQuestionReply" parameterType="int" resultType="com.java.notice.dto.QuestionReplyDto">
+			SELECT * FROM question_reply WHERE qr_num=#{q_num}
+		</select>
 				
     </mapper>

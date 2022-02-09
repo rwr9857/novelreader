@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import com.java.aop.LogAspect;
 import com.java.notice.dto.NoticeDto;
 import com.java.notice.dto.QuestionDto;
+import com.java.notice.dto.QuestionReplyDto;
 
 @Component
 public class NoticeDaoImp implements NoticeDao {
@@ -69,5 +70,15 @@ public class NoticeDaoImp implements NoticeDao {
 		LogAspect.logger.info(LogAspect.LogMsg + check);
 
 		return sqlSessionTemplate.selectOne("questionRead", q_num);
+	}
+	
+	@Override
+	public int questioReplyInsert(QuestionReplyDto questionReplyDto) {
+		return sqlSessionTemplate.insert("questionReplyInsert", questionReplyDto);
+	}
+	
+	@Override
+	public QuestionReplyDto questionReplySelect(int q_num) {
+		return sqlSessionTemplate.selectOne("selectQuestionReply",q_num);
 	}
 }

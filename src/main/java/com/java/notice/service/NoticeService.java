@@ -15,6 +15,7 @@ public interface NoticeService {
 	
 	public void questionWriteOk(ModelAndView mav);
 	
-	public void questionView(ModelAndView mav);
+	public void questionReplyWriteOk(ModelAndView mav);
 	
+	public void questionView(ModelAndView mav);	
 }
