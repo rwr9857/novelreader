@@ -65,8 +65,8 @@ public class NovelPostDaoImp implements NovelPostDao {
 	}
 
 	@Override
-	public int getCount(int n_num) {
-		return sqlSessionTemplate.selectOne("getCount", n_num);
+	public int getCount(int n_post_num) {
+		return sqlSessionTemplate.selectOne("getCount", n_post_num);
 	}
 
 	@Override
