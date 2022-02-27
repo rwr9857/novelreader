@@ -49,7 +49,7 @@ public class MemberServiceImp implements MemberService {
 	@Value("#{properties['naver.client_secret']}")
 	private String naverClientSecret;
 	
-	@Value("#{properties['member.imagepath']}")
+	@Value("#{properties['filepath']}")
 	private String imagepath;
 	
 	@Override
@@ -716,7 +716,7 @@ public class MemberServiceImp implements MemberService {
 			long fileSize = upFile.getSize();
 //			LogAspect.logger.info(LogAspect.LogMsg + fileName + fileSize);
 
-			File path = new File(imagepath);
+			File path = new File(imagepath + "member\\");
 			path.mkdir();
 
 			LogAspect.logger.info(LogAspect.LogMsg + path);
