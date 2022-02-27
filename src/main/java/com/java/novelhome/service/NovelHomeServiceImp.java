@@ -30,7 +30,7 @@ public class NovelHomeServiceImp implements NovelHomeService {
 	@Autowired
 	private ManagerDao managerDao;
 
-	@Value("#{properties['novelhome.imagepath']}")
+	@Value("#{properties['filepath']}")
 	private String imagepath;
 
 	@Override
