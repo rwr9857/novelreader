@@ -58,7 +58,7 @@
 								onclick="">
 						</c:if>
 						<c:if test="${memberDto.m_photo_path != null}">
-							<img class="profile_image" alt="프로필사진" src="${root}/memberfile/${memberDto.m_photo_name}"
+							<img class="profile_image" alt="프로필사진" src="${root}/file/member/${memberDto.m_photo_name}"
 								onclick="">
 						</c:if>
 						
@@ -197,7 +197,7 @@
 								
 								<div class="list">
 									<c:if test="${profileFollower.m_photo_path!=null}">
-										<img alt="이미지 준비중" src="${root}/memberfile/${profileFollower.m_photo_name}" class="profile_img" onclick="goToProfile('${root}','${profileFollower.m_nickname}')">
+										<img alt="이미지 준비중" src="${root}/file/member/${profileFollower.m_photo_name}" class="profile_img" onclick="goToProfile('${root}','${profileFollower.m_nickname}')">
 									</c:if>
 									<c:if test="${profileFollower.m_photo_path==null}">
 										<img alt="기본값" src="${root}/images/profile/profile_default.png" class="profile_img" onclick="goToProfile('${root}','${profileFollower.m_nickname}')">
