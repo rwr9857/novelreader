@@ -62,7 +62,7 @@
 						</c:if>
 
 						<c:if test="${memberDto.m_photo_path != null}">
-							<img class="profile_image" alt="프로필사진" src="${root}/memberfile/${memberDto.m_photo_name}"
+							<img class="profile_image" alt="프로필사진" src="${root}/file/member/${memberDto.m_photo_name}"
 								onclick="">
 						</c:if>
 

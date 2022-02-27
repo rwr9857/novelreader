@@ -77,7 +77,7 @@
 										${root}/images/profile/profile_default.png
 									</c:if>
 									<c:if test="${memberDto.m_photo_path != null}">
-										${root}/memberfile/${memberDto.m_photo_name}
+										${root}/file/member/${memberDto.m_photo_name}
 									</c:if>"
 								onclick="" style="float:left;">
 								
