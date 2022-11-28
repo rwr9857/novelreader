@@ -102,18 +102,18 @@
 		<c:forEach var="i" begin="${startPage}" end="${endPage}">
 			<c:if test="${i == currentPage}">
 				<a
-					href="${root}/?pageNumber=${i}"
+					href="${root}/index.do/?pageNumber=${i}"
 					style="cursor: pointer; color: #001076; font-weight: 800; font-size: 18px;">[${i}]</a>
 			</c:if>
 			<c:if test="${i != currentPage}">
 				<a
-					href="${root}/?pageNumber=${i}"
+					href="${root}/index.do/?pageNumber=${i}"
 					style="cursor: pointer; color: #83aaff; font-weight: 600; font-size: 18px;">[${i}]</a>
 			</c:if>
 		</c:forEach>
 		
 		<c:if test="${endPage < pageCount}">
-			<a href="${root}/?pageNumber=${startPage + pageBlock}" style="color:#83aaff; font-weight:600;">[다음]</a>
+			<a href="${root}/index.do/?pageNumber=${startPage + pageBlock}" style="color:#83aaff; font-weight:600;">[다음]</a>
 		</c:if>
 	</div>
 </body>

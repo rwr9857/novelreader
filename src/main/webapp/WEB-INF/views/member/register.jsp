@@ -64,7 +64,7 @@
 
 	<c:if test="${numSess !=null}">
 		<script type="text/javascript">
-	    location.href = "/novelreader";
+	    location.href = "/index.do";
 	</script>
 	</c:if>
 
@@ -72,7 +72,7 @@
 		<div class="loginbox">
 			<form name="memberForm" action="${root}/member/registerOk.do" method="post">
 
-				<h1 style="margin-top: 10px; color: #0096fa; cursor: pointer" onclick="location.href = '/novelreader'">NOVELREADER</h1>
+				<h1 style="margin-top: 10px; color: #0096fa; cursor: pointer" onclick="location.href = '/index.do'">NOVELREADER</h1>
 				<h3 style="color: #757c80; font-size: 14px; font-weight: bold;">소설의 모든것</h3>
 				<h2 style="color: rgb(104, 109, 112); font-size: 18px; font-weight: bold; margin-top: 30px; margin-bottom: -5px;">회원 가입</h2>
 				<div class="inputbox">

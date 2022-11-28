@@ -16,8 +16,13 @@ import com.java.homepage.service.HomeService;
 public class HomeController {
 	@Autowired
 	private HomeService homeService;
-	
+
 	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String main(HttpServletRequest request, HttpServletResponse response) {
+		return "index.do";
+	}
+	
+	@RequestMapping(value = "/index.do", method = RequestMethod.GET)
 	public ModelAndView index(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("request", request);

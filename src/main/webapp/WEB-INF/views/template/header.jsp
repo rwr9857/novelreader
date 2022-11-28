@@ -25,7 +25,7 @@
 	<div class="Upwrap">
 		<div class="Upimg">
 			<!--로고-->
-			<a href="${root}"><h1
+			<a href="${root}/index.do"><h1
 					style="margin-top: 15px; color: #0096fa; cursor: pointer">NOVELREADER</h1></a>
 		</div>
 		<div class="Upspan">

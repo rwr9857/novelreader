@@ -24,7 +24,7 @@
 		</c:if>
 		
 		<script type="text/javascript">
-			location.href = "/novelreader";
+			location.href = "/index.do";
 		</script>
 	</c:if>
 
