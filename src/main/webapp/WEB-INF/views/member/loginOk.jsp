@@ -17,7 +17,7 @@
 		<c:set var="nicknameSess" value="${nicknameSess}" scope="session" />
 		
 		<c:if test="${photoNameSess !=null}">
-			<c:set var="photoAddressSess" value="${root}/memberfile/${photoNameSess}" scope="session" />
+			<c:set var="photoAddressSess" value="${root}/file/member/${photoNameSess}" scope="session" />
 		</c:if>
 		<c:if test="${photoNameSess ==null}">
 			<c:set var="photoAddressSess" value="${root}/images/profile/profile_default.png" scope="session" />
