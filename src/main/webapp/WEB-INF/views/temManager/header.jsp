@@ -11,7 +11,7 @@
 <body>
 	<div id="wrap">
 		<div class="adminLogo">
-			<a href="${root}/">NOVELREADER</a>
+			<a href="${root}/index.do">NOVELREADER</a>
 			<a href="${root}/manager/menu.do">ADMINMODE</a>
 		</div>
 		<div class="adminmenu">
