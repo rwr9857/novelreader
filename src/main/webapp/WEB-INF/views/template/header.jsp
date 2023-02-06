@@ -62,7 +62,7 @@
 						<img class="profile_image" alt="기본값" src="${root}/images/profile/profile_default.png" style="width: 50px; height: 50px; margin-left: 20px; border: 1px solid #261ca0; border-radius: 25px; background:#ffffff;">
 					</c:if>
 					<c:if test="${photoAddressSess != null}">
-						<img class="profile_image" alt="프로필사진" src="${photoAddressSess}" style="width: 50px; height: 50px; margin-left: 20px; border: 1px solid #261ca0; border-radius: 25px; background:#ffffff;">
+						<img class="profile_image" alt="프로필사진" src="${photoAddressSess}" onerror="this.onerror=null; this.src='${root}/images/profile/profile_default.png';" style="width: 50px; height: 50px; margin-left: 20px; border: 1px solid #261ca0; border-radius: 25px; background:#ffffff;" >
 					</c:if>
 				</span>
 				<div class="Updropdown-content">

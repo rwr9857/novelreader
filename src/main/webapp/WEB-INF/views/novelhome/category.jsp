@@ -34,7 +34,8 @@
 						<div class=main_views style="width: 33.2%; float: left;" onclick="location.href='${root}/novelhome/list.do?n_num=${novelhomeDto.n_num}'">
 							<div class=search_image>
 								<c:if test="${novelhomeDto.n_image_name!=null}">
-									<img align="left" src="${root}/file/${novelhomeDto.n_image_name}">
+									<img align="left" src="${root}/file/${novelhomeDto.n_image_name}"
+									onerror="this.onerror=null; this.src='${root}/images/novelLabel/defaultImage.png';">
 								</c:if>
 								<c:if test="${novelhomeDto.n_image_name==null}">
 									<img align="left" src="${root}/images/novelLabel/defaultImage.png">

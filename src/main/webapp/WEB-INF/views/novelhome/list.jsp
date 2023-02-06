@@ -30,7 +30,7 @@
 					<!-- 이미지불러오기 -->
 					<div class="image_container">
 						<c:if test="${novelHomeDto.n_image_name != null}">
-						<img src="${root}/file/${novelHomeDto.n_image_name}" style ="border-radius : 15px;"/>
+						<img src="${root}/file/${novelHomeDto.n_image_name}" onerror="this.onerror=null; this.src='${root}/images/novelLabel/defaultImage.png';" style ="border-radius : 15px;"/>
 						</c:if>
 						<c:if test="${novelHomeDto.n_image_name == null}">
 							<img src="${root}/images/novelLabel/defaultImage.png">

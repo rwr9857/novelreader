@@ -27,6 +27,7 @@
 						</c:if>
 						<c:if test="${memberDto.m_photo_path != null}">
 							<img class="sajin" alt="프로필사진" src="${root}/file/member/${memberDto.m_photo_name}"
+							onerror="this.onerror=null; this.src='${root}/images/profile/profile_default.png';"
 								onclick="goToProfile('${root}','${memberDto.m_nickname}')">
 						</c:if>
 		                <h2 onclick="goToProfile('${root}','${memberDto.m_nickname}')">${memberDto.m_nickname}</h2>

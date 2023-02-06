@@ -213,6 +213,7 @@
 								<c:if test="${novelDto.n_image_name!=null}">
 									<img alt="이미지 불러오는중"
 										src="${root}/file/${novelDto.n_image_name}"
+										onerror="this.onerror=null; this.src='${root}/images/novelLabel/defaultImage.png';"
 										class="novel_image">
 								</c:if>
 								<c:if test="${novelDto.n_image_name==null}">

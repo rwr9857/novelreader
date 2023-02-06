@@ -41,11 +41,7 @@
 								<c:if test="${novelhomeDto.n_image_name!=null}">
 									<img alt="이미지 불러오는중"
 										src="${root}/file/${novelhomeDto.n_image_name}"
-										class="novel_image">
-								</c:if>
-								<c:if test="${novelhomeDto.n_image_name==null}">
-									<img alt="이미지 불러오는중"
-										src="${root}/images/novelLabel/defaultImage.png"
+										onerror="this.onerror=null; this.src='${root}/images/novelLabel/defaultImage.png';"
 										class="novel_image">
 								</c:if>
 							</div>
