@@ -30,4 +30,4 @@ https://gist.github.com/Vulpes94/435972bc60901f4e46e115e1ea813806
 
 
 - 화면 디자인
-  <img width="1470" alt="화면디자인" src="https://github.com/Vulpes94/novelreader/assets/74402423/27f977fc-0553-4f64-923f-8f586ac58e3b">
+  <img width="1470" alt="화면디자인" src="https://github.com/Vulpes94/novelreader/assets/74402423/5b422c15-06bc-4ac2-80f5-1f0685ed3112">
