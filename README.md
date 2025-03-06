@@ -34,4 +34,5 @@ https://gist.github.com/Vulpes94/435972bc60901f4e46e115e1ea813806
 
 
 - 화면 디자인
-  <img width="1470" alt="화면디자인" src="https://github.com/Vulpes94/novelreader/assets/74402423/f49de95e-73a9-44ea-88b5-c637ae8f3978">
+
+<img width="1470" alt="화면디자인" src="https://github.com/user-attachments/assets/22d83d21-d0b9-4047-b3b9-d24b00e73dc2" />
