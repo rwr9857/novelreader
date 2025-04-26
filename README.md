@@ -28,7 +28,7 @@
 
 | 구분  | 사용 기술   |
 |------|-----------|
-| **프론트엔드** | ![JSP](https://img.shields.io/badge/JSP-%23f44336?style=for-the-badge&logo=JSP&logoColor=white) ![Bootstrap](https://img.shields.io/badge/Bootstrap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white) |
+| **프론트엔드** | ![jQuery](https://img.shields.io/badge/jQuery-%230769AD?style=for-the-badge&logo=jquery&logoColor=white) ![Bootstrap](https://img.shields.io/badge/Bootstrap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white) |
 | **백엔드** | ![Spring MVC](https://img.shields.io/badge/Spring%20MVC-6DB33F?style=for-the-badge&logo=spring&logoColor=white) ![MyBatis](https://img.shields.io/badge/MyBatis-DB0000?style=for-the-badge&logoColor=white) |
 | **데이터베이스** | ![Oracle](https://img.shields.io/badge/Oracle-F80000?style=for-the-badge&logo=oracle&logoColor=white)|
 | **형상관리** | ![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)|
