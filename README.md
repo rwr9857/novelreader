@@ -52,6 +52,11 @@
 
 ![ClassDiagram](https://github.com/rwr9857/novelreader/assets/74402423/a63267aa-5937-4f45-bc60-4c63d1ea7c03)
 
+## 플로우 차트
+
+![FlowChart](https://github.com/user-attachments/assets/b118ca0a-a18f-4416-92b4-641e284ec320)
+
+
 ## 화면 디자인
 
 <img width="1470" alt="화면디자인" src="https://github.com/user-attachments/assets/22d83d21-d0b9-4047-b3b9-d24b00e73dc2" />
