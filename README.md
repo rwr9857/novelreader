@@ -48,11 +48,11 @@
 
 ![ER-Diagram](https://github.com/rwr9857/novelreader/assets/74402423/b4761a4b-d39f-4827-b6db-646f398ba56d)
 
-## 클래스 다이어그램
+## 클래스 다이어그램 (Class Diagram)
 
 ![ClassDiagram](https://github.com/rwr9857/novelreader/assets/74402423/a63267aa-5937-4f45-bc60-4c63d1ea7c03)
 
-## 플로우 차트
+## 플로우차트 (FlowChart)
 
 ![FlowChart](https://github.com/user-attachments/assets/b118ca0a-a18f-4416-92b4-641e284ec320)
 
