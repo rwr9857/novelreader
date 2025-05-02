@@ -63,8 +63,7 @@
 ## 화면 설계
 <img width="1443" alt="main" src="https://github.com/user-attachments/assets/9997865a-1ba4-4906-be1e-94cb0697d690" />
 
-![관리자UI](https://github.com/user-attachments/assets/9f608267-74a3-4e12-a915-7c138a34be03)
-
+![관리자UI](https://github.com/user-attachments/assets/9ae3f264-b22e-419c-b51e-a0492a6a9b37)
 
 
 
