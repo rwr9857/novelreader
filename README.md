@@ -60,10 +60,10 @@
 ![FlowChart](https://github.com/user-attachments/assets/b118ca0a-a18f-4416-92b4-641e284ec320)
 
 
-## 화면 디자인
+## 화면 설계
+<img width="1443" alt="main" src="https://github.com/user-attachments/assets/9997865a-1ba4-4906-be1e-94cb0697d690" />
 
-<img width="1470" alt="화면디자인" src="https://github.com/user-attachments/assets/22d83d21-d0b9-4047-b3b9-d24b00e73dc2" />
-
+![관리자UI](https://github.com/user-attachments/assets/9f608267-74a3-4e12-a915-7c138a34be03)
 
 
 
