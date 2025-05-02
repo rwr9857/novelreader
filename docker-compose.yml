@@ -20,8 +20,4 @@ services:
       - "8080:8080"
     depends_on:
       - oracle-db
-    environment:
-      - SPRING_DATASOURCE_URL=jdbc:oracle:thin:@oracle-db:1521:FREE
-      - SPRING_DATASOURCE_USERNAME=novelreader
-      - SPRING_DATASOURCE_PASSWORD=1234
     restart: always
