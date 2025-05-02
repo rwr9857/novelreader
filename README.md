@@ -46,11 +46,11 @@
 
 ## ERD (Entity Relationship Diagram)
 
-![ER-Diagram](https://github.com/Vulpes94/novelreader/assets/74402423/b4761a4b-d39f-4827-b6db-646f398ba56d)
+![ER-Diagram](https://github.com/rwr9857/novelreader/assets/74402423/b4761a4b-d39f-4827-b6db-646f398ba56d)
 
 ## 클래스 다이어그램
 
-![ClassDiagram](https://github.com/Vulpes94/novelreader/assets/74402423/a63267aa-5937-4f45-bc60-4c63d1ea7c03)
+![ClassDiagram](https://github.com/rwr9857/novelreader/assets/74402423/a63267aa-5937-4f45-bc60-4c63d1ea7c03)
 
 ## 화면 디자인
 
