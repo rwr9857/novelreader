@@ -139,7 +139,7 @@
                              (SELECT * FROM (SELECT ROWNUM AS rnum, a.* FROM
                                                                 (SELECT * FROM NOVEL_POST ORDER BY n_num DESC,N_POST_NUM) a) b
                              WHERE n_num= #{n_num})) a , 
-                     "COMMENT" com
+                     "COMMENTS" com
          WHERE com.n_post_num = a.n_post_num
       ]]>
 	</select>
