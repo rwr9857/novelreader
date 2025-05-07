@@ -1,6 +1,16 @@
-CREATE USER novelreader IDENTIFIED BY 1234;
+-- 1. 사용자 생성 (기본/임시 테이블스페이스 포함)
+CREATE USER novelreader IDENTIFIED BY 1234
+DEFAULT TABLESPACE USERS
+TEMPORARY TABLESPACE TEMP;
+
+-- 2. 사용자 권한 부여
 GRANT CONNECT, RESOURCE TO novelreader;
 
+-- 3. 테이블스페이스 사용 권한 부여 (저장공간 허용)
+ALTER USER novelreader QUOTA UNLIMITED ON USERS;
+
+-- (선택) 4. 현재 세션에서 스키마를 novelreader로 변경
+-- (예: system 계정으로 접속한 경우)
 ALTER SESSION SET CURRENT_SCHEMA = novelreader;
 
 CREATE TABLE MEMBER (
